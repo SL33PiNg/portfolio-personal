@@ -13,7 +13,9 @@
               single-line
               class="mr-3"
             ></v-text-field>
-            <v-btn @click="addDepartment">เพิ่ม</v-btn>
+            <repetitive-name-dialog>
+              <v-btn @click="addDepartment">เพิ่ม</v-btn>
+            </repetitive-name-dialog>
           </v-toolbar>
           <v-dialog v-model="dialog" max-width="500px">
             <v-card>
