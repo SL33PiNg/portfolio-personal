@@ -54,8 +54,13 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Doc: https://auth.nuxtjs.org/
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    // https://github.com/nuxt-community/modules/tree/master/packages/toast
+    '@nuxtjs/toast'
   ],
+  toast: {
+    position: 'buttom-right'
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

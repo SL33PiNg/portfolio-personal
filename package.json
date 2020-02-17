@@ -16,6 +16,7 @@
     "@nuxtjs/auth": "^4.8.5",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/toast": "^3.3.0",
     "app-root-path": "^3.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -27,7 +28,6 @@
     "nodemon": "^2.0.2",
     "nuxt": "^2.0.0",
     "sharp": "^0.24.0",
-    "vue-notifications": "^1.0.2",
     "vue-the-mask": "^0.11.1",
     "vue-wysiwyg": "^1.7.2",
     "winston": "^3.2.1"
