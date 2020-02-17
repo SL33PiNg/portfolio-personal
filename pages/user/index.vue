@@ -12,10 +12,10 @@
           <v-hover v-slot:default="{ hover }">
             <v-card max-width="200" max-height="200">
               <v-img
-                :src="`${hostname}/avatar/${user.avatar}`"
+                :src="`${hostname}/api/avatar/${user.avatar}`"
                 width="200"
                 height="200"
-              ></v-img>
+              ></template>
               <v-expand-transition>
                 <div
                   v-if="hover"
@@ -135,7 +135,7 @@ export default {
   mixins: [getUser],
   data: () => ({
     mask: '###-#######',
-    hostname: location.origin.replace('3000', 3001),
+    hostname: location.origin,
     switch1: true,
     loading: true,
     updateLoad: false,
