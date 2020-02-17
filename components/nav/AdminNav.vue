@@ -1,0 +1,48 @@
+<template>
+  <v-list>
+    <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
+      <v-list-item-action>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-list-item-action>
+      <v-list-item-content>
+        <v-list-item-title v-text="item.title" />
+      </v-list-item-content>
+    </v-list-item>
+  </v-list>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        {
+          icon: 'mdi-magnify',
+          title: 'ค้นหารายชื่อ',
+          to: '/admin'
+        },
+        {
+          icon: 'mdi-pencil-outline',
+          title: 'แก้ไขหมวดหมู่',
+          to: '/admin/edit'
+        },
+        {
+          icon: 'mdi-newspaper-variant-outline',
+          title: 'จัดการหน้าฟีดข่าว',
+          to: '/admin/feed'
+        },
+        {
+          icon: 'mdi-history',
+          title: 'ประวัติการแก้ไข',
+          to: '/admin/history'
+        },
+        {
+          icon: 'mdi-backup-restore',
+          title: 'สำรองข้อมูล',
+          to: '/'
+        }
+      ]
+    }
+  }
+}
+</script>
