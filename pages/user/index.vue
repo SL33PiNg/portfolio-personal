@@ -15,7 +15,7 @@
                 :src="`${hostname}/api/avatar/${user.avatar}`"
                 width="200"
                 height="200"
-              ></template>
+              ></v-img>
               <v-expand-transition>
                 <div
                   v-if="hover"
