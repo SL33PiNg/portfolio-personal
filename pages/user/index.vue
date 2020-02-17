@@ -187,7 +187,7 @@ export default {
       try {
         const result = await this.$axios.$patch('/users/avatar', data)
         this.user.avatar = result.avatar + '#' + new Date().getTime()
-        this.
+        this.$toast.success('Succesfully change avatar')
       } catch (error) {}
     }
   }

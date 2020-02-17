@@ -59,7 +59,9 @@ export default {
     '@nuxtjs/toast'
   ],
   toast: {
-    position: 'buttom-right'
+    position: 'top-right',
+    duration: '2000',
+    keepOnHover: true
   },
   /*
    ** Axios module configuration
