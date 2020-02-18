@@ -1,8 +1,9 @@
+/* eslint-disable prettier/prettier */
 export default {
   data: () => ({
     loading: false
   }),
-  async created() {
+  async created () {
     this.loading = true
     try {
       const user = await this.$axios.$get('/users')
@@ -15,12 +16,13 @@ export default {
     }
   },
   methods: {
-    async updateUser() {
+    async updateUser () {
       try {
         const user = await this.$axios.$patch('/users', {
           ...this.user
         })
         this.user = user
+        this.$toast.success('Succesfully update profile')
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error)
