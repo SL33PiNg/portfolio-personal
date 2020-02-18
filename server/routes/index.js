@@ -1,6 +1,7 @@
 const UserController = require('../controllers/userController')
 const isAuth = require('../middleware/isAuth')
 const users = require('./users')
+const profile = require('./profile')
 const select = require('./select')
 const express = require('express')
 const router = express.Router()
@@ -12,6 +13,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.use('/users', isAuth, users)
+router.use('/profile', profile)
 router.use('/select', select)
 
 module.exports = router

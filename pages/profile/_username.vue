@@ -6,7 +6,7 @@
           <v-list>
             <v-list-item-content>
               <v-img
-                :src="`${hostname}${user.avatar}`"
+                :src="`${hostname}/api/avatar/${user.avatar}`"
                 aspect-ratio="1.7"
                 width="200"
                 height="200"
@@ -49,20 +49,15 @@
                 {{ user.personalInfo.lineID }}</v-list-item-subtitle
               >
               <v-divider></v-divider>
-              <v-spacers></v-spacers>
-              <v-spacers></v-spacers>
+
               <v-list-item-title><h4>ความเชี่ยวชาญ</h4></v-list-item-title>
               <v-list-item-subtitle></v-list-item-subtitle>
               <v-divider></v-divider>
-              <v-spacers></v-spacers>
-              <v-spacers></v-spacers>
               <v-list-item-title
                 ><h4>ตำแหน่งสายงาน (ก.พ.)</h4></v-list-item-title
               >
               <v-list-item-subtitle></v-list-item-subtitle>
               <v-divider></v-divider>
-              <v-spacers></v-spacers>
-              <v-spacers></v-spacers>
               <v-list-item-title>
                 <v-col cols="12" md="6">
                   <v-btn class="primary">ดาวน์โหลดนามบัตร</v-btn>
@@ -108,7 +103,6 @@
         <nuxt-child></nuxt-child>
       </v-col>
     </v-row>
-    <v-row else>loading</v-row>
   </v-container>
 </template>
 
@@ -122,7 +116,7 @@ export default {
     tab: null,
     tab2: null,
     user: {},
-    loading: 0,
+    loading: true,
     username: '',
     tabItems: [
       { id: 1, title: 'ผลงาน', path: '/' },
@@ -138,9 +132,26 @@ export default {
       },
       { id: 4, title: 'ใบรับรอง', path: '/cert' }
     ],
-    hostname: location.origin.replace('3000', 3001)
+    hostname: location.origin
   }),
 
-  async created() {}
+  created() {
+    this.username = this.$route.params.username
+    this.getProfile()
+  },
+  methods: {
+    async getProfile() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get(
+          `/profile/${this.$route.params.username}`
+        )
+        this.user = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    }
+  }
 }
 </script>

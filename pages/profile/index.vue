@@ -19,7 +19,22 @@ export default {
   data() {
     return {
       users: [],
-      loading: 0
+      loading: true
+    }
+  },
+  created() {
+    this.getAllProfile()
+  },
+  methods: {
+    async getAllProfile() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/profile')
+        this.users = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
     }
   }
 }
