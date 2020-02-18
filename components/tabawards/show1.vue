@@ -50,6 +50,7 @@ export default {
   },
   data() {
     return {
+      dialog: false,
       name: 'โครงการวิจัยที่1',
       types: 'โครงการวิจัย',
       years: '2020',
