@@ -30,9 +30,9 @@
       </v-container>
     </v-content>
 
-    <v-footer :fixed="true" app>
+    <!-- <v-footer :fixed="true" app>
       <span class="red"> </span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
