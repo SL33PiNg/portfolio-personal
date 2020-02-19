@@ -13,9 +13,7 @@
               single-line
               class="mr-3"
             ></v-text-field>
-            <repetitive-name-dialog>
-              <v-btn @click="addDepartment">เพิ่ม</v-btn>
-            </repetitive-name-dialog>
+            <v-btn @click="addDepartment">เพิ่ม</v-btn>
           </v-toolbar>
           <v-dialog v-model="dialog" max-width="500px">
             <v-card>
@@ -106,6 +104,7 @@ export default {
         })
         this.getDepartment()
       } catch (error) {
+        this.$toast.error(`ชื่อหน่วยงาน : ${this.name} มีอยู่แล้ว`)
       } finally {
         this.name = ''
         this.loadBtn = false

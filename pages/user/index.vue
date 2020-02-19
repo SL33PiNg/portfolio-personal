@@ -53,10 +53,15 @@
           ></v-select>
         </v-col>
         <v-col cols="12" sm="12" md="6">
-          <v-select
-            :items="divisionPos"
-            label="ตำแหน่งสายงาน (ก.พ.)"
-          ></v-select>
+          <label>ตำแหน่งสายงาน ก.พ.</label>
+          <treeselect
+            v-model="value"
+            :options="positionocsc"
+            :normalizer="normalizer"
+            :disable-branch-nodes="true"
+            clear-on-select
+            placeholder="ตำแหน่งสายงาน ก.พ."
+          />
         </v-col>
       </v-row>
       <v-row>
@@ -128,9 +133,14 @@
 <script>
 import getUser from '@/mixins/user'
 import { mask } from 'vue-the-mask'
+import Treeselect from '@riophae/vue-treeselect'
+// import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   directives: {
     mask
+  },
+  components: {
+    Treeselect
   },
   mixins: [getUser],
   data: () => ({
@@ -170,11 +180,37 @@ export default {
         'Avatar size should be less than 2 MB!'
     ],
     email: '',
+    positionocsc: [],
+    clearOnSelect: false,
+    value: null,
+    pValue: null,
+    normalizer(node) {
+      return {
+        id: node._id,
+        label: node.name,
+        children: node.sub
+      }
+    },
     emailRules: [
       (v) => !!v || 'E-mail is required',
       (v) => /.+@.+/.test(v) || 'E-mail must be valid'
     ]
   }),
+  watch: {
+    value(newVal) {
+      this.positionocsc.forEach((doc) => {
+        if (doc.sub.find((ds) => ds._id === newVal)) {
+          this.pValue = doc._id
+        }
+      })
+      console.log(this.positionocsc)
+      console.log(this.pValue)
+      console.log(newVal)
+    }
+  },
+  created() {
+    this.getPositionOcsc()
+  },
 
   methods: {
     openFileDialog() {
@@ -187,13 +223,23 @@ export default {
       try {
         const result = await this.$axios.$patch('/users/avatar', data)
         this.user.avatar = result.avatar + '#' + new Date().getTime()
-        this.$toast.success('Succesfully change avatar')
+        this.$toast.success('อัพโหลดรูปโปรไฟล์ "สำเร็จ"')
       } catch (error) {}
+    },
+    async getPositionOcsc() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/select/positionOcsc')
+        this.positionocsc = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
     }
   }
 }
 </script>
-
+<style src="@riophae/vue-treeselect/dist/vue-treeselect.css"></style>
 <style>
 .v-card--reveal {
   align-items: center;
