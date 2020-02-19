@@ -1,5 +1,5 @@
 <template>
-  <v-tabs background-color="white" color="primary">
+  <v-tabs background-color="white" color="primary" grow>
     <v-tab>
       โครงการวิจัย
     </v-tab>

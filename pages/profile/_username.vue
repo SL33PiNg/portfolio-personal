@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <v-row v-if="!loading">
-      <v-col cols="12" md="5">
-        <v-row justify="center">
-          <v-card class="mx-auto " width="350">
+      <v-col cols="12" md="4">
+        <v-row>
+          <v-card width="100%">
             <v-img
               :src="`${hostname}/api/avatar/${user.avatar}`"
               aspect-ratio="1.7"
@@ -73,8 +73,8 @@
           </v-card>
         </v-row>
       </v-col>
-      <v-col cols="12" md="7">
-        <v-card class="mx-auto " outlined>
+      <v-col cols="12" md="8">
+        <v-card outlined>
           <v-tabs
             v-model="tab"
             background-color="white"
