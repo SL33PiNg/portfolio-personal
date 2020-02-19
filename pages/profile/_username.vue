@@ -1,106 +1,96 @@
 <template>
   <v-container>
     <v-row v-if="!loading">
-      <v-col cols="6" md="4">
-        <v-card class="pa-2 " outlined tile>
-          <v-list>
-            <v-list-item-content>
-              <v-img
-                :src="`${hostname}/api/avatar/${user.avatar}`"
-                aspect-ratio="1.7"
-                width="200"
-                height="200"
-                class=" ma-2"
-              ></v-img>
+      <v-col cols="12" md="5">
+        <v-row justify="center">
+          <v-card class="mx-auto " width="350">
+            <v-img
+              :src="`${hostname}/api/avatar/${user.avatar}`"
+              aspect-ratio="1.7"
+              width="200"
+              height="200"
+              class=" mt-5 mx-auto"
+            ></v-img>
+            <v-list-item class="ml-4">
+              <h4>
+                ชื่อ-นามสกุล : {{ user.personalInfo.firstnameTH }}
+                {{ user.personalInfo.lastnameTH }}
+              </h4>
+            </v-list-item>
+            <v-list-item class="ml-4">
+              <h4>
+                ชื่อเล่น :
+              </h4>
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item class="ml-4">
+              <h4>
+                การทำงานทำงาน
+              </h4>
+            </v-list-item>
+            <v-list-item>หน่วยงาน :</v-list-item>
+            <v-list-item>ฝ่าย :</v-list-item>
+            <v-divider></v-divider>
+            <v-list-item class="ml-4">
+              <h4>ช่องทางการติดต่อ</h4>
+            </v-list-item>
+            <v-list-item
+              ><v-icon color="red">mdi-email</v-icon>
 
-              <v-list-item-title>
-                <h4>
-                  ชื่อ-นามสกุล : {{ user.personalInfo.firstnameTH }}
-                  {{ user.personalInfo.lastnameTH }}
-                </h4>
-              </v-list-item-title>
+              : {{ user.personalInfo.email }}
+            </v-list-item>
+            <v-list-item>
+              <v-icon color="warning">mdi-phone</v-icon>
+              : {{ user.personalInfo.phone }}
+            </v-list-item>
 
-              <v-list-item-title>
-                <h4>
-                  ชื่อเล่น :
-                </h4>
-              </v-list-item-title>
-              <v-divider></v-divider>
+            <v-list-item>
+              <v-icon color="blue">mdi-facebook </v-icon>
+              : {{ user.personalInfo.facebook }}
+            </v-list-item>
 
-              <v-list-item-title><h4>ที่อยู่ที่ทำงาน</h4></v-list-item-title>
-              <v-list-item-subtitle>หน่วยงาน :</v-list-item-subtitle>
-              <v-list-item-subtitle>ฝ่าย :</v-list-item-subtitle>
-              <v-divider></v-divider>
-              <v-list-item-title><h4>ช่องทางการติดต่อ</h4></v-list-item-title>
-              <v-list-item-subtitle
-                ><v-icon color="red">mdi-email</v-icon>:
-                {{ user.personalInfo.email }}</v-list-item-subtitle
-              >
-              <v-list-item-subtitle
-                ><v-icon color="warning">mdi-phone</v-icon>:
-                {{ user.personalInfo.phone }}</v-list-item-subtitle
-              >
-              <v-list-item-subtitle>
-                <v-icon color="blue">mdi-facebook</v-icon>:
-                {{ user.personalInfo.facebook }}</v-list-item-subtitle
-              >
-              <v-list-item-subtitle
-                ><v-icon color="green">mdi-alpha-l-circle</v-icon>:
-                {{ user.personalInfo.lineID }}</v-list-item-subtitle
-              >
-              <v-divider></v-divider>
-
-              <v-list-item-title><h4>ความเชี่ยวชาญ</h4></v-list-item-title>
-              <v-list-item-subtitle></v-list-item-subtitle>
-              <v-divider></v-divider>
-              <v-list-item-title
-                ><h4>ตำแหน่งสายงาน (ก.พ.)</h4></v-list-item-title
-              >
-              <v-list-item-subtitle></v-list-item-subtitle>
-              <v-divider></v-divider>
-              <v-list-item-title>
-                <v-col cols="12" md="6">
-                  <v-btn class="primary">ดาวน์โหลดนามบัตร</v-btn>
-                </v-col>
-                <v-col cols="12" md="6">
-                  <v-dialog v-model="dialog" persistent max-width="600px">
-                    <template v-slot:activator="{ on }">
-                      <v-btn color="warning" dark v-on="on">รายงานปัญหา</v-btn>
-                    </template>
-                    <v-card>
-                      <v-card-title>
-                        <span class="headline">รายงานปัญหา</span>
-                      </v-card-title>
-                      <v-card-text>
-                        <v-container>
-                          <v-textarea> </v-textarea>
-
-                          <v-btn color="error" text @click="dialog = false"
-                            >Close</v-btn
-                          >
-                          <v-btn color="success" text @click="dialog = false"
-                            >Save</v-btn
-                          >
-                        </v-container>
-                      </v-card-text>
-                    </v-card>
-                  </v-dialog>
-                </v-col>
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list>
-        </v-card>
+            <v-list-item
+              ><v-icon color="green">mdi-alpha-l-circle</v-icon> :
+              {{ user.personalInfo.lineID }}
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item class="ml-4">
+              <h4>ความเชี่ยวชาญ</h4>
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item class="ml-4">
+              <h4>ตำแหน่งสายงาน (ก.พ.)</h4>
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-card-actions class="ml-4">
+              <v-btn color="primary" text @click="reserve">
+                <h4>ดาวน์โหลดนามบัตร</h4>
+              </v-btn>
+              <v-btn color="warning" text @click="reserve">
+                <h4>ร้องเรียน</h4>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-row>
       </v-col>
-      <v-col cols="12" md="8">
-        <v-tabs v-model="tab" background-color="white" color="primary" centered>
-          <v-tab
-            v-for="item in tabItems"
-            :key="item.id"
-            :to="`/profile/${username}${item.path}`"
-            >{{ item.title }}</v-tab
+      <v-col cols="12" md="7">
+        <v-card class="mx-auto " outlined>
+          <v-tabs
+            v-model="tab"
+            background-color="white"
+            color="primary"
+            centered
           >
-        </v-tabs>
-        <nuxt-child></nuxt-child>
+            <v-tab
+              v-for="item in tabItems"
+              :key="item.id"
+              :to="`/profile/${username}${item.path}`"
+              >{{ item.title }}</v-tab
+            >
+          </v-tabs>
+
+          <nuxt-child></nuxt-child>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
