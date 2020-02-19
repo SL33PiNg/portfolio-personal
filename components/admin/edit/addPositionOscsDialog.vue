@@ -4,7 +4,7 @@
       <v-icon v-on="on">mdi-folder-plus</v-icon>
     </template>
     <v-card>
-      <v-card-title>เพิ่มตำแหน่งสายงานก.พ.</v-card-title>
+      <v-card-title>เพิ่มตำแหน่งสายงาน ก.พ.</v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
@@ -41,7 +41,7 @@ export default {
         await this.$axios.$post('/select/positionOcsc', { name: this.name })
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log(error)
+        this.$toast.error(`ชื่อตำแหน่งสายงาน ก.พ. : ${this.name} มีอยู่แล้ว`)
       } finally {
         this.name = ''
         this.$emit('refetch')
