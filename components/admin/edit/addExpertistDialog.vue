@@ -40,8 +40,7 @@ export default {
       try {
         await this.$axios.$post('/select/expertist', { name: this.name })
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error)
+        this.$toast.error(`ชื่อความเชี่ยวชาญ : ${this.name} มีอยู่แล้ว`)
       } finally {
         this.name = ''
         this.$emit('refetch')

@@ -72,6 +72,7 @@ const userSchema = new mongoose.Schema({
       type: Boolean,
       default: false
     },
+
     DOB: Date
   },
   careerInfo: {
