@@ -1,18 +1,21 @@
 <template>
-  <v-card class="mx-auto ma-3" max-width="80%">
+  <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
-      <v-row class="ma-3 ">
-        <h1>
-          <v-icon large color="black">mdi-trophy-award</v-icon>
-          ข้อมูลผลงาน
-        </h1>
+      <v-row justify="center">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+          <h1 class="ma-2 white--text">
+            <v-icon large color="white">mdi-trophy-award</v-icon>
+            ข้อมูลผลงาน
+          </h1></v-sheet
+        >
       </v-row>
-      <v-row>
+      <v-row class="mt-10">
         <v-col cols="12" xs="12" md="12">
           <v-select
             v-model="select"
             :items="items"
             placeholder="เลือกประเภทผลงาน"
+            outlined
             >ประเภทผลงาน</v-select
           ></v-col
         ></v-row

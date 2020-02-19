@@ -1,24 +1,27 @@
 <template>
-  <v-card width="80%" class="mx-auto ma-3">
+  <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
-      <v-row class="ma-3">
-        <h1>
-          <v-icon large color="black">mdi-seal-variant</v-icon>
-          ผลงานทั้งหมด
-        </h1>
-      </v-row>
       <v-row justify="center">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+          <h1 class="ma-2 white--text">
+            <v-icon large color="white">mdi-seal-variant</v-icon>
+            ผลงานทั้งหมด
+          </h1></v-sheet
+        >
+      </v-row>
+      <v-row justify="center" class="mt-10">
         <v-col cols="12" md="5" xs="12">
           <v-select
             v-model="catagorySelect"
             :items="items"
             placeholder="เลือกประเภทผลงาน"
+            outlined
           >
             ประเภทผลงาน
           </v-select>
         </v-col>
         <v-col cols="12" md="5" xs="12">
-          <v-text-field v-model="search" label="ชื่อผลงาน" clearable
+          <v-text-field v-model="search" label="ชื่อผลงาน" clearable outlined
         /></v-col>
       </v-row>
       <v-row justify="center">
