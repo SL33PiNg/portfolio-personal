@@ -1,13 +1,14 @@
 <template>
-  <v-card class="mx-auto ma-3" max-width="80%">
+  <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
-      <v-row class="ma-3">
-        <h1>
-          <v-icon large color="black">mdi-account</v-icon>
-          ข้อมูลส่วนตัว
-        </h1>
-      </v-row>
       <v-row justify="center">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+          <h1 class="ma-2 white--text">
+            <v-icon large color="white">mdi-account</v-icon> ข้อมูลส่วนตัว
+          </h1>
+        </v-sheet>
+      </v-row>
+      <v-row justify="center" class="mt-6">
         <v-col cols="12" md="4" xs="12">
           <v-hover v-slot:default="{ hover }">
             <v-card max-width="200" max-height="200">
@@ -50,6 +51,7 @@
             v-model="user.personalInfo.academicRank"
             :items="academicPos"
             label="ตำแหน่งทางวิชาการ"
+            filled
           ></v-select>
         </v-col>
         <v-col cols="12" sm="12" md="6">
@@ -69,18 +71,21 @@
           <v-text-field
             v-model="user.personalInfo.firstnameTH"
             label="ชื่อ"
+            filled
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.lastnameTH"
             label="นามสกุล"
+            filled
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.nickname"
             label="ชื่อเล่น"
+            filled
           ></v-text-field> </v-col
       ></v-row>
       <v-row>
@@ -89,6 +94,7 @@
             v-model="user.personalInfo.phone"
             v-mask="mask"
             label="เบอร์ติดต่อ"
+            filled
           >
           </v-text-field>
         </v-col>
@@ -103,6 +109,7 @@
             v-model="user.personalInfo.email"
             :rules="emailRules"
             label="E-mail"
+            filled
             required
           ></v-text-field>
         </v-col>
@@ -112,6 +119,7 @@
           <v-text-field
             v-model="user.personalInfo.facebook"
             label="Facebook"
+            filled
           ></v-text-field>
         </v-col>
 
@@ -119,11 +127,12 @@
           <v-text-field
             v-model="user.personalInfo.lineID"
             label="Line ID"
+            filled
           ></v-text-field>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3">
-        <v-btn :loading="updateLoad" color="primary" @click="updateUser"
+        <v-btn :loading="updateLoad" color="success" @click="updateUser"
           >ยืนยัน</v-btn
         >
       </v-row>
