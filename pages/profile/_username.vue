@@ -13,15 +13,21 @@
             ></v-img>
             <v-list-item class="ml-4">
               <h4>
-                ชื่อ-นามสกุล : {{ user.personalInfo.firstnameTH }}
-                {{ user.personalInfo.lastnameTH }}
+                {{ user.personalInfo.firstnameTH }}
+                {{ user.personalInfo.lastnameTH }} ({{
+                  user.personalInfo.nicknameTH
+                }})
               </h4>
             </v-list-item>
             <v-list-item class="ml-4">
               <h4>
-                ชื่อเล่น :
+                {{ user.personalInfo.firstnameEN }}
+                {{ user.personalInfo.lastnameEN }} ({{
+                  user.personalInfo.nicknameEN
+                }})
               </h4>
             </v-list-item>
+
             <v-divider></v-divider>
             <v-list-item class="ml-4">
               <h4>
