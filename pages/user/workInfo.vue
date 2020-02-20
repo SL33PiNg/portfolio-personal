@@ -11,14 +11,21 @@
       </v-row>
       <v-row class="mt-10">
         <v-col cols="12" md="5" xs="12">
-          <v-text-field v-model="work.start" label="ปีที่เข้าทำงาน (พ.ศ.)" />
+          <v-text-field
+            v-model="work.start"
+            v-mask="mask"
+            label="ปีที่เข้าทำงาน (พ.ศ.)"
+            outlined
+          />
         </v-col>
 
         <v-col cols="12" md="5" xs="12">
           <v-text-field
             v-model="work.end"
+            v-mask="mask"
             :disabled="work.status"
             label="ปีที่ออกจากงาน (พ.ศ.)"
+            outlined
           />
         </v-col>
 
@@ -31,15 +38,15 @@
       ></v-row>
       <v-row>
         <v-col cols="12" md="6" xs="12">
-          <v-text-field v-model="work.department" label="แผนก" />
+          <v-text-field v-model="work.department" label="แผนก" outlined />
         </v-col>
         <v-col cols="12" md="6" xs="12">
-          <v-text-field v-model="work.position" label="ตำแหน่ง" />
+          <v-text-field v-model="work.position" label="ตำแหน่ง" outlined />
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" xs="12" md="9">
-          <v-text-field v-model="work.company" label="ชื่อองค์กร" />
+          <v-text-field v-model="work.company" label="ชื่อองค์กร" outlined />
         </v-col>
         <v-col cols="12" xs="12" md="3">
           <v-select :items="items" label="ประเทศ" outlined></v-select>
@@ -74,10 +81,15 @@
 
 <script>
 import UserMix from '@/mixins/user'
+import { mask } from 'vue-the-mask'
 export default {
+  directives: {
+    mask
+  },
   mixins: [UserMix],
   data() {
     return {
+      mask: '####',
       loadBtn: false,
       work: {
         start: '',
