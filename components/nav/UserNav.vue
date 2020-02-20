@@ -54,11 +54,7 @@ export default {
           title: 'ความเชี่ยวชาญ',
           to: '/user/expertinfo'
         },
-        {
-          icon: 'mdi-arm-flex-outline',
-          title: 'ทักษะความสามารถ',
-          to: '/user/skillinfo'
-        },
+
         {
           icon: 'mdi-briefcase-outline',
           title: 'ประวัติการทำงาน',
