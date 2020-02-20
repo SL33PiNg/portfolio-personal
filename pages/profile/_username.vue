@@ -63,10 +63,10 @@
             </v-list-item>
             <v-divider></v-divider>
             <v-card-actions class="ml-4">
-              <v-btn color="primary" text @click="reserve">
+              <v-btn color="primary" text>
                 <h4>ดาวน์โหลดนามบัตร</h4>
               </v-btn>
-              <v-btn color="warning" text @click="reserve">
+              <v-btn color="warning" text>
                 <h4>ร้องเรียน</h4>
               </v-btn>
             </v-card-actions>

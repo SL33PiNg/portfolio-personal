@@ -15,7 +15,11 @@
         </v-col>
 
         <v-col cols="12" md="5" xs="12">
-          <v-text-field v-model="work.end" label="ปีที่ออกจากงาน (พ.ศ.)" />
+          <v-text-field
+            v-model="work.end"
+            :disabled="work.status"
+            label="ปีที่ออกจากงาน (พ.ศ.)"
+          />
         </v-col>
 
         <v-col cols="12" md="2" xs="12">
@@ -116,16 +120,28 @@ export default {
         await this.$axios.$post('/users/workinfo', {
           ...this.work
         })
+        this.$toast.success('"สำเร็จ"')
       } catch (error) {
+        this.$toast.success('error')
       } finally {
         this.loadBtn = false
         this.getUser()
+        this.work = {
+          start: '',
+          end: '',
+          status: null,
+          department: '',
+          company: '',
+          position: ''
+        }
       }
     },
     async delWork(id) {
       try {
         await this.$axios.$delete(`/users/workinfo/${id}`)
+        this.$toast.success('"สำเร็จ"')
       } catch (error) {
+        this.$toast.success('error')
       } finally {
         this.getUser()
       }
