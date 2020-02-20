@@ -71,21 +71,43 @@
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.firstnameTH"
-            label="ชื่อ"
+            label="ชื่อภาษาไทย"
             outlined
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.lastnameTH"
-            label="นามสกุล"
+            label="นามสกุลภาษาไทย"
             outlined
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
-            v-model="user.personalInfo.nickname"
-            label="ชื่อเล่น"
+            v-model="user.personalInfo.nicknameTH"
+            label="ชื่อเล่นภาษาไทย"
+            outlined
+          ></v-text-field> </v-col
+      ></v-row>
+      <v-row>
+        <v-col cols="12" sm="12" md="4">
+          <v-text-field
+            v-model="user.personalInfo.firstnameEN"
+            label="ชื่อภาษาอังกฤษ"
+            outlined
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="12" md="4">
+          <v-text-field
+            v-model="user.personalInfo.lastnameEN"
+            label="นามสกุลภาษาอังกฤษ"
+            outlined
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="12" md="4">
+          <v-text-field
+            v-model="user.personalInfo.nicknameEN"
+            label="ชื่อเล่นภาษาอังกฤษ"
             outlined
           ></v-text-field> </v-col
       ></v-row>
@@ -167,7 +189,10 @@ export default {
       personalInfo: {
         firstnameTH: '',
         lastnameTH: '',
-        nickname: '',
+        nicknameTH: '',
+        firstnameEN: '',
+        lastnameEN: '',
+        nicknameEN: '',
         email: '',
         facebook: '',
         lineID: '',
