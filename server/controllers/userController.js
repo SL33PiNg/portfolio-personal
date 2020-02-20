@@ -107,6 +107,16 @@ exports.addUserEducationInfoById = async (req, res) => {
   }
 }
 
+exports.deleteEducationInfoByIndex = async (req, res) => {
+  const { id } = req.params
+  try {
+    const result = await UserModel.findByIdAndUpdate(req.user.id, { $pull: { educationinfo: { _id: id } } }, { new: true })
+    res.json(result)
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
 function rmuttLogin (username, password) {
   if (username === 'tao' && password === '123') return true
   else if (username === 'art' && password === '123') return true
