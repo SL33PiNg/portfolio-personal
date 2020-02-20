@@ -19,7 +19,12 @@
           <v-text-field label="หน่วยงานที่ออกใบรับรอง" clearable outlined />
         </v-col>
         <v-col cols="12" xs="12" md="3">
-          <v-text-field label="ปีที่ได้รับ (พ.ศ.)" clearable outlined />
+          <v-text-field
+            v-mask="mask"
+            label="ปีที่ได้รับ (พ.ศ.)"
+            clearable
+            outlined
+          />
         </v-col>
       </v-row>
 
@@ -42,9 +47,14 @@
 </template>
 
 <script>
+import { mask } from 'vue-the-mask'
 export default {
+  directives: {
+    mask
+  },
   data() {
     return {
+      mask: '####',
       headers: [
         {
           text: 'ชื่อใบรับรอง',
