@@ -32,6 +32,12 @@ export default {
           to: '/admin/feed'
         },
         {
+          icon: 'mdi-alert-rhombus-outline',
+          title: 'การร้องเรียน',
+          to: '/admin/report'
+        },
+
+        {
           icon: 'mdi-history',
           title: 'ประวัติการแก้ไข',
           to: '/admin/history'

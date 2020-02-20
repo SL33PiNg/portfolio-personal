@@ -29,13 +29,19 @@
             </v-list-item>
 
             <v-divider></v-divider>
-            <v-list-item class="ml-4">
-              <h4>
-                การทำงานทำงาน
-              </h4>
-            </v-list-item>
-            <v-list-item>หน่วยงาน :</v-list-item>
-            <v-list-item>ฝ่าย :</v-list-item>
+
+            <v-list-item class="ml-4"
+              ><h4>หน่วยงาน</h4>
+              :</v-list-item
+            >
+            <v-list-item class="ml-4"
+              ><h4>ฝ่าย</h4>
+              :{{ user.careerInfo.department }}</v-list-item
+            >
+            <v-list-item class="ml-4"
+              ><h4>ตำแหน่ง</h4>
+              :{{ user.careerInfo.jobPost }}</v-list-item
+            >
             <v-divider></v-divider>
             <v-list-item class="ml-4">
               <h4>ช่องทางการติดต่อ</h4>
