@@ -26,7 +26,11 @@
           <v-text-field label="สาขา" outlined />
         </v-col>
         <v-col cols="12" md="5" xs="12">
-          <v-text-field label="ปีที่สำเร็จการศึกษา (พ.ศ.)" outlined />
+          <v-text-field
+            v-mask="mask"
+            label="ปีที่สำเร็จการศึกษา (พ.ศ.)"
+            outlined
+          />
         </v-col>
         <v-col cols="12" md="2" xs="12">
           <v-checkbox class="mx-2" label="กำลังศึกษา"></v-checkbox> </v-col
@@ -59,9 +63,14 @@
 </template>
 
 <script>
+import { mask } from 'vue-the-mask'
 export default {
+  directives: {
+    mask
+  },
   data() {
     return {
+      mask: '####',
       headers: [
         {
           text: 'ระดับวุฒิการศึกษา',
