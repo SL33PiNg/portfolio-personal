@@ -4,13 +4,13 @@
       <v-list-item-content>
         <v-list-item-title>
           <h3>
-            <v-btn icon @click="award.fav = !award.fav">
-              <v-icon :color="award.fav ? 'yellow' : 'grey'">mdi-star</v-icon>
-            </v-btn>
-            ชื่อ: {{ award.title }}
+            {{ award.title }}
           </h3>
         </v-list-item-title>
       </v-list-item-content>
+      <v-btn icon @click="award.fav = !award.fav">
+        <v-icon :color="award.fav ? 'yellow' : 'grey'">mdi-star</v-icon>
+      </v-btn>
     </v-list-item>
 
     <v-img
@@ -21,13 +21,9 @@
     <v-list-item>
       <v-list-item-content>
         <v-list-item-subtitle
-          ><h4>ประเภทผลงาน: {{ award.catId }}</h4></v-list-item-subtitle
-        >
-        <v-list-item-subtitle
-          ><v-chip class="error">
-            ปี: {{ award.year }}</v-chip
-          ></v-list-item-subtitle
-        > </v-list-item-content
+          ><h4>ประเภทผลงาน: {{ award.catId }}</h4>
+          ปี: {{ award.year }}
+        </v-list-item-subtitle> </v-list-item-content
       ><v-btn icon><v-icon>mdi-magnify</v-icon></v-btn>
       <v-btn icon><v-icon>mdi-delete-outline</v-icon></v-btn>
     </v-list-item>

@@ -60,7 +60,7 @@
       </v-col>
     </v-row>
     <v-row justify="end" class="ma-3 ">
-      <v-btn class="mx-0 font-weight-light" color="primary">
+      <v-btn class="mx-0 font-weight-light" color="success">
         เพิ่มข้อมูล
       </v-btn>
     </v-row>

@@ -25,6 +25,7 @@
                 label="Username"
                 outlined
                 clearable
+                autofocus
               >
               </v-text-field>
             </v-col>

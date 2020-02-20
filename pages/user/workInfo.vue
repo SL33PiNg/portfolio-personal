@@ -1,13 +1,15 @@
 <template>
-  <v-card class="mx-auto ma-3" max-width="80%">
+  <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
-      <v-row class="ma-3">
-        <h1>
-          <v-icon large color="black">mdi-briefcase-outline</v-icon>
-          ข้อมูลประวัติการทำงาน
-        </h1>
+      <v-row justify="center">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+          <h1 class="ma-2 white--text">
+            <v-icon large color="white">mdi-briefcase-outline</v-icon>
+            ข้อมูลประวัติการทำงาน
+          </h1></v-sheet
+        >
       </v-row>
-      <v-row>
+      <v-row class="mt-10">
         <v-col cols="12" md="5" xs="12">
           <v-text-field v-model="work.start" label="ปีที่เข้าทำงาน (พ.ศ.)" />
         </v-col>
@@ -36,7 +38,7 @@
           <v-text-field v-model="work.company" label="ชื่อองค์กร" />
         </v-col>
         <v-col cols="12" xs="12" md="3">
-          <v-select :items="items" label="ประเทศ"></v-select>
+          <v-select :items="items" label="ประเทศ" outlined></v-select>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">

@@ -1,56 +1,30 @@
 <template>
-  <v-card class="mx-auto ma-3" max-width="80%">
+  <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
-      <v-row class="ma-3">
-        <h1>
-          <v-icon large color="black">mdi-lightbulb-on-outline</v-icon>
-          ข้อมูลความเชี่ยวชาญ
-        </h1>
-      </v-row>
-      <v-row>
-        <v-col cols="12" md="10" xs="12">
-          <label>ความเชี่ยวชาญ</label>
-          <treeselect
-            v-model="value"
-            :options="expertists"
-            :normalizer="normalizer"
-            :disable-branch-nodes="true"
-            clear-on-select
-            multiple
-            placeholder="ความเชี่ยวชาญ"
-          />
-        </v-col>
-      </v-row>
-      <v-row class="ma-3 " justify="end">
-        <v-btn class="mx-0 font-weight-light" color="primary"
-          >เพิ่มข้อมูล</v-btn
-        >
-      </v-row>
-
-      <v-container>
-        <v-row class="ma-3">
-          <h1>
-            <v-icon large color="black">mdi-lightbulb-on-outline</v-icon>
+      <v-row justify="center">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+          <h1 class="ma-2 white--text">
+            <v-icon large color="white">mdi-lightbulb-on-outline</v-icon>
 
             ข้อมูลทักษะความสามารภ
-          </h1>
-        </v-row>
-        <v-row>
-          <v-col
-            cols="12"
-            md="12
+          </h1></v-sheet
+        >
+      </v-row>
+      <v-row class="mt-10">
+        <v-col
+          cols="12"
+          md="12
           "
-            xs="12"
-          >
-            <v-textarea></v-textarea>
-          </v-col>
-        </v-row>
-        <v-row justify="end" class="ma-3 ">
-          <v-btn class="mx-0 font-weight-light" color="primary">
-            อัปเดตข้อมูล
-          </v-btn>
-        </v-row>
-      </v-container>
+          xs="12"
+        >
+          <v-textarea outlined></v-textarea>
+        </v-col>
+      </v-row>
+      <v-row justify="end" class="ma-3 ">
+        <v-btn class="mx-0 font-weight-light" color="success">
+          อัปเดตข้อมูล
+        </v-btn>
+      </v-row>
     </v-container>
   </v-card>
 </template>

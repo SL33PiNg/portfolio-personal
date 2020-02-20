@@ -8,7 +8,7 @@
           </h1>
         </v-sheet>
       </v-row>
-      <v-row justify="center" class="mt-6">
+      <v-row justify="center" class="mt-8">
         <v-col cols="12" md="4" xs="12">
           <v-hover v-slot:default="{ hover }">
             <v-card max-width="200" max-height="200">
@@ -51,7 +51,7 @@
             v-model="user.personalInfo.academicRank"
             :items="academicPos"
             label="ตำแหน่งทางวิชาการ"
-            filled
+            outlined
           ></v-select>
         </v-col>
         <v-col cols="12" sm="12" md="6">
@@ -63,6 +63,7 @@
             :disable-branch-nodes="true"
             clear-on-select
             placeholder="ตำแหน่งสายงาน ก.พ."
+            outlined
           />
         </v-col>
       </v-row>
@@ -71,21 +72,21 @@
           <v-text-field
             v-model="user.personalInfo.firstnameTH"
             label="ชื่อ"
-            filled
+            outlined
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.lastnameTH"
             label="นามสกุล"
-            filled
+            outlined
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.nickname"
             label="ชื่อเล่น"
-            filled
+            outlined
           ></v-text-field> </v-col
       ></v-row>
       <v-row>
@@ -94,7 +95,7 @@
             v-model="user.personalInfo.phone"
             v-mask="mask"
             label="เบอร์ติดต่อ"
-            filled
+            outlined
           >
           </v-text-field>
         </v-col>
@@ -109,7 +110,7 @@
             v-model="user.personalInfo.email"
             :rules="emailRules"
             label="E-mail"
-            filled
+            outlined
             required
           ></v-text-field>
         </v-col>
@@ -119,7 +120,7 @@
           <v-text-field
             v-model="user.personalInfo.facebook"
             label="Facebook"
-            filled
+            outlined
           ></v-text-field>
         </v-col>
 
@@ -127,7 +128,7 @@
           <v-text-field
             v-model="user.personalInfo.lineID"
             label="Line ID"
-            filled
+            outlined
           ></v-text-field>
         </v-col>
       </v-row>
