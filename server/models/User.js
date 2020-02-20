@@ -127,9 +127,11 @@ const userSchema = new mongoose.Schema({
       educationVocabulary: String,
       educationName: String,
       academyName: String,
+      branch: String,
       graduate: Number,
       country: String,
-      image: String,
+      status: Boolean,
+      image: String
     }
   ]
 })
