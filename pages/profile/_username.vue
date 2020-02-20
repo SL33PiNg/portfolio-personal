@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row v-if="!loading">
-      <v-col cols="6" md="4">
+      <v-col cols="12" md="4">
         <v-card class="pa-2 " outlined tile>
           <v-list>
             <v-list-item-content>
