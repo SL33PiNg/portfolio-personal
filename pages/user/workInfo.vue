@@ -42,7 +42,7 @@
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
-        <v-btn class="mx-0 font-weight-light" color="primary" @click="addWork">
+        <v-btn class="mx-0 font-weight-light" color="success" @click="addWork">
           เพิ่มข้อมูล
         </v-btn>
       </v-row>
