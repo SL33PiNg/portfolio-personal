@@ -95,6 +95,18 @@ exports.updateAvatar = async (req, res) => {
   }
 }
 
+exports.addUserEducationInfoById = async (req, res) => {
+  const education = { ...req.body }
+  try {
+    const result = await UserModel.findByIdAndUpdate(req.user.id, { $push: { educationinfo: education } }, { new: true })
+
+    return res.json(result)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
 function rmuttLogin (username, password) {
   if (username === 'tao' && password === '123') return true
   else if (username === 'art' && password === '123') return true
