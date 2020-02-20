@@ -8,20 +8,6 @@ exports.getAllUser = async (req, res) => {
   return res.json(await UserModel.find().exec())
 }
 
-exports.getUserById = async (req, res) => {
-  const { username } = req.params
-  try {
-    const user = await await UserModel.findOne({ username }, { password: 0 })
-    if (!user) {
-      return res.status(404).json({ message: 'user not found' })
-    }
-    return res.json(user)
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send(error)
-  }
-}
-
 exports.login = async (req, res) => {
   let user
   const { username, password } = req.body
@@ -54,23 +40,22 @@ exports.login = async (req, res) => {
   })
 }
 
-exports.updateUserWorkdInfoById = async (req, res) => {
-  const { username } = req.params
+exports.addUserWorkdInfoById = async (req, res) => {
   const work = { ...req.body }
   try {
-    const result = await UserModel.findOneAndUpdate({ username }, { $push: { workinfo: work } }, { new: true })
-    res.json(result)
+    const result = await UserModel.findByIdAndUpdate(req.user.id, { $push: { workinfo: work } }, { new: true })
+
+    return res.json(result)
   } catch (error) {
     console.log(error)
     return res.status(500).send(error)
   }
-  return res.send('work info path')
 }
 
 exports.deleteWorkinfoByIndex = async (req, res) => {
-  const { username, id } = req.params
+  const { id } = req.params
   try {
-    const result = await UserModel.findOneAndUpdate({ username }, { $pull: { workinfo: { _id: id } } }, { new: true })
+    const result = await UserModel.findByIdAndUpdate(req.user.id, { $pull: { workinfo: { _id: id } } }, { new: true })
     res.json(result)
   } catch (error) {
     return res.status(500).send(error)

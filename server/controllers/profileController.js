@@ -2,7 +2,7 @@ const UserModel = require('../models/User')
 
 exports.getAllUserProfile = async (req, res) => {
   try {
-    const users = await UserModel.find({ username: { $ne: 'admin' } }, { password: 0 })
+    const users = await UserModel.find({ username: { $ne: 'admin' }, isPublic: true, isActive: true }, { password: 0 })
     return res.send(users)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })

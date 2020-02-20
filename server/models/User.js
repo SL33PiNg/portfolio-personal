@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema({
     default: 'default.jpg'
   },
   roles: {
-    type: [String],
-    enum: ['USER', 'ADMIN'],
-    default: ['USER']
+    type: [ String ],
+    enum: [ 'USER', 'ADMIN' ],
+    default: [ 'USER' ]
   },
   isPublic: {
     type: Boolean,
@@ -26,6 +26,13 @@ const userSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
     default: true
+  },
+  expId: {
+    type: Number,
+    ref: 'Expertist'
+  },
+  expSubId: {
+    type: mongoose.Types.ObjectId
   },
   personalInfo: {
     academicRank: {
@@ -103,6 +110,7 @@ const userSchema = new mongoose.Schema({
       end: Number,
       status: Boolean,
       department: String,
+      company: String,
       position: String
     }
   ]
