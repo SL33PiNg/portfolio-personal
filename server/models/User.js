@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: ''
     },
-    nickname: {
+    nicknameEN: {
       type: String,
       default: ''
     },
@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema({
       default: ''
     },
     lastnameEN: {
+      type: String,
+      default: ''
+    },
+    nicknameTH: {
       type: String,
       default: ''
     },
@@ -99,6 +103,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: ''
     },
+    dpmentID: {
+      type: String,
+      default: ''
+    },
     address: {
       type: String,
       default: ''
@@ -112,6 +120,16 @@ const userSchema = new mongoose.Schema({
       department: String,
       company: String,
       position: String
+    }
+  ],
+  educationinfo: [
+    {
+      educationVocabulary: String,
+      educationName: String,
+      academyName: String,
+      graduate: Number,
+      country: String,
+      image: String,
     }
   ]
 })
