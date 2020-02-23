@@ -55,7 +55,12 @@
           />
         </v-col>
         <v-col cols="12" md="3" xs="12">
-          <v-select :items="pated" label="ประเทศ" outlined></v-select>
+          <v-select
+            v-model="education.country"
+            :items="pated"
+            label="ประเทศ"
+            outlined
+          ></v-select>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
@@ -70,11 +75,7 @@
 
       <template>
         <v-card outlined>
-          <v-data-table
-            :headers="headers"
-            :items="user.educationinfo"
-            hide-default-footer
-          >
+          <v-data-table :headers="headers" :items="user.educationinfo">
             <template v-slot:top>
               <v-dialog v-model="del" max-width="500px">
                 <v-card>
@@ -161,12 +162,22 @@ export default {
           value: 'graduate'
         },
         {
+          text: 'ชื่อสถานศึกษา',
+          align: 'left',
+          value: 'academyName'
+        },
+        {
+          text: 'ประเทศ',
+          align: 'left',
+          value: 'country'
+        },
+        {
           text: 'สถานะ',
           align: 'left',
           value: 'status'
         },
         {
-          text: 'action',
+          text: 'การจัดการ',
           align: 'center',
           value: 'action'
         }

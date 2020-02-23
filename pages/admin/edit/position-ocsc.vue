@@ -7,7 +7,6 @@
         :expanded.sync="expanded"
         item-key="_id"
         show-expand
-        hide-default-footer
       >
         <template v-slot:top>
           <v-toolbar flat color="white">

@@ -117,6 +117,7 @@ const userSchema = new mongoose.Schema({
       start: Number,
       end: Number,
       status: Boolean,
+      country: String,
       department: String,
       company: String,
       position: String

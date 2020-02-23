@@ -46,10 +46,15 @@
       </v-row>
       <v-row>
         <v-col cols="12" xs="12" md="9">
-          <v-text-field v-model="work.company" label="ชื่อองค์กร" outlined />
+          <v-text-field v-model="work.company" label="ชื่อหน่วยงาน" outlined />
         </v-col>
         <v-col cols="12" xs="12" md="3">
-          <v-select :items="items" label="ประเทศ" outlined></v-select>
+          <v-select
+            v-model="work.country"
+            :items="items"
+            label="ประเทศ"
+            outlined
+          ></v-select>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
@@ -59,11 +64,7 @@
       </v-row>
       <template>
         <v-card outlined>
-          <v-data-table
-            :headers="headers"
-            :items="user.workinfo"
-            hide-default-footer
-          >
+          <v-data-table :headers="headers" :items="user.workinfo">
             <template v-slot:top>
               <v-dialog v-model="del" max-width="500px">
                 <v-card>
@@ -123,19 +124,35 @@ export default {
         status: null,
         department: '',
         company: '',
+        country: '',
         position: ''
       },
       user: {},
       headers: [
+        {
+          text: 'ชื่อหน่วยงาน',
+          align: 'left',
+          value: 'company'
+        },
+        {
+          text: 'แผนก',
+          align: 'left',
+          value: 'department'
+        },
         {
           text: 'ตำแหน่ง',
           align: 'left',
           value: 'position'
         },
         {
-          text: 'ชื่อองค์กร',
+          text: 'ปีที่เข้าทำงาน (พ.ศ.)',
           align: 'left',
-          value: 'company'
+          value: 'start'
+        },
+        {
+          text: 'ปีที่ออกจากงาน (พ.ศ.)',
+          align: 'left',
+          value: 'end'
         },
         {
           text: 'สถานะ',
@@ -143,7 +160,7 @@ export default {
           value: 'status'
         },
         {
-          text: 'action',
+          text: 'การจัดการ',
           align: 'center',
           value: 'action'
         }
@@ -174,6 +191,7 @@ export default {
           status: null,
           department: '',
           company: '',
+          country: '',
           position: ''
         }
       }
