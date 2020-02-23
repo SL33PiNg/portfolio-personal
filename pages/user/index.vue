@@ -55,13 +55,14 @@
           ></v-select>
         </v-col>
         <v-col cols="12" sm="12" md="6">
-          <label>ตำแหน่งสายงาน ก.พ.</label>
+          <!-- <label>ตำแหน่งสายงาน ก.พ.</label> -->
           <treeselect
             v-model="value"
             :options="positionocsc"
             :normalizer="normalizer"
             :disable-branch-nodes="true"
             clear-on-select
+            multiple
             placeholder="ตำแหน่งสายงาน ก.พ."
             outlined
           />
@@ -176,6 +177,8 @@ export default {
   },
   mixins: [getUser],
   data: () => ({
+    multiple: true,
+    clearOnSelect: false,
     mask: '###-#######',
     hostname: location.origin,
     switch1: true,
@@ -216,7 +219,6 @@ export default {
     ],
     email: '',
     positionocsc: [],
-    clearOnSelect: false,
     value: null,
     pValue: null,
     normalizer(node) {

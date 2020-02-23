@@ -77,7 +77,7 @@
                           text
                           @click="delWork(tempDataItem)"
                         >
-                          บันทึก
+                          ตกลง
                         </v-btn>
                         <v-btn color="blue darken-1" text @click="del = false">
                           ยกเลิก
