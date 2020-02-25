@@ -34,6 +34,14 @@ const userSchema = new mongoose.Schema({
   expSubId: {
     type: mongoose.Types.ObjectId
   },
+  ocsc: [
+    {
+      ocscID:{
+        type: Number,
+        ref: 'PositionOcsc'
+      }
+    }
+  ],
   personalInfo: {
     academicRank: {
       type: String,
