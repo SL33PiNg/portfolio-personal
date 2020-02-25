@@ -46,10 +46,15 @@
       </v-row>
       <v-row>
         <v-col cols="12" xs="12" md="9">
-          <v-text-field v-model="work.company" label="ชื่อองค์กร" outlined />
+          <v-text-field v-model="work.company" label="ชื่อหน่วยงาน" outlined />
         </v-col>
         <v-col cols="12" xs="12" md="3">
-          <v-select :items="items" label="ประเทศ" outlined></v-select>
+          <v-select
+            v-model="work.country"
+            :items="items"
+            label="ประเทศ"
+            outlined
+          ></v-select>
         </v-col>
       </v-row>
       <v-row>
@@ -64,16 +69,36 @@
       </v-row>
       <template>
         <v-card outlined>
-          <v-data-table
-            :headers="headers"
-            :items="user.workinfo"
-            hide-default-footer
-          >
+          <v-data-table :headers="headers" :items="user.workinfo">
+            <template v-slot:top>
+              <v-dialog v-model="del" max-width="500px">
+                <v-card>
+                  <v-card-text>
+                    <v-container>
+                      <v-card-title>ต้องการลบรายการนี้?</v-card-title>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="blue darken-1"
+                          text
+                          @click="delWork(tempDataItem)"
+                        >
+                          ตกลง
+                        </v-btn>
+                        <v-btn color="blue darken-1" text @click="del = false">
+                          ยกเลิก
+                        </v-btn>
+                      </v-card-actions>
+                    </v-container>
+                  </v-card-text>
+                </v-card>
+              </v-dialog>
+            </template>
             <template v-slot:item.status="{ item }">
               <p>{{ item.status ? 'work' : 'not work' }}</p>
             </template>
             <template v-slot:item.action="{ item }">
-              <v-btn icon @click="delWork(item._id)"
+              <v-btn icon @click="openDel(item._id)"
                 ><v-icon>mdi-delete</v-icon></v-btn
               >
             </template>
@@ -94,6 +119,8 @@ export default {
   mixins: [UserMix],
   data() {
     return {
+      del: false,
+      tempDataItem: '',
       mask: '####',
       loadBtn: false,
       work: {
@@ -102,19 +129,35 @@ export default {
         status: null,
         department: '',
         company: '',
+        country: '',
         position: ''
       },
       user: {},
       headers: [
+        {
+          text: 'ชื่อหน่วยงาน',
+          align: 'left',
+          value: 'company'
+        },
+        {
+          text: 'แผนก',
+          align: 'left',
+          value: 'department'
+        },
         {
           text: 'ตำแหน่ง',
           align: 'left',
           value: 'position'
         },
         {
-          text: 'ชื่อองค์กร',
+          text: 'ปีที่เข้าทำงาน (พ.ศ.)',
           align: 'left',
-          value: 'company'
+          value: 'start'
+        },
+        {
+          text: 'ปีที่ออกจากงาน (พ.ศ.)',
+          align: 'left',
+          value: 'end'
         },
         {
           text: 'สถานะ',
@@ -122,7 +165,7 @@ export default {
           value: 'status'
         },
         {
-          text: 'action',
+          text: 'การจัดการ',
           align: 'center',
           value: 'action'
         }
@@ -131,6 +174,10 @@ export default {
     }
   },
   methods: {
+    openDel(item) {
+      this.tempDataItem = item
+      this.del = true
+    },
     async addWork() {
       try {
         this.loadBtn = true
@@ -149,6 +196,7 @@ export default {
           status: null,
           department: '',
           company: '',
+          country: '',
           position: ''
         }
       }
@@ -160,6 +208,8 @@ export default {
       } catch (error) {
         this.$toast.success('error')
       } finally {
+        this.del = false
+        this.tempDataItem = ''
         this.getUser()
       }
     }

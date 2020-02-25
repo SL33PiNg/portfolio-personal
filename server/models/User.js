@@ -117,6 +117,7 @@ const userSchema = new mongoose.Schema({
       start: Number,
       end: Number,
       status: Boolean,
+      country: String,
       department: String,
       company: String,
       position: String
@@ -133,7 +134,13 @@ const userSchema = new mongoose.Schema({
       status: Boolean,
       image: String
     }
-  ]
+  ],
+  certificate: {
+    certificateName: String,
+    graduate: Number,
+    guarantee: String,
+    file: String
+  }
 })
 
 const User = mongoose.model('User', userSchema)

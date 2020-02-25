@@ -55,7 +55,12 @@
           />
         </v-col>
         <v-col cols="12" md="3" xs="12">
-          <v-select :items="pated" label="ประเทศ" outlined></v-select>
+          <v-select
+            v-model="education.country"
+            :items="pated"
+            label="ประเทศ"
+            outlined
+          ></v-select>
         </v-col>
       </v-row>
       <v-row>
@@ -75,16 +80,36 @@
 
       <template>
         <v-card outlined>
-          <v-data-table
-            :headers="headers"
-            :items="user.educationinfo"
-            hide-default-footer
-          >
+          <v-data-table :headers="headers" :items="user.educationinfo">
+            <template v-slot:top>
+              <v-dialog v-model="del" max-width="500px">
+                <v-card>
+                  <v-card-text>
+                    <v-container>
+                      <v-card-title>ต้องการลบรายการนี้?</v-card-title>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="blue darken-1"
+                          text
+                          @click="delEducation(tempDataItem)"
+                        >
+                          ตกลง
+                        </v-btn>
+                        <v-btn color="blue darken-1" text @click="del = false">
+                          ยกเลิก
+                        </v-btn>
+                      </v-card-actions>
+                    </v-container>
+                  </v-card-text>
+                </v-card>
+              </v-dialog>
+            </template>
             <template v-slot:item.status="{ item }">
               <p>{{ item.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา' }}</p>
             </template>
             <template v-slot:item.action="{ item }">
-              <v-btn icon @click="delEducation(item._id)"
+              <v-btn icon @click="openDel(item._id)"
                 ><v-icon>mdi-delete</v-icon></v-btn
               >
             </template></v-data-table
@@ -106,6 +131,8 @@ export default {
   mixins: [UserMix],
   data() {
     return {
+      del: false,
+      tempDataItem: '',
       mask: '####',
       education: {
         educationVocabulary: '',
@@ -140,25 +167,27 @@ export default {
           value: 'graduate'
         },
         {
+          text: 'ชื่อสถานศึกษา',
+          align: 'left',
+          value: 'academyName'
+        },
+        {
+          text: 'ประเทศ',
+          align: 'left',
+          value: 'country'
+        },
+        {
           text: 'สถานะ',
           align: 'left',
           value: 'status'
         },
         {
-          text: 'action',
+          text: 'การจัดการ',
           align: 'center',
           value: 'action'
         }
       ],
       pated: ['ไทย', 'อังกฤษ', 'ลาว', 'พม่า', 'จีน'],
-      study: [
-        {
-          name: 'มัธยมศึกษาปีที่6'
-        },
-        {
-          name: 'ปริญญาตรี'
-        }
-      ],
       items: [
         'มัธยมศึกษาตอนปลาย',
         'ปวส',
@@ -170,6 +199,10 @@ export default {
     }
   },
   methods: {
+    openDel(item) {
+      this.tempDataItem = item
+      this.del = true
+    },
     async addEducation() {
       try {
         this.loadBtn = true
@@ -201,6 +234,8 @@ export default {
       } catch (error) {
         this.$toast.error('ลบข้อมูล"ไม่สำเร็จ"')
       } finally {
+        this.del = false
+        this.tempDataItem = ''
         this.getUser()
       }
     }
