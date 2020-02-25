@@ -22,7 +22,7 @@
       <v-hover v-slot:default="{ hover }" open-delay="200">
         <v-card
           width="700"
-          :elevation="hover ? 16 : 2"
+          :elevation="hover ? 5 : 1"
           class="ma-4"
           @click="$router.push(`/profile/${i.username}`)"
         >
