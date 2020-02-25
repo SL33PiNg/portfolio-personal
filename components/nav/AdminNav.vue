@@ -1,14 +1,30 @@
 <template>
-  <v-list>
-    <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
-      <v-list-item-action>
-        <v-icon>{{ item.icon }}</v-icon>
-      </v-list-item-action>
-      <v-list-item-content>
-        <v-list-item-title v-text="item.title" />
-      </v-list-item-content>
-    </v-list-item>
-  </v-list>
+  <v-navigation-drawer
+    dark
+    floating
+    persistent
+    mobile-break-point="991"
+    width="260"
+  >
+    <v-list>
+      <v-list-item
+        v-for="(item, i) in items"
+        :key="i"
+        :to="item.to"
+        router
+        exact
+        color="primary"
+        class="ma-2 "
+      >
+        <v-list-item-action>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title v-text="item.title" />
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script>
@@ -31,6 +47,12 @@ export default {
           title: 'จัดการหน้าฟีดข่าว',
           to: '/admin/feed'
         },
+        {
+          icon: 'mdi-alert-rhombus-outline',
+          title: 'การร้องเรียน',
+          to: '/admin/report'
+        },
+
         {
           icon: 'mdi-history',
           title: 'ประวัติการแก้ไข',

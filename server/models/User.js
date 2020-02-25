@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: ''
     },
-    nickname: {
+    nicknameEN: {
       type: String,
       default: ''
     },
@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema({
       default: ''
     },
     lastnameEN: {
+      type: String,
+      default: ''
+    },
+    nicknameTH: {
       type: String,
       default: ''
     },
@@ -99,6 +103,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: ''
     },
+    dpmentID: {
+      type: String,
+      default: ''
+    },
     address: {
       type: String,
       default: ''
@@ -109,11 +117,30 @@ const userSchema = new mongoose.Schema({
       start: Number,
       end: Number,
       status: Boolean,
+      country: String,
       department: String,
       company: String,
       position: String
     }
-  ]
+  ],
+  educationinfo: [
+    {
+      educationVocabulary: String,
+      educationName: String,
+      academyName: String,
+      branch: String,
+      graduate: Number,
+      country: String,
+      status: Boolean,
+      image: String
+    }
+  ],
+  certificate: {
+    certificateName: String,
+    graduate: Number,
+    guarantee: String,
+    file: String
+  }
 })
 
 const User = mongoose.model('User', userSchema)

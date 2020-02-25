@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-account</v-icon> ข้อมูลส่วนตัว
           </h1>
@@ -55,13 +55,14 @@
           ></v-select>
         </v-col>
         <v-col cols="12" sm="12" md="6">
-          <label>ตำแหน่งสายงาน ก.พ.</label>
+          <!-- <label>ตำแหน่งสายงาน ก.พ.</label> -->
           <treeselect
             v-model="value"
             :options="positionocsc"
             :normalizer="normalizer"
             :disable-branch-nodes="true"
             clear-on-select
+            multiple
             placeholder="ตำแหน่งสายงาน ก.พ."
             outlined
           />
@@ -71,21 +72,43 @@
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.firstnameTH"
-            label="ชื่อ"
+            label="ชื่อภาษาไทย"
             outlined
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
             v-model="user.personalInfo.lastnameTH"
-            label="นามสกุล"
+            label="นามสกุลภาษาไทย"
             outlined
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
           <v-text-field
-            v-model="user.personalInfo.nickname"
-            label="ชื่อเล่น"
+            v-model="user.personalInfo.nicknameTH"
+            label="ชื่อเล่นภาษาไทย"
+            outlined
+          ></v-text-field> </v-col
+      ></v-row>
+      <v-row>
+        <v-col cols="12" sm="12" md="4">
+          <v-text-field
+            v-model="user.personalInfo.firstnameEN"
+            label="ชื่อภาษาอังกฤษ"
+            outlined
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="12" md="4">
+          <v-text-field
+            v-model="user.personalInfo.lastnameEN"
+            label="นามสกุลภาษาอังกฤษ"
+            outlined
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="12" md="4">
+          <v-text-field
+            v-model="user.personalInfo.nicknameEN"
+            label="ชื่อเล่นภาษาอังกฤษ"
             outlined
           ></v-text-field> </v-col
       ></v-row>
@@ -133,7 +156,7 @@
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3">
-        <v-btn :loading="updateLoad" color="success" @click="updateUser"
+        <v-btn :loading="updateLoad" color="primary" @click="updateUser"
           >ยืนยัน</v-btn
         >
       </v-row>
@@ -154,6 +177,8 @@ export default {
   },
   mixins: [getUser],
   data: () => ({
+    multiple: true,
+    clearOnSelect: false,
     mask: '###-#######',
     hostname: location.origin,
     switch1: true,
@@ -167,7 +192,10 @@ export default {
       personalInfo: {
         firstnameTH: '',
         lastnameTH: '',
-        nickname: '',
+        nicknameTH: '',
+        firstnameEN: '',
+        lastnameEN: '',
+        nicknameEN: '',
         email: '',
         facebook: '',
         lineID: '',
@@ -191,7 +219,6 @@ export default {
     ],
     email: '',
     positionocsc: [],
-    clearOnSelect: false,
     value: null,
     pValue: null,
     normalizer(node) {

@@ -13,23 +13,36 @@
             ></v-img>
             <v-list-item class="ml-4">
               <h4>
-                ชื่อ-นามสกุล : {{ user.personalInfo.firstnameTH }}
-                {{ user.personalInfo.lastnameTH }}
+                {{ user.personalInfo.academicRank
+                }}{{ user.personalInfo.firstnameTH }}
+                {{ user.personalInfo.lastnameTH }} ({{
+                  user.personalInfo.nicknameTH
+                }})
               </h4>
             </v-list-item>
             <v-list-item class="ml-4">
               <h4>
-                ชื่อเล่น :
+                {{ user.personalInfo.firstnameEN }}
+                {{ user.personalInfo.lastnameEN }} ({{
+                  user.personalInfo.nicknameEN
+                }})
               </h4>
             </v-list-item>
+
             <v-divider></v-divider>
-            <v-list-item class="ml-4">
-              <h4>
-                การทำงานทำงาน
-              </h4>
-            </v-list-item>
-            <v-list-item>หน่วยงาน :</v-list-item>
-            <v-list-item>ฝ่าย :</v-list-item>
+
+            <v-list-item class="ml-4"
+              ><h4>หน่วยงาน</h4>
+              :</v-list-item
+            >
+            <v-list-item class="ml-4"
+              ><h4>ฝ่าย</h4>
+              :{{ user.careerInfo.department }}</v-list-item
+            >
+            <v-list-item class="ml-4"
+              ><h4>ตำแหน่ง</h4>
+              :{{ user.careerInfo.jobPost }}</v-list-item
+            >
             <v-divider></v-divider>
             <v-list-item class="ml-4">
               <h4>ช่องทางการติดต่อ</h4>
@@ -74,7 +87,7 @@
         </v-row>
       </v-col>
       <v-col cols="12" md="8">
-        <v-card outlined>
+        <v-card outlined height="860">
           <v-tabs
             v-model="tab"
             background-color="white"

@@ -14,7 +14,7 @@
           :to="item.to"
           router
           exact
-          color="success"
+          color="primary"
           class="ma-2 "
         >
           <v-list-item-action>
@@ -54,11 +54,7 @@ export default {
           title: 'ความเชี่ยวชาญ',
           to: '/user/expertinfo'
         },
-        {
-          icon: 'mdi-arm-flex-outline',
-          title: 'ทักษะความสามารถ',
-          to: '/user/skillinfo'
-        },
+
         {
           icon: 'mdi-briefcase-outline',
           title: 'ประวัติการทำงาน',

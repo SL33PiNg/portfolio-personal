@@ -12,4 +12,7 @@ router.patch('/avatar', uploadAvatar.single('avatar'), UserController.updateAvat
 router.post('/workinfo', UserController.addUserWorkdInfoById)
 router.delete('/workinfo/:id', UserController.deleteWorkinfoByIndex)
 
+router.post('/studyinfo', UserController.addUserEducationInfoById)
+router.delete('/studyinfo/:id', UserController.deleteEducationInfoByIndex)
+
 module.exports = router
