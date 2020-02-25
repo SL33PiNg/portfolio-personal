@@ -117,6 +117,28 @@ exports.deleteEducationInfoByIndex = async (req, res) => {
   }
 }
 
+exports.addUsercertificateInfoById = async (req, res) => {
+  const certificate = { ...req.body }
+  try {
+    const result = await UserModel.findByIdAndUpdate(req.user.id, { $push: { certificateinfo: certificate } }, { new: true })
+
+    return res.json(result)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
+exports.deletecertificateInfoByIndex = async (req, res) => {
+  const { id } = req.params
+  try {
+    const result = await UserModel.findByIdAndUpdate(req.user.id, { $pull: { certificateinfo: { _id: id } } }, { new: true })
+    res.json(result)
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
 function rmuttLogin (username, password) {
   if (username === 'tao' && password === '123') return true
   else if (username === 'art' && password === '123') return true

@@ -83,6 +83,7 @@ export default {
       ],
       expertists: [],
       value: null,
+      result: {},
       normalizer(node) {
         return {
           id: node._id,
@@ -90,6 +91,28 @@ export default {
           children: node.sub
         }
       }
+    }
+  },
+  watch: {
+    value(newVal) {
+      this.result = {}
+      newVal.forEach((sId) => {
+        this.expertists.forEach((exp) => {
+          if (exp.sub.find((s) => s._id === sId)) {
+            if (this.result[exp._id]) {
+              if (!this.result[exp._id].sub.includes(sId))
+                this.result[exp._id].sub.push(sId)
+            } else {
+              this.result[exp._id] = { name: exp.name, sub: [sId] }
+            }
+          }
+        })
+      })
+      this.result = Object.entries(this.result).map(([key, value]) => ({
+        _id: key,
+        ...value
+      }))
+      console.log(this.result)
     }
   },
   created() {
