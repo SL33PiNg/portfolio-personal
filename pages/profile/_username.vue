@@ -3,7 +3,15 @@
     <v-row v-if="!loading">
       <v-col cols="12" md="4">
         <v-row>
-          <v-card width="100%">
+          <v-card width="100%" class="mt-8">
+            <v-row justify="center">
+              <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+                <h1 class="ma-2 white--text">
+                  <v-icon large color="white"> mdi-account-circle</v-icon>
+                  ข้อมูลส่วนตัว
+                </h1></v-sheet
+              >
+            </v-row>
             <v-img
               :src="`${hostname}/api/avatar/${user.avatar}`"
               aspect-ratio="1.7"
@@ -30,19 +38,17 @@
             </v-list-item>
 
             <v-divider></v-divider>
-
+            <v-list-item class="ml-4"><h4>ข้อมูลหน่วยงาน</h4> </v-list-item>
+            <v-list-item class="ml-4">หน่วยงาน :</v-list-item>
             <v-list-item class="ml-4"
-              ><h4>หน่วยงาน</h4>
-              :</v-list-item
+              >ฝ่าย :{{ user.careerInfo.department }}</v-list-item
             >
             <v-list-item class="ml-4"
-              ><h4>ฝ่าย</h4>
-              :{{ user.careerInfo.department }}</v-list-item
+              >ตำแหน่ง :{{ user.careerInfo.jobPost }}</v-list-item
             >
-            <v-list-item class="ml-4"
-              ><h4>ตำแหน่ง</h4>
-              :{{ user.careerInfo.jobPost }}</v-list-item
-            >
+            <v-list-item class="ml-4">อีเมลล์ที่หน่วยงาน :</v-list-item>
+            <v-list-item class="ml-4">เบอร์ที่หน่วยงาน :</v-list-item>
+            <v-list-item class="ml-4">ประเทศ :</v-list-item>
             <v-divider></v-divider>
             <v-list-item class="ml-4">
               <h4>ช่องทางการติดต่อ</h4>
@@ -87,7 +93,7 @@
         </v-row>
       </v-col>
       <v-col cols="12" md="8">
-        <v-card outlined height="860">
+        <v-card outlined min-height="1110">
           <v-tabs
             v-model="tab"
             background-color="white"

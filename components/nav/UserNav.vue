@@ -66,6 +66,11 @@ export default {
           to: '/user/studyinfo'
         },
         {
+          icon: ' mdi-file-certificate-outline',
+          title: 'ใบรับรอง',
+          to: '/user/certificateinfo'
+        },
+        {
           icon: 'mdi-trophy-award',
           title: 'เพิ่มผลงานใหม่',
           to: '/user/award'
@@ -74,11 +79,6 @@ export default {
           icon: 'mdi-seal-variant',
           title: 'ผลงานทั้งหมด',
           to: '/user/listaward'
-        },
-        {
-          icon: ' mdi-file-certificate-outline',
-          title: 'ใบรับรอง',
-          to: '/user/certificateinfo'
         }
       ]
     }
