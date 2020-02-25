@@ -13,7 +13,8 @@
             ></v-img>
             <v-list-item class="ml-4">
               <h4>
-                {{ user.personalInfo.firstnameTH }}
+                {{ user.personalInfo.academicRank
+                }}{{ user.personalInfo.firstnameTH }}
                 {{ user.personalInfo.lastnameTH }} ({{
                   user.personalInfo.nicknameTH
                 }})
@@ -86,7 +87,7 @@
         </v-row>
       </v-col>
       <v-col cols="12" md="8">
-        <v-card outlined>
+        <v-card outlined height="860">
           <v-tabs
             v-model="tab"
             background-color="white"

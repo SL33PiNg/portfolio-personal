@@ -14,7 +14,7 @@
           :to="item.to"
           router
           exact
-          color="success"
+          color="primary"
           class="ma-2 "
         >
           <v-list-item-action>

@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-school-outline</v-icon>
             ข้อมูลประวัติการศึกษา
@@ -58,10 +58,15 @@
           <v-select :items="pated" label="ประเทศ" outlined></v-select>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col cols="12" md="12" xs="12">
+          <wysiwyg v-model="content"></wysiwyg>
+        </v-col>
+      </v-row>
       <v-row justify="end" class="ma-3 ">
         <v-btn
           class="mx-0 font-weight-light"
-          color="success"
+          color="primary"
           @click="addEducation"
         >
           เพิ่มข้อมูล
