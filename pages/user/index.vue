@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-account</v-icon> ข้อมูลส่วนตัว
           </h1>
@@ -156,7 +156,7 @@
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3">
-        <v-btn :loading="updateLoad" color="success" @click="updateUser"
+        <v-btn :loading="updateLoad" color="primary" @click="updateUser"
           >ยืนยัน</v-btn
         >
       </v-row>

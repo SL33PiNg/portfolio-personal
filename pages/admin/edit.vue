@@ -1,11 +1,13 @@
 <template>
-  <v-card class="mx-auto ma-3" max-width="80%">
+  <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
-      <v-row class="ma-3">
-        <h1>
-          <v-icon large color="black">mdi-pencil-outline</v-icon>
-          แก้ไขหมวดหมู่
-        </h1>
+      <v-row justify="center">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+          <h1 class="ma-2 white--text">
+            <v-icon large color="white">mdi-pencil-outline</v-icon>
+            แก้ไขหมวดหมู่
+          </h1></v-sheet
+        >
       </v-row>
       <v-row>
         <v-col cols="12" md="12">

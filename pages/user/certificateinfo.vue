@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
           <h1 class="ma-2 white--text">
             <v-icon large color="white"> mdi-file-certificate-outline</v-icon>
             ใบรับรอง
@@ -28,12 +28,13 @@
         </v-col>
       </v-row>
 
-      <v-row
-        ><v-col cols="12"
-          ><v-textarea label="รายละเอียด" outlined></v-textarea></v-col
-      ></v-row>
+      <v-row>
+        <v-col cols="12" md="12" xs="12">
+          <wysiwyg v-model="content"></wysiwyg>
+        </v-col>
+      </v-row>
       <v-row justify="end" class="ma-3 ">
-        <v-btn class=" font-weight-light" color="success">
+        <v-btn class=" font-weight-light" color="primary">
           เพิ่มข้อมูล
         </v-btn></v-row
       >
