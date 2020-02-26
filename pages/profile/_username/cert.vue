@@ -2,7 +2,11 @@
   <v-container>
     <v-row v-for="i in user.certificateinfo" :key="i._id" wrap justify="center">
       <v-card width="600" class="mt-5">
-        <v-card-title>{{ i.certificateName }} </v-card-title>
+        <v-card-title
+          ><v-chip color="success">
+            <h3>{{ i.certificateName }}</h3></v-chip
+          >
+        </v-card-title>
 
         <v-list-item>
           <v-list-item-subtitle>

@@ -38,20 +38,53 @@
             </v-list-item>
 
             <v-divider></v-divider>
-            <v-list-item class="ml-4"><h4>ข้อมูลหน่วยงาน</h4> </v-list-item>
-            <v-list-item class="ml-4">หน่วยงาน :</v-list-item>
-            <v-list-item class="ml-4"
-              >ฝ่าย :{{ user.careerInfo.department }}</v-list-item
-            >
-            <v-list-item class="ml-4"
-              >ตำแหน่ง :{{ user.careerInfo.jobPost }}</v-list-item
-            >
-            <v-list-item class="ml-4">อีเมลล์ที่หน่วยงาน :</v-list-item>
-            <v-list-item class="ml-4">เบอร์ที่หน่วยงาน :</v-list-item>
-            <v-list-item class="ml-4">ประเทศ :</v-list-item>
+            <v-list>
+              <v-list-group>
+                <template v-slot:activator>
+                  <v-list-item-content>
+                    <v-list-item-title class="ml-4"
+                      ><h4>ข้อมูลหน่วยงาน</h4></v-list-item-title
+                    >
+                  </v-list-item-content>
+                </template>
+
+                <v-list-item><h4>หน่วยงาน :</h4></v-list-item>
+                <v-list-item
+                  ><h4>ฝ่าย :</h4>
+                  {{ user.careerInfo.department }}</v-list-item
+                >
+                <v-list-item
+                  ><h4>ตำแหน่ง :</h4>
+                  {{ user.careerInfo.jobPost }}</v-list-item
+                >
+                <v-list-item><h4>ประเทศ :</h4></v-list-item>
+                <v-list-item
+                  ><h4>
+                    อีเมลล์ :
+                  </h4>
+                  {{ user.careerInfo.email }}</v-list-item
+                >
+                <v-list-item
+                  ><h4>
+                    เบอร์โทรศัพท์ :
+                  </h4>
+                  {{ user.careerInfo.phone }}</v-list-item
+                >
+              </v-list-group>
+            </v-list>
+
+            <v-divider></v-divider>
+
+            <v-list-item class="ml-4">
+              <h4>ความเชี่ยวชาญ</h4>
+            </v-list-item>
             <v-divider></v-divider>
             <v-list-item class="ml-4">
-              <h4>ช่องทางการติดต่อ</h4>
+              <h4>ตำแหน่งสายงาน (ก.พ.)</h4>
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item class="ml-4">
+              <h4>ช่องทางการติดต่อส่วนตัว</h4>
             </v-list-item>
             <v-list-item
               ><v-icon color="red">mdi-email</v-icon>
@@ -71,14 +104,6 @@
             <v-list-item
               ><v-icon color="green">mdi-alpha-l-circle</v-icon> :
               {{ user.personalInfo.lineID }}
-            </v-list-item>
-            <v-divider></v-divider>
-            <v-list-item class="ml-4">
-              <h4>ความเชี่ยวชาญ</h4>
-            </v-list-item>
-            <v-divider></v-divider>
-            <v-list-item class="ml-4">
-              <h4>ตำแหน่งสายงาน (ก.พ.)</h4>
             </v-list-item>
             <v-divider></v-divider>
             <v-card-actions class="ml-4">
