@@ -136,12 +136,14 @@ const userSchema = new mongoose.Schema({
       image: String
     }
   ],
-  certificate: {
+  certificateinfo: [
+    {
     certificateName: String,
     graduate: Number,
     guarantee: String,
     file: String
-  }
+   }
+  ]
 })
 
 const User = mongoose.model('User', userSchema)

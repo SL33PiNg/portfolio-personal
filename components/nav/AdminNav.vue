@@ -59,6 +59,11 @@ export default {
           to: '/admin/history'
         },
         {
+          icon: 'mdi-account-multiple-plus-outline',
+          title: 'สร้างบัญชีแอดมิน',
+          to: '/admin/create'
+        },
+        {
           icon: 'mdi-backup-restore',
           title: 'สำรองข้อมูล',
           to: '/'

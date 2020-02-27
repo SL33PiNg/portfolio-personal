@@ -40,7 +40,7 @@
           <v-text-field
             v-model="user.careerInfo.email"
             :rules="emailRules"
-            label="E-mail"
+            label="E-mail (ที่หน่วยงาน)"
             required
             outlined
           ></v-text-field>

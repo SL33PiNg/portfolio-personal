@@ -1,30 +1,32 @@
 <template>
   <v-container>
-    <v-row wrap justify="center">
-      <v-card width="600">
+    <v-row v-for="i in user.workinfo" :key="i._id" wrap justify="center">
+      <v-card width="600" class="mt-5">
         <v-card-title
-          >{{ name }} <v-spacer></v-spacer>
-          <v-chip class="success">{{ status }}</v-chip></v-card-title
+          >{{ i.company }} <v-spacer></v-spacer>
+          <v-chip :class="i.status ? 'primary' : 'error'">{{
+            i.status ? 'กำลังทำงาน' : 'ออกจากงาน'
+          }}</v-chip></v-card-title
         >
 
         <v-list-item>
           <v-list-item-subtitle>
             <h4>แผนก</h4>
-            {{ section }}
+            {{ i.department }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
             <h4>ตำแหน่ง</h4>
-            {{ rank }}
+            {{ i.position }}
           </v-list-item-subtitle>
         </v-list-item>
         <v-list-item>
           <v-list-item-subtitle>
             <h4>ปีที่เข้างาน</h4>
-            {{ join }}
+            {{ i.start }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
             <h4>ประเทศ</h4>
-            {{ country }}
+            {{ i.country }}
           </v-list-item-subtitle></v-list-item
         >
       </v-card>
@@ -36,12 +38,27 @@
 export default {
   data() {
     return {
-      name: 'ชื่อบริษัท',
-      status: 'กำลังทำอยู่',
-      section: 'ทำความสะอาด',
-      rank: 'Cleaner Manager',
-      country: 'Thailand',
-      join: '1996'
+      user: {},
+      loading: true,
+      username: ''
+    }
+  },
+  created() {
+    this.username = this.$route.params.username
+    this.getProfile()
+  },
+  methods: {
+    async getProfile() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get(
+          `/profile/${this.$route.params.username}`
+        )
+        this.user = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <v-row justify="center">
-    <v-card class="ma-3" max-width="100%" width="800" outlined>
+    <v-card class="ma-3 mt-8" max-width="100%" width="800" outlined>
       <v-container>
         <v-form id="login-form" @submit.prevent="login">
-          <v-row justify="center">
+          <v-row justify="center" class="mt-5">
             <v-card-title>
               <h3>ลงชื่อเข้าใช้งาน</h3>
             </v-card-title>
@@ -44,7 +44,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-row justify="center">
+          <v-row justify="center" class="mb-8">
             <v-btn
               type="submit"
               class="mx-auto font-weight-light text-center"
