@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema({
   expSubId: {
     type: mongoose.Types.ObjectId
   },
+  ocscId: [ String ],
   personalInfo: {
     academicRank: {
       type: String,

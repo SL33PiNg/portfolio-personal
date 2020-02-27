@@ -152,6 +152,7 @@ export default {
     user: {},
     loading: true,
     username: '',
+    positionocsc: [],
     tabItems: [
       { id: 1, title: 'ผลงาน', path: '/' },
       {
@@ -168,10 +169,28 @@ export default {
     ],
     hostname: location.origin
   }),
+  computed: {
+    ocscList() {
+      const a = []
+      console.log(this.positionocsc)
+      this.positionocsc.forEach((pocsc) => {
+        this.user.ocscId.forEach((ocsc) => {
+          pocsc.sub.forEach((psub) => {
+            if (psub._id === ocsc) {
+              console.log(psub)
+              a.push(psub.name)
+            }
+          })
+        })
+      })
+      return a
+    }
+  },
 
   created() {
     this.username = this.$route.params.username
     this.getProfile()
+    this.getPositionOcsc()
   },
   methods: {
     async getProfile() {
@@ -181,6 +200,17 @@ export default {
           `/profile/${this.$route.params.username}`
         )
         this.user = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
+    async getPositionOcsc() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/select/positionOcsc')
+        console.log(result)
+        this.positionocsc = result
       } catch (error) {
       } finally {
         this.loading = false

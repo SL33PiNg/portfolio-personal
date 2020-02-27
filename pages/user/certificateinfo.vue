@@ -134,7 +134,7 @@ export default {
         {
           text: 'ปีที่ได้รับ',
           align: 'left',
-          value: 'graduate '
+          value: 'graduate'
         },
         {
           text: 'การจัดการ',

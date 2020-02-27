@@ -73,6 +73,7 @@ exports.getCurrentUser = async (req, res) => {
 
 exports.updatePersonalInfo = async (req, res) => {
   const { id } = req.user
+  console.log(req.body)
   try {
     const user = await UserModel.findByIdAndUpdate(id, { ...req.body }, { upsert: true, new: true })
     return res.json(user)
@@ -98,7 +99,11 @@ exports.updateAvatar = async (req, res) => {
 exports.addUserEducationInfoById = async (req, res) => {
   const education = { ...req.body }
   try {
-    const result = await UserModel.findByIdAndUpdate(req.user.id, { $push: { educationinfo: education } }, { new: true })
+    const result = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      { $push: { educationinfo: education } },
+      { new: true }
+    )
 
     return res.json(result)
   } catch (error) {
@@ -110,7 +115,11 @@ exports.addUserEducationInfoById = async (req, res) => {
 exports.deleteEducationInfoByIndex = async (req, res) => {
   const { id } = req.params
   try {
-    const result = await UserModel.findByIdAndUpdate(req.user.id, { $pull: { educationinfo: { _id: id } } }, { new: true })
+    const result = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      { $pull: { educationinfo: { _id: id } } },
+      { new: true }
+    )
     res.json(result)
   } catch (error) {
     return res.status(500).send(error)
