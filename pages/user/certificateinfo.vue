@@ -38,7 +38,16 @@
           />
         </v-col>
       </v-row>
-
+      <v-row>
+        <v-col cols="12" md="12" xs="12">
+          <h4>รายละเอียด</h4>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="12" xs="12">
+          <wysiwyg v-model="content"></wysiwyg>
+        </v-col>
+      </v-row>
       <v-row justify="end" class="ma-3 ">
         <v-btn
           class=" font-weight-light"
