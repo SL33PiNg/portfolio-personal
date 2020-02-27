@@ -1,23 +1,22 @@
 <template>
   <v-container>
-    <v-row wrap justify="center">
+    <v-row v-for="i in user.educationinfo" :key="i._id" wrap justify="center">
       <div class="text-left">
-        <v-dialog v-model="dialog" width="1000">
-          <template v-slot:activator="{ on }">
-            <v-card width="600" v-on="on">
-              <v-card-title
-                >{{ name }} <v-spacer></v-spacer>
-                <v-chip class="success">{{ status }}</v-chip></v-card-title
-              >
-              <v-card-text>{{ level }}</v-card-text>
-              <v-card-text>{{ educa }}/{{ depart }}</v-card-text>
-            </v-card>
-          </template>
-
-          <v-card> </v-card>
-        </v-dialog>
-      </div>
-    </v-row>
+        <v-card width="600" class="mt-5" @click.stop="dialog = true">
+          <v-card-title
+            >{{ i.academyName }} <v-spacer></v-spacer>
+            <v-chip :class="i.status ? 'primary' : 'success'">{{
+              i.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา'
+            }}</v-chip></v-card-title
+          >
+          <v-card-text>{{ i.educationVocabulary }}</v-card-text>
+          <v-card-text>{{ i.educationName }}/{{ i.branch }}</v-card-text>
+        </v-card>
+      </div></v-row
+    >
+    <v-dialog v-model="dialog">
+      <v-card></v-card>
+    </v-dialog>
   </v-container>
 </template>
 <script>
@@ -25,11 +24,28 @@
 export default {
   data() {
     return {
-      name: 'มหาวิทยาลัยเทคโนโลยีราชมงคล ธัญบุรี',
-      level: 'ปริญญาโท',
-      educa: 'วิศวกรรมศาสตร์',
-      depart: 'วิศกรรมคอมพิวเตอร์',
-      status: 'กำลังศึกษา'
+      user: {},
+      loading: true,
+      username: '',
+      dialog: false
+    }
+  },
+  created() {
+    this.username = this.$route.params.username
+    this.getProfile()
+  },
+  methods: {
+    async getProfile() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get(
+          `/profile/${this.$route.params.username}`
+        )
+        this.user = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

@@ -2,7 +2,39 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+          <h1 class="ma-2 white--text">
+            <v-icon large color="white">mdi-lightbulb-on-outline</v-icon>
+            ข้อมูลความเชี่ยวชาญ
+          </h1>
+        </v-sheet>
+      </v-row>
+      <v-row justify="center" class="mt-10">
+        <v-col cols="12" md="10" xs="12">
+          <treeselect
+            v-model="value"
+            :options="expertists"
+            :normalizer="normalizer"
+            :disable-branch-nodes="true"
+            clear-on-select
+            multiple
+            placeholder="ความเชี่ยวชาญ"
+          />
+        </v-col>
+      </v-row>
+      <v-row class="ma-3 " justify="end">
+        <v-btn class="mx-0 font-weight-light" color="success"
+          >เพิ่มข้อมูล</v-btn
+        >
+      </v-row>
+    </v-container>
+  </v-card>
+</template>
+<template>
+  <v-card class="mx-auto ma-8" max-width="80%">
+    <v-container>
+      <v-row justify="center">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-lightbulb-on-outline</v-icon>
 
@@ -21,17 +53,20 @@
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
-        <v-btn class="mx-0 font-weight-light" color="primary">
+        <v-btn class="mx-0 font-weight-light" color="success">
           อัปเดตข้อมูล
         </v-btn>
       </v-row>
     </v-container>
   </v-card>
 </template>
-
 <script>
+import Treeselect from '@riophae/vue-treeselect'
+// import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
-  components: {},
+  components: {
+    Treeselect
+  },
   data() {
     return {
       clearOnSelect: false,
