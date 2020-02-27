@@ -1,0 +1,3 @@
+<template>
+  <froala></froala>
+</template>

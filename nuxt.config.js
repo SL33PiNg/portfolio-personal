@@ -36,7 +36,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [ '@/plugins/vue-wysiwyg.js' ],
+  plugins: [ '@/plugins/vue-wysiwyg.js','@/plugins/froala.js' ],
   /*
    ** Nuxt.js dev-modules
    */

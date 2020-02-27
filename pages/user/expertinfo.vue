@@ -47,7 +47,7 @@
         >
           <v-row>
             <v-col cols="12" md="12" xs="12">
-              <wysiwyg v-model="content"></wysiwyg>
+              <froala></froala>
             </v-col>
           </v-row>
         </v-col>
