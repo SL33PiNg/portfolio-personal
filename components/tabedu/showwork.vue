@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row v-for="i in user.workinfo" :key="i._id" wrap justify="center">
-      <v-card width="600" class="mt-5">
+      <v-card width="600" class="mt-5 text-left " @click.stop="openDetail(i)">
         <v-card-title
           >{{ i.company }} <v-spacer></v-spacer>
           <v-chip :class="i.status ? 'primary' : 'error'">{{
@@ -31,6 +31,38 @@
         >
       </v-card>
     </v-row>
+    <v-row wrap justify="center">
+      <v-dialog v-model="dialog" width="70%">
+        <v-card>
+          <v-container>
+            <v-row justify="end" class="ma-1 ">
+              <v-icon color="red" @click="dialog = false">
+                mdi-close-box</v-icon
+              ></v-row
+            >
+            <v-sheet color="primary" width="100%">
+              <h1 class="ma-2 white--text">
+                <v-icon large color="white">mdi-briefcase-outline</v-icon>
+                รายละเอียดข้อมูลการทำงาน
+              </h1></v-sheet
+            >
+            <v-card-title class="headline">
+              {{ detail.company }}<v-spacer></v-spacer>
+              <v-spacer></v-spacer>
+              <v-chip :class="detail.status ? 'primary' : 'error'">{{
+                detail.status ? 'กำลังทำงาน' : 'ออกจากงาน'
+              }}</v-chip></v-card-title
+            >
+
+            <v-card-subtitle>แผนก : {{ detail.department }} </v-card-subtitle>
+            <v-card-subtitle>ตำแหน่ง : {{ detail.position }}</v-card-subtitle>
+            <v-card-subtitle>ปีที่เข้างาน : {{ detail.start }}</v-card-subtitle>
+            <v-card-subtitle>ปีที่ออกจากงาน : {{ detail.end }}</v-card-subtitle>
+            <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
+          </v-container>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 
@@ -40,7 +72,9 @@ export default {
     return {
       user: {},
       loading: true,
-      username: ''
+      username: '',
+      detail: '',
+      dialog: false
     }
   },
   created() {
@@ -48,6 +82,10 @@ export default {
     this.getProfile()
   },
   methods: {
+    openDetail(x) {
+      this.detail = x
+      this.dialog = true
+    },
     async getProfile() {
       this.loading = true
       try {

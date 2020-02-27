@@ -118,7 +118,7 @@
         </v-row>
       </v-col>
       <v-col cols="12" md="8">
-        <v-card outlined min-height="1110">
+        <v-card outlined min-height="835">
           <v-tabs
             v-model="tab"
             background-color="white"
