@@ -82,6 +82,11 @@
             <v-list-item class="ml-4">
               <h4>ตำแหน่งสายงาน (ก.พ.)</h4>
             </v-list-item>
+            <v-list-item class="ml-4">
+              <v-chip v-for="i in ocscList" :key="i" color="primary">{{
+                i
+              }}</v-chip>
+            </v-list-item>
             <v-divider></v-divider>
             <v-list-item class="ml-4">
               <h4>ช่องทางการติดต่อส่วนตัว</h4>
