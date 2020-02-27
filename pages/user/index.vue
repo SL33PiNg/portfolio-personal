@@ -57,7 +57,7 @@
         <v-col cols="12" sm="12" md="6">
           <!-- <label>ตำแหน่งสายงาน ก.พ.</label> -->
           <treeselect
-            v-model="value"
+            v-model="user.ocscId"
             :options="positionocsc"
             :normalizer="normalizer"
             :disable-branch-nodes="true"
@@ -186,6 +186,7 @@ export default {
     updateLoad: false,
     imageUrl: null,
     imageFile: '',
+    ocscId: [],
     user: {
       academicRank: '',
       avatar: 'default.jpg',
@@ -219,7 +220,6 @@ export default {
     ],
     email: '',
     positionocsc: [],
-    value: null,
     pValue: null,
     normalizer(node) {
       return {
@@ -234,7 +234,7 @@ export default {
     ]
   }),
   watch: {
-    value(newVal) {
+    'user.ocscId'(newVal) {
       this.positionocsc.forEach((doc) => {
         if (doc.sub.find((ds) => ds._id === newVal)) {
           this.pValue = doc._id
