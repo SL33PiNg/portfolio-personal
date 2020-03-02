@@ -51,7 +51,9 @@
         <v-col cols="12" xs="12" md="3">
           <v-select
             v-model="work.country"
-            :items="items"
+            :items="countrylist"
+            item-text="name"
+            item-value="name"
             label="ประเทศ"
             outlined
           ></v-select>
@@ -64,7 +66,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="12" xs="12">
-          <froala></froala>
+          <froala :config="config"></froala>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
@@ -115,6 +117,7 @@
 </template>
 
 <script>
+import country from '@/static/countrylist.json'
 import UserMix from '@/mixins/user'
 import { mask } from 'vue-the-mask'
 export default {
@@ -124,6 +127,7 @@ export default {
   mixins: [UserMix],
   data() {
     return {
+      countrylist: country,
       del: false,
       tempDataItem: '',
       mask: '####',
@@ -175,7 +179,45 @@ export default {
           value: 'action'
         }
       ],
-      items: ['ไทย', 'อังกฤษ', 'ลาว', 'พม่า', 'จีน']
+      config: {
+        quickInsertEnabled: false,
+        toolbarButtons: {
+          moreText: {
+            buttons: [
+              'bold',
+              'italic',
+              'underline',
+              'strikeThrough',
+              'subscript',
+              'superscript',
+              'fontFamily',
+              'fontSize',
+              'textColor',
+              'backgroundColor',
+              'inlineClass',
+              'inlineStyle',
+              'clearFormatting'
+            ]
+          },
+          moreParagraph: {
+            buttons: [
+              'alignLeft',
+              'alignCenter',
+              'formatOLSimple',
+              'alignRight',
+              'alignJustify',
+              'formatOL',
+              'formatUL',
+              'paragraphFormat',
+              'paragraphStyle',
+              'lineHeight',
+              'outdent',
+              'indent',
+              'quote'
+            ]
+          }
+        }
+      }
     }
   },
   methods: {

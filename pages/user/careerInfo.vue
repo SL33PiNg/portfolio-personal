@@ -55,7 +55,13 @@
           />
         </v-col>
         <v-col cols="12" md="3" xs="12">
-          <v-select :items="pated" label="ประเทศ" outlined></v-select>
+          <v-select
+            :items="countrylist"
+            item-text="name"
+            item-value="name"
+            label="ประเทศ"
+            outlined
+          ></v-select>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
@@ -72,6 +78,7 @@
 </template>
 
 <script>
+import country from '@/static/countrylist.json'
 import getUser from '@/mixins/user'
 import { mask } from 'vue-the-mask'
 export default {
@@ -80,9 +87,10 @@ export default {
   },
   mixins: [getUser],
   data: () => ({
+    countrylist: country,
     mask: '###-#######',
     user: [],
-    pated: ['ไทย', 'อังกฤษ', 'ลาว', 'พม่า', 'จีน'],
+
     items: [],
     email: '',
     emailRules: [

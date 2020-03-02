@@ -47,7 +47,7 @@
         >
           <v-row>
             <v-col cols="12" md="12" xs="12">
-              <froala></froala>
+              <froala :config="config"></froala>
             </v-col>
           </v-row>
         </v-col>
@@ -63,6 +63,7 @@
 
 <script>
 import Treeselect from '@riophae/vue-treeselect'
+
 // import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   components: {
@@ -89,6 +90,45 @@ export default {
           id: node._id,
           label: node.name,
           children: node.sub
+        }
+      },
+      config: {
+        quickInsertEnabled: false,
+        toolbarButtons: {
+          moreText: {
+            buttons: [
+              'bold',
+              'italic',
+              'underline',
+              'strikeThrough',
+              'subscript',
+              'superscript',
+              'fontFamily',
+              'fontSize',
+              'textColor',
+              'backgroundColor',
+              'inlineClass',
+              'inlineStyle',
+              'clearFormatting'
+            ]
+          },
+          moreParagraph: {
+            buttons: [
+              'alignLeft',
+              'alignCenter',
+              'formatOLSimple',
+              'alignRight',
+              'alignJustify',
+              'formatOL',
+              'formatUL',
+              'paragraphFormat',
+              'paragraphStyle',
+              'lineHeight',
+              'outdent',
+              'indent',
+              'quote'
+            ]
+          }
         }
       }
     }
