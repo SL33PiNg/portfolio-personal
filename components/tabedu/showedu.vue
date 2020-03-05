@@ -45,6 +45,11 @@
               >ปีที่สำเร็จการศึกษา : {{ detail.graduate }}</v-card-subtitle
             >
             <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
+            <v-card-subtitle
+              >รายละเอียด :<froalaView
+                v-model="detail.educationinfoDetails"
+              ></froalaView
+            ></v-card-subtitle>
           </v-container>
         </v-card>
       </v-dialog>

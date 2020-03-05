@@ -120,7 +120,8 @@ const userSchema = new mongoose.Schema({
       country: String,
       department: String,
       company: String,
-      position: String
+      position: String,
+      workinfoDetails:String
     }
   ],
   educationinfo: [
@@ -132,7 +133,8 @@ const userSchema = new mongoose.Schema({
       graduate: Number,
       country: String,
       status: Boolean,
-      image: String
+      image: String,
+      educationinfoDetails:String
     }
   ],
   certificateinfo: [
@@ -140,7 +142,9 @@ const userSchema = new mongoose.Schema({
       certificateName: String,
       graduate: Number,
       guarantee: String,
-      file: String
+      file: String,
+      certificateinfoDetails:String
+      
     }
   ]
 })
