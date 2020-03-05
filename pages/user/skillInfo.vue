@@ -12,18 +12,19 @@
       <v-row justify="center" class="mt-10">
         <v-col cols="12" md="10" xs="12">
           <treeselect
-            v-model="value"
+            v-model="user.expId"
             :options="expertists"
             :normalizer="normalizer"
             :disable-branch-nodes="true"
             clear-on-select
             multiple
             placeholder="ความเชี่ยวชาญ"
+            outlined
           />
         </v-col>
       </v-row>
       <v-row class="ma-3 " justify="end">
-        <v-btn class="mx-0 font-weight-light" color="success"
+        <v-btn :loading="updateLoad" color="primary" @click="updateUser"
           >เพิ่มข้อมูล</v-btn
         >
       </v-row>
@@ -31,7 +32,7 @@
   </v-card>
 </template>
 <template>
-  <v-card class="mx-auto ma-8" max-width="80%">
+  <v-card class=" ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
         <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
@@ -61,16 +62,20 @@
   </v-card>
 </template>
 <script>
+import getUser from '@/mixins/user'
 import Treeselect from '@riophae/vue-treeselect'
 // import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   components: {
     Treeselect
   },
+  mixins: [getUser],
   data() {
     return {
       clearOnSelect: false,
       multiple: true,
+      loading: true,
+      updateLoad: false,
       items: ['การศึกษา', 'บริหารธุรกิจ', 'วิทยาศาสตร์'],
       skills: [
         {
@@ -80,8 +85,9 @@ export default {
           name: 'การฝึกหัดครูอนุบาล'
         }
       ],
+      expId: [],
       expertists: [],
-      value: null,
+      pValue: null,
       normalizer(node) {
         return {
           id: node._id,
@@ -89,6 +95,18 @@ export default {
           children: node.sub
         }
       }
+    }
+  },
+  watch: {
+    'user.expId'(newVal) {
+      this.expertists.forEach((doc) => {
+        if (doc.sub.find((ds) => ds._id === newVal)) {
+          this.pValue = doc._id
+        }
+      })
+      console.log(this.expertists)
+      console.log(this.pValue)
+      console.log(newVal)
     }
   },
   created() {
