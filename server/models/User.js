@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema({
     default: true
   },
   expId: [ String ],
+  skillsDetails:String,
   ocscId: [ String ],
   personalInfo: {
     academicRank: {

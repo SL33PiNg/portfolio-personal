@@ -12,7 +12,7 @@
       <v-row justify="center" class="mt-10">
         <v-col cols="12" md="10" xs="12">
           <treeselect
-            v-model="value"
+            v-model="user.expId"
             :options="expertists"
             :normalizer="normalizer"
             :disable-branch-nodes="true"
@@ -23,7 +23,7 @@
         </v-col>
       </v-row>
       <v-row class="ma-3 " justify="end">
-        <v-btn class="mx-0 font-weight-light" color="primary"
+        <v-btn :loading="updateLoad" color="primary" @click="updateUser"
           >เพิ่มข้อมูล</v-btn
         >
       </v-row>
@@ -47,13 +47,18 @@
         >
           <v-row>
             <v-col cols="12" md="12" xs="12">
-              <froala :config="config"></froala>
+              <froala
+                v-if="!loading"
+                v-model="user.skillsDetails"
+                :config="config"
+              >
+              </froala>
             </v-col>
           </v-row>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
-        <v-btn class="mx-0 font-weight-light" color="primary">
+        <v-btn :loading="updateLoad" color="primary" @click="updateUser">
           อัปเดตข้อมูล
         </v-btn>
       </v-row>
@@ -62,6 +67,7 @@
 </template>
 
 <script>
+import getUser from '@/mixins/user'
 import Treeselect from '@riophae/vue-treeselect'
 
 // import '@riophae/vue-treeselect/dist/vue-treeselect.css'
@@ -69,8 +75,15 @@ export default {
   components: {
     Treeselect
   },
+  mixins: [getUser],
   data() {
     return {
+      user: {
+        expId: [],
+        skillsDetails: ''
+      },
+      loading: true,
+      updateLoad: false,
       clearOnSelect: false,
       multiple: true,
       items: ['การศึกษา', 'บริหารธุรกิจ', 'วิทยาศาสตร์'],
@@ -131,28 +144,6 @@ export default {
           }
         }
       }
-    }
-  },
-  watch: {
-    value(newVal) {
-      this.result = {}
-      newVal.forEach((sId) => {
-        this.expertists.forEach((exp) => {
-          if (exp.sub.find((s) => s._id === sId)) {
-            if (this.result[exp._id]) {
-              if (!this.result[exp._id].sub.includes(sId))
-                this.result[exp._id].sub.push(sId)
-            } else {
-              this.result[exp._id] = { name: exp.name, sub: [sId] }
-            }
-          }
-        })
-      })
-      this.result = Object.entries(this.result).map(([key, value]) => ({
-        _id: key,
-        ...value
-      }))
-      console.log(this.result)
     }
   },
   created() {

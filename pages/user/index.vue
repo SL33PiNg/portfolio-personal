@@ -233,18 +233,7 @@ export default {
       (v) => /.+@.+/.test(v) || 'E-mail must be valid'
     ]
   }),
-  watch: {
-    'user.ocscId'(newVal) {
-      this.positionocsc.forEach((doc) => {
-        if (doc.sub.find((ds) => ds._id === newVal)) {
-          this.pValue = doc._id
-        }
-      })
-      console.log(this.positionocsc)
-      console.log(this.pValue)
-      console.log(newVal)
-    }
-  },
+
   created() {
     this.getPositionOcsc()
   },
