@@ -48,7 +48,9 @@
                   </v-list-item-content>
                 </template>
 
-                <v-list-item><h4>หน่วยงาน :</h4></v-list-item>
+                <v-list-item
+                  ><h4>หน่วยงาน : {{ departmentName }}</h4></v-list-item
+                >
                 <v-list-item
                   ><h4>ฝ่าย :</h4>
                   {{ user.careerInfo.department }}</v-list-item
@@ -57,7 +59,9 @@
                   ><h4>ตำแหน่ง :</h4>
                   {{ user.careerInfo.jobPost }}</v-list-item
                 >
-                <v-list-item><h4>ประเทศ :</h4></v-list-item>
+                <v-list-item
+                  ><h4>ประเทศ : {{ user.careerInfo.country }}</h4></v-list-item
+                >
                 <v-list-item
                   ><h4>
                     อีเมลล์ :
@@ -176,17 +180,24 @@ export default {
       },
       { id: 4, title: 'ใบรับรอง', path: '/cert' }
     ],
-    hostname: location.origin
+    hostname: location.origin,
+    departments: []
   }),
   computed: {
+    departmentName() {
+      const found = this.departments.find(
+        (f) => f._id === this.user.careerInfo.dpmentID
+      )
+      const a = { ...found }
+      return a.name
+    },
     ocscList() {
       const a = []
-      console.log(this.positionocsc)
+
       this.positionocsc.forEach((pocsc) => {
         this.user.ocscId.forEach((ocsc) => {
           pocsc.sub.forEach((psub) => {
             if (psub._id === ocsc) {
-              console.log(psub)
               a.push(psub.name)
             }
           })
@@ -200,6 +211,7 @@ export default {
     this.username = this.$route.params.username
     this.getProfile()
     this.getPositionOcsc()
+    this.getDepartment()
   },
   methods: {
     async getProfile() {
@@ -218,8 +230,18 @@ export default {
       this.loading = true
       try {
         const result = await this.$axios.$get('/select/positionOcsc')
-        console.log(result)
+
         this.positionocsc = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
+    async getDepartment() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/select/department')
+        this.departments = result
       } catch (error) {
       } finally {
         this.loading = false
