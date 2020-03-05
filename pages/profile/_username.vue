@@ -119,9 +119,7 @@
               <v-btn color="primary" text>
                 <h4>ดาวน์โหลดนามบัตร</h4>
               </v-btn>
-              <v-btn color="warning" text>
-                <h4>ร้องเรียน</h4>
-              </v-btn>
+              <Complaint></Complaint>
             </v-card-actions>
           </v-card>
         </v-row>
@@ -150,9 +148,13 @@
 </template>
 
 <script>
+import Complaint from '~/components/Profile & Complaint/comp.vue'
 export default {
   validate({ params }) {
     return isNaN(+params.username)
+  },
+  components: {
+    Complaint
   },
   data: () => ({
     dialog: false,
