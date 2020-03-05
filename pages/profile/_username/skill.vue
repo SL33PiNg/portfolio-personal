@@ -2,22 +2,38 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <p class="text-justify">
-          Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut,
-          faucibus non, euismod id, nulla. Fusce convallis metus id felis luctus
-          adipiscing. Aenean massa. Vestibulum purus quam, scelerisque ut,
-          mollis sed, nonummy id, metus. Nulla consequat massa quis enim.
-          Praesent venenatis metus at tortor pulvinar varius. Donec venenatis
-          vulputate lorem. Phasellus accumsan cursus velit. Pellentesque ut
-          neque.
-        </p>
+        <froalaView v-model="user.skillsDetails"></froalaView>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-export default {}
+export default {
+  data: () => ({
+    user: {},
+    username: '',
+    loading: true
+  }),
+  created() {
+    this.username = this.$route.params.username
+    this.getProfile()
+  },
+  methods: {
+    async getProfile() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get(
+          `/profile/${this.$route.params.username}`
+        )
+        this.user = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    }
+  }
+}
 </script>
 
 <style></style>

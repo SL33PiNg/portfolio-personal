@@ -59,6 +59,11 @@
             <v-card-subtitle>ปีที่เข้างาน : {{ detail.start }}</v-card-subtitle>
             <v-card-subtitle>ปีที่ออกจากงาน : {{ detail.end }}</v-card-subtitle>
             <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
+            <v-card-subtitle
+              >รายละเอียด :<froalaView
+                v-model="detail.workinfoDetails"
+              ></froalaView
+            ></v-card-subtitle>
           </v-container>
         </v-card>
       </v-dialog>

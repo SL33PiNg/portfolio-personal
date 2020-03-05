@@ -45,7 +45,11 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="12" xs="12">
-          <froala :config="config"></froala>
+          <froala
+            v-if="!loading"
+            v-model="certificate.certificateinfoDetails"
+            :config="config"
+          ></froala>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
@@ -118,7 +122,8 @@ export default {
         certificateName: '',
         graduate: '',
         guarantee: '',
-        file: ''
+        file: '',
+        certificateinfoDetails: ''
       },
       headers: [
         {
@@ -204,7 +209,8 @@ export default {
           certificateName: '',
           graduate: '',
           guarantee: '',
-          file: ''
+          file: '',
+          certificateinfoDetails: ''
         }
       }
     },
