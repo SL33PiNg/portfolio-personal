@@ -236,9 +236,10 @@ export default {
         await this.$axios.$post('/users/workinfo', {
           ...this.work
         })
-        this.$toast.success('"สำเร็จ"')
+
+        this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
-        this.$toast.success('error')
+        this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
       } finally {
         this.loadBtn = false
         this.getUser()
@@ -257,9 +258,9 @@ export default {
     async delWork(id) {
       try {
         await this.$axios.$delete(`/users/workinfo/${id}`)
-        this.$toast.success('"สำเร็จ"')
+        this.$toast.show('ลบข้อมูล"สำเร็จ"')
       } catch (error) {
-        this.$toast.success('error')
+        this.$toast.error('ลบข้อมูล"ไม่สำเร็จ"')
       } finally {
         this.del = false
         this.tempDataItem = ''
