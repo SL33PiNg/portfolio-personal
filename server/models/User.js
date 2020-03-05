@@ -27,13 +27,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  expId: {
-    type: Number,
-    ref: 'Expertist'
-  },
-  expSubId: {
-    type: mongoose.Types.ObjectId
-  },
+  expId: [ String ],
   ocscId: [ String ],
   personalInfo: {
     academicRank: {
