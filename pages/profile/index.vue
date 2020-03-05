@@ -49,8 +49,8 @@
                   }}</v-list-item-subtitle
                 >
                 <v-list-item-subtitle class="my-1"
-                  >หน่วยงาน :</v-list-item-subtitle
-                >
+                  >หน่วยงาน :
+                </v-list-item-subtitle>
                 <v-list-item-subtitle class="my-1">
                   ความเชี่ยวชาญ :</v-list-item-subtitle
                 >

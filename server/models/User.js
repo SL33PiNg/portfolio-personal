@@ -99,10 +99,14 @@ const userSchema = new mongoose.Schema({
       default: ''
     },
     dpmentID: {
-      type: String,
+      type: Number,
       default: ''
     },
     address: {
+      type: String,
+      default: ''
+    },
+    country: {
       type: String,
       default: ''
     }
@@ -132,11 +136,11 @@ const userSchema = new mongoose.Schema({
   ],
   certificateinfo: [
     {
-    certificateName: String,
-    graduate: Number,
-    guarantee: String,
-    file: String
-   }
+      certificateName: String,
+      graduate: Number,
+      guarantee: String,
+      file: String
+    }
   ]
 })
 

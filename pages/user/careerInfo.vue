@@ -20,8 +20,8 @@
         </v-col>
         <v-col cols="12" md="4" xs="12">
           <v-select
-            v-model="selectExp"
-            :items="expertists"
+            v-model="user.careerInfo.dpmentID"
+            :items="departments"
             item-text="name"
             item-value="_id"
             label="หน่วยงาน"
@@ -56,6 +56,7 @@
         </v-col>
         <v-col cols="12" md="3" xs="12">
           <v-select
+            v-model="user.careerInfo.country"
             :items="countrylist"
             item-text="name"
             item-value="name"
@@ -99,13 +100,13 @@ export default {
     ],
     valid: false,
 
-    expertists: [],
+    departments: [],
     selectExp: ''
   }),
   watch: {
-    selectExp(newVal, oldVal) {
+    'user.careerInfo.dpmentID'(newVal, oldVal) {
       // eslint-disable-next-line no-console
-      console.log(oldVal, newVal)
+      console.log(typeof newVal)
     }
   },
   created() {
@@ -116,7 +117,7 @@ export default {
       this.loading = true
       try {
         const result = await this.$axios.$get('/select/department')
-        this.expertists = result
+        this.departments = result
       } catch (error) {
       } finally {
         this.loading = false
