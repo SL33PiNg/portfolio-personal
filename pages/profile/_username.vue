@@ -49,7 +49,8 @@
                 </template>
 
                 <v-list-item
-                  ><h4>หน่วยงาน : {{ departmentName }}</h4></v-list-item
+                  ><h4>หน่วยงาน</h4>
+                  : {{ departmentName }}</v-list-item
                 >
                 <v-list-item
                   ><h4>ฝ่าย :</h4>
@@ -60,7 +61,8 @@
                   {{ user.careerInfo.jobPost }}</v-list-item
                 >
                 <v-list-item
-                  ><h4>ประเทศ : {{ user.careerInfo.country }}</h4></v-list-item
+                  ><h4>ประเทศ</h4>
+                  : {{ user.careerInfo.country }}</v-list-item
                 >
                 <v-list-item
                   ><h4>
@@ -152,7 +154,7 @@
 </template>
 
 <script>
-import Complaint from '~/components/Profile & Complaint/comp.vue'
+import Complaint from '~/components/complainPro/comp.vue'
 export default {
   validate({ params }) {
     return isNaN(+params.username)
