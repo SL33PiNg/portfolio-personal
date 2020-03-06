@@ -82,30 +82,24 @@
             <v-divider></v-divider>
 
             <v-list-item class="ml-4">
-              <h4>ความเชี่ยวชาญ</h4>
-            </v-list-item>
-            <v-list-item class="ml-4">
-              <v-chip
-                v-for="x in expertList"
-                :key="x"
-                color="primary"
-                class="ma-1"
-                >{{ x }}</v-chip
-              ></v-list-item
-            >
-            <v-divider></v-divider>
-            <v-list-item class="ml-4">
-              <h4>ตำแหน่งสายงาน (ก.พ.)</h4>
-            </v-list-item>
-            <v-list-item class="ml-4">
-              <v-chip
-                v-for="i in ocscList"
-                :key="i"
-                color="primary"
-                class="ma-1"
-                >{{ i }}</v-chip
+              <v-row>
+                <h4 class="ml-4 ma-2">ความเชี่ยวชาญ</h4>
+                <v-chip v-for="x in expertList" :key="x" class="ma-1">{{
+                  x
+                }}</v-chip></v-row
               >
             </v-list-item>
+
+            <v-divider></v-divider>
+            <v-list-item class="ml-4">
+              <v-row>
+                <h4 class="ml-4 ma-2">ตำแหน่งสายงาน (ก.พ.)</h4>
+                <v-chip v-for="i in ocscList" :key="i" class="ma-1"
+                  >{{ i }}
+                </v-chip>
+              </v-row>
+            </v-list-item>
+
             <v-divider></v-divider>
             <v-list-item class="ml-4">
               <h4>ช่องทางการติดต่อส่วนตัว</h4>
@@ -202,8 +196,8 @@ export default {
       const found = this.departments.find(
         (f) => f._id === this.user.careerInfo.dpmentID
       )
-      const a = { ...found }
-      return a.name
+      const c = { ...found }
+      return c.name
     },
     expertList() {
       const b = []
