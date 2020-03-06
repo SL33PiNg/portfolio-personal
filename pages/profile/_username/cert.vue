@@ -41,6 +41,11 @@
               >หน่วยงานที่ออก:{{ detail.guarantee }}</v-card-subtitle
             >
             <v-card-subtitle>ปีที่ได้รับ:{{ detail.graduate }}</v-card-subtitle>
+            <v-card-subtitle
+              >รายละเอียด :<froalaView
+                v-model="detail.certificateinfoDetails"
+              ></froalaView
+            ></v-card-subtitle>
           </v-container>
         </v-card>
       </v-dialog>
