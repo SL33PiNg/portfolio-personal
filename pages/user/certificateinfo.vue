@@ -14,6 +14,7 @@
         <v-col cols="12" xs="12" md="5">
           <v-text-field
             v-model="certificate.certificateName"
+            :rules="rules.certificateName"
             label="ชื่อใบรับรอง"
             clearable
             outlined
@@ -23,6 +24,7 @@
         <v-col cols="12" xs="12" md="4">
           <v-text-field
             v-model="certificate.guarantee"
+            :rules="rules.guarantee"
             label="หน่วยงานที่ออกใบรับรอง"
             clearable
             outlined
@@ -54,6 +56,7 @@
       </v-row>
       <v-row justify="end" class="ma-3 ">
         <v-btn
+          :disabled="!formIsValid"
           class=" font-weight-light"
           color="primary"
           @click="addcertificate"
@@ -114,6 +117,10 @@ export default {
   mixins: [UserMix],
   data() {
     return {
+      rules: {
+        certificateName: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        guarantee: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล']
+      },
       del: false,
       tempDataItem: '',
       mask: '####',
@@ -186,6 +193,11 @@ export default {
           }
         }
       }
+    }
+  },
+  computed: {
+    formIsValid() {
+      return this.certificate.certificateName && this.certificate.guarantee
     }
   },
   methods: {

@@ -86,7 +86,6 @@ export default {
       updateLoad: false,
       clearOnSelect: false,
       multiple: true,
-      items: ['การศึกษา', 'บริหารธุรกิจ', 'วิทยาศาสตร์'],
       skills: [
         {
           name: 'ศึกษาศาสตร์'

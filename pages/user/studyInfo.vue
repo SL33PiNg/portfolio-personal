@@ -13,6 +13,7 @@
         <v-col cols="12" md="6" xs="12">
           <v-select
             v-model="education.educationVocabulary"
+            :rules="rules.selects"
             :items="items"
             label="ระดับวุฒิการศึกษา"
             outlined
@@ -21,19 +22,26 @@
         <v-col cols="12" md="6" xs="12">
           <v-text-field
             v-model="education.educationName"
-            label="วุฒิการศึกษา"
+            :rules="rules.name"
+            label="ชื่อวุฒิการศึกษา"
             outlined
           />
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" md="5" xs="12">
-          <v-text-field v-model="education.branch" label="สาขา" outlined />
+          <v-text-field
+            v-model="education.branch"
+            :rules="rules.branch"
+            label="สาขา"
+            outlined
+          />
         </v-col>
         <v-col cols="12" md="5" xs="12">
           <v-text-field
             v-model="education.graduate"
             v-mask="mask"
+            :rules="rules.number"
             :disabled="education.status"
             label="ปีที่สำเร็จการศึกษา (พ.ศ.)"
             outlined
@@ -50,6 +58,7 @@
         <v-col cols="12" md="9" xs="12">
           <v-text-field
             v-model="education.academyName"
+            :rules="rules.name"
             label="ชื่อสถานศึกษา"
             outlined
           />
@@ -57,6 +66,7 @@
         <v-col cols="12" md="3" xs="12">
           <v-select
             v-model="education.country"
+            :rules="rules.selects"
             :items="countrylist"
             item-text="name"
             item-value="name"
@@ -81,6 +91,7 @@
       </v-row>
       <v-row justify="end" class="ma-3 ">
         <v-btn
+          :disabled="!formIsValid"
           class="mx-0 font-weight-light"
           color="primary"
           @click="addEducation"
@@ -143,6 +154,12 @@ export default {
   mixins: [UserMix],
   data() {
     return {
+      rules: {
+        name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        number: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        branch: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล']
+      },
       countrylist: country,
       del: false,
       tempDataItem: '',
@@ -249,6 +266,22 @@ export default {
           }
         }
       }
+    }
+  },
+  computed: {
+    formIsValid() {
+      return (
+        this.education.educationVocabulary &&
+        this.education.educationName &&
+        this.education.academyName &&
+        this.education.branch &&
+        this.education.country
+      )
+    }
+  },
+  watch: {
+    'education.status'(val) {
+      if (val) this.education.graduate = ''
     }
   },
   methods: {
