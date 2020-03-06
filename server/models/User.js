@@ -146,7 +146,11 @@ const userSchema = new mongoose.Schema({
       certificateinfoDetails:String
       
     }
-  ]
+  ],
+  awardList: [{
+    type:mongoose.Types.ObjectId,
+    ref : 'award'
+  }]
 })
 
 const User = mongoose.model('User', userSchema)
