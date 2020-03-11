@@ -3,11 +3,11 @@ export default {
   data: () => ({
     loading: false
   }),
-  created () {
+  created() {
     this.getUser()
   },
   methods: {
-    async getUser () {
+    async getUser() {
       this.loading = true
       try {
         const user = await this.$axios.$get('/users')
@@ -19,13 +19,13 @@ export default {
         this.loading = false
       }
     },
-    async updateUser () {
+    async updateUser() {
       try {
         const user = await this.$axios.$patch('/users', {
           ...this.user
         })
         this.user = user
-        this.$toast.success('Succesfully update profile')
+        this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error)

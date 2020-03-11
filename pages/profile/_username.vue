@@ -82,21 +82,24 @@
             <v-divider></v-divider>
 
             <v-list-item class="ml-4">
-              <h4>ความเชี่ยวชาญ</h4>
-            </v-list-item>
-            <v-divider></v-divider>
-            <v-list-item class="ml-4">
-              <h4>ตำแหน่งสายงาน (ก.พ.)</h4>
-            </v-list-item>
-            <v-list-item class="ml-4">
-              <v-chip
-                v-for="i in ocscList"
-                :key="i"
-                color="primary"
-                class="ma-1"
-                >{{ i }}</v-chip
+              <v-row>
+                <h4 class="ml-4 ma-2">ความเชี่ยวชาญ</h4>
+                <v-chip v-for="x in expertList" :key="x" class="ma-1">{{
+                  x
+                }}</v-chip></v-row
               >
             </v-list-item>
+
+            <v-divider></v-divider>
+            <v-list-item class="ml-4">
+              <v-row>
+                <h4 class="ml-4 ma-2">ตำแหน่งสายงาน (ก.พ.)</h4>
+                <v-chip v-for="i in ocscList" :key="i" class="ma-1"
+                  >{{ i }}
+                </v-chip>
+              </v-row>
+            </v-list-item>
+
             <v-divider></v-divider>
             <v-list-item class="ml-4">
               <h4>ช่องทางการติดต่อส่วนตัว</h4>
@@ -174,6 +177,7 @@ export default {
     loading: true,
     username: '',
     positionocsc: [],
+    expertists: [],
     tabItems: [
       { id: 1, title: 'ผลงาน', path: '/' },
       {
@@ -196,8 +200,22 @@ export default {
       const found = this.departments.find(
         (f) => f._id === this.user.careerInfo.dpmentID
       )
-      const a = { ...found }
-      return a.name
+      const c = { ...found }
+      return c.name
+    },
+    expertList() {
+      const b = []
+
+      this.expertists.forEach((lexp) => {
+        this.user.expId.forEach((exp) => {
+          lexp.sub.forEach((expsub) => {
+            if (expsub._id === exp) {
+              b.push(expsub.name)
+            }
+          })
+        })
+      })
+      return b
     },
     ocscList() {
       const a = []
@@ -220,6 +238,7 @@ export default {
     this.getProfile()
     this.getPositionOcsc()
     this.getDepartment()
+    this.getExpertist()
   },
   methods: {
     async getProfile() {
@@ -229,6 +248,17 @@ export default {
           `/profile/${this.$route.params.username}`
         )
         this.user = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
+    async getExpertist() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/select/expertist')
+
+        this.expertists = result
       } catch (error) {
       } finally {
         this.loading = false

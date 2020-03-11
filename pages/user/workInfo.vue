@@ -14,6 +14,7 @@
           <v-text-field
             v-model="work.start"
             v-mask="mask"
+            :rules="rules.number"
             label="ปีที่เข้าทำงาน (พ.ศ.)"
             outlined
           />
@@ -23,6 +24,7 @@
           <v-text-field
             v-model="work.end"
             v-mask="mask"
+            :rules="rules.number"
             :disabled="work.status"
             label="ปีที่ออกจากงาน (พ.ศ.)"
             outlined
@@ -38,19 +40,35 @@
       ></v-row>
       <v-row>
         <v-col cols="12" md="6" xs="12">
-          <v-text-field v-model="work.department" label="แผนก" outlined />
+          <v-text-field
+            v-model="work.department"
+            :rules="rules.department"
+            label="แผนก"
+            outlined
+          />
         </v-col>
         <v-col cols="12" md="6" xs="12">
-          <v-text-field v-model="work.position" label="ตำแหน่ง" outlined />
+          <v-text-field
+            v-model="work.position"
+            :rules="rules.position"
+            label="ตำแหน่ง"
+            outlined
+          />
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" xs="12" md="9">
-          <v-text-field v-model="work.company" label="ชื่อหน่วยงาน" outlined />
+          <v-text-field
+            v-model="work.company"
+            :rules="rules.company"
+            label="ชื่อหน่วยงาน"
+            outlined
+          />
         </v-col>
         <v-col cols="12" xs="12" md="3">
           <v-select
             v-model="work.country"
+            :rules="rules.selects"
             :items="countrylist"
             item-text="name"
             item-value="name"
@@ -66,11 +84,20 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="12" xs="12">
-          <froala :config="config"></froala>
+          <froala
+            v-if="!loading"
+            v-model="work.workinfoDetails"
+            :config="config"
+          ></froala>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3 ">
-        <v-btn class="mx-0 font-weight-light" color="primary" @click="addWork">
+        <v-btn
+          :disabled="!formIsValid"
+          class="mx-0 font-weight-light"
+          color="primary"
+          @click="addWork"
+        >
           เพิ่มข้อมูล
         </v-btn>
       </v-row>
@@ -102,7 +129,7 @@
               </v-dialog>
             </template>
             <template v-slot:item.status="{ item }">
-              <p>{{ item.status ? 'work' : 'not work' }}</p>
+              <p>{{ item.status ? 'กำลังทำงาน' : 'ออกจากงาน' }}</p>
             </template>
             <template v-slot:item.action="{ item }">
               <v-btn icon @click="openDel(item._id)"
@@ -127,6 +154,13 @@ export default {
   mixins: [UserMix],
   data() {
     return {
+      rules: {
+        number: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        department: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        position: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        company: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล']
+      },
       countrylist: country,
       del: false,
       tempDataItem: '',
@@ -139,7 +173,8 @@ export default {
         department: '',
         company: '',
         country: '',
-        position: ''
+        position: '',
+        workinfoDetails: ''
       },
       user: {},
       headers: [
@@ -220,6 +255,22 @@ export default {
       }
     }
   },
+  computed: {
+    formIsValid() {
+      return (
+        this.work.start &&
+        this.work.department &&
+        this.work.company &&
+        this.work.country &&
+        this.work.position
+      )
+    }
+  },
+  watch: {
+    'work.status'(val) {
+      if (val) this.work.end = ''
+    }
+  },
   methods: {
     openDel(item) {
       this.tempDataItem = item
@@ -231,9 +282,10 @@ export default {
         await this.$axios.$post('/users/workinfo', {
           ...this.work
         })
-        this.$toast.success('"สำเร็จ"')
+
+        this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
-        this.$toast.success('error')
+        this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
       } finally {
         this.loadBtn = false
         this.getUser()
@@ -244,16 +296,17 @@ export default {
           department: '',
           company: '',
           country: '',
-          position: ''
+          position: '',
+          workinfoDetails: ''
         }
       }
     },
     async delWork(id) {
       try {
         await this.$axios.$delete(`/users/workinfo/${id}`)
-        this.$toast.success('"สำเร็จ"')
+        this.$toast.show('ลบข้อมูล"สำเร็จ"')
       } catch (error) {
-        this.$toast.success('error')
+        this.$toast.error('ลบข้อมูล"ไม่สำเร็จ"')
       } finally {
         this.del = false
         this.tempDataItem = ''

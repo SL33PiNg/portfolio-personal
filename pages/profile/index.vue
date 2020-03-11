@@ -1,16 +1,5 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col cols="12" md="6" xs="12">
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="ค้นหา"
-          hide-details
-          filled
-        ></v-text-field>
-      </v-col>
-    </v-row>
     <v-row
       v-for="i in users"
       :key="i.id"
@@ -49,7 +38,7 @@
                   }}</v-list-item-subtitle
                 >
                 <v-list-item-subtitle class="my-1"
-                  >หน่วยงาน :
+                  >หน่วยงาน : {{ i.departmentName }}
                 </v-list-item-subtitle>
                 <v-list-item-subtitle class="my-1">
                   ความเชี่ยวชาญ :</v-list-item-subtitle
@@ -70,13 +59,25 @@
 export default {
   data() {
     return {
+      user: {},
       users: [],
       loading: true,
-      hostname: location.origin
+      hostname: location.origin,
+      departments: []
+    }
+  },
+  computed: {
+    departmentName() {
+      const found = this.departments.find(
+        (f) => f._id === this.user.careerInfo.dpmentID
+      )
+      const a = { ...found }
+      return a.name
     }
   },
   created() {
     this.getAllProfile()
+    this.getDepartment()
   },
   methods: {
     async getAllProfile() {
@@ -84,6 +85,16 @@ export default {
       try {
         const result = await this.$axios.$get('/profile')
         this.users = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
+    async getDepartment() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/select/department')
+        this.departments = result
       } catch (error) {
       } finally {
         this.loading = false
