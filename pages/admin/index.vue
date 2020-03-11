@@ -21,7 +21,7 @@
       <v-card outlined class="mx-auto ma-5">
         <v-data-table
           :headers="headers"
-          :items="status"
+          :items="users"
           :search="search"
           hide-default-footer
         >
@@ -136,6 +136,19 @@
               </v-icon></v-chip
             >
           </template>
+          <template v-slot:item.isPublic="{ item }">
+            <p>{{ item.isPublic ? 'เผยแผร่' : 'ระงับการเผยแผร่' }}</p>
+          </template>
+          <template v-slot:item.isActive="{ item }">
+            <p>{{ item.isActive ? 'เปิดการใช้งาน' : 'ปิดการใช้งาน' }}</p>
+          </template>
+          <template v-slot:item.nameTH="{ item }">
+            <p>
+              {{ item.personalInfo.academicRank }}
+              {{ item.personalInfo.firstnameTH }}
+              {{ item.personalInfo.lastnameTH }}
+            </p>
+          </template>
         </v-data-table>
       </v-card>
     </v-container>
@@ -147,42 +160,39 @@ export default {
   middleware: ['check-admin'],
   data() {
     return {
+      users: [],
       search: '',
+      loading: true,
       add: false,
       shut: false,
       close: false,
-
       tempDataItem: {},
       headers: [
-        { text: 'ชื่อ', align: 'start', value: 'name' },
-        { text: 'สถานะการใช้งาน', align: 'start', value: 'usageStatus' },
-        { text: 'สถานะบัญชี', align: 'start', value: 'accountStatus' },
-
-        { text: 'การจัดการ', value: 'action', sortable: false, align: 'center' }
-      ],
-
-      status: [
         {
-          name: 'ชานนท์ ศรีคงทน',
-          usageStatus: 'เผยแพร่',
-          accountStatus: 'เปิด',
-          comStatus: 'ไม่มี'
+          text: 'ชื่อ',
+          align: 'start',
+          value: 'nameTH'
         },
         {
-          name: 'ธนกฤต อ่อนเขตร์',
-          usageStatus: 'เผยแพร่',
-          accountStatus: 'เปิด',
-          comStatus: 'ไม่มี'
+          text: 'สถานะการใช้งาน',
+          value: 'isPublic'
         },
-
+        { text: 'สถานะบัญชี', value: 'isActive' },
         {
-          name: 'โกล์ดดี โรเจอร์ส',
-          usageStatus: 'ไม่เผยแพร่',
-          accountStatus: 'เปิด',
-          comStatus: 'ไม่มี'
+          text: 'สิทธิ์การใช้งาน',
+          value: 'roles'
+        },
+        {
+          text: 'การจัดการ',
+          value: 'action',
+          align: 'center'
         }
       ]
     }
+  },
+
+  created() {
+    this.getAllProfile()
   },
   methods: {
     addStatus(item) {
@@ -194,6 +204,16 @@ export default {
     },
     closeAccount(item) {
       this.close = true
+    },
+    async getAllProfile() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/profile')
+        this.users = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
     }
   }
 }
