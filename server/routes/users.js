@@ -18,4 +18,6 @@ router.delete('/studyinfo/:id', UserController.deleteEducationInfoByIndex)
 router.post('/certificateinfo', UserController.addUsercertificateInfoById)
 router.delete('/certificateinfo/:id', UserController.deletecertificateInfoByIndex)
 
+
+
 module.exports = router

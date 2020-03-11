@@ -125,9 +125,6 @@
             </v-list-item>
             <v-divider></v-divider>
             <v-card-actions class="ml-4">
-              <v-btn color="primary" text>
-                <h4>ดาวน์โหลดนามบัตร</h4>
-              </v-btn>
               <Complaint></Complaint>
             </v-card-actions>
           </v-card>
