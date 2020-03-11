@@ -166,7 +166,11 @@ export default {
     dialog: false,
     tab: null,
     tab2: null,
-    user: {},
+    user: {
+      personalInfo: {
+        academicRank: ''
+      }
+    },
     loading: true,
     username: '',
     positionocsc: [],
