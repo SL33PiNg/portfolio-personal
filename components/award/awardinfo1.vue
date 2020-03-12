@@ -29,17 +29,24 @@
         ></v-file-input>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12" md="2" xs="12">
-        <v-text-field label="โครงการวิจัย" disabled />
-      </v-col>
+    <v-row justify="center">
       <v-col cols="12" md="6" xs="12">
-        <v-select :items="items" label="ประเภทโครงการวิจัย"></v-select>
+        <v-select
+          v-model="Award.researchCategory"
+          :items="items"
+          label="ประเภทโครงการวิจัย"
+        ></v-select>
       </v-col>
       <v-col cols="12" md="4" xs="12">
-        <v-radio-group column>
-          <v-radio label="หัวหน้าโครงการวิจัย" value="radio-1"></v-radio>
-          <v-radio label="ผู้ร่วมโครงการวิจัย" value="radio-2"></v-radio>
+        <v-radio-group v-model="Award.jobTitles" column>
+          <v-radio
+            label="หัวหน้าโครงการวิจัย"
+            value="หัวหน้าโครงการวิจัย"
+          ></v-radio>
+          <v-radio
+            label="ผู้ร่วมโครงการวิจัย"
+            value="ผู้ร่วมโครงการวิจัย"
+          ></v-radio>
         </v-radio-group>
       </v-col>
     </v-row>
@@ -61,6 +68,7 @@
       <v-col cols="12" md="2" xs="12">
         <v-text-field
           v-model="Award.fiscalYear"
+          v-mask="mask"
           label="ปีงบประมาณ"
           clearable
           placeholder="พ.ศ."
@@ -81,11 +89,17 @@
 </template>
 
 <script>
+import { mask } from 'vue-the-mask'
+
 export default {
+  directives: {
+    mask
+  },
   data: () => ({
     loading: true,
+    mask: '####',
     Award: {
-      awardType: '',
+      awardType: 1,
       name: '',
       nameEN: '',
       researchCategory: '',
