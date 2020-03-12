@@ -118,13 +118,13 @@
             </v-dialog>
           </template>
           <template v-slot:item.action="{ item }">
-            <v-chip class="light-green"
+            <v-chip class="primary"
               ><v-icon text-center @click="addStatus(item)">
                 mdi-account-edit
               </v-icon></v-chip
             >
 
-            <v-chip class="indigo lighten-1">
+            <v-chip class="warning">
               <v-icon text-center @click="shutAccount(item)">
                 mdi-account-cancel
               </v-icon></v-chip
@@ -180,6 +180,7 @@ export default {
         { text: 'สถานะบัญชี', value: 'isActive' },
         {
           text: 'สิทธิ์การใช้งาน',
+          align: 'center',
           value: 'roles'
         },
         {

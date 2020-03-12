@@ -19,10 +19,6 @@ router.delete('/studyinfo/:id', UserController.deleteEducationInfoByIndex)
 router.post('/certificateinfo', UserController.addUsercertificateInfoById)
 router.delete('/certificateinfo/:id', UserController.deletecertificateInfoByIndex)
 
-<<<<<<< HEAD
-
-=======
 router.post('/award', AddAward.addAward)
->>>>>>> 6f9d71df38415f37046d0340cab96a75eb4d3bba
 
 module.exports = router
