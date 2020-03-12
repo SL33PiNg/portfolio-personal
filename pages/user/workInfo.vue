@@ -129,7 +129,9 @@
               </v-dialog>
             </template>
             <template v-slot:item.status="{ item }">
-              <p>{{ item.status ? 'กำลังทำงาน' : 'ออกจากงาน' }}</p>
+              <v-chip :class="item.status ? 'success' : 'error'">{{
+                item.status ? 'กำลังทำงาน' : 'ออกจากงาน'
+              }}</v-chip>
             </template>
             <template v-slot:item.action="{ item }">
               <v-btn icon @click="openDel(item._id)"
@@ -147,6 +149,7 @@
 import country from '@/static/countrylist.json'
 import UserMix from '@/mixins/user'
 import { mask } from 'vue-the-mask'
+
 export default {
   directives: {
     mask
@@ -205,7 +208,7 @@ export default {
         },
         {
           text: 'สถานะ',
-          align: 'left',
+          align: 'center',
           value: 'status'
         },
         {
@@ -215,6 +218,7 @@ export default {
         }
       ],
       config: {
+        charCounterMax: 3000,
         quickInsertEnabled: false,
         toolbarButtons: {
           moreText: {

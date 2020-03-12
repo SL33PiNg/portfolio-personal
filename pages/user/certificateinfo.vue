@@ -155,6 +155,7 @@ export default {
         }
       ],
       config: {
+        charCounterMax: 3000,
         quickInsertEnabled: false,
         toolbarButtons: {
           moreText: {

@@ -128,7 +128,9 @@
               </v-dialog>
             </template>
             <template v-slot:item.status="{ item }">
-              <p>{{ item.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา' }}</p>
+              <v-chip :class="item.status ? 'success' : 'error'">{{
+                item.status ? 'กำลังศึกษา' : 'จบการศึกษา'
+              }}</v-chip>
             </template>
             <template v-slot:item.action="{ item }">
               <v-btn icon @click="openDel(item._id)"
@@ -192,11 +194,7 @@ export default {
           align: 'left',
           value: 'branch'
         },
-        {
-          text: 'ปีที่สำเร็จการศึกษา (พ.ศ.)',
-          align: 'left',
-          value: 'graduate'
-        },
+
         {
           text: 'ชื่อสถานศึกษา',
           align: 'left',
@@ -209,7 +207,7 @@ export default {
         },
         {
           text: 'สถานะ',
-          align: 'left',
+          align: 'center',
           value: 'status'
         },
         {
@@ -228,6 +226,7 @@ export default {
         'ปริญญาเอก'
       ],
       config: {
+        charCounterMax: 3000,
         quickInsertEnabled: false,
         toolbarButtons: {
           moreText: {

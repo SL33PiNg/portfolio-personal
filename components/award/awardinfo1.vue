@@ -45,13 +45,26 @@
     </v-row>
     <v-row>
       <v-col cols="12" md="5" xs="12">
-        <v-text-field label="ชื่อโครงการวิจัยภาษาไทย" clearable />
+        <v-text-field
+          v-model="Award.name"
+          label="ชื่อโครงการวิจัยภาษาไทย"
+          clearable
+        />
       </v-col>
       <v-col cols="12" md="5" xs="12">
-        <v-text-field label="ชื่อโครงการวิจัยภาษาอังกฤษ" clearable />
+        <v-text-field
+          v-model="Award.nameEN"
+          label="ชื่อโครงการวิจัยภาษาอังกฤษ"
+          clearable
+        />
       </v-col>
       <v-col cols="12" md="2" xs="12">
-        <v-text-field label="ปีงบประมาณ" clearable placeholder="พ.ศ." />
+        <v-text-field
+          v-model="Award.fiscalYear"
+          label="ปีงบประมาณ"
+          clearable
+          placeholder="พ.ศ."
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -60,7 +73,7 @@
       </v-col>
     </v-row>
     <v-row justify="end" class="ma-3 ">
-      <v-btn class="mx-0 font-weight-light" color="primary">
+      <v-btn class="mx-0 font-weight-light" color="primary" @click="addAward">
         เพิ่มข้อมูล
       </v-btn>
     </v-row>
@@ -70,6 +83,22 @@
 <script>
 export default {
   data: () => ({
+    loading: true,
+    Award: {
+      awardType: '',
+      name: '',
+      nameEN: '',
+      researchCategory: '',
+      fiscalYear: '',
+      jobTitles: '',
+      funding: null,
+      fundingSource: '',
+      eventYear: '',
+      file: '',
+      infoemation: '',
+      cover: '',
+      highlights: null
+    },
     content: null,
     items: ['การวิจัยทางวิทยาศาสตร์', 'การวิจัยทางสังคมศาสตร์'],
     rules: [
@@ -79,6 +108,7 @@ export default {
         'Avatar size should be less than 2 MB!'
     ],
     config: {
+      charCounterMax: 3000,
       quickInsertEnabled: false,
       toolbarButtons: {
         moreText: {
@@ -131,6 +161,35 @@ export default {
         // eslint-disable-next-line no-console
         console.log(fr)
       })
+    },
+    async addAward() {
+      this.loading = true
+      try {
+        await this.$axios.$post('/users/award', {
+          ...this.Award
+        })
+        console.log(this.Award)
+        this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
+      } catch (error) {
+        this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
+      } finally {
+        this.loading = false
+        this.Award = {
+          awardType: '',
+          name: '',
+          nameEN: '',
+          researchCategory: '',
+          fiscalYear: '',
+          jobTitles: '',
+          funding: null,
+          fundingSource: '',
+          eventYear: '',
+          file: '',
+          infoemation: '',
+          cover: '',
+          highlights: null
+        }
+      }
     }
   }
 }

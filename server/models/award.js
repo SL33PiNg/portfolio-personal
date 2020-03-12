@@ -9,7 +9,7 @@ const awardSchema = new mongoose.Schema({
   name :String,
   nameEN :String,
   researchCategory :String,
-  fiscalYear :String,
+  fiscalYear :Number,
   jobTitles:String,
   funding:Boolean,
   fundingSource:String,
