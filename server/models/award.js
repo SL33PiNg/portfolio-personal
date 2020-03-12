@@ -5,7 +5,7 @@ const awardSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'User'
   },
-  awardType :String,
+  awardType :Number,
   name :String,
   nameEN :String,
   researchCategory :String,
