@@ -17,10 +17,10 @@ exports.login = async (req, res) => {
       user = await UserModel.create({ username, password, roles: [ 'ADMIN' ] })
     }
     if (user.password !== password) {
-      return res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).json({ message: '(admin)Invalid username or password' })
     }
     if (!user) {
-      return res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).json({ message: '(admin)Invalid username or password' })
     }
   } else if (rmuttLogin(username, password)) {
     user = await UserModel.findOne({ username })
@@ -29,6 +29,10 @@ exports.login = async (req, res) => {
     }
   } else {
     return res.status(401).json({ message: 'Invalid username or password' })
+  }
+
+  if(user.isActive === false){
+    return res.status(450).json({ message: 'user has been disable!! call to 085-531-0522' })
   }
 
   const { id, roles } = user
