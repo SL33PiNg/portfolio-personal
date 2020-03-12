@@ -69,7 +69,7 @@
     </v-row>
     <v-row>
       <v-col cols="12" md="12" xs="12">
-        <froala :config="config"></froala>
+        <froala v-model="Award.infoemation" :config="config"></froala>
       </v-col>
     </v-row>
     <v-row justify="end" class="ma-3 ">
