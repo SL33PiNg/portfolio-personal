@@ -64,6 +64,7 @@ export default {
         'Avatar size should be less than 2 MB!'
     ],
     config: {
+      charCounterMax: 3000,
       quickInsertEnabled: false,
       toolbarButtons: {
         moreText: {

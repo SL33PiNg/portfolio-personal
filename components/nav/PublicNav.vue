@@ -41,6 +41,11 @@ export default {
           icon: 'mdi-account-star-outline',
           title: 'แอดมิน',
           to: '/admin'
+        },
+        {
+          icon: 'mdi-account-search-outline',
+          title: 'การค้นหาขั้นสูง',
+          to: '/profile/search/advance'
         }
       ]
     }
