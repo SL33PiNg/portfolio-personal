@@ -67,7 +67,7 @@ export default {
   data: () => ({
     loading: true,
     Award: {
-      awardType: '',
+      awardType: 2,
       name: '',
       nameEN: '',
       researchCategory: '',

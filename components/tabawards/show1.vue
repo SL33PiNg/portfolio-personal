@@ -14,24 +14,8 @@
 
         <v-card>
           <v-container>
-            <v-row justify="space-around">
-              <div>
-                <h1 class=" subheading  grey--text">{{ name }}</h1>
-              </div>
-            </v-row>
-
-            <v-row justify="space-around">
-              <v-col cols="5">
-                <v-img
-                  src="https://picsum.photos/510/300?random"
-                  aspect-ratio="1.7"
-                ></v-img>
-              </v-col>
-            </v-row>
             <v-row justify="space-around" wrap>
-              <v-col cols="10">
-                <info-Res></info-Res>
-              </v-col>
+              <info-Res></info-Res>
             </v-row>
           </v-container>
         </v-card>
@@ -46,6 +30,7 @@ export default {
   components: {
     infoRes
   },
+
   data() {
     return {
       dialog: false,

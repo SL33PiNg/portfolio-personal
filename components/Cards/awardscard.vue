@@ -22,9 +22,9 @@
       <v-list-item-content>
         <v-list-item-subtitle
           ><h4>ประเภทผลงาน: {{ award.awardType | idToString(items) }}</h4>
-          ปี: {{ award.fiscalYear }}
+          ปี: {{ award.eventYear }}
         </v-list-item-subtitle> </v-list-item-content
-      ><v-btn icon @click.stop="openDetail(i)"
+      ><v-btn icon @click.stop="openDetail(award)"
         ><v-icon>mdi-magnify</v-icon></v-btn
       >
       <v-btn icon><v-icon>mdi-delete-outline</v-icon></v-btn>
@@ -32,36 +32,12 @@
     <v-row wrap justify="center">
       <v-dialog v-model="dialog" width="70%">
         <v-card>
-          <v-container>
-            <v-row justify="end" class="ma-1 ">
-              <v-icon color="red" @click="dialog = false">
-                mdi-close-box</v-icon
-              ></v-row
-            >
-            <v-sheet color="primary" width="100%">
-              <h1 class="ma-2 white--text">
-                <v-icon large color="white">mdi-school-outline</v-icon>
-                รายละเอียดข้อมูลผลงาน
-              </h1></v-sheet
-            >
-            <v-card-title class="headline ma-2"> {{ award.name }}</v-card-title>
-            <v-card-subtitle
-              >ประเภทโครงการวิจัย: {{ award.awardType }}
-            </v-card-subtitle>
-            <v-card-subtitle>ปี: {{ award.fiscalYear }}</v-card-subtitle>
-            <v-card-subtitle>ปี: {{ award.fiscalYear }}</v-card-subtitle>
-            <v-card-subtitle
-              >ตำแหน่งในโครงการวิจัย: {{ award.jobTitles }}</v-card-subtitle
-            >
-            <v-card-subtitle
-              >ชื่อโครงการภาษาไทย: {{ award.name }}</v-card-subtitle
-            >
-            <v-card-subtitle
-              >ชื่อโครงการภาษาอังกฤษ: {{ award.nameEN }}</v-card-subtitle
-            >
-            <v-card-subtitle>ปีที่จัด: {{ award.eventYear }}</v-card-subtitle>
-            รายละเอียด :<froalaView v-model="award.infoemation"></froalaView>
-          </v-container>
+          <v-row justify="end" class="mr-1">
+            <v-icon color="red" @click="dialog = false"> mdi-close-box</v-icon>
+          </v-row>
+          <keep-alive>
+            <component :is="cardType" :award="award" />
+          </keep-alive>
         </v-card>
       </v-dialog>
     </v-row>
@@ -69,7 +45,17 @@
 </template>
 
 <script>
+import type1 from '~/components/infoawards/infoRes.vue'
+import type2 from '~/components/infoawards/infoSer.vue'
+import type3 from '~/components/infoawards/infoAwa.vue'
+import type4 from '~/components/infoawards/infoOther.vue'
 export default {
+  components: {
+    type1,
+    type2,
+    type3,
+    type4
+  },
   filters: {
     idToString(value, items) {
       return items[value - 1].text
@@ -83,6 +69,8 @@ export default {
   },
   data() {
     return {
+      dialog: false,
+      detail: '',
       items: [
         { text: 'โครงการวิจัย', value: 1 },
         { text: 'บริการวิชาการ', value: 2 },
@@ -92,10 +80,15 @@ export default {
       ]
     }
   },
+  computed: {
+    cardType() {
+      return `type${this.award.awardType}`
+    }
+  },
   methods: {
-    openDel(item) {
-      this.tempDataItem = item
-      this.del = true
+    openDetail(x) {
+      this.detail = x
+      this.dialog = true
     }
   }
 }

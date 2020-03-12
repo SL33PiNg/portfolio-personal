@@ -35,11 +35,16 @@
       </v-col>
 
       <v-col cols="12" md="6" xs="12">
-        <v-text-field label="ชื่อรางวัล" clearable />
+        <v-text-field v-model="Award.name" label="ชื่อรางวัล" clearable />
       </v-col>
 
       <v-col cols="12" md="3" xs="12">
-        <v-text-field label="ปีที่ได้รับรางวัล" clearable placeholder="พ.ศ." />
+        <v-text-field
+          v-model="Award.eventYear"
+          label="ปีที่ได้รับรางวัล"
+          clearable
+          placeholder="พ.ศ."
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -60,7 +65,7 @@ export default {
   data: () => ({
     loading: true,
     Award: {
-      awardType: '',
+      awardType: 3,
       name: '',
       nameEN: '',
       researchCategory: '',

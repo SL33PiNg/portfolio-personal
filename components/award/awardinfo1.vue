@@ -29,7 +29,7 @@
         ></v-file-input>
       </v-col>
     </v-row>
-    <v-row justify="center">
+    <v-row>
       <v-col cols="12" md="6" xs="12">
         <v-select
           v-model="Award.researchCategory"
@@ -37,7 +37,16 @@
           label="ประเภทโครงการวิจัย"
         ></v-select>
       </v-col>
-      <v-col cols="12" md="4" xs="12">
+      <v-col cols="12" md="3" xs="12">
+        <v-text-field
+          v-model="Award.eventYear"
+          v-mask="mask"
+          label="ปีที่จัดทำโครงการ"
+          placeholder="พ.ศ."
+          clearable
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" md="3" xs="12">
         <v-radio-group v-model="Award.jobTitles" column>
           <v-radio
             label="หัวหน้าโครงการวิจัย"
@@ -58,6 +67,7 @@
           clearable
         />
       </v-col>
+
       <v-col cols="12" md="5" xs="12">
         <v-text-field
           v-model="Award.nameEN"
