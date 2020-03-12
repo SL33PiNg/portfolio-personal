@@ -20,5 +20,6 @@ router.post('/certificateinfo', UserController.addUsercertificateInfoById)
 router.delete('/certificateinfo/:id', UserController.deletecertificateInfoByIndex)
 
 router.post('/award', AddAward.addAward)
+router.get('/award', AddAward.getAward)
 
 module.exports = router

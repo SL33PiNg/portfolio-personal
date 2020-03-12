@@ -4,12 +4,12 @@
       <v-list-item-content>
         <v-list-item-title>
           <h3>
-            {{ award.title }}
+            {{ award.name }}
           </h3>
         </v-list-item-title>
       </v-list-item-content>
-      <v-btn icon @click="award.fav = !award.fav">
-        <v-icon :color="award.fav ? 'yellow' : 'grey'">mdi-star</v-icon>
+      <v-btn icon @click="award.highlights = !award.highlights">
+        <v-icon :color="award.highlights ? 'yellow' : 'grey'">mdi-star</v-icon>
       </v-btn>
     </v-list-item>
 
@@ -22,7 +22,7 @@
       <v-list-item-content>
         <v-list-item-subtitle
           ><h4>ประเภทผลงาน: {{ award.catId }}</h4>
-          ปี: {{ award.year }}
+          ปี: {{ award.fiscalYear }}
         </v-list-item-subtitle> </v-list-item-content
       ><v-btn icon><v-icon>mdi-magnify</v-icon></v-btn>
       <v-btn icon><v-icon>mdi-delete-outline</v-icon></v-btn>
@@ -39,9 +39,7 @@ export default {
     }
   },
   data() {
-    return {
-      fav: false
-    }
+    return {}
   }
 }
 </script>

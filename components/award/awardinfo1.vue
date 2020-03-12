@@ -46,21 +46,21 @@
     <v-row>
       <v-col cols="12" md="5" xs="12">
         <v-text-field
-          v-model="award.name"
+          v-model="Award.name"
           label="ชื่อโครงการวิจัยภาษาไทย"
           clearable
         />
       </v-col>
       <v-col cols="12" md="5" xs="12">
         <v-text-field
-          v-model="award.nameEN"
+          v-model="Award.nameEN"
           label="ชื่อโครงการวิจัยภาษาอังกฤษ"
           clearable
         />
       </v-col>
       <v-col cols="12" md="2" xs="12">
         <v-text-field
-          v-model="award.fiscalYear"
+          v-model="Award.fiscalYear"
           label="ปีงบประมาณ"
           clearable
           placeholder="พ.ศ."
@@ -84,7 +84,7 @@
 export default {
   data: () => ({
     loading: true,
-    award: {
+    Award: {
       awardType: '',
       name: '',
       nameEN: '',
@@ -166,15 +166,15 @@ export default {
       this.loading = true
       try {
         await this.$axios.$post('/users/award', {
-          ...this.award
+          ...this.Award
         })
-        console.log(this.award)
+        console.log(this.Award)
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
         this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
       } finally {
         this.loading = false
-        this.award = {
+        this.Award = {
           awardType: '',
           name: '',
           nameEN: '',
