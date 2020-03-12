@@ -30,22 +30,22 @@
               <v-card>
                 <v-card-title
                   ><span class="headline"
-                    >สิทธิ์การใช้งาน : {{ tempDataItem.name }}</span
-                  ></v-card-title
+                    >สิทธิ์การใช้งาน :
+                    {{ tempDataItem.personalInfo.firstnameTH }}
+                    {{ tempDataItem.personalInfo.lastnameTH }}
+                  </span></v-card-title
                 >
                 <v-card-text>
                   <v-container>
-                    <v-card-text>
-                      <v-checkbox class="mx-2" label="แอดมิน"></v-checkbox>
-                    </v-card-text>
-
                     <v-card-actions>
                       <v-spacer></v-spacer>
-
-                      <v-btn color="blue darken-1" text @click="add = false">
-                        บันทึก
+                      <v-btn v-if="!isAdmin" color="success" @click="addAdmin">
+                        เพิ่มสิทธิ์ 'ADMIN'
                       </v-btn>
-                      <v-btn color="blue darken-1" text @click="add = false">
+                      <v-btn v-else color="error" @click="removeAdmin">
+                        ลบสิทธิ์ 'ADMIN'
+                      </v-btn>
+                      <v-btn color="primary" @click="add = false">
                         ยกเลิก
                       </v-btn>
                     </v-card-actions>
@@ -58,12 +58,12 @@
               <v-card>
                 <v-container>
                   <v-card-title>
-                    <span class="headline">ระงับการใช้งาน</span>
+                    <span class="headline">สถานะการใช้งาน</span>
                   </v-card-title>
                   <v-row justify="center">
-                    <v-radio-group>
-                      <v-radio label="เปิดการใช้งาน " value="radio-1"></v-radio>
-                      <v-radio label="ระงับการใช้งาน" value="radio-2"></v-radio>
+                    <v-radio-group v-model="isPublic">
+                      <v-radio label="เผยแผร่ " :value="true"></v-radio>
+                      <v-radio label="ระงับการเผยแผร่" :value="false"></v-radio>
                     </v-radio-group>
                   </v-row>
                   <v-card-text>
@@ -72,10 +72,10 @@
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="shut = false">
+                    <v-btn color="success" @click="allowPublic">
                       บันทึก
                     </v-btn>
-                    <v-btn color="blue darken-1" text @click="shut = false">
+                    <v-btn color="primary" @click="shut = false">
                       ยกเลิก
                     </v-btn>
                   </v-card-actions>
@@ -86,17 +86,17 @@
               <v-card>
                 <v-container>
                   <v-card-title>
-                    <span class="headline">ปิดการใช้งานบัญชี</span>
+                    <span class="headline">สถานะบัญชี</span>
                   </v-card-title>
                   <v-row justify="center">
-                    <v-radio-group>
+                    <v-radio-group v-model="isActive">
                       <v-radio
                         label="เปิดการใช้งานบัญชี "
-                        value="radio-1"
+                        :value="true"
                       ></v-radio>
                       <v-radio
                         label="ปิดการใช้งานบัญชี"
-                        value="radio-2"
+                        :value="false"
                       ></v-radio>
                     </v-radio-group>
                   </v-row>
@@ -106,10 +106,10 @@
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="close = false">
+                    <v-btn color="success" @click="allowActive">
                       บันทึก
                     </v-btn>
-                    <v-btn color="blue darken-1" text @click="close = false">
+                    <v-btn color="primary" @click="close = false">
                       ยกเลิก
                     </v-btn>
                   </v-card-actions>
@@ -118,19 +118,19 @@
             </v-dialog>
           </template>
           <template v-slot:item.action="{ item }">
-            <v-chip class="light-green"
+            <v-chip class="primary"
               ><v-icon text-center @click="addStatus(item)">
                 mdi-account-edit
               </v-icon></v-chip
             >
 
-            <v-chip class="indigo lighten-1">
+            <v-chip class="warning">
               <v-icon text-center @click="shutAccount(item)">
                 mdi-account-cancel
               </v-icon></v-chip
             >
 
-            <v-chip class="red">
+            <v-chip class="error">
               <v-icon text-center @click="closeAccount(item)">
                 mdi-account-remove
               </v-icon></v-chip
@@ -142,9 +142,8 @@
           <template v-slot:item.isActive="{ item }">
             <p>{{ item.isActive ? 'เปิดการใช้งาน' : 'ปิดการใช้งาน' }}</p>
           </template>
-          <template v-slot:item.nameTH="{ item }">
+          <template v-slot:item.personalInfo.firstnameTH="{ item }">
             <p>
-              {{ item.personalInfo.academicRank }}
               {{ item.personalInfo.firstnameTH }}
               {{ item.personalInfo.lastnameTH }}
             </p>
@@ -160,18 +159,27 @@ export default {
   middleware: ['check-admin'],
   data() {
     return {
+      isAdmin: null,
+      isPublic: null,
+      isActive: null,
       users: [],
       search: '',
       loading: true,
       add: false,
       shut: false,
       close: false,
-      tempDataItem: {},
+      tempDataItem: {
+        personalInfo: {
+          firstnameTH: '',
+          lastnameTH: ''
+        }
+      },
       headers: [
         {
           text: 'ชื่อ',
           align: 'start',
-          value: 'nameTH'
+          value: 'personalInfo.firstnameTH',
+          sort: (a, b) => b.localeCompare(a, 'th')
         },
         {
           text: 'สถานะการใช้งาน',
@@ -191,6 +199,14 @@ export default {
     }
   },
 
+  watch: {
+    tempDataItem(val) {
+      this.isAdmin = val.roles.includes('ADMIN')
+      this.isPublic = val.isPublic
+      this.isActive = val.isActive
+    }
+  },
+
   created() {
     this.getAllProfile()
   },
@@ -200,19 +216,75 @@ export default {
       this.add = true
     },
     shutAccount(item) {
+      this.tempDataItem = { ...item }
       this.shut = true
     },
     closeAccount(item) {
+      this.tempDataItem = { ...item }
       this.close = true
     },
     async getAllProfile() {
       this.loading = true
       try {
-        const result = await this.$axios.$get('/profile')
+        const result = await this.$axios.$get('/admin/userProfile')
         this.users = result
       } catch (error) {
       } finally {
         this.loading = false
+      }
+    },
+    async addAdmin() {
+      this.loading = true
+      try {
+        await this.$axios.$get(`admin/addAdmin/${this.tempDataItem._id}`)
+      } catch (error) {
+      } finally {
+        this.loading = false
+        this.add = false
+        this.getAllProfile()
+      }
+    },
+    async removeAdmin() {
+      this.loading = true
+      try {
+        await this.$axios.$get(`admin/removeAdmin/${this.tempDataItem._id}`)
+      } catch (error) {
+      } finally {
+        this.loading = false
+        this.add = false
+        this.getAllProfile()
+      }
+    },
+    async allowPublic() {
+      this.loading = true
+      try {
+        if (this.isPublic)
+          await this.$axios.$get(`/admin/allowPublic/${this.tempDataItem._id}`)
+        else
+          await this.$axios.$get(
+            `/admin/NotAllowedPublic/${this.tempDataItem._id}`
+          )
+      } catch (error) {
+      } finally {
+        this.loading = false
+        this.shut = false
+        this.getAllProfile()
+      }
+    },
+    async allowActive() {
+      this.loading = true
+      try {
+        if (this.isActive)
+          await this.$axios.$get(`/admin/allowActive/${this.tempDataItem._id}`)
+        else
+          await this.$axios.$get(
+            `/admin/NotAllowedActive/${this.tempDataItem._id}`
+          )
+      } catch (error) {
+      } finally {
+        this.loading = false
+        this.close = false
+        this.getAllProfile()
       }
     }
   }
