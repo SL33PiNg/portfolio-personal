@@ -35,20 +35,25 @@
       </v-col>
 
       <v-col cols="12" md="6" xs="12">
-        <v-text-field label="ชื่อรางวัล" clearable />
+        <v-text-field v-model="Award.name" label="ชื่อรางวัล" clearable />
       </v-col>
 
       <v-col cols="12" md="3" xs="12">
-        <v-text-field label="ปีที่ได้รับรางวัล" clearable placeholder="พ.ศ." />
+        <v-text-field
+          v-model="Award.eventYear"
+          label="ปีที่ได้รับรางวัล"
+          clearable
+          placeholder="พ.ศ."
+        />
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" md="12" xs="12">
-        <froala :config="config"></froala>
+        <froala v-model="Award.infoemation" :config="config"></froala>
       </v-col>
     </v-row>
     <v-row justify="end" class="ma-3 ">
-      <v-btn class="mx-0 font-weight-light" color="primary">
+      <v-btn class="mx-0 font-weight-light" color="primary" @click="addAward">
         เพิ่มข้อมูล
       </v-btn></v-row
     >
@@ -58,6 +63,22 @@
 <script>
 export default {
   data: () => ({
+    loading: true,
+    Award: {
+      awardType: 3,
+      name: '',
+      nameEN: '',
+      researchCategory: '',
+      fiscalYear: '',
+      jobTitles: '',
+      funding: null,
+      fundingSource: '',
+      eventYear: '',
+      file: '',
+      infoemation: '',
+      cover: '',
+      highlights: null
+    },
     content: null,
     rules: [
       (value) =>
@@ -118,6 +139,35 @@ export default {
         // eslint-disable-next-line no-console
         console.log(fr)
       })
+    },
+    async addAward() {
+      this.loading = true
+      try {
+        await this.$axios.$post('/users/award', {
+          ...this.Award
+        })
+        console.log(this.Award)
+        this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
+      } catch (error) {
+        this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
+      } finally {
+        this.loading = false
+        this.Award = {
+          awardType: '',
+          name: '',
+          nameEN: '',
+          researchCategory: '',
+          fiscalYear: '',
+          jobTitles: '',
+          funding: null,
+          fundingSource: '',
+          eventYear: '',
+          file: '',
+          infoemation: '',
+          cover: '',
+          highlights: null
+        }
+      }
     }
   }
 }

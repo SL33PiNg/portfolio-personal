@@ -22,16 +22,40 @@
       <v-list-item-content>
         <v-list-item-subtitle
           ><h4>ประเภทผลงาน: {{ award.awardType | idToString(items) }}</h4>
-          ปี: {{ award.fiscalYear }}
+          ปี: {{ award.eventYear }}
         </v-list-item-subtitle> </v-list-item-content
-      ><v-btn icon><v-icon>mdi-magnify</v-icon></v-btn>
+      ><v-btn icon @click.stop="openDetail(award)"
+        ><v-icon>mdi-magnify</v-icon></v-btn
+      >
       <v-btn icon><v-icon>mdi-delete-outline</v-icon></v-btn>
     </v-list-item>
+    <v-row wrap justify="center">
+      <v-dialog v-model="dialog" width="70%">
+        <v-card>
+          <v-row justify="end" class="mr-1">
+            <v-icon color="red" @click="dialog = false"> mdi-close-box</v-icon>
+          </v-row>
+          <keep-alive>
+            <component :is="cardType" :award="award" />
+          </keep-alive>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-card>
 </template>
 
 <script>
+import type1 from '~/components/infoawards/infoRes.vue'
+import type2 from '~/components/infoawards/infoSer.vue'
+import type3 from '~/components/infoawards/infoAwa.vue'
+import type4 from '~/components/infoawards/infoOther.vue'
 export default {
+  components: {
+    type1,
+    type2,
+    type3,
+    type4
+  },
   filters: {
     idToString(value, items) {
       return items[value - 1].text
@@ -45,6 +69,8 @@ export default {
   },
   data() {
     return {
+      dialog: false,
+      detail: '',
       items: [
         { text: 'โครงการวิจัย', value: 1 },
         { text: 'บริการวิชาการ', value: 2 },
@@ -54,10 +80,15 @@ export default {
       ]
     }
   },
+  computed: {
+    cardType() {
+      return `type${this.award.awardType}`
+    }
+  },
   methods: {
-    openDel(item) {
-      this.tempDataItem = item
-      this.del = true
+    openDetail(x) {
+      this.detail = x
+      this.dialog = true
     }
   }
 }
