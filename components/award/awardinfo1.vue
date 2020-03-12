@@ -33,6 +33,7 @@
       <v-col cols="12" md="6" xs="12">
         <v-select
           v-model="Award.researchCategory"
+          :rules="rules1.selects"
           :items="items"
           label="ประเภทโครงการวิจัย"
         ></v-select>
@@ -41,6 +42,7 @@
         <v-text-field
           v-model="Award.eventYear"
           v-mask="mask"
+          :rules="rules1.number"
           label="ปีที่จัดทำโครงการ"
           placeholder="พ.ศ."
           clearable
@@ -63,6 +65,7 @@
       <v-col cols="12" md="5" xs="12">
         <v-text-field
           v-model="Award.name"
+          :rules="rules1.name"
           label="ชื่อโครงการวิจัยภาษาไทย"
           clearable
         />
@@ -71,6 +74,7 @@
       <v-col cols="12" md="5" xs="12">
         <v-text-field
           v-model="Award.nameEN"
+          :rules="rules1.name"
           label="ชื่อโครงการวิจัยภาษาอังกฤษ"
           clearable
         />
@@ -79,6 +83,7 @@
         <v-text-field
           v-model="Award.fiscalYear"
           v-mask="mask"
+          :rules="rules1.number"
           label="ปีงบประมาณ"
           clearable
           placeholder="พ.ศ."
@@ -91,7 +96,12 @@
       </v-col>
     </v-row>
     <v-row justify="end" class="ma-3 ">
-      <v-btn class="mx-0 font-weight-light" color="primary" @click="addAward">
+      <v-btn
+        :disabled="!formIsValid"
+        class="mx-0 font-weight-light"
+        color="primary"
+        @click="addAward"
+      >
         เพิ่มข้อมูล
       </v-btn>
     </v-row>
@@ -106,6 +116,11 @@ export default {
     mask
   },
   data: () => ({
+    rules1: {
+      name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+      selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล'],
+      number: [(val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข']
+    },
     loading: true,
     mask: '####',
     Award: {
@@ -174,7 +189,11 @@ export default {
     imageUrl: '',
     imageFile: ''
   }),
-
+  computed: {
+    formIsValid() {
+      return this.Award.name
+    }
+  },
   methods: {
     handleChange(e) {
       const fr = new FileReader()

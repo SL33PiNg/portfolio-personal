@@ -1,4 +1,5 @@
 const UserModel = require('../models/User')
+const AwardModel = require('../models/award')
 
 exports.addAdmin = async (req, res) => {
   const { id } = req.params
@@ -69,3 +70,13 @@ exports.getAllUserProfile = async (req, res) => {
     return res.status(500).json({ status: 500, message: error.message })
   }
 }
+
+exports.getAward = async (req, res) => {
+  try {
+    const award = await AwardModel.find({ highlights: true })
+    return res.json(award)
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error.message })
+  }
+}
+

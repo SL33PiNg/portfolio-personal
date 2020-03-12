@@ -158,7 +158,9 @@ export default {
   data() {
     return {
       rules: {
-        number: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        number: [
+          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข'
+        ],
         department: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
         position: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
         company: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],

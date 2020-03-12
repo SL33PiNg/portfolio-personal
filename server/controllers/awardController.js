@@ -21,3 +21,17 @@ exports.getAward = async (req, res) => {
     return res.status(500).json({ status: 500, message: 'internal server error' })
   }
 }
+
+exports.delAward = async (req, res) => {
+  const { id } = req.user
+  try {
+    await AwardModel.findByIdAndRemove(req.params.id)
+    const user = await UserModel.findByIdAndUpdate(id, { $pull: { awardList: req.params.id } })
+    return res.json(user)
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'internal server error' })
+  }
+}
+
+
+

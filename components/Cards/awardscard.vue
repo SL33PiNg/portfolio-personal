@@ -8,8 +8,8 @@
           </h3>
         </v-list-item-title>
       </v-list-item-content>
-      <v-btn icon @click="award.highlights = !award.highlights">
-        <v-icon :color="award.highlights ? 'yellow' : 'grey'">mdi-star</v-icon>
+      <v-btn icon @click="highlights()">
+        <v-icon :color="award.highlights ? 'warning' : 'grey'">mdi-star</v-icon>
       </v-btn>
     </v-list-item>
 
@@ -27,7 +27,9 @@
       ><v-btn icon @click.stop="openDetail(award)"
         ><v-icon>mdi-magnify</v-icon></v-btn
       >
-      <v-btn icon><v-icon>mdi-delete-outline</v-icon></v-btn>
+      <v-btn icon @click="$emit('toggleDelete', award)"
+        ><v-icon>mdi-delete-outline</v-icon></v-btn
+      >
     </v-list-item>
     <v-row wrap justify="center">
       <v-dialog v-model="dialog" width="70%">
@@ -85,10 +87,21 @@ export default {
       return `type${this.award.awardType}`
     }
   },
+
   methods: {
     openDetail(x) {
       this.detail = x
       this.dialog = true
+    },
+    async highlights() {
+      try {
+        await this.$axios.$get(
+          `/users/highlight/${this.award._id}/${!this.award.highlights}`
+        )
+      } catch (error) {
+      } finally {
+        this.$emit('reload')
+      }
     }
   }
 }

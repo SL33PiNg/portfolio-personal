@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const UserModel = require('../models/User')
+const AwardModel = require('../models/award')
 const jwt = require('jsonwebtoken')
 const sharp = require('sharp')
 sharp.cache(false)
@@ -157,4 +158,19 @@ function rmuttLogin (username, password) {
   else if (username === 'art' && password === '123') return true
   else if (username === 'nook' && password === '123') return true
   else return false
+}
+
+exports.highlight = async (req, res) => {
+  const { id, status } = req.params
+  try {
+    if(status === 'true' ){
+      await AwardModel.findByIdAndUpdate(id, { highlights: true })
+    }
+    else{
+      await AwardModel.findByIdAndUpdate(id, { highlights: false })
+    }
+    return res.json({})
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'internal server error' })
+  }
 }

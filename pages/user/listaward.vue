@@ -25,9 +25,33 @@
         /></v-col>
       </v-row>
       <v-row justify="center">
-        <card1 v-for="i in awardFilter" :key="i.id" :award="i"></card1>
+        <card1
+          v-for="i in awardFilter"
+          :key="i.id"
+          :award="i"
+          @toggleDelete="openDel"
+          @reload="getAllAwrds"
+        ></card1>
       </v-row>
     </v-container>
+    <v-dialog v-model="delDialog" max-width="500px">
+      <v-card>
+        <v-card-text>
+          <v-container>
+            <v-card-title>ต้องการลบผลงาน: {{ tempAward.name }} </v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="delAward()">
+                ตกลง
+              </v-btn>
+              <v-btn color="blue darken-1" text @click="delDialog = false">
+                ยกเลิก
+              </v-btn>
+            </v-card-actions>
+          </v-container>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -39,6 +63,8 @@ export default {
   },
 
   data: () => ({
+    tempAward: {},
+    delDialog: false,
     catagorySelect: 5,
     awards: [],
     loading: false,
@@ -60,15 +86,31 @@ export default {
     this.getAllAwrds()
   },
   methods: {
+    openDel(award) {
+      this.tempAward = { ...award }
+      this.delDialog = true
+    },
     async getAllAwrds() {
       this.loading = true
       try {
         const result = await this.$axios.$get('/users/award')
         this.awards = result
-        console.log(this.awards)
       } catch (error) {
       } finally {
         this.loading = false
+      }
+    },
+    async delAward() {
+      this.loading = true
+      try {
+        await this.$axios.$delete(`/users/award/${this.tempAward._id}`)
+        this.$toast.show('ลบข้อมูล"สำเร็จ"')
+      } catch (error) {
+        this.$toast.error('ลบข้อมูล"ไม่สำเร็จ"')
+      } finally {
+        this.delDialog = false
+        this.loading = false
+        this.getAllAwrds()
       }
     }
   }

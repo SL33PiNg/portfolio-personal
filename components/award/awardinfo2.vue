@@ -36,6 +36,7 @@
       <v-col cols="12" md="5" xs="12">
         <v-text-field
           v-model="Award.name"
+          :rules="rules1.name"
           label="ชื่องานบริการวิชาการ"
           clearable
         />
@@ -43,6 +44,7 @@
       <v-col cols="12" md="3" xs="12">
         <v-text-field
           v-model="Award.eventYear"
+          :rules="rules1.number"
           label="ปีที่จัดงาน"
           clearable
           placeholder="พ.ศ."
@@ -55,7 +57,12 @@
       </v-col>
     </v-row>
     <v-row justify="end" class="ma-3 ">
-      <v-btn class="mx-0 font-weight-light" color="primary" @click="addAward">
+      <v-btn
+        :disabled="!formIsValid"
+        class="mx-0 font-weight-light"
+        color="primary"
+        @click="addAward"
+      >
         เพิ่มข้อมูล
       </v-btn>
     </v-row>
@@ -65,6 +72,10 @@
 <script>
 export default {
   data: () => ({
+    rules1: {
+      name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+      number: [(val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข']
+    },
     loading: true,
     Award: {
       awardType: 2,
@@ -132,6 +143,11 @@ export default {
     imageUrl: '',
     imageFile: ''
   }),
+  computed: {
+    formIsValid() {
+      return this.Award.name
+    }
+  },
   methods: {
     handleChange(e) {
       const fr = new FileReader()
