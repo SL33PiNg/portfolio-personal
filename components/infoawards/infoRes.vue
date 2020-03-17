@@ -14,7 +14,7 @@
     </v-card-subtitle>
 
     <v-card-subtitle
-      >ตำแหน่งในโครงการวิจัย:{{ award.jobTitle }}</v-card-subtitle
+      >ตำแหน่งในโครงการวิจัย:{{ award.jobTitles }}</v-card-subtitle
     >
 
     <v-card-subtitle>ปีที่จัดทำโครงการ: {{ award.eventYear }}</v-card-subtitle>

@@ -21,8 +21,14 @@
           </v-select>
         </v-col>
         <v-col cols="12" md="5" xs="12">
-          <v-text-field v-model="search" label="ชื่อผลงาน" clearable outlined
-        /></v-col>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="ชื่อผลงาน"
+            outlined
+            hide-details
+          ></v-text-field>
+        </v-col>
       </v-row>
       <v-subheader>ผลงานเด่น ({{ showawards.length }})</v-subheader>
       <v-row justify="center">
@@ -84,11 +90,11 @@ export default {
     loading: false,
     search: '',
     items: [
-      { text: 'โครงการวิจัย', value: 1, color: 'light-blue lighten-4' },
-      { text: 'บริการวิชาการ', value: 2, color: 'amber lighten-4' },
-      { text: 'รางวัล', value: 3, color: 'teal lighten-4' },
-      { text: 'อื่นๆ', value: 4, color: 'green lighten-4' },
-      { text: 'ทั้งหมด', value: 5, color: '' }
+      { text: 'โครงการวิจัย', value: 1 },
+      { text: 'บริการวิชาการ', value: 2 },
+      { text: 'รางวัล', value: 3 },
+      { text: 'อื่นๆ', value: 4 },
+      { text: 'ทั้งหมด', value: 5 }
     ]
   }),
   computed: {

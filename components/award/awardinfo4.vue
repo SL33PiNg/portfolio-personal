@@ -72,18 +72,17 @@
 
 <script>
 import { mask } from 'vue-the-mask'
-
 export default {
   directives: {
     mask
   },
   data: () => ({
+    mask: '####',
     rules1: {
       name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
       number: [(val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข']
     },
     loading: true,
-    mask: '####',
     Award: {
       awardType: 4,
       name: '',

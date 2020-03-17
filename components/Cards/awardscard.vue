@@ -17,6 +17,7 @@
       src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
       height="150"
       width="auto"
+      class="ma-2"
     ></v-img>
     <v-list-item>
       <v-list-item-content>
