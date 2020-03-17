@@ -8,9 +8,9 @@
     <v-app-bar :clipped-left="true" fixed app color="">
       <v-toolbar-title> </v-toolbar-title>
       <v-btn text color="normal" @click="$router.push('/')">
-        Portfolio of Personel RMUTT
+        An Online Portfolio for RMUTT Staff
       </v-btn>
-      {{ bp }}
+
       <v-spacer />
 
       <template v-if="!$auth.loggedIn">
