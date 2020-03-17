@@ -97,8 +97,7 @@ export default {
       eventYear: '',
       file: '',
       infoemation: '',
-      cover: '',
-      highlights: null
+      cover: ''
     },
     content: null,
     rules: [

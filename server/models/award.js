@@ -17,7 +17,14 @@ const awardSchema = new mongoose.Schema({
   file:[String],
   infoemation:String,
   cover:String,
-  highlights :Boolean
+  highlights :{
+    type: Boolean,
+    default: false
+  },
+  markedAward :{
+    type: Boolean,
+    default: false
+  }
 })
 const Award = mongoose.model('Award', awardSchema)
 
