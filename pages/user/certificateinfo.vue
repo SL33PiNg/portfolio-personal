@@ -34,6 +34,7 @@
           <v-text-field
             v-model="certificate.graduate"
             v-mask="mask"
+            :rules="rules.number"
             label="ปีที่ได้รับ (พ.ศ.)"
             clearable
             outlined
@@ -118,6 +119,9 @@ export default {
   data() {
     return {
       rules: {
+        number: [
+          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข'
+        ],
         certificateName: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
         guarantee: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล']
       },
