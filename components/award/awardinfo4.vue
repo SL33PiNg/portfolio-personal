@@ -44,6 +44,7 @@
       <v-col cols="12" md="3" xs="12">
         <v-text-field
           v-model="Award.eventYear"
+          v-mask="mask"
           :rules="rules1.number"
           label="ปี"
           clearable
@@ -70,13 +71,19 @@
 </template>
 
 <script>
+import { mask } from 'vue-the-mask'
+
 export default {
+  directives: {
+    mask
+  },
   data: () => ({
     rules1: {
       name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
       number: [(val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข']
     },
     loading: true,
+    mask: '####',
     Award: {
       awardType: 4,
       name: '',
@@ -89,8 +96,7 @@ export default {
       eventYear: '',
       file: '',
       infoemation: '',
-      cover: '',
-      highlights: null
+      cover: ''
     },
     content: null,
     rules: [

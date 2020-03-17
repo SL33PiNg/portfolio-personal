@@ -17,7 +17,7 @@
       >ตำแหน่งในโครงการวิจัย:{{ award.jobTitle }}</v-card-subtitle
     >
 
-    <v-card-subtitle>ปีที่จัดทำโครงการ: {{ award.eventsYear }}</v-card-subtitle>
+    <v-card-subtitle>ปีที่จัดทำโครงการ: {{ award.eventYear }}</v-card-subtitle>
     <v-card-subtitle>ปีงบประมาณ:{{ award.fiscalYear }} </v-card-subtitle>
     <v-divider></v-divider>
     <v-card-subtitle>รายละเอียด: </v-card-subtitle
