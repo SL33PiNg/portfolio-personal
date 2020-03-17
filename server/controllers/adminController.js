@@ -80,3 +80,19 @@ exports.getAward = async (req, res) => {
   }
 }
 
+exports.markedAward = async (req, res) => {
+  const { id, status } = req.params
+  try {
+    if(status === 'true' ){
+      await AwardModel.findByIdAndUpdate(id, { markedAward: true })
+    }
+    else{
+      await AwardModel.findByIdAndUpdate(id, { markedAward: false })
+    }
+    return res.json({})
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'internal server error' })
+  }
+}
+
+

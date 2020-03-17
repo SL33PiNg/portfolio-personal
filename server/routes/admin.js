@@ -16,6 +16,7 @@ router.get('/userProfile' , addAdmin.getAllUserProfile)
 
 router.get('/award' , addAdmin.getAward)
 
+router.get('/markedAward/:id/:status' , addAdmin.markedAward)
 // router.get('/statusActive/:id' , addAdmin.statusActive)
 
 module.exports = router

@@ -24,9 +24,23 @@
           <v-text-field v-model="search" label="ชื่อผลงาน" clearable outlined
         /></v-col>
       </v-row>
+      <v-subheader>ผลงานเด่น ({{ showawards.length }})</v-subheader>
       <v-row justify="center">
         <card1
-          v-for="i in awardFilter"
+          v-for="i in showawards"
+          :key="i.id"
+          :award="i"
+          @toggleDelete="openDel"
+          @reload="getAllAwrds"
+        ></card1>
+      </v-row>
+
+      <v-divider :inset="true" class="grey darken-2"></v-divider>
+
+      <v-subheader>รายการค้นหา ({{ hiddenawards.length }})</v-subheader>
+      <v-row justify="center">
+        <card1
+          v-for="i in hiddenawards"
           :key="i.id"
           :award="i"
           @toggleDelete="openDel"
@@ -78,8 +92,30 @@ export default {
     ]
   }),
   computed: {
-    awardFilter() {
-      return this.awards.filter((award) => award.name.search(this.search) > -1)
+    // awardFilter() {
+    //   return this.awards.filter((award) => award.name.search(this.search) > -1)
+    // },
+    showawards() {
+      return this.filterCat.filter((award) => award.highlights === true)
+    },
+    hiddenawards() {
+      return this.filterString.filter((award) => award.highlights === false)
+    },
+    filterCat() {
+      if (this.catagorySelect === 5) {
+        return this.awards
+      }
+      return this.awards.filter(
+        (award) => award.awardType === this.catagorySelect
+      )
+    },
+    filterString() {
+      if (this.search) {
+        return this.filterCat.filter(
+          (award) => award.name.search(this.search) >= 0
+        )
+      }
+      return this.filterCat
     }
   },
   created() {
