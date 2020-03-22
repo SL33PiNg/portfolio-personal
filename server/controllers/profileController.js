@@ -15,7 +15,7 @@ exports.getProfileByUsername = async (req, res) => {
     return res.status(403).json({ status: 403, message: 'no permission' })
   }
   try {
-    const profile = await UserModel.findOne({ username })
+    const profile = await UserModel.findOne({ username }).populate('awardList')
     return res.send(profile)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })

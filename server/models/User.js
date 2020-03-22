@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     default: true
   },
   expId: [ String ],
-  skillsDetails:String,
+  skillsDetails: String,
   ocscId: [ String ],
   personalInfo: {
     academicRank: {
@@ -121,7 +121,7 @@ const userSchema = new mongoose.Schema({
       department: String,
       company: String,
       position: String,
-      workinfoDetails:String
+      workinfoDetails: String
     }
   ],
   educationinfo: [
@@ -134,7 +134,7 @@ const userSchema = new mongoose.Schema({
       country: String,
       status: Boolean,
       image: String,
-      educationinfoDetails:String
+      educationinfoDetails: String
     }
   ],
   certificateinfo: [
@@ -143,14 +143,15 @@ const userSchema = new mongoose.Schema({
       graduate: Number,
       guarantee: String,
       file: String,
-      certificateinfoDetails:String
-      
+      certificateinfoDetails: String
     }
   ],
-  awardList: [{
-    type:mongoose.Types.ObjectId,
-    ref : 'award'
-  }]
+  awardList: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: 'Award'
+    }
+  ]
 })
 
 const User = mongoose.model('User', userSchema)
