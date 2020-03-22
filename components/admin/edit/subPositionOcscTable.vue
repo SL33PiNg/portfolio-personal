@@ -67,8 +67,8 @@ export default {
   props: {
     items: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -78,8 +78,8 @@ export default {
       name: '',
       headers: [
         { text: 'expertist', align: 'start', value: 'name', width: '80' },
-        { text: 'action', align: 'center', value: 'action', width: '20' }
-      ]
+        { text: 'action', align: 'center', value: 'action', width: '20' },
+      ],
     }
   },
   methods: {
@@ -97,7 +97,7 @@ export default {
         await this.$axios.$patch('/select/positionOcsc/sub', {
           _id: this.items._id,
           subId: this.editData._id,
-          subName: this.editData.name
+          subName: this.editData.name,
         })
       } catch (error) {
       } finally {
@@ -115,8 +115,8 @@ export default {
         this.$emit('refetch')
         this.openDelDialog = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -22,7 +22,7 @@
       <v-dialog v-model="dialog" width="70%">
         <v-card>
           <v-container>
-            <v-row justify="end" class="ma-1 ">
+            <v-row justify="end" class="ma-1">
               <v-icon color="red" @click="dialog = false">
                 mdi-close-box</v-icon
               ></v-row
@@ -61,7 +61,7 @@ export default {
       loading: true,
       username: '',
       dialog: false,
-      detail: ''
+      detail: '',
     }
   },
   created() {
@@ -84,8 +84,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

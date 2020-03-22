@@ -59,7 +59,7 @@
 import card1 from '@/components/Cards/feedscard'
 export default {
   components: {
-    card1
+    card1,
   },
   data: () => ({
     search: '',
@@ -70,8 +70,8 @@ export default {
       { text: 'บริการวิชาการ', value: 2, color: 'amber lighten-4' },
       { text: 'รางวัล', value: 3, color: 'teal lighten-4' },
       { text: 'อื่นๆ', value: 4, color: 'green lighten-4' },
-      { text: 'ทั้งหมด', value: 5, color: '' }
-    ]
+      { text: 'ทั้งหมด', value: 5, color: '' },
+    ],
   }),
   computed: {
     isMaxMark() {
@@ -98,7 +98,7 @@ export default {
         )
       }
       return this.filterCat
-    }
+    },
   },
   created() {
     this.getAwardhighlights()
@@ -113,7 +113,7 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

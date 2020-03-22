@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-magnify text-centernify</v-icon>
             ค้นหารายชื่อ
@@ -171,32 +171,32 @@ export default {
       tempDataItem: {
         personalInfo: {
           firstnameTH: '',
-          lastnameTH: ''
-        }
+          lastnameTH: '',
+        },
       },
       headers: [
         {
           text: 'ชื่อ',
           align: 'start',
           value: 'personalInfo.firstnameTH',
-          sort: (a, b) => b.localeCompare(a, 'th')
+          sort: (a, b) => b.localeCompare(a, 'th'),
         },
         {
           text: 'สถานะการใช้งาน',
-          value: 'isPublic'
+          value: 'isPublic',
         },
         { text: 'สถานะบัญชี', value: 'isActive' },
         {
           text: 'สิทธิ์การใช้งาน',
           align: 'center',
-          value: 'roles'
+          value: 'roles',
         },
         {
           text: 'การจัดการ',
           value: 'action',
-          align: 'center'
-        }
-      ]
+          align: 'center',
+        },
+      ],
     }
   },
 
@@ -205,7 +205,7 @@ export default {
       this.isAdmin = val.roles.includes('ADMIN')
       this.isPublic = val.isPublic
       this.isActive = val.isActive
-    }
+    },
   },
 
   created() {
@@ -287,7 +287,7 @@ export default {
         this.close = false
         this.getAllProfile()
       }
-    }
-  }
+    },
+  },
 }
 </script>

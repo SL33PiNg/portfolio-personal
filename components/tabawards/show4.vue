@@ -13,7 +13,7 @@
           <v-container>
             <v-row justify="space-around">
               <div>
-                <h1 class=" subheading  grey--text">{{ name }}</h1>
+                <h1 class="subheading grey--text">{{ name }}</h1>
               </div>
             </v-row>
 
@@ -41,16 +41,16 @@
 import infoOther from '~/components/infoawards/infoOther.vue'
 export default {
   components: {
-    infoOther
+    infoOther,
   },
   data() {
     return {
       dialog: false,
       name: 'อื่นๆ1',
       types: 'อื่นๆ',
-      years: '2020'
+      years: '2020',
     }
-  }
+  },
 }
 </script>
 

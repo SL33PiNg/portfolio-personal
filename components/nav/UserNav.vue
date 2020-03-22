@@ -15,7 +15,7 @@
           router
           exact
           color="primary"
-          class="ma-2 "
+          class="ma-2"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -37,51 +37,51 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'หน้าแรก',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-account',
           title: 'ข้อมูลส่วนตัว',
-          to: '/user'
+          to: '/user',
         },
         {
           icon: 'mdi-domain',
           title: 'หน่วยงานปัจจุบัน',
-          to: '/user/careerInfo'
+          to: '/user/careerInfo',
         },
         {
           icon: 'mdi-lightbulb-on-outline',
           title: 'ความเชี่ยวชาญ',
-          to: '/user/expertinfo'
+          to: '/user/expertinfo',
         },
 
         {
           icon: 'mdi-briefcase-outline',
           title: 'ประวัติการทำงาน',
-          to: '/user/workinfo'
+          to: '/user/workinfo',
         },
         {
           icon: 'mdi-school-outline',
           title: 'ประวัติการศึกษา',
-          to: '/user/studyinfo'
+          to: '/user/studyinfo',
         },
         {
           icon: ' mdi-file-certificate-outline',
           title: 'ใบรับรอง',
-          to: '/user/certificateinfo'
+          to: '/user/certificateinfo',
         },
         {
           icon: 'mdi-trophy-award',
           title: 'เพิ่มผลงานใหม่',
-          to: '/user/award'
+          to: '/user/award',
         },
         {
           icon: 'mdi-seal-variant',
           title: 'ผลงานทั้งหมด',
-          to: '/user/listaward'
-        }
-      ]
+          to: '/user/listaward',
+        },
+      ],
     }
-  }
+  },
 }
 </script>

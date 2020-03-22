@@ -31,13 +31,13 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
     return {
       isOpen: false,
-      name: ''
+      name: '',
     }
   },
   methods: {
@@ -46,7 +46,7 @@ export default {
       try {
         await this.$axios.$post('/select/positionOcsc/sub', {
           _id: this.item._id,
-          subName: this.name
+          subName: this.name,
         })
       } catch (error) {
         this.$toast.error(
@@ -57,7 +57,7 @@ export default {
         this.$emit('refetch')
         this.isOpen = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

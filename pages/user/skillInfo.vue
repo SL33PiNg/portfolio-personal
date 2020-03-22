@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-lightbulb-on-outline</v-icon>
             ข้อมูลความเชี่ยวชาญ
@@ -23,7 +23,7 @@
           />
         </v-col>
       </v-row>
-      <v-row class="ma-3 " justify="end">
+      <v-row class="ma-3" justify="end">
         <v-btn :loading="updateLoad" color="primary" @click="updateUser"
           >เพิ่มข้อมูล</v-btn
         >
@@ -32,10 +32,10 @@
   </v-card>
 </template>
 <template>
-  <v-card class=" ma-8" max-width="80%">
+  <v-card class="ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="success" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="success" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-lightbulb-on-outline</v-icon>
 
@@ -53,7 +53,7 @@
           <v-textarea outlined></v-textarea>
         </v-col>
       </v-row>
-      <v-row justify="end" class="ma-3 ">
+      <v-row justify="end" class="ma-3">
         <v-btn class="mx-0 font-weight-light" color="success">
           อัปเดตข้อมูล
         </v-btn>
@@ -67,7 +67,7 @@ import Treeselect from '@riophae/vue-treeselect'
 // import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   components: {
-    Treeselect
+    Treeselect,
   },
   mixins: [getUser],
   data() {
@@ -79,11 +79,11 @@ export default {
       items: ['การศึกษา', 'บริหารธุรกิจ', 'วิทยาศาสตร์'],
       skills: [
         {
-          name: 'ศึกษาศาสตร์'
+          name: 'ศึกษาศาสตร์',
         },
         {
-          name: 'การฝึกหัดครูอนุบาล'
-        }
+          name: 'การฝึกหัดครูอนุบาล',
+        },
       ],
       expId: [],
       expertists: [],
@@ -92,9 +92,9 @@ export default {
         return {
           id: node._id,
           label: node.name,
-          children: node.sub
+          children: node.sub,
         }
-      }
+      },
     }
   },
   watch: {
@@ -107,7 +107,7 @@ export default {
       console.log(this.expertists)
       console.log(this.pValue)
       console.log(newVal)
-    }
+    },
   },
   created() {
     this.getExpertist()
@@ -122,8 +122,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

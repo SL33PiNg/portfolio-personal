@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="end" class="ma-1 "> </v-row>
+    <v-row justify="end" class="ma-1"> </v-row>
     <v-sheet color="primary" width="100%">
       <h1 class="ma-2 white--text">
         <v-icon large color="white">mdi-school-outline</v-icon>
@@ -30,8 +30,8 @@ export default {
   props: {
     award: {
       type: Object,
-      default: () => ({})
-    }
-  }
+      default: () => ({}),
+    },
+  },
 }
 </script>

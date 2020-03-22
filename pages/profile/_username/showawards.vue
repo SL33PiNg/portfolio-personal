@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col>
-        <v-card class="pa-2 " outlined tile>
+        <v-card class="pa-2" outlined tile>
           <div>
             <h3>{{ name }}</h3>
           </div>
@@ -20,7 +20,7 @@
 export default {
   data: () => ({
     name: 'ชื่อผลงานโครงการวิจัยที่1',
-    years: 'โครงการวืจัย/2562'
-  })
+    years: 'โครงการวืจัย/2562',
+  }),
 }
 </script>

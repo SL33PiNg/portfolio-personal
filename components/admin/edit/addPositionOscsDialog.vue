@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       isOpen: false,
-      name: ''
+      name: '',
     }
   },
   methods: {
@@ -47,7 +47,7 @@ export default {
         this.$emit('refetch')
         this.isOpen = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

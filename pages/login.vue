@@ -49,7 +49,7 @@
               type="submit"
               class="mx-auto font-weight-light text-center"
               color="success"
-              style="width: 200px"
+              style="width: 200px;"
               form="login-form"
             >
               ลงชื่อเข้าใช้
@@ -73,8 +73,8 @@ export default {
       rules: {
         required: (value) => !!value || 'Required.',
         min: (v) => v.length >= 3 || 'Min 8 characters',
-        emailMatch: () => "The email and password you entered don't match"
-      }
+        emailMatch: () => "The email and password you entered don't match",
+      },
     }
   },
   methods: {
@@ -84,8 +84,8 @@ export default {
         await this.$auth.loginWith('local', {
           data: {
             username: this.username,
-            password: this.password
-          }
+            password: this.password,
+          },
         })
       } catch (e) {
         if (e.message.search('401') !== -1)
@@ -96,7 +96,7 @@ export default {
           this.error = e.message + ''
         }
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -29,7 +29,7 @@ export default {
     showOne,
     showTwo,
     showThree,
-    showFour
-  }
+    showFour,
+  },
 }
 </script>

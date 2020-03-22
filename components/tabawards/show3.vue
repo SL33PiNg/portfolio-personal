@@ -13,7 +13,7 @@
           <v-container>
             <v-row justify="space-around">
               <div>
-                <h1 class=" subheading  grey--text">{{ name }}</h1>
+                <h1 class="subheading grey--text">{{ name }}</h1>
               </div>
             </v-row>
 
@@ -41,16 +41,16 @@
 import infoAwa from '~/components/infoawards/infoAwa.vue'
 export default {
   components: {
-    infoAwa
+    infoAwa,
   },
   data() {
     return {
       dialog: false,
       name: 'รางวัลที่1',
       types: 'รางวัล',
-      years: '2020'
+      years: '2020',
     }
-  }
+  },
 }
 </script>
 

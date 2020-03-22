@@ -1,11 +1,11 @@
 export const state = () => ({
-  user: {}
+  user: {},
 })
 
 export const mutations = {
   SET_USER(state, user) {
     state.user = user
-  }
+  },
 }
 
 export const actions = {
@@ -26,7 +26,7 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await this.$axios.$patch('/users', {
-          ...payload
+          ...payload,
         })
         commit('SET_USER', user)
         resolve(user)
@@ -38,7 +38,7 @@ export const actions = {
         console.log(error)
       }
     })
-  }
+  },
 }
 
 export const getters = {
@@ -46,5 +46,5 @@ export const getters = {
     // eslint-disable-next-line no-console
     console.log('getter', state)
     return state.user
-  }
+  },
 }

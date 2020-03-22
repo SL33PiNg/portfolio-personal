@@ -18,7 +18,7 @@ export default {
     return {
       user: {},
       loading: true,
-      username: ''
+      username: '',
     }
   },
   created() {
@@ -37,8 +37,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

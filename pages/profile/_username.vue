@@ -5,7 +5,7 @@
         <v-row>
           <v-card width="100%" class="mt-8">
             <v-row justify="center">
-              <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+              <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
                 <h1 class="ma-2 white--text">
                   <v-icon large color="white"> mdi-account-circle</v-icon>
                   ข้อมูลส่วนตัว
@@ -17,7 +17,7 @@
               aspect-ratio="1.7"
               width="200"
               height="200"
-              class=" mt-5 mx-auto"
+              class="mt-5 mx-auto"
             ></v-img>
             <v-list-item class="ml-4">
               <h4>
@@ -160,7 +160,7 @@ export default {
     return isNaN(+params.username)
   },
   components: {
-    Complaint
+    Complaint,
   },
   data: () => ({
     dialog: false,
@@ -168,8 +168,8 @@ export default {
     tab2: null,
     user: {
       personalInfo: {
-        academicRank: ''
-      }
+        academicRank: '',
+      },
     },
     loading: true,
     username: '',
@@ -180,17 +180,17 @@ export default {
       {
         id: 2,
         title: 'ทักษะความสามารถ',
-        path: '/skill'
+        path: '/skill',
       },
       {
         id: 3,
         title: 'การศึกษาและการทำงาน',
-        path: '/edu'
+        path: '/edu',
       },
-      { id: 4, title: 'ใบรับรอง', path: '/cert' }
+      { id: 4, title: 'ใบรับรอง', path: '/cert' },
     ],
     hostname: location.origin,
-    departments: []
+    departments: [],
   }),
   computed: {
     departmentName() {
@@ -227,7 +227,7 @@ export default {
         })
       })
       return a
-    }
+    },
   },
 
   created() {
@@ -281,7 +281,7 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

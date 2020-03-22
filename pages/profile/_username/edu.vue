@@ -18,7 +18,7 @@ import showEdu from '~/components/tabedu/showedu.vue'
 export default {
   components: {
     showWork,
-    showEdu
-  }
+    showEdu,
+  },
 }
 </script>

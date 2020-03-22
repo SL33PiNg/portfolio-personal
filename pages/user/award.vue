@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-trophy-award</v-icon>
             ข้อมูลผลงาน
@@ -39,7 +39,7 @@ export default {
     award1,
     award2,
     award3,
-    award4
+    award4,
   },
   data() {
     return {
@@ -48,9 +48,9 @@ export default {
         { text: 'โครงการวิจัย', value: 1 },
         { text: 'บริการวิชาการ', value: 2 },
         { text: 'รางวัล', value: 3 },
-        { text: 'อื่นๆ', value: 4 }
-      ]
+        { text: 'อื่นๆ', value: 4 },
+      ],
     }
-  }
+  },
 }
 </script>

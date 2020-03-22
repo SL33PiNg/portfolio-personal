@@ -59,7 +59,7 @@ export default {
     editPositionocscDialog,
     delPositionocscDialog,
     subPositionocscTable,
-    addSubPositionocscDialog
+    addSubPositionocscDialog,
   },
   data() {
     return {
@@ -71,19 +71,19 @@ export default {
           text: 'ตำแหน่งสายงานก.พ.',
           align: 'start',
           value: 'name',
-          width: '80%'
+          width: '80%',
         },
         {
           text: 'การจัดการ',
           align: 'center',
           value: 'action',
           sortable: false,
-          width: '15%'
+          width: '15%',
         },
-        { text: '', value: 'data-table-expand', width: '5%' }
+        { text: '', value: 'data-table-expand', width: '5%' },
       ],
       positionocsc: [],
-      expanded: []
+      expanded: [],
     }
   },
   created() {
@@ -99,8 +99,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

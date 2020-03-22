@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-school-outline</v-icon>
             ข้อมูลประวัติการศึกษา
@@ -89,7 +89,7 @@
           ></froala>
         </v-col>
       </v-row>
-      <v-row justify="end" class="ma-3 ">
+      <v-row justify="end" class="ma-3">
         <v-btn
           :disabled="!formIsValid"
           class="mx-0 font-weight-light"
@@ -150,7 +150,7 @@ import UserMix from '@/mixins/user'
 import { mask } from 'vue-the-mask'
 export default {
   directives: {
-    mask
+    mask,
   },
 
   mixins: [UserMix],
@@ -159,10 +159,10 @@ export default {
       rules: {
         name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
         number: [
-          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข'
+          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข',
         ],
         branch: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
-        selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล']
+        selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล'],
       },
       countrylist: country,
       del: false,
@@ -177,46 +177,46 @@ export default {
         country: '',
         status: null,
         image: '',
-        educationinfoDetails: ''
+        educationinfoDetails: '',
       },
       user: {},
       headers: [
         {
           text: 'ระดับวุฒิการศึกษา',
           align: 'left',
-          value: 'educationVocabulary'
+          value: 'educationVocabulary',
         },
         {
           text: 'วุฒิการศึกษา',
           align: 'left',
-          value: 'educationName'
+          value: 'educationName',
         },
         {
           text: 'สาขา',
           align: 'left',
-          value: 'branch'
+          value: 'branch',
         },
 
         {
           text: 'ชื่อสถานศึกษา',
           align: 'left',
-          value: 'academyName'
+          value: 'academyName',
         },
         {
           text: 'ประเทศ',
           align: 'left',
-          value: 'country'
+          value: 'country',
         },
         {
           text: 'สถานะ',
           align: 'center',
-          value: 'status'
+          value: 'status',
         },
         {
           text: 'การจัดการ',
           align: 'center',
-          value: 'action'
-        }
+          value: 'action',
+        },
       ],
 
       items: [
@@ -225,7 +225,7 @@ export default {
         'อุดมศึกษาหรือเทียบเท่า',
         'ปริญญาตรี',
         'ปริญญาโท',
-        'ปริญญาเอก'
+        'ปริญญาเอก',
       ],
       config: {
         charCounterMax: 3000,
@@ -245,8 +245,8 @@ export default {
               'backgroundColor',
               'inlineClass',
               'inlineStyle',
-              'clearFormatting'
-            ]
+              'clearFormatting',
+            ],
           },
           moreParagraph: {
             buttons: [
@@ -262,11 +262,11 @@ export default {
               'lineHeight',
               'outdent',
               'indent',
-              'quote'
-            ]
-          }
-        }
-      }
+              'quote',
+            ],
+          },
+        },
+      },
     }
   },
   computed: {
@@ -278,12 +278,12 @@ export default {
         this.education.branch &&
         this.education.country
       )
-    }
+    },
   },
   watch: {
     'education.status'(val) {
       if (val) this.education.graduate = ''
-    }
+    },
   },
   methods: {
     openDel(item) {
@@ -294,7 +294,7 @@ export default {
       try {
         this.loadBtn = true
         await this.$axios.$post('/users/studyinfo', {
-          ...this.education
+          ...this.education,
         })
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
@@ -311,7 +311,7 @@ export default {
           country: '',
           status: null,
           image: '',
-          educationinfoDetails: ''
+          educationinfoDetails: '',
         }
       }
     },
@@ -326,7 +326,7 @@ export default {
         this.tempDataItem = ''
         this.getUser()
       }
-    }
-  }
+    },
+  },
 }
 </script>

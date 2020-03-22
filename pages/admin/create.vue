@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="90%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-briefcase-outline</v-icon>
             สร้างบัญชีผู้ดูแลระบบ
@@ -27,7 +27,7 @@
               </v-row>
 
               <v-data-table
-                class=" mb-2"
+                class="mb-2"
                 :headers="headers"
                 hide-default-footer
               ></v-data-table>
@@ -66,9 +66,9 @@ export default {
       headers: [
         { text: 'ชื่อ', align: 'start', value: 'name' },
         { text: 'สถานะ', align: 'start', value: 'status' },
-        { text: 'การจัดการ', align: 'start', value: 'status' }
-      ]
+        { text: 'การจัดการ', align: 'start', value: 'status' },
+      ],
     }
-  }
+  },
 }
 </script>

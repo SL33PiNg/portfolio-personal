@@ -44,18 +44,18 @@ export default {
   components: {
     userNav,
     publicNav,
-    AdminNav
+    AdminNav,
   },
   data() {
     return {
       drawer: true,
-      pathMatch: 1
+      pathMatch: 1,
     }
   },
   computed: {
     bp() {
       return this.$vuetify.breakpoint.name
-    }
+    },
   },
   watch: {
     $route: {
@@ -64,9 +64,9 @@ export default {
         if (newVal.path.startsWith('/user')) this.pathMatch = 1
         else if (newVal.path.startsWith('/admin')) this.pathMatch = 2
         else this.pathMatch = 3
-      }
-    }
+      },
+    },
   },
-  methods: {}
+  methods: {},
 }
 </script>

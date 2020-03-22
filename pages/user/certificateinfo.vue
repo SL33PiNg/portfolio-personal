@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white"> mdi-file-certificate-outline</v-icon>
             ใบรับรอง
@@ -55,10 +55,10 @@
           ></froala>
         </v-col>
       </v-row>
-      <v-row justify="end" class="ma-3 ">
+      <v-row justify="end" class="ma-3">
         <v-btn
           :disabled="!formIsValid"
-          class=" font-weight-light"
+          class="font-weight-light"
           color="primary"
           @click="addcertificate"
         >
@@ -113,17 +113,17 @@ import UserMix from '@/mixins/user'
 import { mask } from 'vue-the-mask'
 export default {
   directives: {
-    mask
+    mask,
   },
   mixins: [UserMix],
   data() {
     return {
       rules: {
         number: [
-          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข'
+          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข',
         ],
         certificateName: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
-        guarantee: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล']
+        guarantee: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
       },
       del: false,
       tempDataItem: '',
@@ -134,29 +134,29 @@ export default {
         graduate: '',
         guarantee: '',
         file: '',
-        certificateinfoDetails: ''
+        certificateinfoDetails: '',
       },
       headers: [
         {
           text: 'ชื่อใบรับรอง',
           align: 'left',
-          value: 'certificateName'
+          value: 'certificateName',
         },
         {
           text: 'หน่วยงานที่ออกใบรับรอง',
           align: 'left',
-          value: 'guarantee'
+          value: 'guarantee',
         },
         {
           text: 'ปีที่ได้รับ',
           align: 'left',
-          value: 'graduate'
+          value: 'graduate',
         },
         {
           text: 'การจัดการ',
           align: 'center',
-          value: 'action'
-        }
+          value: 'action',
+        },
       ],
       config: {
         charCounterMax: 3000,
@@ -176,8 +176,8 @@ export default {
               'backgroundColor',
               'inlineClass',
               'inlineStyle',
-              'clearFormatting'
-            ]
+              'clearFormatting',
+            ],
           },
           moreParagraph: {
             buttons: [
@@ -193,17 +193,17 @@ export default {
               'lineHeight',
               'outdent',
               'indent',
-              'quote'
-            ]
-          }
-        }
-      }
+              'quote',
+            ],
+          },
+        },
+      },
     }
   },
   computed: {
     formIsValid() {
       return this.certificate.certificateName && this.certificate.guarantee
-    }
+    },
   },
   methods: {
     openDel(item) {
@@ -214,7 +214,7 @@ export default {
       try {
         this.loadBtn = true
         await this.$axios.$post('/users/certificateinfo', {
-          ...this.certificate
+          ...this.certificate,
         })
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
@@ -227,7 +227,7 @@ export default {
           graduate: '',
           guarantee: '',
           file: '',
-          certificateinfoDetails: ''
+          certificateinfoDetails: '',
         }
       }
     },
@@ -242,7 +242,7 @@ export default {
         this.tempDataItem = ''
         this.getUser()
       }
-    }
-  }
+    },
+  },
 }
 </script>

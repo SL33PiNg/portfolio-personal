@@ -57,7 +57,7 @@
         <froala v-model="Award.infoemation" :config="config"></froala>
       </v-col>
     </v-row>
-    <v-row justify="end" class="ma-3 ">
+    <v-row justify="end" class="ma-3">
       <v-btn
         :disabled="!formIsValid"
         class="mx-0 font-weight-light"
@@ -74,13 +74,13 @@
 import { mask } from 'vue-the-mask'
 export default {
   directives: {
-    mask
+    mask,
   },
   data: () => ({
     mask: '####',
     rules1: {
       name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
-      number: [(val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข']
+      number: [(val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข'],
     },
     loading: true,
     Award: {
@@ -95,14 +95,14 @@ export default {
       eventYear: '',
       file: '',
       infoemation: '',
-      cover: ''
+      cover: '',
     },
     content: null,
     rules: [
       (value) =>
         !value ||
         value.size < 2000000 ||
-        'Avatar size should be less than 2 MB!'
+        'Avatar size should be less than 2 MB!',
     ],
     config: {
       charCounterMax: 3000,
@@ -122,8 +122,8 @@ export default {
             'backgroundColor',
             'inlineClass',
             'inlineStyle',
-            'clearFormatting'
-          ]
+            'clearFormatting',
+          ],
         },
         moreParagraph: {
           buttons: [
@@ -139,18 +139,18 @@ export default {
             'lineHeight',
             'outdent',
             'indent',
-            'quote'
-          ]
-        }
-      }
+            'quote',
+          ],
+        },
+      },
     },
     imageUrl: '',
-    imageFile: ''
+    imageFile: '',
   }),
   computed: {
     formIsValid() {
       return this.Award.name
-    }
+    },
   },
   methods: {
     handleChange(e) {
@@ -167,7 +167,7 @@ export default {
       this.loading = true
       try {
         await this.$axios.$post('/users/award', {
-          ...this.Award
+          ...this.Award,
         })
         console.log(this.Award)
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
@@ -188,10 +188,10 @@ export default {
           file: '',
           infoemation: '',
           cover: '',
-          highlights: null
+          highlights: null,
         }
       }
-    }
-  }
+    },
+  },
 }
 </script>

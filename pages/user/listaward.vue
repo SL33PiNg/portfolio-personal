@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-seal-variant</v-icon>
             ผลงานทั้งหมด
@@ -79,7 +79,7 @@
 import card1 from '@/components/Cards/awardscard'
 export default {
   components: {
-    card1
+    card1,
   },
 
   data: () => ({
@@ -94,8 +94,8 @@ export default {
       { text: 'บริการวิชาการ', value: 2 },
       { text: 'รางวัล', value: 3 },
       { text: 'อื่นๆ', value: 4 },
-      { text: 'ทั้งหมด', value: 5 }
-    ]
+      { text: 'ทั้งหมด', value: 5 },
+    ],
   }),
   computed: {
     // awardFilter() {
@@ -122,7 +122,7 @@ export default {
         )
       }
       return this.filterCat
-    }
+    },
   },
   created() {
     this.getAllAwrds()
@@ -154,8 +154,8 @@ export default {
         this.loading = false
         this.getAllAwrds()
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

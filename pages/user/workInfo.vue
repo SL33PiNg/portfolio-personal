@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-briefcase-outline</v-icon>
             ข้อมูลประวัติการทำงาน
@@ -91,7 +91,7 @@
           ></froala>
         </v-col>
       </v-row>
-      <v-row justify="end" class="ma-3 ">
+      <v-row justify="end" class="ma-3">
         <v-btn
           :disabled="!formIsValid"
           class="mx-0 font-weight-light"
@@ -152,19 +152,19 @@ import { mask } from 'vue-the-mask'
 
 export default {
   directives: {
-    mask
+    mask,
   },
   mixins: [UserMix],
   data() {
     return {
       rules: {
         number: [
-          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข'
+          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข',
         ],
         department: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
         position: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
         company: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
-        selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล']
+        selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล'],
       },
       countrylist: country,
       del: false,
@@ -179,45 +179,45 @@ export default {
         company: '',
         country: '',
         position: '',
-        workinfoDetails: ''
+        workinfoDetails: '',
       },
       user: {},
       headers: [
         {
           text: 'ชื่อหน่วยงาน',
           align: 'left',
-          value: 'company'
+          value: 'company',
         },
         {
           text: 'แผนก',
           align: 'left',
-          value: 'department'
+          value: 'department',
         },
         {
           text: 'ตำแหน่ง',
           align: 'left',
-          value: 'position'
+          value: 'position',
         },
         {
           text: 'ปีที่เข้าทำงาน (พ.ศ.)',
           align: 'left',
-          value: 'start'
+          value: 'start',
         },
         {
           text: 'ปีที่ออกจากงาน (พ.ศ.)',
           align: 'left',
-          value: 'end'
+          value: 'end',
         },
         {
           text: 'สถานะ',
           align: 'center',
-          value: 'status'
+          value: 'status',
         },
         {
           text: 'การจัดการ',
           align: 'center',
-          value: 'action'
-        }
+          value: 'action',
+        },
       ],
       config: {
         charCounterMax: 3000,
@@ -237,8 +237,8 @@ export default {
               'backgroundColor',
               'inlineClass',
               'inlineStyle',
-              'clearFormatting'
-            ]
+              'clearFormatting',
+            ],
           },
           moreParagraph: {
             buttons: [
@@ -254,11 +254,11 @@ export default {
               'lineHeight',
               'outdent',
               'indent',
-              'quote'
-            ]
-          }
-        }
-      }
+              'quote',
+            ],
+          },
+        },
+      },
     }
   },
   computed: {
@@ -270,12 +270,12 @@ export default {
         this.work.country &&
         this.work.position
       )
-    }
+    },
   },
   watch: {
     'work.status'(val) {
       if (val) this.work.end = ''
-    }
+    },
   },
   methods: {
     openDel(item) {
@@ -286,7 +286,7 @@ export default {
       try {
         this.loadBtn = true
         await this.$axios.$post('/users/workinfo', {
-          ...this.work
+          ...this.work,
         })
 
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
@@ -303,7 +303,7 @@ export default {
           company: '',
           country: '',
           position: '',
-          workinfoDetails: ''
+          workinfoDetails: '',
         }
       }
     },
@@ -318,7 +318,7 @@ export default {
         this.tempDataItem = ''
         this.getUser()
       }
-    }
-  }
+    },
+  },
 }
 </script>

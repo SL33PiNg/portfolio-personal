@@ -63,7 +63,7 @@ export default {
       users: [],
       loading: true,
       hostname: location.origin,
-      departments: []
+      departments: [],
     }
   },
   computed: {
@@ -73,7 +73,7 @@ export default {
       )
       const a = { ...found }
       return a.name
-    }
+    },
   },
   created() {
     this.getAllProfile()
@@ -99,8 +99,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -27,14 +27,14 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
     return {
       isOpen: false,
       name: this.item.name,
-      id: this.item._id
+      id: this.item._id,
     }
   },
   methods: {
@@ -49,7 +49,7 @@ export default {
         this.$emit('refetch')
         this.isOpen = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

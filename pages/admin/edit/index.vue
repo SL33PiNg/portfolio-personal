@@ -55,7 +55,7 @@
 import delDepartmentDialog from '@/components/admin/edit/delDepartment'
 export default {
   components: {
-    delDepartmentDialog
+    delDepartmentDialog,
   },
   data() {
     return {
@@ -72,9 +72,9 @@ export default {
           value: 'action',
           sortable: false,
           align: 'center',
-          width: '10%'
-        }
-      ]
+          width: '10%',
+        },
+      ],
     }
   },
   created() {
@@ -100,7 +100,7 @@ export default {
       this.loadBtn = true
       try {
         await this.$axios.$post('/select/department', {
-          name: this.name
+          name: this.name,
         })
         this.getDepartment()
       } catch (error) {
@@ -124,15 +124,15 @@ export default {
     async save() {
       try {
         await this.$axios.$patch('/select/department', {
-          ...this.editDialog
+          ...this.editDialog,
         })
       } catch (error) {
       } finally {
         this.getDepartment()
         this.close()
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

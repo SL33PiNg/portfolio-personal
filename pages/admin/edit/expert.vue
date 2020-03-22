@@ -59,7 +59,7 @@ export default {
     editExpertDialog,
     delExpertDialog,
     subExpertTable,
-    addSubExpertDialog
+    addSubExpertDialog,
   },
   data() {
     return {
@@ -73,12 +73,12 @@ export default {
           align: 'center',
           value: 'action',
           sortable: false,
-          width: '15%'
+          width: '15%',
         },
-        { text: '', value: 'data-table-expand', width: '5%' }
+        { text: '', value: 'data-table-expand', width: '5%' },
       ],
       expertists: [],
-      expanded: []
+      expanded: [],
     }
   },
   created() {
@@ -94,8 +94,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -13,7 +13,7 @@ export default {
   data: () => ({
     user: {},
     username: '',
-    loading: true
+    loading: true,
   }),
   created() {
     this.username = this.$route.params.username
@@ -31,8 +31,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

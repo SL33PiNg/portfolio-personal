@@ -25,16 +25,16 @@
 import infoSer from '~/components/infoawards/infoSer.vue'
 export default {
   components: {
-    infoSer
+    infoSer,
   },
   data() {
     return {
       dialog: false,
       name: 'บริการวิชาการ1',
       types: 'บริการวิชาการ',
-      years: '2020'
+      years: '2020',
     }
-  }
+  },
 }
 </script>
 

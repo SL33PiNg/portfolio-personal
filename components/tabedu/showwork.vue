@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row v-for="i in user.workinfo" :key="i._id" wrap justify="center">
-      <v-card width="600" class="mt-5 text-left " @click.stop="openDetail(i)">
+      <v-card width="600" class="mt-5 text-left" @click.stop="openDetail(i)">
         <v-card-title
           >{{ i.company }} <v-spacer></v-spacer>
           <v-chip :class="i.status ? 'primary' : 'error'">{{
@@ -35,7 +35,7 @@
       <v-dialog v-model="dialog" width="70%">
         <v-card>
           <v-container>
-            <v-row justify="end" class="ma-1 ">
+            <v-row justify="end" class="ma-1">
               <v-icon color="red" @click="dialog = false">
                 mdi-close-box</v-icon
               ></v-row
@@ -79,7 +79,7 @@ export default {
       loading: true,
       username: '',
       detail: '',
-      dialog: false
+      dialog: false,
     }
   },
   created() {
@@ -102,8 +102,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -2,7 +2,7 @@
   <v-card v-if="!loading" class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white"> mdi-domain </v-icon>
             ข้อมูลหน่วยงานปัจจุบัน
@@ -65,7 +65,7 @@
           ></v-select>
         </v-col>
       </v-row>
-      <v-row justify="end" class="ma-3 ">
+      <v-row justify="end" class="ma-3">
         <v-btn
           class="mx-0 font-weight-light"
           color="primary"
@@ -84,7 +84,7 @@ import getUser from '@/mixins/user'
 import { mask } from 'vue-the-mask'
 export default {
   directives: {
-    mask
+    mask,
   },
   mixins: [getUser],
   data: () => ({
@@ -96,18 +96,18 @@ export default {
     email: '',
     emailRules: [
       (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+/.test(v) || 'E-mail must be valid'
+      (v) => /.+@.+/.test(v) || 'E-mail must be valid',
     ],
     valid: false,
 
     departments: [],
-    selectExp: ''
+    selectExp: '',
   }),
   watch: {
     'user.careerInfo.dpmentID'(newVal, oldVal) {
       // eslint-disable-next-line no-console
       console.log(typeof newVal)
-    }
+    },
   },
   created() {
     this.getExpertist()
@@ -122,7 +122,7 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-account</v-icon> ข้อมูลส่วนตัว
           </h1>
@@ -41,7 +41,7 @@
             placeholder="เลือกรูปโปรไฟล์"
             prepend-icon="mdi-camera"
             label="รูปโปรไฟล์"
-            style="display:none"
+            style="display: none;"
             @change="handleChange"
           ></v-file-input> </v-col
       ></v-row>
@@ -170,10 +170,10 @@ import Treeselect from '@riophae/vue-treeselect'
 // import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   directives: {
-    mask
+    mask,
   },
   components: {
-    Treeselect
+    Treeselect,
   },
   mixins: [getUser],
   data: () => ({
@@ -201,22 +201,22 @@ export default {
         facebook: '',
         lineID: '',
         phone: '',
-        showPhone: true
-      }
+        showPhone: true,
+      },
     },
     academicPos: [
       '',
       'ศาสตราจารย์',
       'รองศาสตราจารย์',
       'ผู้ช่วยศาสตราจารย์',
-      'อาจารย์'
+      'อาจารย์',
     ],
     divisionPos: ['1', '2', '3'],
     rules: [
       (value) =>
         !value ||
         value.size < 2000000 ||
-        'Avatar size should be less than 2 MB!'
+        'Avatar size should be less than 2 MB!',
     ],
     email: '',
     positionocsc: [],
@@ -225,13 +225,13 @@ export default {
       return {
         id: node._id,
         label: node.name,
-        children: node.sub
+        children: node.sub,
       }
     },
     emailRules: [
       (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+/.test(v) || 'E-mail must be valid'
-    ]
+      (v) => /.+@.+/.test(v) || 'E-mail must be valid',
+    ],
   }),
 
   created() {
@@ -261,8 +261,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 <style src="@riophae/vue-treeselect/dist/vue-treeselect.css"></style>

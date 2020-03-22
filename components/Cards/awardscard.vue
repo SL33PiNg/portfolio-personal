@@ -57,18 +57,18 @@ export default {
     type1,
     type2,
     type3,
-    type4
+    type4,
   },
   filters: {
     idToString(value, items) {
       return items[value - 1].text
-    }
+    },
   },
   props: {
     award: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -79,14 +79,14 @@ export default {
         { text: 'บริการวิชาการ', value: 2 },
         { text: 'รางวัล', value: 3 },
         { text: 'อื่นๆ', value: 4 },
-        { text: 'ทั้งหมด', value: 5 }
-      ]
+        { text: 'ทั้งหมด', value: 5 },
+      ],
     }
   },
   computed: {
     cardType() {
       return `type${this.award.awardType}`
-    }
+    },
   },
 
   methods: {
@@ -103,8 +103,8 @@ export default {
       } finally {
         this.$emit('reload')
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

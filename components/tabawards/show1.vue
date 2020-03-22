@@ -28,7 +28,7 @@
 import infoRes from '~/components/infoawards/infoRes.vue'
 export default {
   components: {
-    infoRes
+    infoRes,
   },
 
   data() {
@@ -37,9 +37,9 @@ export default {
       name: 'โครงการวิจัยที่1',
       types: 'โครงการวิจัย',
       years: '2020',
-      status: 'หัวหน้าโครงการวิจัย'
+      status: 'หัวหน้าโครงการวิจัย',
     }
-  }
+  },
 }
 </script>
 

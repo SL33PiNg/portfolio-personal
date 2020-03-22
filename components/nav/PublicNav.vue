@@ -14,7 +14,7 @@
         router
         exact
         color="primary"
-        class="ma-2 "
+        class="ma-2"
       >
         <v-list-item-action>
           <v-icon>{{ item.icon }}</v-icon>
@@ -35,20 +35,20 @@ export default {
         {
           icon: 'mdi-magnify',
           title: 'ค้นหาโปรไฟล์',
-          to: '/profile'
+          to: '/profile',
         },
         {
           icon: 'mdi-account-star-outline',
           title: 'แอดมิน',
-          to: '/admin'
+          to: '/admin',
         },
         {
           icon: 'mdi-account-search-outline',
           title: 'การค้นหาขั้นสูง',
-          to: '/profile/search/advance'
-        }
-      ]
+          to: '/profile/search/advance',
+        },
+      ],
     }
-  }
+  },
 }
 </script>

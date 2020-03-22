@@ -2,7 +2,7 @@
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-lightbulb-on-outline</v-icon>
             ข้อมูลความเชี่ยวชาญ
@@ -22,7 +22,7 @@
           />
         </v-col>
       </v-row>
-      <v-row class="ma-3 " justify="end">
+      <v-row class="ma-3" justify="end">
         <v-btn :loading="updateLoad" color="primary" @click="updateUser"
           >เพิ่มข้อมูล</v-btn
         >
@@ -30,7 +30,7 @@
     </v-container>
     <v-container class="mx-auto ma-8">
       <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
+        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-arm-flex-outline</v-icon>
 
@@ -57,7 +57,7 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row justify="end" class="ma-3 ">
+      <v-row justify="end" class="ma-3">
         <v-btn :loading="updateLoad" color="primary" @click="updateUser">
           อัปเดตข้อมูล
         </v-btn>
@@ -73,14 +73,14 @@ import Treeselect from '@riophae/vue-treeselect'
 // import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   components: {
-    Treeselect
+    Treeselect,
   },
   mixins: [getUser],
   data() {
     return {
       user: {
         expId: [],
-        skillsDetails: ''
+        skillsDetails: '',
       },
       loading: true,
       updateLoad: false,
@@ -88,11 +88,11 @@ export default {
       multiple: true,
       skills: [
         {
-          name: 'ศึกษาศาสตร์'
+          name: 'ศึกษาศาสตร์',
         },
         {
-          name: 'การฝึกหัดครูอนุบาล'
-        }
+          name: 'การฝึกหัดครูอนุบาล',
+        },
       ],
       expertists: [],
       value: null,
@@ -101,7 +101,7 @@ export default {
         return {
           id: node._id,
           label: node.name,
-          children: node.sub
+          children: node.sub,
         }
       },
       config: {
@@ -122,8 +122,8 @@ export default {
               'backgroundColor',
               'inlineClass',
               'inlineStyle',
-              'clearFormatting'
-            ]
+              'clearFormatting',
+            ],
           },
           moreParagraph: {
             buttons: [
@@ -139,11 +139,11 @@ export default {
               'lineHeight',
               'outdent',
               'indent',
-              'quote'
-            ]
-          }
-        }
-      }
+              'quote',
+            ],
+          },
+        },
+      },
     }
   },
   created() {
@@ -159,8 +159,8 @@ export default {
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
