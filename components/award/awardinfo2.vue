@@ -177,7 +177,7 @@ export default {
       } finally {
         this.loading = false
         this.Award = {
-          awardType: '',
+          awardType: 2,
           name: '',
           nameEN: '',
           researchCategory: '',
@@ -189,7 +189,6 @@ export default {
           file: '',
           infoemation: '',
           cover: '',
-          highlights: null,
         }
       }
     },

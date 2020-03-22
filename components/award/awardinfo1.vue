@@ -127,7 +127,7 @@ export default {
       awardType: 1,
       name: '',
       nameEN: '',
-      researchCategory: '',
+      researchCategory: 'การวิจัยทางวิทยาศาสตร์',
       fiscalYear: '',
       jobTitles: '',
       funding: null,
@@ -217,10 +217,10 @@ export default {
       } finally {
         this.loading = false
         this.Award = {
-          awardType: '',
+          awardType: 1,
           name: '',
           nameEN: '',
-          researchCategory: '',
+          researchCategory: 'การวิจัยทางวิทยาศาสตร์',
           fiscalYear: '',
           jobTitles: '',
           funding: null,
@@ -229,7 +229,6 @@ export default {
           file: '',
           infoemation: '',
           cover: '',
-          highlights: null,
         }
       }
     },
