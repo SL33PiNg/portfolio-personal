@@ -23,6 +23,6 @@ router.post('/award', AddAward.addAward)
 router.get('/award', AddAward.getAward)
 router.delete('/award/:id', AddAward.delAward)
 
-router.get('/highlight/:id/:status' , UserController.highlight)
+router.get('/highlight/:id/:status', UserController.highlight)
 
 module.exports = router
