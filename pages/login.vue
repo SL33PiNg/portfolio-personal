@@ -24,7 +24,6 @@
                 :rules="[rules.required]"
                 label="Username"
                 outlined
-                clearable
                 autofocus
               >
               </v-text-field>
