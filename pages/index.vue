@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 <template>
   <v-card class="mx-auto ma-3" max-width="70%" outlined>
     <v-container>
@@ -11,13 +12,14 @@
         <template>
           <v-carousel v-model="model">
             <v-carousel-item
-              v-for="color in colors"
-              :key="color"
+              v-for="award in markAward"
+              :key="award.id"
               reverse-transition="fade-transition"
               transition="fade-transition"
             >
-              <v-sheet :color="color" height="100%" tile>
+              <v-sheet height="100%" tile>
                 <v-row class="fill-height" align="center" justify="center">
+                  <h1>{{ award.name }}</h1>
                 </v-row>
               </v-sheet>
             </v-carousel-item>
@@ -35,7 +37,21 @@ export default {
     return {
       colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
       model: 0,
+      markAward: [],
     }
+  },
+  created() {
+    this.getMarkAward()
+  },
+  methods: {
+    async getMarkAward() {
+      try {
+        const result = await this.$axios.$get('/award')
+        this.markAward = result
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
 }
 </script>
