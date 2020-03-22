@@ -8,8 +8,10 @@
           </h3>
         </v-list-item-title>
       </v-list-item-content>
-      <v-btn icon @click="highlights()">
-        <v-icon :color="award.highlights ? 'warning' : 'grey'">mdi-star</v-icon>
+      <v-btn icon :disabled="disable" @click="markedAward()">
+        <v-icon :color="award.markedAward ? 'warning' : 'grey'"
+          >mdi-star</v-icon
+        >
       </v-btn>
     </v-list-item>
 
@@ -17,7 +19,6 @@
       src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
       height="150"
       width="auto"
-      class="ma-2"
     ></v-img>
     <v-list-item>
       <v-list-item-content>
@@ -27,9 +28,6 @@
         </v-list-item-subtitle> </v-list-item-content
       ><v-btn icon @click.stop="openDetail(award)"
         ><v-icon>mdi-magnify</v-icon></v-btn
-      >
-      <v-btn icon @click="$emit('toggleDelete', award)"
-        ><v-icon>mdi-delete-outline</v-icon></v-btn
       >
     </v-list-item>
     <v-row wrap justify="center">
@@ -65,6 +63,10 @@ export default {
     }
   },
   props: {
+    disable: {
+      type: Boolean,
+      default: false
+    },
     award: {
       type: Object,
       default: () => ({})
@@ -94,10 +96,10 @@ export default {
       this.detail = x
       this.dialog = true
     },
-    async highlights() {
+    async markedAward() {
       try {
         await this.$axios.$get(
-          `/users/highlight/${this.award._id}/${!this.award.highlights}`
+          `/admin/markedAward/${this.award._id}/${!this.award.markedAward}`
         )
       } catch (error) {
       } finally {

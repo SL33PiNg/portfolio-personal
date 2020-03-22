@@ -158,7 +158,9 @@ export default {
     return {
       rules: {
         name: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
-        number: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
+        number: [
+          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข'
+        ],
         branch: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
         selects: [(val) => (val || '').length > 0 || 'กรุณาเลือกข้อมูล']
       },
@@ -216,7 +218,7 @@ export default {
           value: 'action'
         }
       ],
-      pated: ['ไทย', 'อังกฤษ', 'ลาว', 'พม่า', 'จีน'],
+
       items: [
         'มัธยมศึกษาตอนปลาย',
         'ปวส',

@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const UserModel = require('../models/User')
+const AwardModel = require('../models/award')
 const jwt = require('jsonwebtoken')
 const sharp = require('sharp')
 sharp.cache(false)
@@ -17,10 +18,10 @@ exports.login = async (req, res) => {
       user = await UserModel.create({ username, password, roles: [ 'ADMIN' ] })
     }
     if (user.password !== password) {
-      return res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).json({ message: '(admin)Invalid username or password' })
     }
     if (!user) {
-      return res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).json({ message: '(admin)Invalid username or password' })
     }
   } else if (rmuttLogin(username, password)) {
     user = await UserModel.findOne({ username })
@@ -29,6 +30,10 @@ exports.login = async (req, res) => {
     }
   } else {
     return res.status(401).json({ message: 'Invalid username or password' })
+  }
+
+  if(user.isActive === false){
+    return res.status(450).json({ message: 'user has been disable!! call to 085-531-0522' })
   }
 
   const { id, roles } = user
@@ -153,4 +158,19 @@ function rmuttLogin (username, password) {
   else if (username === 'art' && password === '123') return true
   else if (username === 'nook' && password === '123') return true
   else return false
+}
+
+exports.highlight = async (req, res) => {
+  const { id, status } = req.params
+  try {
+    if(status === 'true' ){
+      await AwardModel.findByIdAndUpdate(id, { highlights: true })
+    }
+    else{
+      await AwardModel.findByIdAndUpdate(id, { highlights: false })
+    }
+    return res.json({})
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'internal server error' })
+  }
 }

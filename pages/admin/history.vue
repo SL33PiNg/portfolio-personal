@@ -26,6 +26,7 @@
 export default {
   data() {
     return {
+      search: '',
       headers: [
         { text: 'ชื่อ', align: 'start', value: 'name' },
         { text: 'สถานะ', align: 'start', value: 'status' },

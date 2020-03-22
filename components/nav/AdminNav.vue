@@ -60,7 +60,7 @@ export default {
         },
         {
           icon: 'mdi-account-multiple-plus-outline',
-          title: 'สร้างบัญชีแอดมิน',
+          title: 'สร้างบัญชีผู้ดูแลระบบ',
           to: '/admin/create'
         },
         {

@@ -90,6 +90,8 @@ export default {
       } catch (e) {
         if (e.message.search('401') !== -1)
           this.error = 'Invalid username or password'
+        else if (e.message.search('450') !== -1)
+          this.error = 'user has been disable!! call to 085-531-0522'
         else {
           this.error = e.message + ''
         }
