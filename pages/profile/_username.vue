@@ -146,7 +146,7 @@
             >
           </v-tabs>
 
-          <nuxt-child></nuxt-child>
+          <nuxt-child :awards="user.awardList"></nuxt-child>
         </v-card>
       </v-col>
     </v-row>

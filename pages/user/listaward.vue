@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import card1 from '@/components/Cards/awardscard'
+import card1 from '@/components/Cards/feedscard'
 export default {
   components: {
     card1,
