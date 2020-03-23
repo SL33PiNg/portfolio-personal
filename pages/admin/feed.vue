@@ -10,7 +10,7 @@
                   <v-icon large color="black"
                     >mdi-newspaper-variant-outline</v-icon
                   >
-                  จัดการฟีดข่าว {{ isMaxMark }}
+                  จัดการฟีดข่าว
                 </h1>
               </v-flex>
               <v-flex xs12 md6>

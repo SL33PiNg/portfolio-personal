@@ -8,7 +8,14 @@
           </h3>
         </v-list-item-title>
       </v-list-item-content>
-      <v-btn icon :disabled="disable" @click="markedAward()">
+
+      <v-icon v-if="isProfile" :color="award.highlights ? 'warning' : 'grey'"
+        >mdi-star</v-icon
+      >
+      <v-btn v-else-if="isUser" icon @click="highlights()">
+        <v-icon :color="award.highlights ? 'warning' : 'grey'">mdi-star</v-icon>
+      </v-btn>
+      <v-btn v-else icon :disabled="disable" @click="markedAward()">
         <v-icon :color="award.markedAward ? 'warning' : 'grey'"
           >mdi-star</v-icon
         >
@@ -28,6 +35,9 @@
         </v-list-item-subtitle> </v-list-item-content
       ><v-btn icon @click.stop="openDetail(award)"
         ><v-icon>mdi-magnify</v-icon></v-btn
+      >
+      <v-btn v-if="isUser" icon @click="$emit('toggleDelete', award)"
+        ><v-icon>mdi-delete-outline</v-icon></v-btn
       >
     </v-list-item>
     <v-row wrap justify="center">
@@ -74,6 +84,8 @@ export default {
   },
   data() {
     return {
+      isProfile: this.$route.name === 'profile-username',
+      isUser: this.$route.name === 'user-listaward',
       dialog: false,
       detail: '',
       items: [
