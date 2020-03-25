@@ -73,7 +73,7 @@ exports.getAllUserProfile = async (req, res) => {
 
 exports.getAward = async (req, res) => {
   try {
-    const award = await AwardModel.find({ highlights: true })
+    const award = await AwardModel.find({ highlights: true }).sort({ eventYear: -1 })
     return res.json(award)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
