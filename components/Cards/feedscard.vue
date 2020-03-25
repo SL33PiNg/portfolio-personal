@@ -15,7 +15,12 @@
       <v-btn v-else-if="isUser" icon @click="highlights()">
         <v-icon :color="award.highlights ? 'warning' : 'grey'">mdi-star</v-icon>
       </v-btn>
-      <v-btn v-else icon :disabled="disable" @click="markedAward()">
+      <v-btn
+        v-else-if="isAdmin"
+        icon
+        :disabled="disable"
+        @click="markedAward()"
+      >
         <v-icon :color="award.markedAward ? 'warning' : 'grey'"
           >mdi-star</v-icon
         >
@@ -86,6 +91,7 @@ export default {
     return {
       isProfile: this.$route.name === 'profile-username',
       isUser: this.$route.name === 'user-listaward',
+      isAdmin: this.$route.name === 'admin-feed',
       dialog: false,
       detail: '',
       items: [
@@ -112,6 +118,16 @@ export default {
       try {
         await this.$axios.$get(
           `/admin/markedAward/${this.award._id}/${!this.award.markedAward}`
+        )
+      } catch (error) {
+      } finally {
+        this.$emit('reload')
+      }
+    },
+    async highlights() {
+      try {
+        await this.$axios.$get(
+          `/users/highlight/${this.award._id}/${!this.award.highlights}`
         )
       } catch (error) {
       } finally {

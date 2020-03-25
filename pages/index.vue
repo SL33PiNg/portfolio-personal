@@ -26,7 +26,9 @@
           </v-carousel>
         </template>
       </v-row>
-      <v-row justify="end"> <v-btn text>ดูผลงานทั้งหมด</v-btn> </v-row>
+      <v-row justify="end">
+        <v-btn text to="/award">ดูผลงานทั้งหมด</v-btn>
+      </v-row>
     </v-container>
   </v-card>
 </template>
