@@ -118,23 +118,38 @@
             </v-dialog>
           </template>
           <template v-slot:item.action="{ item }">
-            <v-chip class="primary"
-              ><v-icon text-center @click="addStatus(item)">
-                mdi-account-edit
-              </v-icon></v-chip
-            >
+            <v-tooltip top>
+              <template v-slot:activator="{ on }">
+                <v-chip class="primary" v-on="on"
+                  ><v-icon text-center @click="addStatus(item)">
+                    mdi-account-edit
+                  </v-icon></v-chip
+                >
+              </template>
+              <span>กำหนดสิทธิ์การใช้งาน</span>
+            </v-tooltip>
 
-            <v-chip class="warning">
-              <v-icon text-center @click="shutAccount(item)">
-                mdi-account-cancel
-              </v-icon></v-chip
-            >
+            <v-tooltip top>
+              <template v-slot:activator="{ on }">
+                <v-chip class="warning" v-on="on">
+                  <v-icon text-center @click="shutAccount(item)">
+                    mdi-account-cancel
+                  </v-icon></v-chip
+                >
+              </template>
+              <span>เผยแพร่ หรือ ระงับการเผยแพร่ </span>
+            </v-tooltip>
 
-            <v-chip class="error">
-              <v-icon text-center @click="closeAccount(item)">
-                mdi-account-remove
-              </v-icon></v-chip
-            >
+            <v-tooltip top>
+              <template v-slot:activator="{ on }">
+                <v-chip class="error" v-on="on">
+                  <v-icon text-center @click="closeAccount(item)">
+                    mdi-account-remove
+                  </v-icon></v-chip
+                >
+              </template>
+              <span>เปิด-ปิด การใช้งานบัญชีผู้ใช้</span>
+            </v-tooltip>
           </template>
           <template v-slot:item.isPublic="{ item }">
             <p>{{ item.isPublic ? 'เผยแผร่' : 'ระงับการเผยแผร่' }}</p>

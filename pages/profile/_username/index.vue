@@ -13,23 +13,56 @@
       อื่นๆ
     </v-tab>
 
-    <v-tab-item> <show-One></show-One> </v-tab-item>
-    <v-tab-item> <show-Two></show-Two> </v-tab-item>
-    <v-tab-item> <show-Three></show-Three> </v-tab-item>
-    <v-tab-item> <show-Four></show-Four> </v-tab-item>
+    <v-tab-item>
+      <card1
+        v-for="i in filterAward(1)"
+        :key="i.id"
+        :award="i"
+        :disable="true"
+      ></card1>
+    </v-tab-item>
+    <v-tab-item>
+      <card1
+        v-for="i in filterAward(2)"
+        :key="i.id"
+        :award="i"
+        :disable="true"
+      ></card1>
+    </v-tab-item>
+    <v-tab-item>
+      <card1
+        v-for="i in filterAward(3)"
+        :key="i.id"
+        :award="i"
+        :disable="true"
+      ></card1>
+    </v-tab-item>
+    <v-tab-item>
+      <card1
+        v-for="i in filterAward(4)"
+        :key="i.id"
+        :award="i"
+        :disable="true"
+      ></card1>
+    </v-tab-item>
   </v-tabs>
 </template>
 <script>
-import showOne from '~/components/tabawards/show1.vue'
-import showTwo from '~/components/tabawards/show2.vue'
-import showThree from '~/components/tabawards/show3.vue'
-import showFour from '~/components/tabawards/show4.vue'
+import card1 from '@/components/Cards/feedscard'
 export default {
   components: {
-    showOne,
-    showTwo,
-    showThree,
-    showFour,
+    card1,
+  },
+  props: {
+    awards: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  methods: {
+    filterAward(val) {
+      return this.awards.filter((f) => f.awardType === val)
+    },
   },
 }
 </script>

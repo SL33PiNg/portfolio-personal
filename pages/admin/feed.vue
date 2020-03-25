@@ -1,44 +1,42 @@
 <template>
-  <v-card class="mx-auto ma-8" max-width="80%">
-    <v-container>
-      <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8 ">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-history</v-icon>
-            ประวัติการแก้ไข
-          </h1></v-sheet
-        >
-      </v-row>
-      <v-row justify="center" class="mt-10">
-        <v-col cols="12" md="5" xs="12">
-          <v-select
-            v-model="catagorySelect"
-            :items="items"
-            outlined
-            placeholder="เลือกประเภทผลงาน"
-          >
-            ประเภทผลงาน
-          </v-select>
-        </v-col>
-        <v-col cols="12" md="5" xs="12">
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="ชื่อผลงาน"
-            outlined
-            hide-details
-          />
-        </v-col>
-      </v-row>
-      <v-subheader>ผลงานเด่น ({{ showawards.length }} / 5)</v-subheader>
-      <v-row justify="center">
-        <card1
-          v-for="i in showawards"
-          :key="i.id"
-          :award="i"
-          @reload="getAwardhighlights"
-        ></card1>
-      </v-row>
+  <v-container fill-height fluid grid-list-xl>
+    <v-layout justify-center wrap>
+      <v-card width="80%" class="mt-6">
+        <v-form>
+          <v-container py-0>
+            <v-layout wrap>
+              <v-flex xs12 md12>
+                <h1>
+                  <v-icon large color="black"
+                    >mdi-newspaper-variant-outline</v-icon
+                  >
+                  จัดการฟีดข่าว
+                </h1>
+              </v-flex>
+              <v-flex xs12 md6>
+                <v-select
+                  v-model="catagorySelect"
+                  :items="items"
+                  placeholder="เลือกประเภทผลงาน"
+                >
+                  ประเภทผลงาน
+                </v-select>
+              </v-flex>
+              <v-flex xs12 md6>
+                <v-text-field v-model="search" label="ชื่อผลงาน" clearable />
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-form>
+        <v-subheader>ผลงานเด่น ({{ showawards.length }} / 5)</v-subheader>
+        <v-row justify="center">
+          <card1
+            v-for="i in showawards"
+            :key="i.id"
+            :award="i"
+            @reload="getAwardhighlights"
+          ></card1>
+        </v-row>
 
       <v-divider :inset="true" class="grey darken-2"></v-divider>
 
