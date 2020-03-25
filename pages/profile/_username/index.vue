@@ -12,38 +12,49 @@
     <v-tab>
       อื่นๆ
     </v-tab>
-
     <v-tab-item>
-      <card1
-        v-for="i in filterAward(1)"
-        :key="i.id"
-        :award="i"
-        :disable="true"
-      ></card1>
+      <v-card height="845" class="overflow-y-auto">
+        <v-container>
+          <v-row>
+            <v-col v-for="i in filterAward(1)" :key="i.id" cols="12" md="6">
+              <card1 :award="i" :disable="true"></card1>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
     </v-tab-item>
     <v-tab-item>
-      <card1
-        v-for="i in filterAward(2)"
-        :key="i.id"
-        :award="i"
-        :disable="true"
-      ></card1>
+      <v-card height="845" class="overflow-y-auto">
+        <v-container>
+          <v-row>
+            <v-col v-for="i in filterAward(2)" :key="i.id" cols="12" md="6">
+              <card1 :award="i" :disable="true"></card1>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
     </v-tab-item>
     <v-tab-item>
-      <card1
-        v-for="i in filterAward(3)"
-        :key="i.id"
-        :award="i"
-        :disable="true"
-      ></card1>
+      <v-card height="845" class="overflow-y-auto">
+        <v-container>
+          <v-row>
+            <v-col v-for="i in filterAward(3)" :key="i.id" cols="12" md="6">
+              <card1 :award="i" :disable="true"></card1>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
     </v-tab-item>
     <v-tab-item>
-      <card1
-        v-for="i in filterAward(4)"
-        :key="i.id"
-        :award="i"
-        :disable="true"
-      ></card1>
+      <v-card height="845" class="overflow-y-auto">
+        <v-container>
+          <v-row>
+            <v-col v-for="i in filterAward(4)" :key="i.id" cols="12" md="6">
+              <card1 :award="i" :disable="true"></card1>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
     </v-tab-item>
   </v-tabs>
 </template>
