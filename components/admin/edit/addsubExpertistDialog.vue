@@ -49,8 +49,7 @@ export default {
           subName: this.name,
         })
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error)
+        this.$toast.error(`ชื่อความเชี่ยวชาญ (ย่อย) : ${this.name} มีอยู่แล้ว`)
       } finally {
         this.name = ''
         this.$emit('refetch')
