@@ -13,7 +13,7 @@ exports.setCounter = async (req, res) => {
 
 exports.getAlldepartment = async (req, res) => {
   try {
-    const result = await departmentModel.find()
+    const result = await departmentModel.find().sort({ name: 1 })
     return res.json(result)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
@@ -55,7 +55,7 @@ exports.delDepartment = async (req, res) => {
 
 exports.getAllExpertist = async (req, res) => {
   try {
-    const result = await expertistModel.find()
+    const result = await expertistModel.find().sort({ name: 1 })
     res.json(result)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
@@ -98,8 +98,22 @@ exports.delExpertist = async (req, res) => {
 exports.addSubExpertist = async (req, res) => {
   const { _id, subName } = req.body
   try {
-    const result = await expertistModel.findByIdAndUpdate(_id, { $push: { sub: { name: subName } } }, { new: true })
-    res.json(result)
+    const result = await expertistModel.findOneAndUpdate(
+      {
+        _id,
+        'sub.name': {
+          $ne: subName } },
+        { 
+          $push: {
+            sub: {
+              $each: [ { name: subName } ],
+              $sort: { name: 1 }
+            }
+          } 
+        }, { new: true })
+      if(result)
+        return res.json(result)
+      res.status(409).json({ status: 409, message: 'conflic' })
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
   }
@@ -132,7 +146,7 @@ exports.deleteSubExpertist = async (req, res) => {
 // ******positionOcsc*********
 exports.getAllPositionOcsc = async (req, res) => {
   try {
-    const result = await positionOcscModel.find()
+    const result = await positionOcscModel.find().sort({ name: 1 })
     res.json(result)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
@@ -148,6 +162,7 @@ exports.addPositionOcsc = async (req, res) => {
     })
     res.json(result)
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ status: 500, message: error.message })
   }
 }
@@ -175,8 +190,21 @@ exports.delPositionOcsc = async (req, res) => {
 exports.addSubPositionOcsc = async (req, res) => {
   const { _id, subName } = req.body
   try {
-    const result = await positionOcscModel.findByIdAndUpdate(_id, { $push: { sub: { name: subName } } }, { new: true })
-    res.json(result)
+    const result = await positionOcscModel.findOneAndUpdate({
+      _id,
+      'sub.name': {
+        $ne: subName } },
+      { 
+        $push: {
+          sub: {
+            $each: [ { name: subName } ],
+            $sort: { name: 1 }
+          }
+        } 
+      }, { new: true })
+    if(result)
+      return res.json(result)
+    res.status(409).json({ status: 409, message: 'conflic' })
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
   }

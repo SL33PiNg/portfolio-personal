@@ -15,7 +15,7 @@ exports.addAward = async (req, res) => {
 exports.getAward = async (req, res) => {
   const { id } = req.user
   try {
-    const user = await AwardModel.find({ user_id: id })
+    const user = await AwardModel.find({ user_id: id }).sort({ eventYear: -1 })
     return res.json(user)
   } catch (error) {
     return res.status(500).json({ status: 500, message: 'internal server error' })
