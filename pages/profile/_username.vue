@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row v-if="!loading">
+    <v-row v-if="loading">
       <v-col cols="12" md="4">
         <v-row>
           <v-card width="100%" class="mt-8">
@@ -163,6 +163,11 @@ export default {
     Complaint,
   },
   data: () => ({
+    maxH: window.innerHeight,
+    profileDone: false,
+    selectDone1: false,
+    selectDone2: false,
+    selectDone3: false,
     dialog: false,
     tab: null,
     tab2: null,
@@ -171,7 +176,6 @@ export default {
         academicRank: '',
       },
     },
-    loading: true,
     username: '',
     positionocsc: [],
     expertists: [],
@@ -193,7 +197,16 @@ export default {
     departments: [],
   }),
   computed: {
+    loading() {
+      return (
+        this.getProfile &&
+        this.selectDone1 &&
+        this.selectDone2 &&
+        this.selectDone3
+      )
+    },
     departmentName() {
+      if (!this.loading) return ''
       const found = this.departments.find(
         (f) => f._id === this.user.careerInfo.dpmentID
       )
@@ -239,7 +252,6 @@ export default {
   },
   methods: {
     async getProfile() {
-      this.loading = true
       try {
         const result = await this.$axios.$get(
           `/profile/${this.$route.params.username}`
@@ -247,39 +259,36 @@ export default {
         this.user = result
       } catch (error) {
       } finally {
-        this.loading = false
+        this.profileDone = true
       }
     },
     async getExpertist() {
-      this.loading = true
       try {
         const result = await this.$axios.$get('/select/expertist')
 
         this.expertists = result
       } catch (error) {
       } finally {
-        this.loading = false
+        this.selectDone1 = true
       }
     },
     async getPositionOcsc() {
-      this.loading = true
       try {
         const result = await this.$axios.$get('/select/positionOcsc')
 
         this.positionocsc = result
       } catch (error) {
       } finally {
-        this.loading = false
+        this.selectDone2 = true
       }
     },
     async getDepartment() {
-      this.loading = true
       try {
         const result = await this.$axios.$get('/select/department')
         this.departments = result
       } catch (error) {
       } finally {
-        this.loading = false
+        this.selectDone3 = true
       }
     },
   },
