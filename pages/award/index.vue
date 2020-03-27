@@ -76,7 +76,7 @@ export default {
         return this.filterCat.filter(
           (award) =>
             award.name.search(this.search) >= 0 ||
-            award.eventYear.toString().search(this.search) >= 0
+            award.eventYear.search(this.search) >= 0
         )
       }
       return this.filterCat
