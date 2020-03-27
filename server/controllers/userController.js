@@ -106,7 +106,13 @@ exports.addUserEducationInfoById = async (req, res) => {
   try {
     const result = await UserModel.findByIdAndUpdate(
       req.user.id,
-      { $push: { educationinfo: education } },
+      { $push: {
+         educationinfo: {
+          $each: [ education ],
+          $sort: { graduate: -1 }
+         }
+        }
+      },
       { new: true }
     )
 
