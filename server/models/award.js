@@ -13,7 +13,7 @@ const awardSchema = new mongoose.Schema({
   jobTitles: String,
   funding: Boolean,
   fundingSource: String,
-  eventYear: Number,
+  eventYear: String,
   file: [ String ],
   infoemation: String,
   cover: String,
