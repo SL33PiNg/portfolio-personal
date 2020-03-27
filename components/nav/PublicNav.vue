@@ -24,6 +24,17 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+    <v-row justify="center" class="mt-12">
+      <v-date-picker
+        v-model="date"
+        width="250"
+        color="primary"
+        header-color="primary"
+        class="mt-4"
+        locale="th"
+        light
+      ></v-date-picker>
+    </v-row>
   </v-navigation-drawer>
 </template>
 
@@ -31,6 +42,7 @@
 export default {
   data() {
     return {
+      date: new Date().toISOString().substr(0, 10),
       items: [
         {
           icon: 'mdi-magnify',
