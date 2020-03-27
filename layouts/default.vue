@@ -7,9 +7,14 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="true" fixed app color="">
       <v-toolbar-title> </v-toolbar-title>
-      <v-btn text color="normal" @click="$router.push('/')">
-        An Online Portfolio for RMUTT Staff
-      </v-btn>
+      <v-tooltip right>
+        <template v-slot:activator="{ on }">
+          <v-btn text color="normal" @click="$router.push('/')" v-on="on">
+            An Online Portfolio for RMUTT Staff
+          </v-btn></template
+        >
+        <span>หน้าแรก</span></v-tooltip
+      >
 
       <v-spacer />
 
@@ -20,8 +25,22 @@
       </template>
 
       <template v-else>
-        <v-chip to="/user">{{ $auth.user.username }}</v-chip>
-        <v-btn text @click="$auth.logout()">logout</v-btn>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }">
+            <v-chip to="/user" v-on="on">{{
+              $auth.user.username
+            }}</v-chip></template
+          >
+          <span>โปรไฟล์</span></v-tooltip
+        >
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on }"
+            ><v-btn text @click="$auth.logout()" v-on="on"
+              >logout</v-btn
+            ></template
+          >
+          <span>ออกจากระบบ</span></v-tooltip
+        >
       </template>
     </v-app-bar>
     <v-content>

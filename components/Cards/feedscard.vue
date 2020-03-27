@@ -38,11 +38,22 @@
           ><h4>ประเภทผลงาน: {{ award.awardType | idToString(items) }}</h4>
           ปี: {{ award.eventYear }}
         </v-list-item-subtitle> </v-list-item-content
-      ><v-btn icon @click.stop="openDetail(award)"
-        ><v-icon>mdi-magnify</v-icon></v-btn
+      ><v-tooltip bottom>
+        <template v-slot:activator="{ on }"
+          ><v-btn icon @click.stop="openDetail(award)" v-on="on"
+            ><v-icon>mdi-magnify</v-icon></v-btn
+          ></template
+        >
+        <span>ดูรายละเอียด</span></v-tooltip
       >
-      <v-btn v-if="isUser" icon @click="$emit('toggleDelete', award)"
-        ><v-icon>mdi-delete-outline</v-icon></v-btn
+
+      <v-tooltip bottom>
+        <template v-if="isUser" v-slot:activator="{ on }">
+          <v-btn icon @click="$emit('toggleDelete', award)" v-on="on"
+            ><v-icon>mdi-delete-outline</v-icon></v-btn
+          ></template
+        >
+        <span>ลบผลงาน</span></v-tooltip
       >
     </v-list-item>
     <v-row wrap justify="center">
