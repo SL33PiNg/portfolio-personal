@@ -48,7 +48,16 @@ exports.login = async (req, res) => {
 exports.addUserWorkdInfoById = async (req, res) => {
   const work = { ...req.body }
   try {
-    const result = await UserModel.findByIdAndUpdate(req.user.id, { $push: { workinfo: work } }, { new: true })
+    const result = await UserModel.findByIdAndUpdate(
+      req.user.id, 
+      { $push: {
+         workinfo: {
+          $each: [ work ],
+          $sort: { end: -1 }
+         } 
+        } 
+      }, 
+      { new: true })
 
     return res.json(result)
   } catch (error) {
@@ -140,7 +149,16 @@ exports.deleteEducationInfoByIndex = async (req, res) => {
 exports.addUsercertificateInfoById = async (req, res) => {
   const certificate = { ...req.body }
   try {
-    const result = await UserModel.findByIdAndUpdate(req.user.id, { $push: { certificateinfo: certificate } }, { new: true })
+    const result = await UserModel.findByIdAndUpdate(
+      req.user.id, 
+      { $push: { 
+          certificateinfo: {
+            $each: [ certificate ],
+            $sort: { graduate: -1 } 
+          }
+        } 
+      }, 
+      { new: true })
 
     return res.json(result)
   } catch (error) {
