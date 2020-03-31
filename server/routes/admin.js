@@ -22,5 +22,6 @@ router.get('/markedAward/:id/:status' , addAdmin.markedAward)
 router.get('/reports' , addAdmin.getAllReport)
 router.get('/allowReport/:id' , addAdmin.allowReport)
 router.get('/NotAllowedReport/:id' , addAdmin.NotAllowedReport)
+router.delete('/delReports/:id' , addAdmin.delReportsById)
 
 module.exports = router

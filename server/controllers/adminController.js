@@ -124,3 +124,13 @@ exports.NotAllowedReport = async (req, res) => {
     return res.status(500).json({ status: 500, message: 'unknow error' })
   }
 }
+
+exports.delReportsById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const result = await ReportModel.findByIdAndDelete({ _id: id })
+    res.json(result)
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}

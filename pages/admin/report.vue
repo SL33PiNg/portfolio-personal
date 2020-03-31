@@ -5,7 +5,7 @@
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-history</v-icon>
-            การร้องเรียน {{ tempDataItem }}
+            การร้องเรียน
           </h1></v-sheet
         >
       </v-row>
@@ -38,6 +38,9 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
+                  <v-btn text color="show">
+                    ไปยังหน้าโปรไฟล์
+                  </v-btn>
                   <v-btn color="success" @click="allowReport">
                     บันทึก
                   </v-btn>
@@ -46,6 +49,28 @@
                   </v-btn>
                 </v-card-actions>
               </v-container>
+            </v-card>
+          </v-dialog>
+
+          <v-dialog v-model="del" max-width="500px">
+            <v-card>
+              <v-card-text>
+                <v-container>
+                  <v-card-title>
+                    <span class="headline">ต้องการลบการร้องเรียนของ </span>
+                    {{ tempDataItem.reportName }} ?
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error" @click="delReports(tempDataItem)">
+                      ตกลง
+                    </v-btn>
+                    <v-btn color="primary" @click="del = false">
+                      ยกเลิก
+                    </v-btn>
+                  </v-card-actions>
+                </v-container>
+              </v-card-text>
             </v-card>
           </v-dialog>
         </template>
@@ -74,7 +99,18 @@
                 </v-icon></v-chip
               >
             </template>
-            <span>เผยแพร่ หรือ ระงับการเผยแพร่ </span>
+            <span>รายละเอียดการร้องเรียน </span>
+          </v-tooltip>
+
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-chip class="error" v-on="on"
+                ><v-icon text-center @click="openDel(item)">
+                  mdi-delete
+                </v-icon></v-chip
+              >
+            </template>
+            <span>ลบการร้องเรียน</span>
           </v-tooltip>
         </template>
       </v-data-table>
@@ -92,6 +128,7 @@ export default {
   },
   data() {
     return {
+      del: false,
       reports: [],
       loading: false,
       account: false,
@@ -101,12 +138,12 @@ export default {
         { text: 'ชื่อ ผู้ร้องเรียน', align: 'start', value: 'reportName' },
         {
           text: 'ชื่อ ผู้ถูกร้องเรียน',
-          align: 'start',
+          align: 'center',
           value: 'fullName',
         },
         { text: 'วัน/เวลา', align: 'center', value: 'date' },
         { text: 'การแก้ไข', align: 'center', value: 'status' },
-        { text: 'รายละเอียดการร้องเรียน', align: 'center', value: 'action' },
+        { text: 'การจัดการ', align: 'center', value: 'action' },
       ],
     }
   },
@@ -141,6 +178,23 @@ export default {
       } finally {
         this.loading = false
         this.account = false
+
+        this.getAllReport()
+      }
+    },
+    openDel(item) {
+      this.tempDataItem = item
+      this.del = true
+    },
+    async delReports() {
+      try {
+        await this.$axios.$delete(`/admin/delReports/${this.tempDataItem._id}`)
+        this.$toast.show('ลบข้อมูล"สำเร็จ"')
+      } catch (error) {
+        this.$toast.error('ลบข้อมูล"ไม่สำเร็จ"')
+      } finally {
+        this.del = false
+        this.tempDataItem = ''
         this.getAllReport()
       }
     },
