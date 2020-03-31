@@ -1,15 +1,16 @@
+/* eslint-disable prettier/prettier */
 export const state = () => ({
-  user: {},
+  user: {}
 })
 
 export const mutations = {
-  SET_USER(state, user) {
+  SET_USER (state, user) {
     state.user = user
-  },
+  }
 }
 
 export const actions = {
-  getUser({ commit }) {
+  getUser ({ commit }) {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await this.$axios.$get('/users')
@@ -22,11 +23,11 @@ export const actions = {
       }
     })
   },
-  updateUser({ commit }, payload) {
+  updateUser ({ commit }, payload) {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await this.$axios.$patch('/users', {
-          ...payload,
+          ...payload
         })
         commit('SET_USER', user)
         resolve(user)
@@ -38,13 +39,13 @@ export const actions = {
         console.log(error)
       }
     })
-  },
+  }
 }
 
 export const getters = {
-  getUser(state) {
+  getUser (state) {
     // eslint-disable-next-line no-console
     console.log('getter', state)
     return state.user
-  },
+  }
 }

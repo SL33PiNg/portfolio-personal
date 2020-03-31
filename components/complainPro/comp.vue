@@ -18,7 +18,7 @@
           outlined
         ></v-text-field>
 
-        <froala v-model="information" class="ma-1"></froala>
+        <froala :config="config" class="ma-1"></froala>
 
         <v-divider></v-divider>
 
@@ -45,6 +45,51 @@ export default {
   },
   data() {
     return {
+      config: {
+        placeholderText: 'Edit Your Content Here!',
+        charCounterMax: 3000,
+        quickInsertEnabled: false,
+        toolbarButtons: {
+          moreImage: {
+            buttons: ['insertImage'],
+          },
+          moreText: {
+            buttons: [
+              'bold',
+              'italic',
+              'underline',
+              'strikeThrough',
+              'subscript',
+              'superscript',
+              'fontFamily',
+              'fontSize',
+              'textColor',
+              'backgroundColor',
+              'inlineClass',
+              'inlineStyle',
+              'clearFormatting',
+            ],
+          },
+          moreParagraph: {
+            buttons: [
+              'alignLeft',
+              'alignCenter',
+              'formatOLSimple',
+              'alignRight',
+              'alignJustify',
+              'formatOL',
+              'formatUL',
+              'paragraphFormat',
+              'paragraphStyle',
+              'lineHeight',
+              'outdent',
+              'indent',
+              'quote',
+            ],
+          },
+        },
+      },
+
       dialog: false,
       loadBtn: false,
       information: '',
