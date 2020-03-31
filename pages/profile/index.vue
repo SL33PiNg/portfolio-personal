@@ -41,13 +41,15 @@
                       }}</v-list-item-subtitle
                     >
                     <v-list-item-subtitle class="my-1"
-                      >หน่วยงาน : {{ i.departmentName }}
+                      >หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle class="my-1">
-                      ความเชี่ยวชาญ :</v-list-item-subtitle
+                      ความเชี่ยวชาญ :
+                      {{ getExpert(i.expId) }}</v-list-item-subtitle
                     >
                     <v-list-item-subtitle class="my-1"
-                      >ตำแหน่งสายงาน (ก.พ.) :</v-list-item-subtitle
+                      >ตำแหน่งสายงาน (ก.พ.) :
+                      {{ getOcsc(i.ocscId) }}</v-list-item-subtitle
                     >
                   </v-list-item-content>
                 </v-list-item>
@@ -63,6 +65,7 @@
 <script>
 import normal from '~/components/search/nomal.vue'
 export default {
+  middleware: ['getSelect'],
   components: {
     normal,
   },
@@ -72,38 +75,62 @@ export default {
       users: [],
       loading: true,
       hostname: location.origin,
-      departments: [],
     }
   },
   computed: {
-    departmentName() {
-      const found = this.departments.find(
-        (f) => f._id === this.user.careerInfo.dpmentID
-      )
-      const a = { ...found }
-      return a.name
+    department() {
+      return this.$store.state.select.department
+    },
+    expert() {
+      return this.$store.state.select.expert
+    },
+    ocsc() {
+      return this.$store.state.select.ocsc
     },
   },
   created() {
     this.getAllProfile()
-    this.getDepartment()
   },
   methods: {
+    getOcsc(ids) {
+      const a = []
+
+      this.ocsc.forEach((pocsc) => {
+        ids.forEach((ocsc) => {
+          pocsc.sub.forEach((psub) => {
+            if (psub._id === ocsc) {
+              a.push(psub.name)
+            }
+          })
+        })
+      })
+      return a
+    },
+    getExpert(ids) {
+      const b = []
+
+      this.expert.forEach((lexp) => {
+        ids.forEach((exp) => {
+          lexp.sub.forEach((expsub) => {
+            if (expsub._id === exp) {
+              b.push(expsub.name)
+            }
+          })
+        })
+      })
+      return b
+    },
+    getDepartment(id) {
+      if (!id) return ''
+      const found = this.department.find((f) => f._id === id)
+      const c = { ...found }
+      return c.name
+    },
     async getAllProfile() {
       this.loading = true
       try {
         const result = await this.$axios.$get('/profile')
         this.users = result
-      } catch (error) {
-      } finally {
-        this.loading = false
-      }
-    },
-    async getDepartment() {
-      this.loading = true
-      try {
-        const result = await this.$axios.$get('/select/department')
-        this.departments = result
       } catch (error) {
       } finally {
         this.loading = false
