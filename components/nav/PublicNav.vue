@@ -27,12 +27,12 @@
     <v-row justify="center" class="mt-12">
       <v-date-picker
         v-model="date"
-        width="250"
+        width="230"
         color="primary"
         header-color="primary"
-        class="mt-4"
+        class="mt-12"
         locale="th"
-        light
+        dark
       ></v-date-picker>
     </v-row>
   </v-navigation-drawer>
@@ -51,13 +51,8 @@ export default {
         },
         {
           icon: 'mdi-account-star-outline',
-          title: 'แอดมิน',
+          title: 'ผู้ดูแลระบบ',
           to: '/admin',
-        },
-        {
-          icon: 'mdi-account-search-outline',
-          title: 'การค้นหาขั้นสูง',
-          to: '/profile/search/advance',
         },
       ],
     }

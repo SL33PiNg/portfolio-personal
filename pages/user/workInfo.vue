@@ -134,8 +134,12 @@
               }}</v-chip>
             </template>
             <template v-slot:item.action="{ item }">
-              <v-btn icon @click="openDel(item._id)"
-                ><v-icon>mdi-delete</v-icon></v-btn
+              <v-tooltip right>
+                <template v-slot:activator="{ on }">
+                  <v-btn icon @click="openDel(item._id)" v-on="on"
+                    ><v-icon>mdi-delete</v-icon></v-btn
+                  ></template
+                ><span>ลบ</span></v-tooltip
               >
             </template>
           </v-data-table>

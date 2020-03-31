@@ -60,7 +60,9 @@
       <v-dialog v-model="dialog" width="70%">
         <v-card>
           <v-row justify="end" class="mr-1">
-            <v-icon color="red" @click="dialog = false"> mdi-close-box</v-icon>
+            <v-icon color="red" class="ma-1" @click="dialog = false">
+              mdi-close-box</v-icon
+            >
           </v-row>
           <keep-alive>
             <component :is="cardType" :award="award" />

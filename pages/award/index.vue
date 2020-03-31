@@ -4,8 +4,8 @@
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-history</v-icon>
-            ประวัติการแก้ไข
+            <v-icon large color="white">mdi-trophy-award</v-icon>
+            ผลงานทั้งหมด
           </h1></v-sheet
         >
       </v-row>

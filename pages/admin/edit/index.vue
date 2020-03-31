@@ -40,9 +40,13 @@
           </v-dialog>
         </template>
         <template v-slot:item.action="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)">
-            mdi-pencil
-          </v-icon>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }"
+              ><v-icon small class="mr-2" @click="editItem(item)" v-on="on">
+                mdi-pencil
+              </v-icon></template
+            ><span>แก้ไข</span></v-tooltip
+          >
           <del-department-dialog :item="item" @refetch="getDepartment">
           </del-department-dialog>
         </template>

@@ -4,7 +4,9 @@
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-briefcase-outline</v-icon>
+            <v-icon large color="white"
+              >mdi-account-multiple-plus-outline</v-icon
+            >
             สร้างบัญชีผู้ดูแลระบบ
           </h1></v-sheet
         >
