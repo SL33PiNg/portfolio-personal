@@ -125,7 +125,7 @@
             </v-list-item>
             <v-divider></v-divider>
             <v-card-actions class="ml-4">
-              <Complaint></Complaint>
+              <Complaint :user="user"></Complaint>
             </v-card-actions>
           </v-card>
         </v-row>

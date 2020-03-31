@@ -11,19 +11,20 @@
         </v-card-title>
 
         <v-text-field
+          v-model="reportName"
           label="ชื่อผู้ร้องเรียน"
           class="ma-2"
           clearable
           outlined
         ></v-text-field>
 
-        <froala class="ma-1"></froala>
+        <froala v-model="information" class="ma-1"></froala>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="success" @click="dialog = false">
+          <v-btn color="success" @click="addReport">
             บันทึก
           </v-btn>
           <v-btn color="error" @click="dialog = false">
@@ -36,10 +37,41 @@
 </template>
 <script>
 export default {
+  props: {
+    user: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
   data() {
     return {
       dialog: false,
+      loadBtn: false,
+      information: '',
+      reportName: '',
     }
+  },
+  methods: {
+    async addReport() {
+      try {
+        this.loadBtn = true
+        await this.$axios.$post(`/profile/report`, {
+          profileID: this.user._id,
+          profileName: this.user.username,
+          profilefirstnameTH: this.user.personalInfo.firstnameTH,
+          profilelastnameTH: this.user.personalInfo.lastnameTH,
+          reportName: this.reportName,
+          information: this.information,
+        })
+        this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
+      } catch (error) {
+        this.$toast.error('เพิ่มข้อมูล"ไม่สำเร็จ"')
+      } finally {
+        this.dialog = false
+        this.information = ''
+        this.reportName = ''
+      }
+    },
   },
 }
 </script>

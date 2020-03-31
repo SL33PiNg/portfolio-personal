@@ -5,4 +5,6 @@ const router = express.Router()
 router.get('/', ProfileController.getAllUserProfile)
 router.get('/:username', ProfileController.getProfileByUsername)
 
+router.post('/report', ProfileController.addReport)
+
 module.exports = router

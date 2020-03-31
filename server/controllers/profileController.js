@@ -1,4 +1,5 @@
 const UserModel = require('../models/User')
+const ReportModel = require('../models/report')
 
 exports.getAllUserProfile = async (req, res) => {
   try {
@@ -17,6 +18,23 @@ exports.getProfileByUsername = async (req, res) => {
   try {
     const profile = await UserModel.findOne({ username }).populate({ path: 'awardList', options: { sort: { 'highlights': -1, 'eventYear': -1 } } })
     return res.send(profile)
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error.message })
+  }
+}
+
+exports.addReport = async (req, res) => {
+  const { profileID, profileName, information, reportName, profilefirstnameTH, profilelastnameTH } = req.body
+  try {
+    const result = await ReportModel.create({
+      profileID,
+      profileName,
+      reportName,
+      information,
+      profilefirstnameTH,
+      profilelastnameTH
+    })
+    return res.json(result)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
   }
