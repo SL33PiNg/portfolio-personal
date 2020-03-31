@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" width="600">
       <template v-slot:activator="{ on }"
-        ><v-btn color="warning" text v-on="on"> <h4>ร้องเรียน</h4></v-btn>
+        ><v-btn color="warning" v-on="on"> <h4>ร้องเรียน</h4></v-btn>
       </template>
 
       <v-card>
@@ -18,7 +18,7 @@
           outlined
         ></v-text-field>
 
-        <froala :config="config" class="ma-1"></froala>
+        <froala v-model="information" :config="config" class="ma-1"></froala>
 
         <v-divider></v-divider>
 
