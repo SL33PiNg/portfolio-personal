@@ -44,13 +44,12 @@
           </v-btn></v-row
         >
       </v-col>
-      <v-col cols="12" xs="12">
+      <!-- <v-col cols="12" xs="12">
         <v-row justify="end">
           <v-btn class="secondary" to="/advanceSearch"
             >การค้นหาขั้นสูง</v-btn
           ></v-row
-        ></v-col
-      >
+        ></v-col -->
     </v-row>
   </v-card>
 </template>

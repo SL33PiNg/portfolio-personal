@@ -38,7 +38,13 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn text color="show">
+                  <v-btn
+                    text
+                    color="show"
+                    @click="
+                      $router.push(`/profile/${tempDataItem.profileName}`)
+                    "
+                  >
                     ไปยังหน้าโปรไฟล์
                   </v-btn>
                   <v-btn color="success" @click="allowReport">
