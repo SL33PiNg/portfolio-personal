@@ -58,16 +58,16 @@ export default {
           title: 'ประวัติการแก้ไข',
           to: '/admin/history',
         },
-        {
-          icon: 'mdi-account-multiple-plus-outline',
-          title: 'สร้างบัญชีผู้ดูแลระบบ',
-          to: '/admin/create',
-        },
-        {
-          icon: 'mdi-backup-restore',
-          title: 'สำรองข้อมูล',
-          to: '/',
-        },
+        //  {
+        //         icon: 'mdi-account-multiple-plus-outline',
+        //         title: 'สร้างบัญชีผู้ดูแลระบบ',
+        //         to: '/admin/create',
+        //       },
+        // {
+        //   icon: 'mdi-backup-restore',
+        //   title: 'สำรองข้อมูล',
+        //   to: '/',
+        // },
       ],
     }
   },
