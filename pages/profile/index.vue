@@ -1,6 +1,63 @@
 <template>
   <v-container>
-    <v-row justify="center"> <normal></normal> </v-row>
+    <v-row justify="center">
+      <v-card class="my-2" width="100%">
+        <v-row justify="center">
+          <h2 class="mt-5">
+            ค้นหา {{ academic }} {{ name }} {{ expId }} {{ ocscId }}
+          </h2></v-row
+        >
+        <v-row justify="center" class="mt-5 ma-2">
+          <v-col cols="12" md="3" xs="12">
+            <v-select
+              v-model="academic"
+              :items="academicPos"
+              label="ตำแหน่งทางวิชาการ"
+              outlined
+            ></v-select>
+          </v-col>
+          <v-col cols="12" md="8" xs="12">
+            <v-text-field
+              v-model="name"
+              label="ชื่อ-นามสกุล,ชื่อเล่น"
+              outlined
+              class=""
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="12" md="5" xs="12">
+            <treeselect
+              v-model="expId"
+              :options="expertists"
+              :normalizer="normalizer"
+              :disable-branch-nodes="true"
+              clear-on-select
+              placeholder="ความเชี่ยวชาญ"
+            />
+          </v-col>
+          <v-col cols="12" md="5" xs="12">
+            <treeselect
+              v-model="ocscId"
+              :options="positionocsc"
+              :normalizer="normalizer"
+              :disable-branch-nodes="true"
+              clear-on-select
+              placeholder="ตำแหน่งสายงาน ก.พ."
+              outlined
+            />
+          </v-col>
+          <v-col cols="11" xs="12">
+            <v-row>
+              <v-btn block class="success" @click="search"
+                >ค้นหา <v-icon>mdi-magnify</v-icon>
+              </v-btn></v-row
+            >
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-row>
     <v-row justify="center">
       <v-card width="100%">
         <v-row
@@ -51,7 +108,7 @@
 
                 <v-col cols="12" md="6" align-self="center">
                   <v-list-item-subtitle class="ml-2">
-                    <v-span><h4>ความเชี่ยวชาญ</h4> </v-span>
+                    <span><h4>ความเชี่ยวชาญ</h4> </span>
                   </v-list-item-subtitle>
                   <v-list-item-subtitle>
                     <v-row class="ml-1">
@@ -65,7 +122,7 @@
                     >
                   </v-list-item-subtitle>
                   <v-list-item-subtitle class="ml-2">
-                    <v-span><h4>ตำแหน่งสายงาน (ก.พ.)</h4> </v-span>
+                    <span><h4>ตำแหน่งสายงาน (ก.พ.)</h4> </span>
                   </v-list-item-subtitle>
 
                   <v-chip
@@ -76,7 +133,7 @@
                     {{ b }}
                   </v-chip>
 
-                  <v-list-item-subtitle> {{ b }}</v-list-item-subtitle>
+                  <v-list-item-subtitle> </v-list-item-subtitle>
                 </v-col>
               </v-row>
             </v-card>
@@ -88,18 +145,40 @@
 </template>
 
 <script>
-import normal from '~/components/search/nomal.vue'
+import Treeselect from '@riophae/vue-treeselect'
 export default {
-  middleware: ['getSelect'],
   components: {
-    normal,
+    Treeselect,
   },
+  middleware: ['getSelect'],
+
   data() {
     return {
+      normalizer(node) {
+        return {
+          id: node._id,
+          label: node.name,
+          children: node.sub,
+        }
+      },
+      name: null,
+      academic: null,
+      expId: undefined,
+      ocscId: undefined,
+      positionocsc: [],
+      expertists: [],
       user: {},
       users: [],
       loading: true,
       hostname: location.origin,
+      clearOnSelect: false,
+      academicPos: [
+        '',
+        'ศาสตราจารย์',
+        'รองศาสตราจารย์',
+        'ผู้ช่วยศาสตราจารย์',
+        'อาจารย์',
+      ],
     }
   },
   computed: {
@@ -115,6 +194,8 @@ export default {
   },
   created() {
     this.getAllProfile()
+    this.getExpertist()
+    this.getPositionOcsc()
   },
   methods: {
     getOcsc(ids) {
@@ -161,8 +242,58 @@ export default {
         this.loading = false
       }
     },
+    async getExpertist() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/select/expertist')
+        this.expertists = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
+    async getPositionOcsc() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/select/positionOcsc')
+        this.positionocsc = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
+    async search() {
+      this.loading = true
+      try {
+        if (this.name || this.academic || this.expId || this.ocscId) {
+          const result = await this.$axios.$post(`/profile/search`, {
+            academic: this.academic,
+            name: this.name,
+            expId: this.expId,
+            ocscId: this.ocscId,
+          })
+          this.users = result
+          console.log(result)
+        } else {
+          this.getAllProfile()
+        }
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
   },
 }
 </script>
 
-<style></style>
+<style src="@riophae/vue-treeselect/dist/vue-treeselect.css"></style>
+<style>
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.7;
+  position: absolute;
+  width: 100%;
+}
+</style>

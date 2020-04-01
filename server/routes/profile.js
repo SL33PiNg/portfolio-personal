@@ -7,4 +7,6 @@ router.get('/:username', ProfileController.getProfileByUsername)
 
 router.post('/report', ProfileController.addReport)
 
+router.post('/search', ProfileController.search)
+
 module.exports = router
