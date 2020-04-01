@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-5" width="90%">
+  <v-card class="my-2" width="100%">
     <v-row justify="center"> <h2 class="mt-5">ค้นหา</h2></v-row>
     <v-row justify="center" class="mt-5 ma-2">
       <v-col cols="12" md="3" xs="12">
