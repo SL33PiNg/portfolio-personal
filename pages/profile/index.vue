@@ -4,10 +4,11 @@
       <v-card class="my-2" width="100%">
         <v-row justify="center">
           <h2 class="mt-5">
-            ค้นหา {{ academic }} {{ name }} {{ expId }} {{ ocscId }}
+            ค้นหา
           </h2></v-row
         >
-        <v-row justify="center" class="mt-5 ma-2">
+
+        <v-row justify="center" class="ma-2">
           <v-col cols="12" md="3" xs="12">
             <v-select
               v-model="academic"
@@ -16,18 +17,13 @@
               outlined
             ></v-select>
           </v-col>
-          <v-col cols="12" md="8" xs="12">
-            <v-text-field
-              v-model="name"
-              label="ชื่อ-นามสกุล,ชื่อเล่น"
-              outlined
-              class=""
-            >
+          <v-col cols="12" md="5" xs="12">
+            <v-text-field v-model="name" label="ชื่อ-นามสกุล,ชื่อเล่น" outlined>
             </v-text-field>
           </v-col>
         </v-row>
-        <v-row justify="center">
-          <v-col cols="12" md="5" xs="12">
+        <v-row justify="center" class="ma-2">
+          <v-col cols="12" md="4" xs="12">
             <treeselect
               v-model="expId"
               :options="expertists"
@@ -37,7 +33,7 @@
               placeholder="ความเชี่ยวชาญ"
             />
           </v-col>
-          <v-col cols="12" md="5" xs="12">
+          <v-col cols="12" md="4" xs="12">
             <treeselect
               v-model="ocscId"
               :options="positionocsc"
@@ -46,8 +42,9 @@
               clear-on-select
               placeholder="ตำแหน่งสายงาน ก.พ."
               outlined
-            />
-          </v-col>
+            /> </v-col
+        ></v-row>
+        <v-row justify="center">
           <v-col cols="11" xs="12">
             <v-row justify="center">
               <v-btn block class="success" @click="search"
