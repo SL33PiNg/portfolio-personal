@@ -49,13 +49,20 @@
             />
           </v-col>
           <v-col cols="11" xs="12">
-            <v-row>
+            <v-row justify="center">
               <v-btn block class="success" @click="search"
                 >ค้นหา <v-icon>mdi-magnify</v-icon>
               </v-btn></v-row
             >
           </v-col>
         </v-row>
+        <v-col cols="12" xs="12">
+          <v-row justify="end" class="ma-1">
+            <v-btn class="secondary" to="/profile/advancedSearch"
+              >การค้นหาขั้นสูง</v-btn
+            ></v-row
+          >
+        </v-col>
       </v-card>
     </v-row>
     <v-row justify="center">
