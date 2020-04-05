@@ -206,6 +206,9 @@ export default {
       this.search.splice(index, 1)
     },
     advancedSearch() {
+      if (this.start.data === undefined) {
+        return
+      }
       const result = {
         username: { $ne: 'admin' },
         $or: [],
