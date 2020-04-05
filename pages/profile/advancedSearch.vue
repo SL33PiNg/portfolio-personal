@@ -7,7 +7,8 @@
             <h2 class="mt-5">
               ค้นหาขั้นสูง
             </h2></v-row
-          ><card></card>
+          >
+          <card></card>
           <v-row justify="center" class="ma-2">
             <v-col cols="12" xs="12">
               <v-row justify="center">
@@ -26,6 +27,7 @@
 <script>
 import card from '@/components/Cards/adcard'
 export default {
+  middleware: ['getSelect'],
   components: {
     card,
   },
