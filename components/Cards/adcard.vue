@@ -191,6 +191,9 @@ export default {
       this.search[val].data = undefined
     },
     add() {
+      if (this.search.length >= 4) {
+        return
+      }
       this.search.push({
         num: this.count++,
         condition: 'and',

@@ -7,9 +7,8 @@
             ค้นหา
           </h2></v-row
         >
-
-        <v-row justify="center" class="ma-2">
-          <v-col cols="12" md="3" xs="12">
+        <v-row>
+          <v-col offset="2" cols="12" md="3" xs="12">
             <v-select
               v-model="academic"
               :items="academicPos"
@@ -22,8 +21,8 @@
             </v-text-field>
           </v-col>
         </v-row>
-        <v-row justify="center" class="ma-2">
-          <v-col cols="12" md="4" xs="12">
+        <v-row>
+          <v-col offset="2" cols="12" md="4" xs="12">
             <treeselect
               v-model="expId"
               :options="expertists"
