@@ -1,11 +1,34 @@
 <template>
-  <div>
-    <v-btn @click="advancedSearch">!!</v-btn>
-  </div>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12" xs="12">
+        <v-card class="my-2" width="100%">
+          <v-row justify="center">
+            <h2 class="mt-5">
+              ค้นหาขั้นสูง
+            </h2></v-row
+          ><card></card>
+          <v-row justify="center" class="ma-2">
+            <v-col cols="12" xs="12">
+              <v-row justify="center">
+                <v-btn block class="success" @click="advancedSearch"
+                  >ค้นหา <v-icon>mdi-magnify</v-icon>
+                </v-btn></v-row
+              ></v-col
+            >
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import card from '@/components/Cards/adcard'
 export default {
+  components: {
+    card,
+  },
   data() {
     return {
       users: null,
@@ -72,5 +95,14 @@ export default {
   },
 }
 </script>
-
-<style></style>
+<style src="@riophae/vue-treeselect/dist/vue-treeselect.css"></style>
+<style>
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.7;
+  position: absolute;
+  width: 100%;
+}
+</style>
