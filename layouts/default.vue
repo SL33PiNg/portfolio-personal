@@ -31,7 +31,7 @@
               $auth.user.username
             }}</v-chip></template
           >
-          <span>โปรไฟล์</span></v-tooltip
+          <span>แก้ไขโปรไฟล์</span></v-tooltip
         >
         <v-tooltip bottom>
           <template v-slot:activator="{ on }"

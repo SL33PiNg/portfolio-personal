@@ -39,3 +39,49 @@ exports.addReport = async (req, res) => {
     return res.status(500).json({ status: 500, message: error.message })
   }
 }
+
+exports.search = async (req, res) => {
+  const { academic, name, expId, ocscId } = req.body
+  try {
+    let result
+    if(name){
+      result = await UserModel.find({ 
+        username: { $ne: 'admin' },
+        $or: [
+          {"personalInfo.academicRank": academic},
+          { "personalInfo.firstnameTH": {$regex: name} },
+          { "personalInfo.lastnameTH": {$regex: name} },
+          { "personalInfo.nicknameTH": {$regex: name} },
+          { expId },
+          { ocscId },
+        ]
+      })
+    } else {
+        result = await UserModel.find({ 
+          username: { $ne: 'admin' },
+          $or: [
+            {"personalInfo.academicRank": academic},
+            { expId },
+            { ocscId },
+          ]
+        })
+
+    }
+    return res.json(result)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ status: 500, message: error.message })
+  }
+}
+
+exports.advancedSearch = async (req, res) => {
+  const { query } = req.body
+  try {
+    const result = await UserModel.find( query )
+    return res.json(result)
+  } catch (error) {
+    console.log(error)
+    console.log(error)
+    return res.status(500).json({ status: 500, message: error.message })
+  }
+}
