@@ -49,7 +49,7 @@ export default {
         placeholderText: 'Edit Your Content Here!',
         charCounterMax: 3000,
         quickInsertEnabled: false,
-        imageUploadURL: '/api/upload_image',
+        // imageUploadURL: '/api/upload_image',
         toolbarButtons: {
           moreImage: {
             buttons: ['insertImage'],
