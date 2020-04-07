@@ -17,9 +17,21 @@
           clearable
           outlined
         ></v-text-field>
+        <v-textarea
+          v-model="information"
+          label="รายละเอียด"
+          class="ma-2"
+          outlined
+        ></v-textarea>
 
-        <froala v-model="information" :config="config" class="ma-1"></froala>
-
+        <v-col cols="6">
+          <v-file-input
+            accept="image/png, image/jpeg, image/bmp"
+            placeholder="เลือกรูปภาพ"
+            prepend-icon="mdi-camera"
+            label="ภาพประกอบ"
+          ></v-file-input>
+        </v-col>
         <v-divider></v-divider>
 
         <v-card-actions>
