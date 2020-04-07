@@ -1,24 +1,97 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" xs="12">
-        <v-card class="my-2" width="100%">
-          <v-row justify="center">
-            <h2 class="mt-5">
-              ค้นหาขั้นสูง
-            </h2></v-row
-          ><card></card>
-          <v-row justify="center" class="ma-2">
-            <v-col cols="12" xs="12">
-              <v-row justify="center">
-                <v-btn block class="success" @click="advancedSearch"
-                  >ค้นหา <v-icon>mdi-magnify</v-icon>
-                </v-btn></v-row
-              ></v-col
+      <v-card class="my-2" width="100%">
+        <v-row justify="center">
+          <h2 class="mt-5">
+            ค้นหาขั้นสูง
+          </h2></v-row
+        >
+        <card @search="advancedSearch"></card>
+      </v-card>
+    </v-row>
+    <v-row justify="center">
+      <v-card width="100%">
+        <v-row
+          v-for="i in users"
+          :key="i.id"
+          class="my-5 ma-2"
+          xs12
+          md12
+          justify="center"
+          wrap
+        >
+          <v-hover v-slot:default="{ hover }" open-delay="200">
+            <v-card
+              width="100%"
+              :elevation="hover ? 5 : 1"
+              class="ma-2"
+              @click="$router.push(`/profile/${i.username}`)"
             >
-          </v-row>
-        </v-card>
-      </v-col>
+              <v-row justify="space-around">
+                <v-col cols="12" md="6" align-self="center">
+                  <v-list-item>
+                    <v-list-item-avatar width="110" height="110" class="ma-1"
+                      ><v-img
+                        :src="`${hostname}/api/avatar/${i.avatar}`"
+                        aspect-ratio="1.7"
+                        class="ma-1 mx-auto"
+                      ></v-img
+                    ></v-list-item-avatar>
+
+                    <v-list-item-content>
+                      <v-list-item-title class="headline ml-1">
+                        {{ i.personalInfo.academicRank
+                        }}{{ i.personalInfo.firstnameTH }}
+                        {{ i.personalInfo.lastnameTH }}</v-list-item-title
+                      >
+
+                      <v-list-item-subtitle class="my-1 ml-2"
+                        >ชื่อเล่น :{{
+                          i.personalInfo.nicknameTH
+                        }}</v-list-item-subtitle
+                      >
+                      <v-list-item-subtitle class="my-1 ml-2"
+                        >หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-col>
+
+                <v-col cols="12" md="6" align-self="center">
+                  <v-list-item-subtitle class="ml-2">
+                    <span><h4>ความเชี่ยวชาญ</h4> </span>
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle>
+                    <v-row class="ml-1">
+                      <v-chip
+                        v-for="a in getExpert(i.expId)"
+                        :key="a"
+                        class="my-1 ma-1"
+                      >
+                        {{ a }}</v-chip
+                      ></v-row
+                    >
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle class="ml-2">
+                    <span><h4>ตำแหน่งสายงาน (ก.พ.)</h4> </span>
+                  </v-list-item-subtitle>
+
+                  <v-chip
+                    v-for="b in getOcsc(i.ocscId)"
+                    :key="b"
+                    class="my-1 ma-1"
+                  >
+                    {{ b }}
+                  </v-chip>
+
+                  <v-list-item-subtitle> </v-list-item-subtitle>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-hover>
+        </v-row>
+      </v-card>
     </v-row>
   </v-container>
 </template>
@@ -26,12 +99,14 @@
 <script>
 import card from '@/components/Cards/adcard'
 export default {
+  middleware: ['getSelect'],
   components: {
     card,
   },
   data() {
     return {
       users: null,
+      hostname: location.origin,
       name: {
         firstname: 'personalInfo.firstnameTH',
         lastname: 'personalInfo.lastnameTH',
@@ -53,32 +128,23 @@ export default {
       ],
     }
   },
+  computed: {
+    department() {
+      return this.$store.state.select.department
+    },
+    expert() {
+      return this.$store.state.select.expert
+    },
+    ocsc() {
+      return this.$store.state.select.ocsc
+    },
+  },
   methods: {
-    async advancedSearch() {
-      const result2 = {
-        username: { $ne: 'admin' },
-        $or: [],
-      }
-      const or = []
-      const and = []
-      this.search.forEach((s) => {
-        if (s.condition === 'or')
-          or.push({ [this.name[s.fieldname]]: this.check(s.data, s.fieldname) })
-        else
-          and.push({
-            [this.name[s.fieldname]]: this.check(s.data, s.fieldname),
-          })
-      })
-      if (or.length !== 0) {
-        result2.$or.push({ $or: or })
-      }
-      if (and.length !== 0) {
-        result2.$or.push({ $and: and })
-      }
-      console.log(result2)
+    async advancedSearch(query) {
+      console.log(query)
       try {
         const post = await this.$axios.$post(`/profile/advancedSearch`, {
-          query: result2,
+          query,
         })
         console.log(post)
         this.users = post
@@ -91,6 +157,40 @@ export default {
         return s
       }
       return { $regex: s }
+    },
+    getOcsc(ids) {
+      const a = []
+
+      this.ocsc.forEach((pocsc) => {
+        ids.forEach((ocsc) => {
+          pocsc.sub.forEach((psub) => {
+            if (psub._id === ocsc) {
+              a.push(psub.name)
+            }
+          })
+        })
+      })
+      return a
+    },
+    getExpert(ids) {
+      const b = []
+
+      this.expert.forEach((lexp) => {
+        ids.forEach((exp) => {
+          lexp.sub.forEach((expsub) => {
+            if (expsub._id === exp) {
+              b.push(expsub.name)
+            }
+          })
+        })
+      })
+      return b
+    },
+    getDepartment(id) {
+      if (!id) return ''
+      const found = this.department.find((f) => f._id === id)
+      const c = { ...found }
+      return c.name
     },
   },
 }
