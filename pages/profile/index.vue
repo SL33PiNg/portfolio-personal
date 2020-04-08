@@ -8,7 +8,7 @@
           </h2></v-row
         >
         <v-row>
-          <v-col offset="2" cols="12" md="3" xs="12">
+          <v-col offset-lg="2" cols="12" md="3" offset-md="2" xs="12">
             <v-select
               v-model="academic"
               :items="academicPos"
@@ -22,7 +22,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col offset="2" cols="12" md="4" xs="12">
+          <v-col offset-lg="2" cols="12" md="4" offset-md="2" xs="12">
             <treeselect
               v-model="expId"
               :options="expertists"

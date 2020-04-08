@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="5" offset="2">
+      <v-col lg="5" offset-lg="2" md="6" sm="6" xs="12">
         <v-text-field
           v-if="
             start.fieldname === 'firstname' ||
@@ -34,7 +34,7 @@
           outlined
         />
       </v-col>
-      <v-col cols="3">
+      <v-col lg="3" md="5" sm="4">
         <v-select
           v-model="start.fieldname"
           :items="items"
@@ -53,7 +53,7 @@
     </v-row>
 
     <v-row v-for="(i, index) in search" :key="i.num">
-      <v-col cols="2" offset="2">
+      <v-col cols="2" offset-lg="2" offset-md="0">
         <v-select
           v-model="i.condition"
           :items="condition"
@@ -63,7 +63,7 @@
         >
         </v-select>
       </v-col>
-      <v-col cols="3">
+      <v-col lg="3" md="5" sm="4">
         <v-text-field
           v-if="
             i.fieldname === 'firstname' ||
@@ -96,7 +96,7 @@
           outlined
         />
       </v-col>
-      <v-col cols="3">
+      <v-col lg="3" md="4" sm="4">
         <v-select
           v-model="i.fieldname"
           :items="items"
@@ -185,6 +185,9 @@ export default {
     'start.fieldname'(val) {
       this.start.data = undefined
     },
+  },
+  mounted() {
+    console.log(this.$vuetify.breakpoint)
   },
   methods: {
     change(val) {
