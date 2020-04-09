@@ -1,15 +1,19 @@
 const addAdmin = require('../controllers/adminController')
+const isAuth = require('../middleware/isAuth')
+const logAdmin = require('../middleware/logEditAdmin')
+const logAllow = require('../middleware/allowPublicLog')
+const logActive = require('../middleware/allowActiveLog')
 const express = require('express')
 const router = express.Router()
 
-router.get('/addAdmin/:id' , addAdmin.addAdmin)
-router.get('/removeAdmin/:id' , addAdmin.removeAdmin)
+router.get('/addAdmin/:id',[isAuth, logAdmin] , addAdmin.addAdmin)
+router.get('/removeAdmin/:id',[isAuth, logAdmin]  , addAdmin.removeAdmin)
 
-router.get('/allowPublic/:id' , addAdmin.allowPublic)
-router.get('/NotAllowedPublic/:id' , addAdmin.NotAllowedPublic)
+router.post('/allowPublic/:id',[isAuth, logAllow] , addAdmin.allowPublic)
+router.post('/NotAllowedPublic/:id',[isAuth, logAllow]  , addAdmin.NotAllowedPublic)
 
-router.get('/allowActive/:id' , addAdmin.allowActive)
-router.get('/NotAllowedActive/:id' , addAdmin.NotAllowedActive)
+router.post('/allowActive/:id',[isAuth, logActive] , addAdmin.allowActive)
+router.post('/NotAllowedActive/:id',[isAuth, logActive] , addAdmin.NotAllowedActive)
 
 
 router.get('/userProfile' , addAdmin.getAllUserProfile)

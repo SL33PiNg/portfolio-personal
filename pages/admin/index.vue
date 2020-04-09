@@ -67,7 +67,10 @@
                     </v-radio-group>
                   </v-row>
                   <v-card-text>
-                    <v-textarea placeholder="หมายเหตุ"></v-textarea>
+                    <v-textarea
+                      v-model="msg"
+                      placeholder="หมายเหตุ"
+                    ></v-textarea>
                   </v-card-text>
 
                   <v-card-actions>
@@ -101,7 +104,10 @@
                     </v-radio-group>
                   </v-row>
                   <v-card-text>
-                    <v-textarea placeholder="หมายเหตุ"></v-textarea>
+                    <v-textarea
+                      v-model="msg"
+                      placeholder="หมายเหตุ"
+                    ></v-textarea>
                   </v-card-text>
 
                   <v-card-actions>
@@ -174,6 +180,7 @@ export default {
   middleware: ['check-admin'],
   data() {
     return {
+      msg: '',
       isAdmin: null,
       isPublic: null,
       isActive: null,
@@ -275,15 +282,24 @@ export default {
       this.loading = true
       try {
         if (this.isPublic)
-          await this.$axios.$get(`/admin/allowPublic/${this.tempDataItem._id}`)
+          await this.$axios.$post(
+            `/admin/allowPublic/${this.tempDataItem._id}`,
+            {
+              msg: this.msg,
+            }
+          )
         else
-          await this.$axios.$get(
-            `/admin/NotAllowedPublic/${this.tempDataItem._id}`
+          await this.$axios.$post(
+            `/admin/NotAllowedPublic/${this.tempDataItem._id}`,
+            {
+              msg: this.msg,
+            }
           )
       } catch (error) {
       } finally {
         this.loading = false
         this.shut = false
+        this.msg = ''
         this.getAllProfile()
       }
     },
@@ -291,15 +307,24 @@ export default {
       this.loading = true
       try {
         if (this.isActive)
-          await this.$axios.$get(`/admin/allowActive/${this.tempDataItem._id}`)
+          await this.$axios.$post(
+            `/admin/allowActive/${this.tempDataItem._id}`,
+            {
+              msg: this.msg,
+            }
+          )
         else
-          await this.$axios.$get(
-            `/admin/NotAllowedActive/${this.tempDataItem._id}`
+          await this.$axios.$post(
+            `/admin/NotAllowedActive/${this.tempDataItem._id}`,
+            {
+              msg: this.msg,
+            }
           )
       } catch (error) {
       } finally {
         this.loading = false
         this.close = false
+        this.msg = ''
         this.getAllProfile()
       }
     },
