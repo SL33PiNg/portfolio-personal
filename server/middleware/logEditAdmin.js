@@ -2,7 +2,6 @@ const adminLog = require('../models/adminLog')
 module.exports = async (req, res, next) => {
   const { id } = req.params
   const { msg } = req.body
-  const { username } = req.user
   const userLog = req.path.startsWith('/addAdmin')?'เพิ่มสิทธิ์แอดมิน':'ลบสิทธิ์แอดมิน' 
   console.log(req.path)
   try {
@@ -10,7 +9,7 @@ module.exports = async (req, res, next) => {
       msg,
       logType: 1,
       userLog,
-      adminName: username,
+      adminID: req.user.id,
       userID: id
     })
   } catch (error) {

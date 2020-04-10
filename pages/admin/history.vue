@@ -17,22 +17,89 @@
           hide-details
         ></v-text-field>
       </v-card-title>
-      <v-data-table :headers="headers" hide-default-footer></v-data-table>
+      <v-card outlined class="mx-auto ma-5">
+        <v-data-table :items="logs" :headers="headers">
+          <template v-slot:item.name="{ item }">
+            <p>
+              {{ item.userID.personalInfo.firstnameTH }}
+              {{ item.userID.personalInfo.lastnameTH }}
+            </p>
+          </template>
+          <template v-slot:item.nameAdmin="{ item }">
+            <p>
+              {{ item.adminID.personalInfo.firstnameTH }}
+              {{ item.adminID.personalInfo.lastnameTH }}
+            </p>
+          </template>
+          <template v-slot:item.date="{ item }">
+            <p>
+              {{ item.date | toDateString }}
+            </p>
+          </template>
+          <template v-slot:item.information="{ item }">
+            <v-menu :open-on-hover="true">
+              <template v-slot:activator="{ on }">
+                <div style="max-width: 100px;" v-on="on">
+                  <p class="text-truncate">
+                    {{ item.msg }}
+                  </p>
+                </div>
+              </template>
+              <v-card width="250">
+                {{ item.msg }}
+              </v-card>
+            </v-menu>
+          </template>
+          <template v-slot:item.type="{ item }">
+            <v-chip :color="getcolor(item.logType)">
+              {{ item.userLog }}
+            </v-chip>
+          </template>
+        </v-data-table>
+      </v-card>
     </v-container>
   </v-card>
 </template>
 
 <script>
 export default {
+  filters: {
+    toDateString(date) {
+      const dd = new Date(date)
+      return dd.toLocaleString('th-TH')
+    },
+  },
   data() {
     return {
+      loading: false,
+      logs: [],
       search: '',
       headers: [
-        { text: 'ชื่อ', align: 'start', value: 'name' },
-        { text: 'สถานะ', align: 'start', value: 'status' },
-        { text: 'หมายเหตุ', align: 'start', value: 'note' },
+        { text: 'ชื่อ ผู้ถูกแก้ไข', align: 'start', value: 'name' },
+        { text: 'ชื่อ ผู้แก้ไข', align: 'start', value: 'nameAdmin' },
+        { text: 'วัน/เวลา', align: 'center', value: 'date' },
+        { text: 'การแก้ไข', align: 'center', value: 'type' },
+        { text: 'หมายเหตุ', align: 'start', value: 'information' },
       ],
     }
+  },
+  created() {
+    this.getAllLog()
+  },
+  methods: {
+    getcolor(type) {
+      return type === 1 ? 'primary' : type === 2 ? 'warning' : 'error'
+    },
+    async getAllLog() {
+      this.loading = true
+      try {
+        const result = await this.$axios.$get('/admin/history')
+        this.logs = result
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
+    },
   },
 }
 </script>

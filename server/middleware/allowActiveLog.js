@@ -2,7 +2,6 @@ const adminLog = require('../models/adminLog')
 module.exports = async (req, res, next) => {
   const { id } = req.params
   const { msg } = req.body
-  const { username } = req.user
   const userLog = req.path.startsWith('/allowActive')?'เปิดการใช้งานบัญชี':'ปิดการใช้งานบัญชี' 
   console.log(req.path)
   console.log(req.body)
@@ -11,7 +10,7 @@ module.exports = async (req, res, next) => {
       msg,
       logType: 3,
       userLog,
-      adminName: username,
+      adminID: req.user.id,
       userID: id
     })
   } catch (error) {

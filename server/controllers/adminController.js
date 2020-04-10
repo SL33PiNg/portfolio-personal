@@ -1,6 +1,7 @@
 const UserModel = require('../models/User')
 const AwardModel = require('../models/award')
 const ReportModel = require('../models/report')
+const adminLog = require('../models/adminLog')
 
 exports.addAdmin = async (req, res) => {
   const { id } = req.params
@@ -129,6 +130,15 @@ exports.delReportsById = async (req, res) => {
   const { id } = req.params
   try {
     const result = await ReportModel.findByIdAndDelete({ _id: id })
+    res.json(result)
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
+exports.getAllLog = async (req, res) => {
+  try {
+    const result = await adminLog.find().populate({ path: 'userID' }).populate({ path: 'adminID' })
     res.json(result)
   } catch (error) {
     return res.status(500).send(error)

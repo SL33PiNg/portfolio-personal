@@ -1,9 +1,14 @@
 const mongoose = require('mongoose')
 
 const aminLogSchema = new mongoose.Schema({ 
-  adminName:String,
-  userName:String,
-  userID: String,
+  adminID:{
+    type: mongoose.Types.ObjectId,
+    ref: 'User'
+  },
+  userID: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User'
+  },
   userFirstnameTH:String,
   userLastnameTH: String,
   userLog:String,
