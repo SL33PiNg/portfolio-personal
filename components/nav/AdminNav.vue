@@ -55,8 +55,13 @@ export default {
 
         {
           icon: 'mdi-history',
-          title: 'ประวัติการแก้ไข',
+          title: 'ประวัติการแก้ไขแอดมิน',
           to: '/admin/history',
+        },
+        {
+          icon: 'mdi-history',
+          title: 'ประวัติการแก้ไขผู้ใช้งาน',
+          to: '/admin/historyUserEdit',
         },
         //  {
         //         icon: 'mdi-account-multiple-plus-outline',

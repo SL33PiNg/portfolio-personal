@@ -87,10 +87,11 @@ exports.getCurrentUser = async (req, res) => {
 
 exports.updatePersonalInfo = async (req, res) => {
   const { id } = req.user
-  console.log(req.body)
+  const { user, msg } = req.body
+  console.log(msg)
   try {
-    const user = await UserModel.findByIdAndUpdate(id, { ...req.body }, { upsert: true, new: true })
-    return res.json(user)
+    const result = await UserModel.findByIdAndUpdate(id, { ...user }, { upsert: true, new: true })
+    return res.json(result)
   } catch (error) {
     return res.status(500).json({ status: 500, message: 'unknow error' })
   }

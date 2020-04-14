@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 export default {
   data: () => ({
-    loading: false
+    loading: false,
   }),
   created() {
     this.getUser()
@@ -19,10 +19,11 @@ export default {
         this.loading = false
       }
     },
-    async updateUser() {
+    async updateUser(value) {
       try {
         const user = await this.$axios.$patch('/users', {
-          ...this.user
+          user: { ...this.user },
+          msg: value,
         })
         this.user = user
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
@@ -30,6 +31,6 @@ export default {
         // eslint-disable-next-line no-console
         console.log(error)
       }
-    }
-  }
+    },
+  },
 }

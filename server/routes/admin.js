@@ -29,5 +29,6 @@ router.get('/NotAllowedReport/:id' , addAdmin.NotAllowedReport)
 router.delete('/delReports/:id' , addAdmin.delReportsById)
 
 router.get('/history' , addAdmin.getAllLog)
+router.get('/historyUserEdit' , addAdmin.getAllLogUser)
 
 module.exports = router

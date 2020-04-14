@@ -23,7 +23,10 @@
         </v-col>
       </v-row>
       <v-row class="ma-3" justify="end">
-        <v-btn :loading="updateLoad" color="primary" @click="updateUser"
+        <v-btn
+          :loading="updateLoad"
+          color="primary"
+          @click="updateUser('ข้อมูลความเชี่ยวชาญ')"
           >เพิ่มข้อมูล</v-btn
         >
       </v-row>
@@ -58,7 +61,11 @@
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3">
-        <v-btn :loading="updateLoad" color="primary" @click="updateUser">
+        <v-btn
+          :loading="updateLoad"
+          color="primary"
+          @click="updateUser('ข้อมูลทักษะความสามารถ')"
+        >
           อัปเดตข้อมูล
         </v-btn>
       </v-row>

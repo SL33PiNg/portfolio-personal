@@ -69,7 +69,7 @@
         <v-btn
           class="mx-0 font-weight-light"
           color="primary"
-          @click="updateUser"
+          @click="updateUser('ข้อมูลหน่วยงาน')"
         >
           ยืนยัน
         </v-btn>

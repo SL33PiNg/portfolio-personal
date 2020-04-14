@@ -156,7 +156,10 @@
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3">
-        <v-btn :loading="updateLoad" color="primary" @click="updateUser"
+        <v-btn
+          :loading="updateLoad"
+          color="primary"
+          @click="updateUser('ข้อมูลส่วนตัว')"
           >ยืนยัน</v-btn
         >
       </v-row>

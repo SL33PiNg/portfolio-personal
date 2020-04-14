@@ -9,8 +9,6 @@ const aminLogSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'User'
   },
-  userFirstnameTH:String,
-  userLastnameTH: String,
   userLog:String,
   information:String,
   msg:String,
