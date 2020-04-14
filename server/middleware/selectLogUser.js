@@ -4,11 +4,11 @@ module.exports = async (req, res, next) => {
   const action = req.method === "POST"?'เพิ่ม':'ลบ'
   let msg = ''
   if( req.path.search('/workinfo') > -1 ){
-    msg = '/แก้ไขข้อมูลประวัติการทำงาน'
+    msg = '/ข้อมูลประวัติการทำงาน'
   }else if(req.path.search('/studyinfo') > -1 ){
-    msg = '/แก้ไขข้อมูลประวัติการศึกษา'
+    msg = '/ข้อมูลประวัติการศึกษา'
   }else{
-    msg = '/แก้ไขข้อมูลใบรับรอง'
+    msg = '/ข้อมูลใบรับรอง'
   }
   try {
     await userLog.create({
