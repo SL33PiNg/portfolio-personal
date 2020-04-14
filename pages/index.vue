@@ -10,18 +10,14 @@
       </v-row>
       <v-row>
         <template>
-          <v-carousel v-model="model">
+          <v-carousel v-model="model" cycle>
             <v-carousel-item
               v-for="award in markAward"
               :key="award.id"
               reverse-transition="fade-transition"
               transition="fade-transition"
+              :src="`http://localhost:3000/api/award/${award.cover}`"
             >
-              <v-sheet height="100%" tile>
-                <v-row class="fill-height" align="center" justify="center">
-                  <h1>{{ award.name }}</h1>
-                </v-row>
-              </v-sheet>
             </v-carousel-item>
           </v-carousel>
         </template>

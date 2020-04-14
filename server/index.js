@@ -29,16 +29,8 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use('/', indexRouter)
 app.use('/avatar', express.static('./avatar'))
-app.use('/report', express.static('./report'))
+app.use('/award', express.static('./award'))
 
-app.post('/upload_image', (req, res) => {
-  FroalaEditor.Image.upload(req, '/report/', (err, data) => {
-    if (err) {
-      return res.send(JSON.stringify(err))
-    }
-    res.send(data)
-  })
-})
 
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development

@@ -41,3 +41,9 @@ exports.getMarkAward = async (req, res) => {
     return res.status(500).json({ status: 500, message: error.message })
   }
 }
+
+exports.uploadImage = (req, res) => {
+  res.json({
+    file: req.file.filename
+  })
+}

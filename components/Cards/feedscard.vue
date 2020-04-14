@@ -28,9 +28,9 @@
     </v-list-item>
 
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
-      height="150"
-      width="auto"
+      :src="`http://localhost:3000/api/award/${award.cover}`"
+      height="250"
+      width="400"
     ></v-img>
     <v-list-item>
       <v-list-item-content>

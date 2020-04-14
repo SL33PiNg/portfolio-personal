@@ -7,6 +7,13 @@
         รายละเอียดข้อมูลผลงาน
       </h1></v-sheet
     >
+    <v-col offset="3" cols="6">
+      <v-img
+        :src="`http://localhost:3000/api/award/${award.cover}`"
+        height="300"
+        width="523.31"
+      ></v-img>
+    </v-col>
     <v-card-subtitle>ชื่องานบริการวิชาการ:{{ award.name }} </v-card-subtitle>
     <v-card-subtitle>ปีที่จัดงาน:{{ award.eventYear }} </v-card-subtitle>
     <v-divider></v-divider>

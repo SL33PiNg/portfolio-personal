@@ -155,15 +155,21 @@ export default {
     },
   },
   methods: {
-    handleChange(e) {
+    async handleChange(e) {
+      if (!e) return
       const fr = new FileReader()
       fr.readAsDataURL(e)
       fr.addEventListener('load', () => {
         this.imageUrl = fr.result
         this.imageFile = e
-        // eslint-disable-next-line no-console
-        console.log(fr)
       })
+      const data = new FormData()
+      data.append('award', e)
+      try {
+        const result = await this.$axios.$post('/award/image', data)
+        console.log(result)
+        this.Award.cover = result.file
+      } catch (error) {}
     },
     async addAward() {
       this.loading = true
