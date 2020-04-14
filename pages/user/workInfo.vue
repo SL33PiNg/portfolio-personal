@@ -112,14 +112,10 @@
                       <v-card-title>ต้องการลบรายการนี้?</v-card-title>
                       <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="delWork(tempDataItem)"
-                        >
+                        <v-btn color="error" @click="delWork(tempDataItem)">
                           ตกลง
                         </v-btn>
-                        <v-btn color="blue darken-1" text @click="del = false">
+                        <v-btn color="primary" @click="del = false">
                           ยกเลิก
                         </v-btn>
                       </v-card-actions>

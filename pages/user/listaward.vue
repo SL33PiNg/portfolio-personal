@@ -61,10 +61,10 @@
             <v-card-title>ต้องการลบผลงาน: {{ tempAward.name }} </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="delAward()">
+              <v-btn color="error" @click="delAward()">
                 ตกลง
               </v-btn>
-              <v-btn color="blue darken-1" text @click="delDialog = false">
+              <v-btn color="primary" @click="delDialog = false">
                 ยกเลิก
               </v-btn>
             </v-card-actions>

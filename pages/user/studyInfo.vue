@@ -112,13 +112,12 @@
                       <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
-                          color="blue darken-1"
-                          text
+                          color="error"
                           @click="delEducation(tempDataItem)"
                         >
                           ตกลง
                         </v-btn>
-                        <v-btn color="blue darken-1" text @click="del = false">
+                        <v-btn color="primary" @click="del = false">
                           ยกเลิก
                         </v-btn>
                       </v-card-actions>
