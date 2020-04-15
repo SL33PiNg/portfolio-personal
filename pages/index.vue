@@ -17,6 +17,7 @@
               reverse-transition="fade-transition"
               transition="fade-transition"
               :src="`http://localhost:3000/api/award/${award.cover}`"
+              contain
             >
             </v-carousel-item>
           </v-carousel>

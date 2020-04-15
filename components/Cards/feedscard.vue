@@ -31,6 +31,7 @@
       :src="`http://localhost:3000/api/award/${award.cover}`"
       height="250"
       width="400"
+      contain
     ></v-img>
     <v-list-item>
       <v-list-item-content>

@@ -1,5 +1,8 @@
+const path = require('path')
+const fs = require('fs')
 const UserModel = require('../models/User')
 const AwardModel = require('../models/award')
+const sharp = require('sharp')
 
 exports.addAward = async (req, res) => {
   const { id } = req.user
@@ -42,7 +45,20 @@ exports.getMarkAward = async (req, res) => {
   }
 }
 
-exports.uploadImage = (req, res) => {
+exports.uploadImage = async (req, res) => {
+  const image =  sharp(req.file.path)
+  try {
+    const metadata = await image.metadata()
+    console.log(metadata)
+    if(metadata.height > metadata.width ){
+      image.resize({height: 500}).toFile(path.resolve('award', req.file.filename))
+    }else{
+      image.resize({width: 870}).toFile(path.resolve('award', req.file.filename))
+    }
+    fs.unlinkSync(req.file.path)
+  } catch (error) {
+    
+  }
   res.json({
     file: req.file.filename
   })
