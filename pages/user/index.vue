@@ -11,11 +11,12 @@
       <v-row justify="center" class="mt-8">
         <v-col cols="12" md="4" xs="12">
           <v-hover v-slot:default="{ hover }">
-            <v-card max-width="200" max-height="200">
+            <v-card flat>
               <v-img
                 :src="`${hostname}/api/avatar/${user.avatar}`"
-                width="200"
-                height="200"
+                width="420"
+                height="250"
+                contain
               ></v-img>
               <v-expand-transition>
                 <div

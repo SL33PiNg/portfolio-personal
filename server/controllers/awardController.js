@@ -49,11 +49,10 @@ exports.uploadImage = async (req, res) => {
   const image =  sharp(req.file.path)
   try {
     const metadata = await image.metadata()
-    console.log(metadata)
     if(metadata.height > metadata.width ){
-      image.resize({height: 500}).toFile(path.resolve('award', req.file.filename))
+      await image.resize({height: 500}).toFile(path.resolve('award', req.file.filename))
     }else{
-      image.resize({width: 870}).toFile(path.resolve('award', req.file.filename))
+      await image.resize({width: 870}).toFile(path.resolve('award', req.file.filename))
     }
     fs.unlinkSync(req.file.path)
   } catch (error) {

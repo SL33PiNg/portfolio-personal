@@ -6,14 +6,14 @@
       </h3>
     </v-row>
     <v-row justify="center">
-      <v-col cols="12" md="4" xs="12">
+      <v-col cols="12">
         <v-img
           v-if="imageUrl"
           :src="imageUrl"
           aspect-ratio="1.7"
-          width="200"
-          height="200"
+          height="250"
           class="ma-2"
+          contain
         ></v-img>
       </v-col>
     </v-row>

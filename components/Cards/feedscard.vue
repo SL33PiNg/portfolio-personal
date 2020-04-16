@@ -30,7 +30,7 @@
     <v-img
       :src="`http://localhost:3000/api/award/${award.cover}`"
       height="250"
-      width="400"
+      width="450"
       contain
     ></v-img>
     <v-list-item>
