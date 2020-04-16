@@ -167,6 +167,13 @@
             <p>
               {{ item.personalInfo.firstnameTH }}
               {{ item.personalInfo.lastnameTH }}
+              <v-icon
+                color="primary"
+                text-center
+                @click="$router.push(`/profile/${item.username}`)"
+              >
+                mdi-account
+              </v-icon>
             </p>
           </template>
         </v-data-table>

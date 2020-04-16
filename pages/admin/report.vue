@@ -38,15 +38,7 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn
-                    text
-                    color="show"
-                    @click="
-                      $router.push(`/profile/${tempDataItem.profileName}`)
-                    "
-                  >
-                    ไปยังหน้าโปรไฟล์
-                  </v-btn>
+
                   <v-btn color="success" @click="allowReport">
                     บันทึก
                   </v-btn>
@@ -89,6 +81,19 @@
           <p>
             {{ item.profilefirstnameTH }}
             {{ item.profilelastnameTH }}
+            <v-tooltip right>
+              <template v-slot:activator="{ on }">
+                <v-icon
+                  color="primary"
+                  text-center
+                  v-on="on"
+                  @click="$router.push(`/profile/${item.profileName}`)"
+                >
+                  mdi-account
+                </v-icon>
+              </template>
+              <span>ไปยังหน้าโปรไฟล์</span>
+            </v-tooltip>
           </p>
         </template>
         <template v-slot:item.date="{ item }">
