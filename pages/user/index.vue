@@ -156,13 +156,15 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row justify="end" class="ma-3">
-        <v-btn
-          :loading="updateLoad"
-          color="primary"
-          @click="updateUser('ข้อมูลส่วนตัว')"
-          >ยืนยัน</v-btn
-        >
+      <v-row justify="end">
+        <v-col cols="auto">
+          <v-btn
+            :loading="updateLoad"
+            color="primary"
+            @click="updateUser('ข้อมูลส่วนตัว')"
+            >ยืนยัน</v-btn
+          >
+        </v-col>
       </v-row>
     </v-container>
   </v-card>
@@ -171,7 +173,6 @@
 import getUser from '@/mixins/user'
 import { mask } from 'vue-the-mask'
 import Treeselect from '@riophae/vue-treeselect'
-// import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   directives: {
     mask,
@@ -181,6 +182,7 @@ export default {
   },
   mixins: [getUser],
   data: () => ({
+    BackupFile: '',
     multiple: true,
     clearOnSelect: false,
     mask: '###-#######',

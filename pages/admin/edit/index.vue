@@ -42,7 +42,7 @@
         <template v-slot:item.action="{ item }">
           <v-tooltip bottom>
             <template v-slot:activator="{ on }"
-              ><v-icon small class="mr-2" @click="editItem(item)" v-on="on">
+              ><v-icon class="mr-2" @click="editItem(item)" v-on="on">
                 mdi-pencil
               </v-icon></template
             ><span>แก้ไข</span></v-tooltip
