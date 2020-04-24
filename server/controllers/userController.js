@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const UserModel = require('../models/User')
 const AwardModel = require('../models/award')
+const backupUser = require('../utils/backupUser')
 const jwt = require('jsonwebtoken')
 const sharp = require('sharp')
 sharp.cache(false)
@@ -198,4 +199,35 @@ exports.highlight = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 500, message: 'internal server error' })
   }
+}
+
+exports.backup = async (req, res) => {
+  const { id } = req.user
+  try {
+    const filePath = await backupUser(id)
+    console.log(filePath)
+    res.download(filePath)
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'internal server error' })
+  }
+}
+
+exports.sendFile =  (req, res) => {
+  const { filename } = req.params
+  try {
+    const filePath = path.resolve('zip', filename)
+    sleep(2000)
+    res.download(filePath)
+    res.end()
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'internal server error' })
+  }
+}
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
 }

@@ -26,5 +26,8 @@ router.get('/award', AddAward.getAward)
 router.delete('/award/:id', AddAward.delAward)
 
 router.get('/highlight/:id/:status', UserController.highlight)
+router.get('/backup', UserController.backup)
+router.get('/download/:filename', UserController.sendFile)
+
 
 module.exports = router

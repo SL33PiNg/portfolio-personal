@@ -6,8 +6,8 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const morgan = require('morgan')
 const cors = require('cors')
+
 const express = require('express')
-const FroalaEditor = require('wysiwyg-editor-node-sdk/lib/froalaEditor')
 mongoose.connect('mongodb://localhost:27017/rmutt', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -30,6 +30,7 @@ app.use(cors())
 app.use('/', indexRouter)
 app.use('/avatar', express.static('./avatar'))
 app.use('/award', express.static('./award'))
+app.use('/backup', express.static('./zip'))
 
 
 app.use(function (err, req, res, next) {
