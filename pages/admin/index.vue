@@ -167,13 +167,19 @@
             <p>
               {{ item.personalInfo.firstnameTH }}
               {{ item.personalInfo.lastnameTH }}
-              <v-icon
-                color="primary"
-                text-center
-                @click="$router.push(`/profile/${item.username}`)"
-              >
-                mdi-account
-              </v-icon>
+              <v-tooltip right>
+                <template v-slot:activator="{ on }">
+                  <v-icon
+                    color="primary"
+                    text-center
+                    v-on="on"
+                    @click="$router.push(`/profile/${item.username}`)"
+                  >
+                    mdi-account
+                  </v-icon>
+                </template>
+                <span>ไปยังหน้าโปรไฟล์</span>
+              </v-tooltip>
             </p>
           </template>
         </v-data-table>
