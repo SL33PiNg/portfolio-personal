@@ -11,6 +11,7 @@
         :src="`http://localhost:3000/api/award/${award.cover}`"
         height="300"
         width="523.31"
+        contain
       ></v-img>
     </v-col>
     <v-card-subtitle>ชื่อโครงการภาษาไทย: {{ award.name }}</v-card-subtitle>

@@ -62,3 +62,13 @@ exports.uploadImage = async (req, res) => {
     file: req.file.filename
   })
 }
+
+exports.getAwardByID = async (req, res) => {
+  const { id } = req.params
+  try {
+    const result = await AwardModel.findById( id )
+    return res.json(result)
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error.message })
+  }
+}

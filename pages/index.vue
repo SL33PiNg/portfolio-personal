@@ -19,6 +19,19 @@
               :src="`http://localhost:3000/api/award/${award.cover}`"
               contain
             >
+              <v-row justify="end">
+                <div class="pr-5 mt-2">
+                  <v-btn
+                    outlined
+                    color="black"
+                    light
+                    @click="$router.push(`/award/${award._id}`)"
+                    ><v-icon>mdi-magnify</v-icon>ดูรายละเอียดของ "{{
+                      award.name
+                    }}"</v-btn
+                  >
+                </div>
+              </v-row>
             </v-carousel-item>
           </v-carousel>
         </template>
@@ -47,6 +60,10 @@ export default {
     this.getMarkAward()
   },
   methods: {
+    onClickHandler(index) {
+      console.log(index)
+    },
+
     async getMarkAward() {
       try {
         const result = await this.$axios.$get('/award')
