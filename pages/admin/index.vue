@@ -29,28 +29,31 @@
             <v-dialog v-model="add" max-width="500px">
               <v-card>
                 <v-card-title
-                  ><span class="headline"
-                    >สิทธิ์การใช้งาน :
-                    {{ tempDataItem.personalInfo.firstnameTH }}
-                    {{ tempDataItem.personalInfo.lastnameTH }}
-                  </span></v-card-title
+                  ><span class="headline">กำหนดสิทธิ์ </span></v-card-title
                 >
                 <v-card-text>
                   <v-container>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn v-if="!isAdmin" color="success" @click="addAdmin">
-                        เพิ่มสิทธิ์ 'ADMIN'
-                      </v-btn>
-                      <v-btn v-else color="error" @click="removeAdmin">
-                        ลบสิทธิ์ 'ADMIN'
-                      </v-btn>
-                      <v-btn color="primary" @click="add = false">
-                        ยกเลิก
-                      </v-btn>
-                    </v-card-actions>
+                    <v-row>
+                      <p>
+                        กำหนดสิทธิ์การใช้งานของ :
+                        {{ tempDataItem.personalInfo.firstnameTH }}
+                        {{ tempDataItem.personalInfo.lastnameTH }}
+                      </p>
+                    </v-row>
                   </v-container>
                 </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn v-if="!isAdmin" color="success" @click="addAdmin">
+                    เพิ่มสิทธิ์ 'ADMIN'
+                  </v-btn>
+                  <v-btn v-else color="error" @click="removeAdmin">
+                    ลบสิทธิ์ 'ADMIN'
+                  </v-btn>
+                  <v-btn color="primary" @click="add = false">
+                    ยกเลิก
+                  </v-btn>
+                </v-card-actions>
               </v-card>
             </v-dialog>
 
@@ -72,7 +75,6 @@
                       placeholder="หมายเหตุ"
                     ></v-textarea>
                   </v-card-text>
-
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="success" @click="allowPublic">
