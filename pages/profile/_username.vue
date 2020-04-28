@@ -15,8 +15,9 @@
             <v-img
               :src="`${hostname}/api/avatar/${user.avatar}`"
               aspect-ratio="1.7"
-              width="200"
-              height="200"
+              width="420"
+              height="250"
+              contain
               class="mt-5 mx-auto"
             ></v-img>
             <v-list-item class="ml-4">

@@ -56,20 +56,18 @@
     </v-container>
     <v-dialog v-model="delDialog" max-width="500px">
       <v-card>
-        <v-card-text>
-          <v-container>
-            <v-card-title>ต้องการลบผลงาน: {{ tempAward.name }} </v-card-title>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="error" @click="delAward()">
-                ตกลง
-              </v-btn>
-              <v-btn color="primary" @click="delDialog = false">
-                ยกเลิก
-              </v-btn>
-            </v-card-actions>
-          </v-container>
-        </v-card-text>
+        <v-container>
+          <v-card-title>ต้องการลบผลงาน: {{ tempAward.name }} </v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="error" @click="delAward()">
+              ตกลง
+            </v-btn>
+            <v-btn color="primary" @click="delDialog = false">
+              ยกเลิก
+            </v-btn>
+          </v-card-actions>
+        </v-container>
       </v-card>
     </v-dialog>
   </v-card>
