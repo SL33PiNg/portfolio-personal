@@ -11,13 +11,19 @@
       </v-row>
       <v-card-title>
         <v-text-field
+          v-model="search"
           append-icon="mdi-magnify"
           label="ค้นหา"
           single-line
           hide-details
         ></v-text-field>
       </v-card-title>
-      <v-data-table :items="reports" :headers="headers" hide-default-footer>
+      <v-data-table
+        :items="reports"
+        :search="search"
+        :headers="headers"
+        hide-default-footer
+      >
         <template v-slot:top>
           <v-dialog v-model="account" max-width="500px">
             <v-card>
@@ -77,7 +83,7 @@
             item.status ? 'ตรวจสอบแล้ว' : 'ยังไม่ตรวจสอบ'
           }}</v-chip>
         </template>
-        <template v-slot:item.fullName="{ item }">
+        <template v-slot:item.profilefirstnameTH="{ item }">
           <p>
             {{ item.profilefirstnameTH }}
             {{ item.profilelastnameTH }}
@@ -146,11 +152,16 @@ export default {
       search: '',
       tempDataItem: {},
       headers: [
-        { text: 'ชื่อ ผู้ร้องเรียน', align: 'start', value: 'reportName' },
+        {
+          text: 'ชื่อ ผู้ร้องเรียน',
+          align: 'start',
+          value: 'reportName',
+        },
         {
           text: 'ชื่อ ผู้ถูกร้องเรียน',
           align: 'center',
-          value: 'fullName',
+          value: 'profilefirstnameTH',
+          sort: (a, b) => b.localeCompare(a, 'th'),
         },
         { text: 'วัน/เวลา', align: 'center', value: 'date' },
         { text: 'การแก้ไข', align: 'center', value: 'status' },

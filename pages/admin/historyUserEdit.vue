@@ -11,6 +11,7 @@
       </v-row>
       <v-card-title>
         <v-text-field
+          v-model="search"
           append-icon="mdi-magnify"
           label="ค้นหา"
           single-line
@@ -18,8 +19,13 @@
         ></v-text-field>
       </v-card-title>
       <v-card outlined class="mx-auto ma-5">
-        <v-data-table :items="logs" :headers="headers">
-          <template v-slot:item.name="{ item }">
+        <v-data-table
+          :items="logs"
+          :headers="headers"
+          :search="search"
+          hide-default-footer
+        >
+          <template v-slot:item.userID.personalInfo.firstnameTH="{ item }">
             <p>
               {{ item.userID.personalInfo.firstnameTH }}
               {{ item.userID.personalInfo.lastnameTH }}
@@ -68,7 +74,12 @@ export default {
       logs: [],
       search: '',
       headers: [
-        { text: 'ชื่อ', align: 'start', value: 'name' },
+        {
+          text: 'ชื่อ',
+          align: 'start',
+          value: 'userID.personalInfo.firstnameTH',
+          sort: (a, b) => b.localeCompare(a, 'th'),
+        },
         { text: 'วัน/เวลา', align: 'center', value: 'date' },
         { text: 'IP', align: 'center', value: 'ip' },
         { text: 'การแก้ไข', align: 'center', value: 'type' },

@@ -5,12 +5,13 @@
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-history</v-icon>
-            ประวัติการแก้ไข
+            ประวัติการแก้ไขแอดมิน
           </h1></v-sheet
         >
       </v-row>
       <v-card-title>
         <v-text-field
+          v-model="search"
           append-icon="mdi-magnify"
           label="ค้นหา"
           single-line
@@ -18,14 +19,19 @@
         ></v-text-field>
       </v-card-title>
       <v-card outlined class="mx-auto ma-5">
-        <v-data-table :items="logs" :headers="headers">
-          <template v-slot:item.name="{ item }">
+        <v-data-table
+          :search="search"
+          :items="logs"
+          :headers="headers"
+          hide-default-footer
+        >
+          <template v-slot:item.userID.personalInfo.firstnameTH="{ item }">
             <p>
               {{ item.userID.personalInfo.firstnameTH }}
               {{ item.userID.personalInfo.lastnameTH }}
             </p>
           </template>
-          <template v-slot:item.nameAdmin="{ item }">
+          <template v-slot:item.adminID.personalInfo.firstnameTH="{ item }">
             <p>
               {{ item.adminID.personalInfo.firstnameTH }}
               {{ item.adminID.personalInfo.lastnameTH }}
@@ -75,8 +81,18 @@ export default {
       logs: [],
       search: '',
       headers: [
-        { text: 'ชื่อ ผู้ถูกแก้ไข', align: 'start', value: 'name' },
-        { text: 'ชื่อ ผู้แก้ไข', align: 'start', value: 'nameAdmin' },
+        {
+          text: 'ชื่อ ผู้ถูกแก้ไข',
+          align: 'start',
+          value: 'userID.personalInfo.firstnameTH',
+          sort: (a, b) => b.localeCompare(a, 'th'),
+        },
+        {
+          text: 'ชื่อ ผู้แก้ไข',
+          align: 'start',
+          value: 'adminID.personalInfo.firstnameTH',
+          sort: (a, b) => b.localeCompare(a, 'th'),
+        },
         { text: 'วัน/เวลา', align: 'center', value: 'date' },
         { text: 'การแก้ไข', align: 'center', value: 'type' },
         { text: 'หมายเหตุ', align: 'start', value: 'information' },
