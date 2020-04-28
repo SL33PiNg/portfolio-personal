@@ -1,14 +1,6 @@
 <template>
   <v-card class="mx-auto ma-8" max-width="80%">
     <v-container>
-      <!-- <v-row justify="center">
-        <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-trophy-award</v-icon>
-            รายละเอียดผลงาน "{{ award.name }}"
-          </h1></v-sheet
-        >
-      </v-row> -->
       <keep-alive>
         <component :is="cardType" :award="award" />
       </keep-alive>
@@ -22,6 +14,7 @@ import type2 from '~/components/infoawards/infoSer.vue'
 import type3 from '~/components/infoawards/infoAwa.vue'
 import type4 from '~/components/infoawards/infoOther.vue'
 export default {
+  name: 'AwardDetail',
   components: {
     type1,
     type2,
@@ -46,10 +39,9 @@ export default {
   methods: {
     async getAward() {
       try {
-        const result = await this.$axios.$get(
+        this.award = await this.$axios.$get(
           `/award/detail/${this.$route.params.detail}`
         )
-        this.award = result
       } catch (error) {
       } finally {
         this.awardDone = true

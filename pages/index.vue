@@ -10,7 +10,7 @@
       </v-row>
       <v-row>
         <template>
-          <v-carousel v-model="model" cycle>
+          <v-carousel v-model="model" cycle hide-delimiters>
             <v-carousel-item
               v-for="award in markAward"
               :key="award.id"
@@ -18,19 +18,13 @@
               transition="fade-transition"
               :src="`http://localhost:3000/api/award/${award.cover}`"
               contain
+              link
+              :to="`/award/${award._id}`"
             >
-              <v-row justify="end">
-                <div class="pr-5 mt-2">
-                  <v-btn
-                    outlined
-                    color="black"
-                    light
-                    @click="$router.push(`/award/${award._id}`)"
-                    ><v-icon>mdi-magnify</v-icon>ดูรายละเอียดของ "{{
-                      award.name
-                    }}"</v-btn
-                  >
-                </div>
+              <v-row justify="center">
+                <v-chip>
+                  {{ award.name }}
+                </v-chip>
               </v-row>
             </v-carousel-item>
           </v-carousel>
@@ -75,3 +69,6 @@ export default {
   },
 }
 </script>
+<style lang="sass" scoped>
+$data-table-expanded-content-box-shadow: inset 0px 0px 0px 0px rgba(50, 50, 50, 0.75), inset 0px 0px 0px 0px rgba(50, 50, 50, 0.75) !default
+</style>

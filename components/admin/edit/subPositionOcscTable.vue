@@ -55,9 +55,16 @@
         </v-card>
       </v-dialog>
     </template>
-    <template v-slot:item.action="{ item }">
-      <v-icon small @click.stop="openEdit(item)">mdi-pencil </v-icon>
-      <v-icon small @click.stop="openDel(item)">mdi-delete</v-icon>
+    <template v-slot:item="{ item }">
+      <v-card tile>
+        <v-row style="height: 50px;" justify="start">
+          <v-col offset="1" cols="9">{{ item.name }} </v-col>
+          <v-col cols="auto">
+            <v-icon small @click.stop="openEdit(item)">mdi-pencil</v-icon>
+            <v-icon small @click.stop="openDel(item)">mdi-delete</v-icon>
+          </v-col>
+        </v-row>
+      </v-card>
     </template>
   </v-data-table>
 </template>

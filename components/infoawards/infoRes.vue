@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  name: 'Type1',
   props: {
     award: {
       type: Object,

@@ -23,6 +23,7 @@
 </template>
 <script>
 export default {
+  name: 'Type2',
   props: {
     award: {
       type: Object,

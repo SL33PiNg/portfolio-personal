@@ -7,6 +7,7 @@
         :expanded.sync="expanded"
         item-key="_id"
         show-expand
+        @click:row="clickrow"
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
@@ -85,6 +86,9 @@ export default {
     this.getExpertist()
   },
   methods: {
+    clickrow(_, { expand, isExpanded }) {
+      expand(!isExpanded)
+    },
     async getExpertist() {
       this.loading = true
       try {
@@ -99,4 +103,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="css">
+.v-data-table td,
+.v-data-table th {
+  padding: 0 0px;
+}
+.v-data-table__wrapper {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+</style>

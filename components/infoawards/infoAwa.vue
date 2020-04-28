@@ -24,6 +24,7 @@
 </template>
 <script>
 export default {
+  name: 'Type3',
   props: {
     award: {
       type: Object,
