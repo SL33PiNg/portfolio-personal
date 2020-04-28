@@ -13,12 +13,9 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="blue darken-1" text @click.stop="isOpen = false"
-          >ไม่</v-btn
-        >
-        <v-btn color="blue darken-1" text @click.stop="delDepartment"
-          >ใช่</v-btn
-        >
+        <v-spacer></v-spacer>
+        <v-btn color="error" @click.stop="delDepartment">ตกลง</v-btn>
+        <v-btn color="primary" @click.stop="isOpen = false">ยกเลิก</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

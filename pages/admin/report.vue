@@ -44,7 +44,6 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
-
                   <v-btn color="success" @click="allowReport">
                     บันทึก
                   </v-btn>
@@ -58,23 +57,28 @@
 
           <v-dialog v-model="del" max-width="500px">
             <v-card>
+              <v-card-title>
+                <span class="headline">ลบการร้องเรียน </span>
+              </v-card-title>
               <v-card-text>
                 <v-container>
-                  <v-card-title>
-                    <span class="headline">ต้องการลบการร้องเรียนของ </span>
-                    {{ tempDataItem.reportName }} ?
-                  </v-card-title>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="error" @click="delReports(tempDataItem)">
-                      ตกลง
-                    </v-btn>
-                    <v-btn color="primary" @click="del = false">
-                      ยกเลิก
-                    </v-btn>
-                  </v-card-actions>
+                  <v-row>
+                    <p>
+                      ต้องการลบรายการร้องเรียนของ
+                      {{ tempDataItem.reportName }} ?
+                    </p>
+                  </v-row>
                 </v-container>
               </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="error" @click="delReports(tempDataItem)">
+                  ตกลง
+                </v-btn>
+                <v-btn color="primary" @click="del = false">
+                  ยกเลิก
+                </v-btn>
+              </v-card-actions>
             </v-card>
           </v-dialog>
         </template>

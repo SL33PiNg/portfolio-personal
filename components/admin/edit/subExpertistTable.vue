@@ -23,14 +23,10 @@
             </v-container>
           </v-card-text>
           <v-card-actions>
-            <v-btn
-              color="blue darken-1"
-              text
-              @click.stop="openEditDialog = false"
+            <v-spacer></v-spacer>
+            <v-btn color="success" @click.stop="updateSubExpert">บันทึก</v-btn>
+            <v-btn color="primary" @click.stop="openEditDialog = false"
               >ยกเลิก</v-btn
-            >
-            <v-btn color="blue darken-1" text @click.stop="updateSubExpert"
-              >บันทึก</v-btn
             >
           </v-card-actions>
         </v-card>
@@ -39,14 +35,10 @@
         <v-card>
           <v-card-title>ต้องการลบ {{ editData.name }} ?</v-card-title>
           <v-card-actions>
-            <v-btn
-              color="blue darken-1"
-              text
-              @click.stop="openDelDialog = false"
-              >ไม่</v-btn
-            >
-            <v-btn color="blue darken-1" text @click="deleteExpertist"
-              >ใช่</v-btn
+            <v-spacer></v-spacer>
+            <v-btn color="error" @click="deleteExpertist">ตกลง</v-btn>
+            <v-btn color="primary" @click.stop="openDelDialog = false"
+              >ยกเลิก</v-btn
             >
           </v-card-actions>
         </v-card>

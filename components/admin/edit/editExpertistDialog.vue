@@ -15,12 +15,9 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="blue darken-1" text @click.stop="isOpen = false"
-          >ยกเลิก</v-btn
-        >
-        <v-btn color="blue darken-1" text @click.stop="updateExpertist"
-          >บันทึก</v-btn
-        >
+        <v-spacer></v-spacer>
+        <v-btn color="success" @click.stop="updateExpertist">บันทึก</v-btn>
+        <v-btn color="primary" @click.stop="isOpen = false">ยกเลิก</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
