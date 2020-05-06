@@ -42,6 +42,15 @@
                   <froalaView v-model="tempDataItem.information"></froalaView>
                 </v-card-text>
 
+                <v-card-text>
+                  <span class="headline">ภาพประกอบ</span>
+                  <v-img
+                    :src="`http://localhost:3000/api/report/${tempDataItem.cover}`"
+                    height="250"
+                    width="450"
+                    contain
+                  ></v-img>
+                </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="success" @click="allowReport">

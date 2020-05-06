@@ -7,6 +7,7 @@ const reportSchema = new mongoose.Schema({
   information: String,
   profilefirstnameTH: String,
   profilelastnameTH: String,
+  cover: String,
   date: {
     type: Date, 
     default: Date.now},

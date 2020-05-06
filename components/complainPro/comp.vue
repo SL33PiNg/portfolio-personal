@@ -23,15 +23,29 @@
           class="ma-2"
           outlined
         ></v-textarea>
-
-        <v-col cols="6">
-          <v-file-input
-            accept="image/png, image/jpeg, image/bmp"
-            placeholder="เลือกรูปภาพ"
-            prepend-icon="mdi-camera"
-            label="ภาพประกอบ"
-          ></v-file-input>
-        </v-col>
+        <v-row justify="center">
+          <v-col cols="12">
+            <v-img
+              v-if="imageUrl"
+              :src="imageUrl"
+              aspect-ratio="1.7"
+              height="250"
+              class="ma-2"
+              contain
+            ></v-img>
+          </v-col>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="6">
+            <v-file-input
+              accept="image/png, image/jpeg, image/bmp"
+              placeholder="เลือกรูปภาพ"
+              prepend-icon="mdi-camera"
+              label="ภาพประกอบ"
+              @change="handleChange"
+            ></v-file-input>
+          </v-col>
+        </v-row>
         <v-divider></v-divider>
 
         <v-card-actions>
@@ -107,9 +121,28 @@ export default {
       loadBtn: false,
       information: '',
       reportName: '',
+      cover: '',
+      imageUrl: '',
+      imageFile: '',
     }
   },
   methods: {
+    async handleChange(e) {
+      if (!e) return
+      const fr = new FileReader()
+      fr.readAsDataURL(e)
+      fr.addEventListener('load', () => {
+        this.imageUrl = fr.result
+        this.imageFile = e
+      })
+      const data = new FormData()
+      data.append('report', e)
+      try {
+        const result = await this.$axios.$post('/profile/image', data)
+        console.log(result)
+        this.cover = result.file
+      } catch (error) {}
+    },
     async addReport() {
       try {
         this.loadBtn = true
@@ -120,6 +153,7 @@ export default {
           profilelastnameTH: this.user.personalInfo.lastnameTH,
           reportName: this.reportName,
           information: this.information,
+          cover: this.cover,
         })
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
@@ -128,6 +162,9 @@ export default {
         this.dialog = false
         this.information = ''
         this.reportName = ''
+        this.cover = ''
+        this.imageUrl = ''
+        this.imageFile = ''
       }
     },
   },

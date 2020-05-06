@@ -50,9 +50,9 @@ exports.uploadImage = async (req, res) => {
   try {
     const metadata = await image.metadata()
     if(metadata.height > metadata.width ){
-      await image.resize({height: 500}).toFile(path.resolve('award', req.file.filename))
+      await image.resize({height: 1365}).toFile(path.resolve('award', req.file.filename))
     }else{
-      await image.resize({width: 870}).toFile(path.resolve('award', req.file.filename))
+      await image.resize({width: 2048}).toFile(path.resolve('award', req.file.filename))
     }
     fs.unlinkSync(req.file.path)
   } catch (error) {

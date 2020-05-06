@@ -1,5 +1,8 @@
+const path = require('path')
+const fs = require('fs')
 const UserModel = require('../models/User')
 const ReportModel = require('../models/report')
+const sharp = require('sharp')
 
 exports.getAllUserProfile = async (req, res) => {
   try {
@@ -24,7 +27,7 @@ exports.getProfileByUsername = async (req, res) => {
 }
 
 exports.addReport = async (req, res) => {
-  const { profileID, profileName, information, reportName, profilefirstnameTH, profilelastnameTH } = req.body
+  const { profileID, profileName, information, reportName, profilefirstnameTH, profilelastnameTH,cover } = req.body
   try {
     const result = await ReportModel.create({
       profileID,
@@ -32,7 +35,8 @@ exports.addReport = async (req, res) => {
       reportName,
       information,
       profilefirstnameTH,
-      profilelastnameTH
+      profilelastnameTH,
+      cover,
     })
     return res.json(result)
   } catch (error) {
@@ -85,3 +89,22 @@ exports.advancedSearch = async (req, res) => {
     return res.status(500).json({ status: 500, message: error.message })
   }
 }
+
+exports.uploadImage = async (req, res) => {
+  const image =  sharp(req.file.path)
+  try {
+    const metadata = await image.metadata()
+    if(metadata.height > metadata.width ){
+      await image.resize({height: 1365}).toFile(path.resolve('report', req.file.filename))
+    }else{
+      await image.resize({width: 2048}).toFile(path.resolve('report', req.file.filename))
+    }
+    fs.unlinkSync(req.file.path)
+  } catch (error) {
+    
+  }
+  res.json({
+    file: req.file.filename
+  })
+}
+

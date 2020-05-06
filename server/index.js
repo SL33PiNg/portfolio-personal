@@ -30,6 +30,7 @@ app.use(cors())
 app.use('/', indexRouter)
 app.use('/avatar', express.static('./avatar'))
 app.use('/award', express.static('./award'))
+app.use('/report', express.static('./report'))
 app.use('/backup', express.static('./zip'))
 
 
