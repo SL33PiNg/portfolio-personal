@@ -59,69 +59,69 @@
 
             <v-dialog v-model="shut" max-width="500px">
               <v-card>
-                <v-container>
-                  <v-card-title>
-                    <span class="headline">สถานะการใช้งาน</span>
-                  </v-card-title>
-                  <v-row justify="center">
-                    <v-radio-group v-model="isPublic">
-                      <v-radio label="เผยแผร่ " :value="true"></v-radio>
-                      <v-radio label="ระงับการเผยแผร่" :value="false"></v-radio>
-                    </v-radio-group>
-                  </v-row>
-                  <v-card-text>
-                    <v-textarea
-                      v-model="msg"
-                      placeholder="หมายเหตุ"
-                    ></v-textarea>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="success" @click="allowPublic">
-                      บันทึก
-                    </v-btn>
-                    <v-btn color="primary" @click="shut = false">
-                      ยกเลิก
-                    </v-btn>
-                  </v-card-actions>
-                </v-container>
+                <v-card-title>
+                  <span class="headline">กำหนดสถานะการใช้งาน</span>
+                </v-card-title>
+
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <p v-if="isPublic">
+                        สถานะการใช้งาน : เผยแพร่
+                      </p>
+                      <p v-else>
+                        สถานะการใช้งาน : ระงับการเผยแพร่
+                      </p>
+                    </v-row>
+                  </v-container>
+                  <v-textarea v-model="msg" placeholder="หมายเหตุ"></v-textarea>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn v-if="!isPublic" color="success" @click="allowPublic">
+                    เผยแผร่
+                  </v-btn>
+                  <v-btn v-else color="error" @click="allowPublic">
+                    ระงับการเผยแพร่
+                  </v-btn>
+                  <v-btn color="primary" @click="shut = false">
+                    ยกเลิก
+                  </v-btn>
+                </v-card-actions>
               </v-card>
             </v-dialog>
             <v-dialog v-model="close" max-width="500px">
               <v-card>
-                <v-container>
-                  <v-card-title>
-                    <span class="headline">สถานะบัญชี</span>
-                  </v-card-title>
-                  <v-row justify="center">
-                    <v-radio-group v-model="isActive">
-                      <v-radio
-                        label="เปิดการใช้งานบัญชี "
-                        :value="true"
-                      ></v-radio>
-                      <v-radio
-                        label="ปิดการใช้งานบัญชี"
-                        :value="false"
-                      ></v-radio>
-                    </v-radio-group>
-                  </v-row>
-                  <v-card-text>
-                    <v-textarea
-                      v-model="msg"
-                      placeholder="หมายเหตุ"
-                    ></v-textarea>
-                  </v-card-text>
+                <v-card-title>
+                  <span class="headline">กำหนดสถานะบัญชีผู้ใช้</span>
+                </v-card-title>
 
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="success" @click="allowActive">
-                      บันทึก
-                    </v-btn>
-                    <v-btn color="primary" @click="close = false">
-                      ยกเลิก
-                    </v-btn>
-                  </v-card-actions>
-                </v-container>
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <p v-if="isActive">
+                        สถานะบัญชี : เปิดการใช้งานบัญชี
+                      </p>
+                      <p v-else>
+                        สถานะบัญชี : ปิดการใช้งานบัญชี
+                      </p>
+                    </v-row>
+                  </v-container>
+                  <v-textarea v-model="msg" placeholder="หมายเหตุ"></v-textarea>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn v-if="!isActive" color="success" @click="allowActive">
+                    เปิดการใช้งานบัญชี
+                  </v-btn>
+                  <v-btn v-else color="error" @click="allowActive">
+                    ปิดการใช้งานบัญชี
+                  </v-btn>
+                  <v-btn color="primary" @click="close = false">
+                    ยกเลิก
+                  </v-btn>
+                </v-card-actions>
               </v-card>
             </v-dialog>
           </template>
@@ -145,7 +145,7 @@
                   </v-icon></v-chip
                 >
               </template>
-              <span>เผยแพร่ หรือ ระงับการเผยแพร่ </span>
+              <span>กำหนดสถานะการใช้งาน</span>
             </v-tooltip>
 
             <v-tooltip top>
@@ -156,7 +156,7 @@
                   </v-icon></v-chip
                 >
               </template>
-              <span>เปิด-ปิด การใช้งานบัญชีผู้ใช้</span>
+              <span>กำหนดสถานะบัญชีผู้ใช้</span>
             </v-tooltip>
           </template>
           <template v-slot:item.isPublic="{ item }">
@@ -296,7 +296,7 @@ export default {
     async allowPublic() {
       this.loading = true
       try {
-        if (this.isPublic)
+        if (!this.isPublic)
           await this.$axios.$post(
             `/admin/allowPublic/${this.tempDataItem._id}`,
             {
@@ -321,7 +321,7 @@ export default {
     async allowActive() {
       this.loading = true
       try {
-        if (this.isActive)
+        if (!this.isActive)
           await this.$axios.$post(
             `/admin/allowActive/${this.tempDataItem._id}`,
             {
@@ -346,3 +346,10 @@ export default {
   },
 }
 </script>
+
+<style lang="css">
+.v-text-field {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+</style>
