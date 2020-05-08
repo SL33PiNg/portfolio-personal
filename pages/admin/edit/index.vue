@@ -1,7 +1,12 @@
 <template>
   <v-card outlined>
     <v-container fluid>
-      <v-data-table :headers="headers" :items="departments" item-key="_id">
+      <v-data-table
+        hide-default-footer
+        :headers="headers"
+        :items="departments"
+        item-key="_id"
+      >
         <template v-slot:top>
           <v-toolbar flat color="white">
             <v-toolbar-title>หน่วยงาน</v-toolbar-title>

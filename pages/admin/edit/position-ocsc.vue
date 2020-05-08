@@ -5,6 +5,7 @@
         :headers="headers"
         :items="positionocsc"
         :expanded.sync="expanded"
+        hide-default-footer
         item-key="_id"
         show-expand
         @click:row="clickrow"

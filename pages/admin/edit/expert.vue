@@ -7,6 +7,7 @@
         :expanded.sync="expanded"
         item-key="_id"
         show-expand
+        hide-default-footer
         @click:row="clickrow"
       >
         <template v-slot:top>
