@@ -77,62 +77,47 @@
               class="ma-2"
               @click="$router.push(`/profile/${i.username}`)"
             >
-              <v-row justify="space-around">
-                <v-col cols="12" md="6" align-self="center">
-                  <v-list-item>
-                    <v-list-item-avatar width="110" height="110" class="ma-1"
-                      ><v-img
-                        :src="`${hostname}/api/avatar/${i.avatar}`"
-                        aspect-ratio="1.7"
-                        class="ma-1 mx-auto"
-                      ></v-img
-                    ></v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title class="headline ml-1">
-                        {{ i.personalInfo.academicRank
-                        }}{{ i.personalInfo.firstnameTH }}
-                        {{ i.personalInfo.lastnameTH }}</v-list-item-title
-                      >
-
-                      <v-list-item-subtitle class="my-1 ml-2"
-                        >ชื่อเล่น :{{
-                          i.personalInfo.nicknameTH
-                        }}</v-list-item-subtitle
-                      >
-                      <v-list-item-subtitle class="my-1 ml-2"
-                        >หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
+              <v-row justify="space-around" no-gutters>
+                <v-col cols="auto" align-self="center">
+                  <v-list-item-avatar width="110" height="110" class="ma-1"
+                    ><v-img
+                      :src="`${hostname}/api/avatar/${i.avatar}`"
+                      aspect-ratio="1.7"
+                      class="ma-1 mx-auto"
+                    ></v-img
+                  ></v-list-item-avatar>
+                </v-col>
+                <v-col cols="12" md="4" align-self="start">
+                  <v-list-item-title class="headline mt-2">
+                    {{ i.personalInfo.academicRank
+                    }}{{ i.personalInfo.firstnameTH }}
+                    {{ i.personalInfo.lastnameTH }}</v-list-item-title
+                  >
+                  <h>ชื่อเล่น :{{ i.personalInfo.nicknameTH }}</h>
+                  <h>หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}</h>
                 </v-col>
 
-                <v-col cols="12" md="6" align-self="center">
-                  <v-list-item-subtitle class="ml-2">
+                <v-col cols="12" md="6" align-self="start" class="mt-2 mb-2">
+                  <v-list-item-subtitle class="ml-2 mt-2">
                     <span><h4>ความเชี่ยวชาญ</h4> </span>
-                  </v-list-item-subtitle>
-                  <v-list-item-subtitle>
-                    <v-row class="ml-1">
-                      <v-chip
-                        v-for="a in getExpert(i.expId)"
-                        :key="a"
-                        class="my-1 ma-1"
-                      >
-                        {{ a }}</v-chip
-                      ></v-row
+                    <v-chip
+                      v-for="a in getExpert(i.expId)"
+                      :key="a"
+                      class="my-1 ma-1"
+                    >
+                      {{ a }}</v-chip
                     >
                   </v-list-item-subtitle>
-                  <v-list-item-subtitle class="ml-2">
+                  <v-list-item-subtitle class="ml-2 mt-2">
                     <span><h4>ตำแหน่งสายงาน (ก.พ.)</h4> </span>
+                    <v-chip
+                      v-for="b in getOcsc(i.ocscId)"
+                      :key="b"
+                      class="my-1 ma-1"
+                    >
+                      {{ b }}
+                    </v-chip>
                   </v-list-item-subtitle>
-
-                  <v-chip
-                    v-for="b in getOcsc(i.ocscId)"
-                    :key="b"
-                    class="my-1 ma-1"
-                  >
-                    {{ b }}
-                  </v-chip>
 
                   <v-list-item-subtitle> </v-list-item-subtitle>
                 </v-col>

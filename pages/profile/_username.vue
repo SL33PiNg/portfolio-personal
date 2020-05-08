@@ -20,58 +20,56 @@
               contain
               class="mt-5 mx-auto"
             ></v-img>
-            <v-list-item class="ml-4">
+            <v-row class="ml-8 mt-2">
               <h4>
-                {{ user.personalInfo.academicRank
-                }}{{ user.personalInfo.firstnameTH }}
-                {{ user.personalInfo.lastnameTH }} ({{
-                  user.personalInfo.nicknameTH
-                }})
+                {{ user.personalInfo.academicRank }}
+                {{ user.personalInfo.firstnameTH }}
+                {{ user.personalInfo.lastnameTH }}
               </h4>
-            </v-list-item>
-            <v-list-item class="ml-4">
+            </v-row>
+            <v-row class="ml-8 mt-2">
               <h4>
                 {{ user.personalInfo.firstnameEN }}
-                {{ user.personalInfo.lastnameEN }} ({{
+                {{ user.personalInfo.lastnameEN }}
+              </h4>
+            </v-row>
+            <v-row class="ml-8 mt-2 mb-3">
+              <h4>
+                ชื่อเล่น :{{ user.personalInfo.nicknameTH }} ({{
                   user.personalInfo.nicknameEN
                 }})
               </h4>
-            </v-list-item>
-
+            </v-row>
             <v-divider></v-divider>
             <v-list>
               <v-list-group>
                 <template v-slot:activator>
-                  <v-list-item-content>
-                    <v-list-item-title class="ml-4"
-                      ><h4>ข้อมูลหน่วยงาน</h4></v-list-item-title
-                    >
-                  </v-list-item-content>
+                  <v-row class="ml-4"><h4>ข้อมูลหน่วยงาน</h4></v-row>
                 </template>
 
-                <v-list-item
-                  ><h4>หน่วยงาน</h4>
-                  : {{ departmentName }}</v-list-item
+                <v-list-item class="ml-4"
+                  ><h4>หน่วยงาน :</h4>
+                  {{ departmentName }}</v-list-item
                 >
-                <v-list-item
+                <v-list-item class="ml-4"
                   ><h4>ฝ่าย :</h4>
                   {{ user.careerInfo.department }}</v-list-item
                 >
-                <v-list-item
+                <v-list-item class="ml-4"
                   ><h4>ตำแหน่ง :</h4>
                   {{ user.careerInfo.jobPost }}</v-list-item
                 >
-                <v-list-item
-                  ><h4>ประเทศ</h4>
-                  : {{ user.careerInfo.country }}</v-list-item
+                <v-list-item class="ml-4"
+                  ><h4>ประเทศ :</h4>
+                  {{ user.careerInfo.country }}</v-list-item
                 >
-                <v-list-item
+                <v-list-item class="ml-4"
                   ><h4>
                     อีเมลล์ :
                   </h4>
                   {{ user.careerInfo.email }}</v-list-item
                 >
-                <v-list-item
+                <v-list-item class="ml-4"
                   ><h4>
                     เบอร์โทรศัพท์ :
                   </h4>
@@ -82,50 +80,52 @@
 
             <v-divider></v-divider>
 
-            <v-list-item class="ml-4">
-              <v-row>
-                <h4 class="ml-4 ma-2">ความเชี่ยวชาญ</h4>
-                <v-chip v-for="x in expertList" :key="x" class="ma-1">{{
-                  x
-                }}</v-chip></v-row
-              >
-            </v-list-item>
+            <v-row class="ml-8 mt-2">
+              <h4>ความเชี่ยวชาญ</h4>
+            </v-row>
+
+            <v-row class="ml-7 mb-3">
+              <v-chip v-for="x in expertList" :key="x" class="ma-1">{{
+                x
+              }}</v-chip>
+            </v-row>
+            <v-divider></v-divider>
+
+            <v-row class="ml-8 mt-2">
+              <h4>ตำแหน่งสายงาน (ก.พ.)</h4>
+            </v-row>
+
+            <v-row class="ml-7 mb-2">
+              <v-chip v-for="i in ocscList" :key="i" class="ma-1"
+                >{{ i }}
+              </v-chip>
+            </v-row>
 
             <v-divider></v-divider>
-            <v-list-item class="ml-4">
-              <v-row>
-                <h4 class="ml-4 ma-2">ตำแหน่งสายงาน (ก.พ.)</h4>
-                <v-chip v-for="i in ocscList" :key="i" class="ma-1"
-                  >{{ i }}
-                </v-chip>
-              </v-row>
-            </v-list-item>
-
-            <v-divider></v-divider>
-            <v-list-item class="ml-4">
+            <v-row class="ml-8 mt-2">
               <h4>ช่องทางการติดต่อส่วนตัว</h4>
-            </v-list-item>
-            <v-list-item
+            </v-row>
+            <v-row class="ml-8 mt-2"
               ><v-icon color="red">mdi-email</v-icon>
 
               : {{ user.personalInfo.email }}
-            </v-list-item>
-            <v-list-item>
+            </v-row>
+            <v-row class="ml-8 mt-2">
               <v-icon color="warning">mdi-phone</v-icon>
               : {{ user.personalInfo.phone }}
-            </v-list-item>
+            </v-row>
 
-            <v-list-item>
+            <v-row class="ml-8 mt-2">
               <v-icon color="blue">mdi-facebook </v-icon>
               : {{ user.personalInfo.facebook }}
-            </v-list-item>
+            </v-row>
 
-            <v-list-item
+            <v-row class="ml-8 mt-2 mb-3"
               ><v-icon color="green">mdi-alpha-l-circle</v-icon> :
               {{ user.personalInfo.lineID }}
-            </v-list-item>
+            </v-row>
             <v-divider></v-divider>
-            <v-card-actions class="ml-4">
+            <v-card-actions class="ml-5">
               <Complaint :user="user"></Complaint>
             </v-card-actions>
           </v-card>
