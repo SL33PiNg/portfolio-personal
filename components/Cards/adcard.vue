@@ -120,7 +120,7 @@
     </v-row>
     <v-row justify="center">
       <v-col cols="8">
-        <v-btn block class="success" @click="advancedSearch"
+        <v-btn block class="primary" @click="advancedSearch"
           >ค้นหา
           <v-icon>mdi-magnify</v-icon>
         </v-btn>

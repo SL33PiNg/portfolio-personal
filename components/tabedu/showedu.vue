@@ -3,13 +3,12 @@
     <v-row v-for="i in user.educationinfo" :key="i._id" wrap justify="center">
       <v-card width="600" class="mt-5 text-left" @click.stop="openDetail(i)">
         <v-card-title
-          >{{ i.academyName }} <v-spacer></v-spacer>
-          <v-chip :class="i.status ? 'primary' : 'success'">{{
+          >{{ i.educationVocabulary }} <v-spacer></v-spacer>
+          <v-chip :class="i.status ? 'success' : 'secondary'">{{
             i.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา'
           }}</v-chip></v-card-title
         >
-        <v-card-text>{{ i.educationVocabulary }}</v-card-text>
-        <v-card-text>{{ i.educationName }}/{{ i.branch }}</v-card-text>
+        <v-card-text>{{ i.academyName }}/ประเทศ{{ i.country }} </v-card-text>
       </v-card>
     </v-row>
     <v-row wrap justify="center">
@@ -29,7 +28,7 @@
             >
             <v-card-title class="headline">
               {{ detail.academyName }}<v-spacer></v-spacer>
-              <v-chip :class="detail.status ? 'primary' : 'success'">{{
+              <v-chip :class="detail.status ? 'success' : 'secondary'">{{
                 detail.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา'
               }}</v-chip></v-card-title
             >

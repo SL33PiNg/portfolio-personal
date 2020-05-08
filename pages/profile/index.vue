@@ -3,11 +3,11 @@
     <v-row justify="center">
       <v-card class="my-2" width="100%">
         <v-row justify="center">
-          <h2 class="mt-5">
+          <h2>
             ค้นหา
           </h2></v-row
         >
-        <v-row>
+        <v-row class="ma-1">
           <v-col offset-lg="2" cols="12" md="3" offset-md="2" xs="12">
             <v-select
               v-model="academic"
@@ -21,7 +21,7 @@
             </v-text-field>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="mt-n6 ma-1">
           <v-col offset-lg="2" cols="12" md="4" offset-md="2" xs="12">
             <treeselect
               v-model="expId"
@@ -43,18 +43,15 @@
               outlined
             /> </v-col
         ></v-row>
-        <v-row justify="center" class="ma-2">
-          <v-col cols="8" xs="12">
-            <v-row justify="center">
-              <v-btn block class="success" @click="search"
-                >ค้นหา <v-icon>mdi-magnify</v-icon>
-              </v-btn></v-row
+        <v-row class="ma-1">
+          <v-col offset-lg="2" cols="12" md="6" offset-md="2" xs="12">
+            <v-btn block class="primary" @click="search"
+              >ค้นหา <v-icon>mdi-magnify</v-icon>
+            </v-btn> </v-col
+          ><v-col cols="12" md="2" xs="12">
+            <v-btn block class="secondary" to="/profile/advancedSearch"
+              >ค้นหาขั้นสูง</v-btn
             >
-            <v-row justify="end" class="mt-2">
-              <v-btn class="secondary" to="/profile/advancedSearch"
-                >การค้นหาขั้นสูง</v-btn
-              >
-            </v-row>
           </v-col>
         </v-row>
       </v-card>
