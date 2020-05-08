@@ -26,13 +26,14 @@
         >
       </v-btn>
     </v-list-item>
-
-    <v-img
-      :src="`http://localhost:3000/api/award/${award.cover}`"
-      height="250"
-      width="450"
-      contain
-    ></v-img>
+    <v-card outlined>
+      <v-img
+        :src="`http://localhost:3000/api/award/${award.cover}`"
+        height="250"
+        width="450"
+        contain
+      ></v-img>
+    </v-card>
     <v-list-item>
       <v-list-item-content>
         <v-list-item-subtitle

@@ -21,10 +21,12 @@
               link
               :to="`/award/${award._id}`"
             >
-              <v-row justify="center">
-                <v-chip>
-                  {{ award.name }}
-                </v-chip>
+              <v-row no-gutters style="height: 100%;">
+                <v-col align-self="end">
+                  <div class="white text-center">
+                    <span class="black--text"> {{ award.name }}</span>
+                  </div>
+                </v-col>
               </v-row>
             </v-carousel-item>
           </v-carousel>
