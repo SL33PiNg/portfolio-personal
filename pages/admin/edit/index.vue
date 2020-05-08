@@ -18,7 +18,7 @@
               single-line
               class="mr-3"
             ></v-text-field>
-            <v-btn @click="addDepartment">เพิ่ม</v-btn>
+            <v-btn color="primary" @click="addDepartment">เพิ่ม</v-btn>
           </v-toolbar>
           <v-dialog v-model="dialog" max-width="500px">
             <v-card>
@@ -39,18 +39,20 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="success" @click="save">บันทึก</v-btn>
                 <v-btn color="primary" @click="close">ยกเลิก</v-btn>
+                <v-btn color="success" @click="save">บันทึก</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
         </template>
         <template v-slot:item.action="{ item }">
           <v-tooltip bottom>
-            <template v-slot:activator="{ on }"
-              ><v-icon class="mr-2" @click="editItem(item)" v-on="on">
-                mdi-pencil
-              </v-icon></template
+            <template v-slot:activator="{ on }">
+              <v-chip class="warning" v-on="on">
+                <v-icon @click="editItem(item)">
+                  mdi-pencil
+                </v-icon>
+              </v-chip> </template
             ><span>แก้ไข</span></v-tooltip
           >
           <del-department-dialog :item="item" @refetch="getDepartment">
@@ -76,13 +78,13 @@ export default {
       departments: [],
       loadBtn: false,
       headers: [
-        { text: 'หน่วยงาน', align: 'start', value: 'name', width: '90%' },
+        { text: 'หน่วยงาน', align: 'start', value: 'name', width: '85%' },
         {
           text: 'การจัดการ',
           value: 'action',
           sortable: false,
           align: 'center',
-          width: '10%',
+          width: '15%',
         },
       ],
     }

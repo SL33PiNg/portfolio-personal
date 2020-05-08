@@ -41,7 +41,11 @@
         </template>
         <template v-slot:item.data-table-expand="{ expand, isExpanded }">
           <v-btn icon @click="expand(!isExpanded)">
-            <v-icon>{{ isExpanded ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
+            <v-chip class="primary"
+              ><v-icon>{{
+                isExpanded ? 'mdi-folder-open' : 'mdi-folder'
+              }}</v-icon></v-chip
+            >
           </v-btn>
         </template>
       </v-data-table>
@@ -69,13 +73,13 @@ export default {
       loading: true,
       name: '',
       headers: [
-        { text: 'ความเชี่ยวชาญ', align: 'start', value: 'name', width: '80%' },
+        { text: 'ความเชี่ยวชาญ', align: 'start', value: 'name', width: '77%' },
         {
           text: 'การจัดการ',
           align: 'center',
           value: 'action',
           sortable: false,
-          width: '15%',
+          width: '18%',
         },
         { text: '', value: 'data-table-expand', width: '5%' },
       ],

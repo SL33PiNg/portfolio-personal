@@ -24,10 +24,10 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="success" @click.stop="updateSubExpert">บันทึก</v-btn>
             <v-btn color="primary" @click.stop="openEditDialog = false"
               >ยกเลิก</v-btn
             >
+            <v-btn color="success" @click.stop="updateSubExpert">บันทึก</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -49,8 +49,16 @@
         <v-row style="height: 50px;" justify="start">
           <v-col offset="1" cols="9">{{ item.name }} </v-col>
           <v-col cols="auto">
-            <v-icon small @click.stop="openEdit(item)">mdi-pencil</v-icon>
-            <v-icon small @click.stop="openDel(item)">mdi-delete</v-icon>
+            <v-chip class="warning"
+              ><v-icon small @click.stop="openEdit(item)"
+                >mdi-pencil</v-icon
+              ></v-chip
+            >
+            <v-chip class="error"
+              ><v-icon small @click.stop="openDel(item)"
+                >mdi-delete</v-icon
+              ></v-chip
+            >
           </v-col>
         </v-row>
       </v-card>

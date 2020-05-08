@@ -29,13 +29,15 @@
             <v-dialog v-model="add" max-width="500px">
               <v-card>
                 <v-card-title
-                  ><span class="headline">กำหนดสิทธิ์ </span></v-card-title
+                  ><span class="headline"
+                    >กำหนดสิทธิ์การใช้งาน
+                  </span></v-card-title
                 >
                 <v-card-text>
                   <v-container>
                     <v-row>
                       <p>
-                        กำหนดสิทธิ์การใช้งานของ :
+                        กำหนดสิทธิ์ของ :
                         {{ tempDataItem.personalInfo.firstnameTH }}
                         {{ tempDataItem.personalInfo.lastnameTH }}
                       </p>
