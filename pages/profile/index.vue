@@ -7,13 +7,8 @@
             ค้นหา
           </h2></v-row
         >
-<<<<<<< HEAD
         <v-row justify="center">
           <v-col cols="12" md="2" xs="12">
-=======
-        <v-row class="ma-1">
-          <v-col offset-lg="2" cols="12" md="3" offset-md="2" xs="12">
->>>>>>> 222bf015cc7576362bf19d878994efb2e3a78fa9
             <v-select
               v-model="academic"
               dense
@@ -53,29 +48,15 @@
               outlined
             /> </v-col
         ></v-row>
-<<<<<<< HEAD
         <v-row justify="center" class="ma-2">
           <v-col cols="9" md="8" xs="1" sm="6">
-            <v-spacer></v-spacer>
-          </v-col>
-          <v-col cols="auto">
             <v-btn block class="success" @click="search"
               >ค้นหา <v-icon>mdi-magnify</v-icon>
             </v-btn>
           </v-col>
-          <v-col cols="2">
+          <v-col cols="auto">
             <v-btn class="secondary" to="/profile/advancedSearch"
               >การค้นหาขั้นสูง</v-btn
-=======
-        <v-row class="ma-1">
-          <v-col offset-lg="2" cols="12" md="6" offset-md="2" xs="12">
-            <v-btn block class="primary" @click="search"
-              >ค้นหา <v-icon>mdi-magnify</v-icon>
-            </v-btn> </v-col
-          ><v-col cols="12" md="2" xs="12">
-            <v-btn block class="secondary" to="/profile/advancedSearch"
-              >ค้นหาขั้นสูง</v-btn
->>>>>>> 222bf015cc7576362bf19d878994efb2e3a78fa9
             >
           </v-col>
         </v-row>
