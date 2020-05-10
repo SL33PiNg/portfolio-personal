@@ -23,15 +23,28 @@
           <v-text-field v-model="search" label="ชื่อผลงาน" clearable />
         </v-col>
       </v-row>
-      <v-subheader>ผลงานเด่น ({{ showawards.length }} / 5)</v-subheader>
-      <v-row justify="center">
-        <card1
-          v-for="i in showawards"
-          :key="i.id"
-          :award="i"
-          @reload="getAwardhighlights"
-        ></card1>
+      <v-row>
+        <template>
+          <v-carousel
+            cycle
+            height="420"
+            show-arrows-on-hover
+            hide-delimiter-background
+          >
+            <v-carousel-item
+              v-for="award in showawards"
+              :key="award.id"
+              reverse-transition="fade-transition"
+              transition="fade-transition"
+              contain
+              link
+            >
+              <card1 :award="award" @reload="getAwardhighlights"></card1>
+            </v-carousel-item>
+          </v-carousel>
+        </template>
       </v-row>
+      <v-subheader>ผลงานเด่น ({{ showawards.length }} / 5)</v-subheader>
 
       <v-divider :inset="true" class="grey darken-2"></v-divider>
 

@@ -48,32 +48,42 @@
                 </template>
 
                 <v-list-item class="ml-4"
-                  ><h4>หน่วยงาน :</h4>
-                  {{ departmentName }}</v-list-item
+                  ><h4>หน่วยงาน</h4>
+                  <div class="ml-2">{{ departmentName }}</div></v-list-item
                 >
                 <v-list-item class="ml-4"
-                  ><h4>ฝ่าย :</h4>
-                  {{ user.careerInfo.department }}</v-list-item
+                  ><h4>ฝ่าย</h4>
+                  <div class="ml-2">
+                    {{ user.careerInfo.department }}
+                  </div></v-list-item
                 >
                 <v-list-item class="ml-4"
-                  ><h4>ตำแหน่ง :</h4>
-                  {{ user.careerInfo.jobPost }}</v-list-item
+                  ><h4>ตำแหน่ง</h4>
+                  <div class="ml-2">
+                    {{ user.careerInfo.jobPost }}
+                  </div></v-list-item
                 >
                 <v-list-item class="ml-4"
-                  ><h4>ประเทศ :</h4>
-                  {{ user.careerInfo.country }}</v-list-item
+                  ><h4>ประเทศ</h4>
+                  <div class="ml-2">
+                    {{ user.careerInfo.country }}
+                  </div></v-list-item
                 >
                 <v-list-item class="ml-4"
                   ><h4>
-                    อีเมลล์ :
+                    อีเมล
                   </h4>
-                  {{ user.careerInfo.email }}</v-list-item
+                  <div class="ml-2">
+                    {{ user.careerInfo.email }}
+                  </div></v-list-item
                 >
                 <v-list-item class="ml-4"
                   ><h4>
-                    เบอร์โทรศัพท์ :
+                    เบอร์โทรศัพท์
                   </h4>
-                  {{ user.careerInfo.phone }}</v-list-item
+                  <div class="ml-2">
+                    {{ user.careerInfo.phone }}
+                  </div></v-list-item
                 >
               </v-list-group>
             </v-list>
@@ -108,21 +118,21 @@
             <v-row class="ml-8 mt-2"
               ><v-icon color="red">mdi-email</v-icon>
 
-              : {{ user.personalInfo.email }}
+              <div class="ml-2">{{ user.personalInfo.email }}</div>
             </v-row>
             <v-row class="ml-8 mt-2">
               <v-icon color="warning">mdi-phone</v-icon>
-              : {{ user.personalInfo.phone }}
+              <div class="ml-2">{{ user.personalInfo.phone }}</div>
             </v-row>
 
             <v-row class="ml-8 mt-2">
               <v-icon color="blue">mdi-facebook </v-icon>
-              : {{ user.personalInfo.facebook }}
+              <div class="ml-2">{{ user.personalInfo.facebook }}</div>
             </v-row>
 
             <v-row class="ml-8 mt-2 mb-3"
-              ><v-icon color="green">mdi-alpha-l-circle</v-icon> :
-              {{ user.personalInfo.lineID }}
+              ><v-icon color="green">mdi-alpha-l-circle</v-icon>
+              <div class="ml-2">{{ user.personalInfo.lineID }}</div>
             </v-row>
             <v-divider></v-divider>
             <v-card-actions class="ml-5">

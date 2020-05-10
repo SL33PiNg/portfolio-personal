@@ -4,7 +4,7 @@
       <v-card width="600" class="mt-5 text-left" @click.stop="openDetail(i)">
         <v-card-title
           >{{ i.company }} <v-spacer></v-spacer>
-          <v-chip :class="i.status ? 'primary' : 'error'">{{
+          <v-chip :class="i.status ? 'success' : 'secondary'">{{
             i.status ? 'กำลังทำงาน' : 'ออกจากงาน'
           }}</v-chip></v-card-title
         >
@@ -21,8 +21,8 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-subtitle>
-            <h4>ปีที่เข้างาน</h4>
-            {{ i.start }}
+            <h4>ปีที่เริ่มทำงาน-ออกจากงาน (พ.ศ.)</h4>
+            {{ i.start }}-{{ i.end }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
             <h4>ประเทศ</h4>
@@ -49,15 +49,19 @@
             <v-card-title class="headline">
               {{ detail.company }}<v-spacer></v-spacer>
               <v-spacer></v-spacer>
-              <v-chip :class="detail.status ? 'primary' : 'error'">{{
+              <v-chip :class="detail.status ? 'success' : 'secondary'">{{
                 detail.status ? 'กำลังทำงาน' : 'ออกจากงาน'
               }}</v-chip></v-card-title
             >
 
             <v-card-subtitle>แผนก : {{ detail.department }} </v-card-subtitle>
             <v-card-subtitle>ตำแหน่ง : {{ detail.position }}</v-card-subtitle>
-            <v-card-subtitle>ปีที่เข้างาน : {{ detail.start }}</v-card-subtitle>
-            <v-card-subtitle>ปีที่ออกจากงาน : {{ detail.end }}</v-card-subtitle>
+            <v-card-subtitle
+              >ปีที่เริ่มทำงาน (พ.ศ.) : {{ detail.start }}</v-card-subtitle
+            >
+            <v-card-subtitle
+              >ปีที่ออกจากงาน (พ.ศ.) : {{ detail.end }}</v-card-subtitle
+            >
             <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
             <v-card-subtitle
               >รายละเอียด :<froalaView
