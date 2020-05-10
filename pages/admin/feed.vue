@@ -42,7 +42,7 @@
         </template>
       </v-row>
 
-      <v-divider :inset="true" class="grey darken-2"></v-divider>
+      <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
 
       <v-row justify="center">
         <card1

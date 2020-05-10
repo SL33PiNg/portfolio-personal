@@ -50,6 +50,7 @@
         <v-col cols="12" sm="12" md="6">
           <v-select
             v-model="user.personalInfo.academicRank"
+            dense
             :items="academicPos"
             label="ตำแหน่งทางวิชาการ"
             outlined

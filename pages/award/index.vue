@@ -18,7 +18,7 @@
         </v-row>
         <v-row>
           <v-col offset="9" cols="auto">
-            <v-btn class="mb-2" to="/award?type=1"
+            <v-btn class="mb-2 ml-2" to="/award?type=1"
               >ดูโครงการวิจัยเพิ่มเติม</v-btn
             >
           </v-col>
@@ -30,25 +30,23 @@
             <card1 v-for="i in filAwardtype2" :key="i.id" :award="i"></card1>
           </v-slide-group>
         </v-row>
-        <v-row>
+        <v-row no-gutters>
           <v-col offset="9" cols="auto">
-            <v-btn class="mb-2" to="/award?type=2"
-              >ดูโครงการวิจัยเพิ่มเติม</v-btn
+            <v-btn class="mb-5 ml-3" to="/award?type=2"
+              >ดูบริการวิชาการเพิ่มเติม</v-btn
             >
           </v-col>
         </v-row>
         <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
-        <v-subheader>รางวัล </v-subheader>
+        <v-subheader>รางวัล</v-subheader>
         <v-row justify="center">
           <v-slide-group>
             <card1 v-for="i in filAwardtype3" :key="i.id" :award="i"></card1>
           </v-slide-group>
         </v-row>
-        <v-row>
+        <v-row justify="center">
           <v-col offset="9" cols="auto">
-            <v-btn class="mb-2" to="/award?type=3"
-              >ดูโครงการวิจัยเพิ่มเติม</v-btn
-            >
+            <v-btn class="mb-2" to="/award?type=3">ดูรางวัลเพิ่มเติม</v-btn>
           </v-col>
         </v-row>
         <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
@@ -58,11 +56,9 @@
             <card1 v-for="i in filAwardtype4" :key="i.id" :award="i"></card1>
           </v-slide-group>
         </v-row>
-        <v-row>
+        <v-row justify="center">
           <v-col offset="9" cols="auto">
-            <v-btn class="mb-2" to="/award?type=4"
-              >ดูโครงการวิจัยเพิ่มเติม</v-btn
-            >
+            <v-btn class="mb-2 ml-1" to="/award?type=4">ดูอื่นๆเพิ่มเติม</v-btn>
           </v-col>
         </v-row>
       </template>

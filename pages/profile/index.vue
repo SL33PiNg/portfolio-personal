@@ -49,7 +49,7 @@
             /> </v-col
         ></v-row>
         <v-row justify="center" class="ma-2">
-          <v-col cols="9" md="8" xs="1" sm="6">
+          <v-col cols="9" md="9" xs="1" sm="6">
             <v-btn block class="success" @click="search"
               >ค้นหา <v-icon>mdi-magnify</v-icon>
             </v-btn>
