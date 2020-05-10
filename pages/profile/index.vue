@@ -7,22 +7,27 @@
             ค้นหา
           </h2></v-row
         >
-        <v-row class="ma-1">
-          <v-col offset-lg="2" cols="12" md="3" offset-md="2" xs="12">
+        <v-row justify="center">
+          <v-col cols="12" md="2" xs="12">
             <v-select
               v-model="academic"
+              dense
               :items="academicPos"
               label="ตำแหน่งทางวิชาการ"
               outlined
             ></v-select>
           </v-col>
-          <v-col cols="12" md="5" xs="12">
-            <v-text-field v-model="name" label="ชื่อ-นามสกุล,ชื่อเล่น" outlined>
+          <v-col cols="12" md="4" xs="12">
+            <v-text-field
+              v-model="name"
+              dense
+              label="ชื่อ-นามสกุล,ชื่อเล่น"
+              outlined
+            >
             </v-text-field>
           </v-col>
-        </v-row>
-        <v-row class="mt-n6 ma-1">
-          <v-col offset-lg="2" cols="12" md="4" offset-md="2" xs="12">
+
+          <v-col cols="12" md="2" xs="12">
             <treeselect
               v-model="expId"
               :options="expertists"
@@ -32,7 +37,7 @@
               placeholder="ความเชี่ยวชาญ"
             />
           </v-col>
-          <v-col cols="12" md="4" xs="12">
+          <v-col cols="12" md="2" xs="12">
             <treeselect
               v-model="ocscId"
               :options="positionocsc"
@@ -43,14 +48,15 @@
               outlined
             /> </v-col
         ></v-row>
-        <v-row class="ma-1">
-          <v-col offset-lg="2" cols="12" md="6" offset-md="2" xs="12">
-            <v-btn block class="primary" @click="search"
+        <v-row justify="center" class="ma-2">
+          <v-col cols="9" md="8" xs="1" sm="6">
+            <v-btn block class="success" @click="search"
               >ค้นหา <v-icon>mdi-magnify</v-icon>
-            </v-btn> </v-col
-          ><v-col cols="12" md="2" xs="12">
-            <v-btn block class="secondary" to="/profile/advancedSearch"
-              >ค้นหาขั้นสูง</v-btn
+            </v-btn>
+          </v-col>
+          <v-col cols="auto">
+            <v-btn class="secondary" to="/profile/advancedSearch"
+              >การค้นหาขั้นสูง</v-btn
             >
           </v-col>
         </v-row>
@@ -176,7 +182,7 @@ export default {
     },
   },
   created() {
-    this.getAllProfile()
+    // this.getAllProfile()
     this.getExpertist()
     this.getPositionOcsc()
   },
@@ -278,5 +284,9 @@ export default {
   opacity: 0.7;
   position: absolute;
   width: 100%;
+}
+.vue-treeselect__control {
+  height: 40px;
+  border: 1px solid #9e9e9e;
 }
 </style>

@@ -9,6 +9,7 @@
             start.fieldname === 'nickname'
           "
           v-model="start.data"
+          dense
           :label="mapLabel[start.fieldname]"
           outlined
         >
@@ -37,6 +38,7 @@
       <v-col lg="3" md="5" sm="4">
         <v-select
           v-model="start.fieldname"
+          dense
           :items="items"
           item-text="name"
           item-value="fieldname"
@@ -45,8 +47,8 @@
         ></v-select>
       </v-col>
 
-      <v-col cols="auto" class="text-center">
-        <v-btn large class="mt-2" color="primary" icon @click="add">
+      <v-col cols="auto" class="text-start">
+        <v-btn large color="primary" icon @click="add">
           <v-icon size="50"> mdi-plus-circle-outline</v-icon>
         </v-btn>
       </v-col>
@@ -56,6 +58,7 @@
       <v-col cols="2" offset-lg="2" offset-md="0">
         <v-select
           v-model="i.condition"
+          dense
           :items="condition"
           item-text="text"
           item-value="value"
@@ -71,6 +74,7 @@
             i.fieldname === 'nickname'
           "
           v-model="i.data"
+          dense
           :label="mapLabel[i.fieldname]"
           outlined
         >
@@ -99,6 +103,7 @@
       <v-col lg="3" md="4" sm="4">
         <v-select
           v-model="i.fieldname"
+          dense
           :items="items"
           item-text="name"
           item-value="fieldname"
@@ -107,8 +112,8 @@
           @change="change(index)"
         ></v-select>
       </v-col>
-      <v-col cols="auto" class="text-center">
-        <v-btn class="mt-2" color="error" large icon @click="del(index)">
+      <v-col cols="auto" class="text-start">
+        <v-btn color="error" large icon @click="del(index)">
           <v-icon size="50"> mdi-close-circle-outline</v-icon>
         </v-btn>
       </v-col>
