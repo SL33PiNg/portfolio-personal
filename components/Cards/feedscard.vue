@@ -29,8 +29,8 @@
     <v-card outlined>
       <v-img
         :src="`http://localhost:3000/api/award/${award.cover}`"
-        height="250"
-        width="450"
+        height="232"
+        width="350"
         contain
       ></v-img>
     </v-card>

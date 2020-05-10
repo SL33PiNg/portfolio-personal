@@ -5,35 +5,88 @@
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h1 class="ma-2 white--text">
             <v-icon large color="white">mdi-trophy-award</v-icon>
-            ผลงานทั้งหมด
+            ผลงานทั้งหมด{{ filAwardtype }}
           </h1></v-sheet
         >
       </v-row>
-      <v-row
-        ><v-col cols="12" md="6">
-          <v-select
-            v-model="catagorySelect"
-            :items="items"
-            placeholder="เลือกประเภทผลงาน"
-            class="ma-2"
-          >
-            ประเภทผลงาน
-          </v-select></v-col
-        >
-        <v-col cols="12" md="6">
-          <v-text-field
-            v-model="search"
-            label="ชื่อผลงาน"
-            clearable
-            class="ma-2"
-          />
-        </v-col>
-      </v-row>
-      <v-subheader>รายการค้นหา ({{ hiddenawards.length }} )</v-subheader>
-      <v-row justify="center">
-        <card1 v-for="i in hiddenawards" :key="i.id" :award="i"></card1>
-      </v-row> </v-container
-  ></v-card>
+      <template v-if="!type">
+        <v-subheader>โครงการวิจัย </v-subheader>
+        <v-row justify="center">
+          <v-slide-group>
+            <card1 v-for="i in filAwardtype1" :key="i.id" :award="i"></card1>
+          </v-slide-group>
+        </v-row>
+        <v-row>
+          <v-col offset="9" cols="auto">
+            <v-btn class="mb-2" to="/award?type=1"
+              >ดูโครงการวิจัยเพิ่มเติม</v-btn
+            >
+          </v-col>
+        </v-row>
+        <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
+        <v-subheader>บริการวิชาการ </v-subheader>
+        <v-row justify="center">
+          <v-slide-group>
+            <card1 v-for="i in filAwardtype2" :key="i.id" :award="i"></card1>
+          </v-slide-group>
+        </v-row>
+        <v-row>
+          <v-col offset="9" cols="auto">
+            <v-btn class="mb-2" to="/award?type=2"
+              >ดูโครงการวิจัยเพิ่มเติม</v-btn
+            >
+          </v-col>
+        </v-row>
+        <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
+        <v-subheader>รางวัล </v-subheader>
+        <v-row justify="center">
+          <v-slide-group>
+            <card1 v-for="i in filAwardtype3" :key="i.id" :award="i"></card1>
+          </v-slide-group>
+        </v-row>
+        <v-row>
+          <v-col offset="9" cols="auto">
+            <v-btn class="mb-2" to="/award?type=3"
+              >ดูโครงการวิจัยเพิ่มเติม</v-btn
+            >
+          </v-col>
+        </v-row>
+        <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
+        <v-subheader>อื่นๆ</v-subheader>
+        <v-row justify="center">
+          <v-slide-group>
+            <card1 v-for="i in filAwardtype4" :key="i.id" :award="i"></card1>
+          </v-slide-group>
+        </v-row>
+        <v-row>
+          <v-col offset="9" cols="auto">
+            <v-btn class="mb-2" to="/award?type=4"
+              >ดูโครงการวิจัยเพิ่มเติม</v-btn
+            >
+          </v-col>
+        </v-row>
+      </template>
+      <template v-else>
+        <v-row justify="end">
+          <v-col cols="12" md="6">
+            <v-text-field
+              v-model="search"
+              label="ชื่อผลงาน"
+              clearable
+              class="ma-2"
+            />
+          </v-col>
+        </v-row>
+        <v-subheader>{{ getNameBytype }}</v-subheader>
+        <v-row justify="center">
+          <card1 v-for="i in filterString" :key="i.id" :award="i"></card1>
+        </v-row>
+        <v-row justify="end">
+          <v-btn class="mr-3" to="/award">กลับไปหน้าหลัก</v-btn>
+        </v-row>
+      </template>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -43,6 +96,7 @@ export default {
     card1,
   },
   data: () => ({
+    type: null,
     group: 'awardType',
     search: '',
     catagorySelect: 5,
@@ -59,26 +113,68 @@ export default {
     // awardFilter() {
     //   return this.awards.filter((award) => award.name.search(this.search) > -1)
     // },
-    hiddenawards() {
-      return this.filterString.filter((award) => award.highlights === true)
-    },
-    filterCat() {
-      if (this.catagorySelect === 5) {
-        return this.awards
+    getNameBytype() {
+      if (this.type) {
+        return this.items.find((a) => a.value === this.type).text
+      } else {
+        return ''
       }
-      return this.awards.filter(
-        (award) => award.awardType === this.catagorySelect
-      )
     },
+    filterByType() {
+      if (this.type) {
+        return this.awards.filter((award) => award.awardType === this.type)
+      } else {
+        return []
+      }
+    },
+    filAwardtype1() {
+      return this.awards.filter((award) => award.awardType === 1).slice(0, 4)
+    },
+    filAwardtype2() {
+      return this.awards.filter((award) => award.awardType === 2).slice(0, 4)
+    },
+    filAwardtype3() {
+      return this.awards.filter((award) => award.awardType === 3).slice(0, 4)
+    },
+    filAwardtype4() {
+      return this.awards.filter((award) => award.awardType === 4).slice(0, 4)
+    },
+    // hiddenawards() {
+    //   return this.filterString.filter((award) => award.highlights === true)
+    // // },
+    // filterCat() {
+    //   if (this.catagorySelect === 5) {
+    //     return this.awards
+    //   }
+    //   return this.awards.filter(
+    //     (award) => award.awardType === this.catagorySelect
+    //   )
+    // },
     filterString() {
       if (this.search) {
-        return this.filterCat.filter(
+        return this.filterByType.filter(
           (award) =>
             award.name.search(this.search) >= 0 ||
             award.eventYear.search(this.search) >= 0
         )
       }
-      return this.filterCat
+      return this.filterByType
+    },
+  },
+  watch: {
+    '$route.query': {
+      immediate: true,
+      handler(newVal) {
+        if (newVal.type) {
+          if (['1', '2', '3', '4'].includes(newVal.type)) {
+            this.type = Number(newVal.type)
+          } else {
+            this.type = null
+          }
+        } else {
+          this.type = null
+        }
+      },
     },
   },
   created() {

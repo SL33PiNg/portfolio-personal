@@ -222,6 +222,8 @@ export default {
         this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
       } finally {
         this.loading = false
+        this.imageUrl = ''
+        this.imageFile = ''
         this.Award = {
           awardType: 1,
           name: '',

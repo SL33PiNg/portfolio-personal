@@ -25,6 +25,8 @@
       </v-row>
       <v-row>
         <template>
+          <v-subheader>ผลงานเด่น ({{ showawards.length }} / 5)</v-subheader>
+
           <v-slide-group multiple show-arrows>
             <v-slide-item
               v-for="award in showawards"
@@ -39,11 +41,9 @@
           </v-slide-group>
         </template>
       </v-row>
-      <v-subheader>ผลงานเด่น ({{ showawards.length }} / 5)</v-subheader>
 
       <v-divider :inset="true" class="grey darken-2"></v-divider>
 
-      <v-subheader>รายการค้นหา ({{ hiddenawards.length }})</v-subheader>
       <v-row justify="center">
         <card1
           v-for="i in hiddenawards"
