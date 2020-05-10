@@ -295,3 +295,8 @@ export default {
   },
 }
 </script>
+<style lang="css" scoped>
+.v-list {
+  padding: 0px 0;
+}
+</style>
