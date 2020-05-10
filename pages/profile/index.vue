@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-card class="my-2" width="100%">
         <v-row justify="center">
-          <h2>
+          <h2 class="mt-5">
             ค้นหา
           </h2></v-row
         >
