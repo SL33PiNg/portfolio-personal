@@ -53,11 +53,11 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="success" @click="allowReport">
-                    บันทึก
-                  </v-btn>
                   <v-btn color="primary" @click="account = false">
                     ยกเลิก
+                  </v-btn>
+                  <v-btn color="success" @click="allowReport">
+                    บันทึก
                   </v-btn>
                 </v-card-actions>
               </v-container>

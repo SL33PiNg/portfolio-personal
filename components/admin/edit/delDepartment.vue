@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="isOpen" width="500" persistent>
     <template v-slot:activator="{ on }">
-      <v-icon v-on="on">mdi-delete</v-icon>
+      <v-chip class="error" v-on="on"> <v-icon>mdi-delete</v-icon></v-chip>
     </template>
     <v-card>
       <v-card-title>ลบรายการหน่วยงาน</v-card-title>

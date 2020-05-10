@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="isOpen" width="500">
     <template v-slot:activator="{ on }">
-      <v-icon v-on="on">mdi-pencil</v-icon>
+      <v-chip class="warning"><v-icon v-on="on">mdi-pencil</v-icon></v-chip>
     </template>
     <v-card>
       <v-card-title>แก้ไขตำแหน่งสายงานก.พ.</v-card-title>
@@ -16,8 +16,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="success" @click.stop="updatePositionOcsc">บันทึก</v-btn>
         <v-btn color="primary" @click.stop="isOpen = false">ยกเลิก</v-btn>
+        <v-btn color="success" @click.stop="updatePositionOcsc">บันทึก</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
