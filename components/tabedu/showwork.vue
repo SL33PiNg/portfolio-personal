@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    {{ user.workinfo }}
     <v-row v-for="i in user.workinfo" :key="i._id" wrap justify="center">
       <v-card width="600" class="mt-5 text-left" @click.stop="openDetail(i)">
         <v-card-title
@@ -22,7 +23,7 @@
         <v-list-item>
           <v-list-item-subtitle>
             <h4>ปีที่เริ่มทำงาน-ออกจากงาน (พ.ศ.)</h4>
-            {{ i.start }}-{{ i.end }}
+            {{ i.start }} - {{ i.end || 'ปัจจุบัน' }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
             <h4>ประเทศ</h4>
@@ -59,8 +60,10 @@
             <v-card-subtitle
               >ปีที่เริ่มทำงาน (พ.ศ.) : {{ detail.start }}</v-card-subtitle
             >
+
             <v-card-subtitle
-              >ปีที่ออกจากงาน (พ.ศ.) : {{ detail.end }}</v-card-subtitle
+              >ปีที่ออกจากงาน (พ.ศ.) :
+              {{ detail.end || 'ปัจจุบัน' }}</v-card-subtitle
             >
             <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
             <v-card-subtitle

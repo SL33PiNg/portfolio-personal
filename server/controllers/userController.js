@@ -54,7 +54,7 @@ exports.addUserWorkdInfoById = async (req, res) => {
       { $push: {
          workinfo: {
           $each: [ work ],
-          $sort: { end: -1 }
+          $sort: { status:-1 ,end: 1 }
          } 
         } 
       }, 
