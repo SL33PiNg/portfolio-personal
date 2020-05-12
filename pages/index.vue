@@ -24,7 +24,7 @@
               <v-row no-gutters style="height: 100%;">
                 <v-col align-self="end">
                   <div class="white text-center">
-                    <span class="black--text"> {{ award.name }}</span>
+                    <h3 class="black--text">{{ award.name }}</h3>
                   </div>
                 </v-col>
               </v-row>

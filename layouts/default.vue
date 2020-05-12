@@ -1,12 +1,12 @@
 <template>
   <v-app>
-    <v-navigation-drawer :clipped="true" fixed app>
+    <v-navigation-drawer v-model="drawer" :clipped="true" fixed app>
       <user-nav v-if="pathMatch === 1"></user-nav>
       <admin-nav v-if="pathMatch === 2"></admin-nav>
       <public-nav v-if="pathMatch === 3"></public-nav>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="true" fixed app color="">
-      <v-toolbar-title> </v-toolbar-title>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-tooltip right>
         <template v-slot:activator="{ on }">
           <v-btn text color="normal" @click="$router.push('/')" v-on="on">
