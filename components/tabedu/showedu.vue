@@ -1,14 +1,30 @@
 <template>
   <v-container>
     <v-row v-for="i in user.educationinfo" :key="i._id" wrap justify="center">
-      <v-card width="600" class="mt-5 text-left" @click.stop="openDetail(i)">
+      <v-card width="600" class="mt-5 text-left">
         <v-card-title
           >{{ i.educationVocabulary }} <v-spacer></v-spacer>
           <v-chip :class="i.status ? 'success' : 'secondary'">{{
             i.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา'
           }}</v-chip></v-card-title
         >
-        <v-card-text>{{ i.academyName }}/ประเทศ{{ i.country }} </v-card-text>
+        <v-list-item>
+          <v-list-item-subtitle>
+            <h4>วุฒิการศึกษา</h4>
+            {{ i.educationName }}
+          </v-list-item-subtitle>
+          <v-list-item-subtitle>
+            <h4>สถานศึกษา/ปีที่สำเร็จ</h4>
+            {{ i.academyName }}/{{ i.graduate || 'กำลังศึกษา' }}
+          </v-list-item-subtitle>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-subtitle>
+            <h4>ประเทศ</h4>
+            {{ i.country }}
+          </v-list-item-subtitle>
+          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon>
+        </v-list-item>
       </v-card>
     </v-row>
     <v-row wrap justify="center">
@@ -41,7 +57,8 @@
             >
             <v-card-subtitle>สาขา : {{ detail.branch }}</v-card-subtitle>
             <v-card-subtitle
-              >ปีที่สำเร็จการศึกษา : {{ detail.graduate }}</v-card-subtitle
+              >ปีที่สำเร็จการศึกษา :
+              {{ detail.graduate || 'กำลังศึกษา' }}</v-card-subtitle
             >
             <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
             <v-card-subtitle

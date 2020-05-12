@@ -1,8 +1,7 @@
 <template>
   <v-container>
-    {{ user.workinfo }}
     <v-row v-for="i in user.workinfo" :key="i._id" wrap justify="center">
-      <v-card width="600" class="mt-5 text-left" @click.stop="openDetail(i)">
+      <v-card width="600" class="mt-5 text-left">
         <v-card-title
           >{{ i.company }} <v-spacer></v-spacer>
           <v-chip :class="i.status ? 'success' : 'secondary'">{{
@@ -19,17 +18,19 @@
             <h4>ตำแหน่ง</h4>
             {{ i.position }}
           </v-list-item-subtitle>
+          <v-list-item-subtitle>
+            <h4>ประเทศ</h4>
+            {{ i.country }}
+          </v-list-item-subtitle>
         </v-list-item>
         <v-list-item>
           <v-list-item-subtitle>
             <h4>ปีที่เริ่มทำงาน-ออกจากงาน (พ.ศ.)</h4>
             {{ i.start }} - {{ i.end || 'ปัจจุบัน' }}
           </v-list-item-subtitle>
-          <v-list-item-subtitle>
-            <h4>ประเทศ</h4>
-            {{ i.country }}
-          </v-list-item-subtitle></v-list-item
-        >
+
+          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon>
+        </v-list-item>
       </v-card>
     </v-row>
     <v-row wrap justify="center">

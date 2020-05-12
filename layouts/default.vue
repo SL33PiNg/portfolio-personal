@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" :clipped="true" fixed app>
+    <v-navigation-drawer v-model="drawer" :clipped="true" fixed app dark>
       <user-nav v-if="pathMatch === 1"></user-nav>
       <admin-nav v-if="pathMatch === 2"></admin-nav>
       <public-nav v-if="pathMatch === 3"></public-nav>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="true" fixed app color="">
+    <v-app-bar :clipped-left="true" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-tooltip right>
         <template v-slot:activator="{ on }">
@@ -49,9 +49,14 @@
       </v-container>
     </v-content>
 
-    <!-- <v-footer :fixed="true" app>
-      <span class="red"> </span>
-    </v-footer> -->
+    <v-footer padless>
+      <v-card class="flex" flat tile>
+        <v-card-text class="py-2 text-center">
+          {{ new Date().getFullYear() }} —
+          <strong>An Online Portfolio for RMUTT Staff</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 
@@ -67,8 +72,9 @@ export default {
   },
   data() {
     return {
-      drawer: true,
-      pathMatch: 1,
+      drawer: false,
+      pathMatch: null,
+      icons: ['mdi-home', 'mdi-twitter', 'mdi-linkedin', 'mdi-instagram'],
     }
   },
   computed: {

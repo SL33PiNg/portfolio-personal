@@ -1,20 +1,27 @@
 <template>
   <v-container>
     <v-row v-for="i in user.certificateinfo" :key="i._id" wrap justify="center">
-      <v-card width="600" class="mt-5" @click.stop="openDetail(i)">
-        <v-card-title
-          ><v-chip color="success">
-            <h3>{{ i.certificateName }}</h3></v-chip
+      <v-card width="600" class="mt-5 ma-1">
+        <v-card-title>
+          {{ i.certificateName }} <v-spacer></v-spacer>
+          <v-sheet color="secondary" width="auto" class="mt-n12">
+            <h1 class="ma-1 white--text">
+              <v-icon color="white">mdi-certificate</v-icon>
+            </h1></v-sheet
           >
         </v-card-title>
 
         <v-list-item>
           <v-list-item-subtitle>
-            <h4>หน่วยงานที่ออก:{{ i.guarantee }}</h4>
+            <h4>หน่วยงานที่ออก</h4>
+            {{ i.guarantee }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
-            <h4>ปีที่ได้รับ:{{ i.graduate }}</h4>
+            <h4>ปีที่ได้รับ</h4>
+            {{ i.graduate }}
           </v-list-item-subtitle>
+
+          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon>
         </v-list-item>
       </v-card>
     </v-row>
