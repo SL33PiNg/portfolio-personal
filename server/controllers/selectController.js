@@ -121,6 +121,9 @@ exports.addSubExpertist = async (req, res) => {
 
 exports.updateSubExpertist = async (req, res) => {
   const { _id, subId, subName } = req.body
+  console.log(_id)
+  console.log(subId)
+  console.log(subName)
   try {
     const result = await expertistModel.updateOne(
       { _id, sub: { $elemMatch: { _id: subId } } },

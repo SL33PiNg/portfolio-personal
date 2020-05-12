@@ -67,6 +67,22 @@ exports.addUserWorkdInfoById = async (req, res) => {
   }
 }
 
+exports.editUserWorkdInfoById = async (req, res) => {
+  const { id } = req.user
+  const work  = {...req.body} 
+  try {
+    const result = await UserModel.updateOne(
+      { _id: id, workinfo: { $elemMatch: { _id: work._id } } },
+      { $set: { 'workinfo.$': work } }
+    )
+      res.json(result)
+      console.log(result)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
 exports.deleteWorkinfoByIndex = async (req, res) => {
   const { id } = req.params
   try {
@@ -120,7 +136,7 @@ exports.addUserEducationInfoById = async (req, res) => {
       { $push: {
          educationinfo: {
           $each: [ education ],
-          $sort: { graduate: -1 }
+          $sort: { graduate: 1 }
          }
         }
       },
@@ -128,6 +144,22 @@ exports.addUserEducationInfoById = async (req, res) => {
     )
 
     return res.json(result)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
+exports.editUserEducationInfoById = async (req, res) => {
+  const { id } = req.user
+  const education  = {...req.body} 
+  try {
+    const result = await UserModel.updateOne(
+      { _id: id, educationinfo: { $elemMatch: { _id: education._id } } },
+      { $set: { 'educationinfo.$': education } }
+    )
+      res.json(result)
+      console.log(result)
   } catch (error) {
     console.log(error)
     return res.status(500).send(error)
@@ -163,6 +195,25 @@ exports.addUsercertificateInfoById = async (req, res) => {
       { new: true })
 
     return res.json(result)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send(error)
+  }
+}
+
+exports.editUsercertificateInfoById = async (req, res) => {
+  const { id } = req.user
+  const certificate  = {...req.body} 
+  console.log(certificate._id)
+  console.log(id)
+  console.log(certificate)
+  try {
+    const result = await UserModel.updateOne(
+      { _id:id, certificateinfo: { $elemMatch: { _id:certificate._id } } },
+      { $set: { 'certificateinfo.$': certificate } }
+    )
+      res.json(result)
+      console.log(result)
   } catch (error) {
     console.log(error)
     return res.status(500).send(error)
