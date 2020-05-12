@@ -14,12 +14,15 @@ router.patch('/avatar', uploadAvatar.single('avatar'), UserController.updateAvat
 
 router.post('/workinfo',[selectLog], UserController.addUserWorkdInfoById)
 router.delete('/workinfo/:id',[selectLog], UserController.deleteWorkinfoByIndex)
+router.patch('/updateWorkinfo', UserController.editUserWorkdInfoById)
 
 router.post('/studyinfo',[selectLog], UserController.addUserEducationInfoById)
 router.delete('/studyinfo/:id',[selectLog], UserController.deleteEducationInfoByIndex)
+router.patch('/updateStudyinfo', UserController.editUserEducationInfoById)
 
 router.post('/certificateinfo',[selectLog], UserController.addUsercertificateInfoById)
 router.delete('/certificateinfo/:id',[selectLog], UserController.deletecertificateInfoByIndex)
+router.patch('/update', UserController.editUsercertificateInfoById)
 
 router.post('/award', AddAward.addAward)
 router.get('/award', AddAward.getAward)

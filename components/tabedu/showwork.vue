@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    {{ user.workinfo }}
     <v-row v-for="i in user.workinfo" :key="i._id" wrap justify="center">
       <v-card width="600" class="mt-5 text-left" @click.stop="openDetail(i)">
         <v-card-title

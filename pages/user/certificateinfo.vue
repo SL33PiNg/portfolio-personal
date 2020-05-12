@@ -9,62 +9,66 @@
           </h1></v-sheet
         >
       </v-row>
+      <v-form ref="form" v-model="valid">
+        <v-row class="mt-10">
+          <v-col cols="12" xs="12" md="5">
+            <v-text-field
+              v-model="certificate.certificateName"
+              :rules="[emptyRule, stringRule]"
+              label="ชื่อใบรับรอง"
+              clearable
+              outlined
+            />
+          </v-col>
 
-      <v-row class="mt-10">
-        <v-col cols="12" xs="12" md="5">
-          <v-text-field
-            v-model="certificate.certificateName"
-            :rules="rules.certificateName"
-            label="ชื่อใบรับรอง"
-            clearable
-            outlined
-          />
-        </v-col>
-
-        <v-col cols="12" xs="12" md="4">
-          <v-text-field
-            v-model="certificate.guarantee"
-            :rules="rules.guarantee"
-            label="หน่วยงานที่ออกใบรับรอง"
-            clearable
-            outlined
-          />
-        </v-col>
-        <v-col cols="12" xs="12" md="3">
-          <v-text-field
-            v-model="certificate.graduate"
-            v-mask="mask"
-            :rules="rules.number"
-            label="ปีที่ได้รับ (พ.ศ.)"
-            clearable
-            outlined
-          />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12" md="12" xs="12">
-          <h4>รายละเอียด</h4>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12" md="12" xs="12">
-          <froala
-            v-if="!loading"
-            v-model="certificate.certificateinfoDetails"
-            :config="config"
-          ></froala>
-        </v-col>
-      </v-row>
-      <v-row justify="end" class="ma-3">
-        <v-btn
-          :disabled="!formIsValid"
-          class="font-weight-light"
-          color="primary"
-          @click="addcertificate"
-        >
-          เพิ่มข้อมูล
-        </v-btn>
-      </v-row>
+          <v-col cols="12" xs="12" md="4">
+            <v-text-field
+              v-model="certificate.guarantee"
+              :rules="[emptyRule, stringRule]"
+              label="หน่วยงานที่ออกใบรับรอง"
+              clearable
+              outlined
+            />
+          </v-col>
+          <v-col cols="12" xs="12" md="3">
+            <v-text-field
+              v-model="certificate.graduate"
+              v-mask="mask"
+              :rules="[numberRule]"
+              label="ปีที่ได้รับ (พ.ศ.)"
+              clearable
+              outlined
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12" xs="12">
+            <h4>รายละเอียด</h4>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12" xs="12">
+            <froala
+              v-if="!loading"
+              v-model="certificate.certificateinfoDetails"
+              :config="config"
+            ></froala>
+          </v-col>
+        </v-row>
+        <v-row justify="end" class="ma-3">
+          <v-btn
+            :disabled="!valid"
+            class="font-weight-light"
+            color="primary"
+            @click="validate"
+          >
+            {{ editMode ? 'อัปเดต' : 'เพิ่มข้อมูล' }}
+          </v-btn>
+          <v-btn v-if="editMode" class="ml-2" @click="cancelEdit">
+            ยกเลิก
+          </v-btn>
+        </v-row>
+      </v-form>
 
       <template>
         <v-card outlined>
@@ -97,14 +101,28 @@
             </template>
 
             <template v-slot:item.action="{ item }">
-              <v-tooltip right>
+              <v-tooltip top>
                 <template v-slot:activator="{ on }">
-                  <v-btn icon @click="openDel(item._id)" v-on="on"
-                    ><v-icon>mdi-delete</v-icon></v-btn
-                  > </template
-                ><span>ลบ</span></v-tooltip
-              ></template
-            >
+                  <v-chip class="warning" v-on="on">
+                    <v-icon text-center @click="editItem(item)">
+                      mdi-pencil
+                    </v-icon></v-chip
+                  >
+                </template>
+                <span>แก้ไขข้อมูล </span>
+              </v-tooltip>
+
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-chip class="error" v-on="on"
+                    ><v-icon text-center @click="openDel(item._id)">
+                      mdi-delete
+                    </v-icon></v-chip
+                  >
+                </template>
+                <span>ลบการร้องเรียน</span>
+              </v-tooltip>
+            </template>
           </v-data-table>
         </v-card>
       </template>
@@ -122,13 +140,11 @@ export default {
   mixins: [UserMix],
   data() {
     return {
-      rules: {
-        number: [
-          (val) => (val || '').length > 0 || 'กรุณากรอก พ.ศ. เป้นตัวเลข',
-        ],
-        certificateName: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
-        guarantee: [(val) => (val || '').length > 0 || 'กรุณากรอกข้อมูล'],
-      },
+      emptyRule: (v) => !!v || 'กรุณากรอกข้อมูล',
+      stringRule: (v) => (v && v.length > 0) || 'กรุณากรอกข้อมูล',
+      numberRule: (v) => (v && v > 0) || 'กรุณากรอกตัวเลข (พ.ศ.)',
+      editMode: false,
+      valid: true,
       del: false,
       tempDataItem: '',
       mask: '####',
@@ -145,21 +161,25 @@ export default {
           text: 'ชื่อใบรับรอง',
           align: 'left',
           value: 'certificateName',
+          width: '35%',
         },
         {
           text: 'หน่วยงานที่ออกใบรับรอง',
           align: 'left',
           value: 'guarantee',
+          width: '35%',
         },
         {
           text: 'ปีที่ได้รับ',
           align: 'left',
           value: 'graduate',
+          width: '15%',
         },
         {
           text: 'การจัดการ',
           align: 'center',
           value: 'action',
+          width: '15%',
         },
       ],
       config: {
@@ -205,36 +225,75 @@ export default {
     }
   },
   computed: {
-    formIsValid() {
-      return this.certificate.certificateName && this.certificate.guarantee
-    },
+    // formIsValid() {
+    //   return this.certificate.certificateName && this.certificate.guarantee
+    // },
   },
   methods: {
+    cancelEdit() {
+      this.$refs.form.reset()
+      this.editMode = false
+    },
+    editItem(item) {
+      this.certificate = { ...item }
+      this.editMode = true
+    },
+    async validate() {
+      if (!this.editMode) {
+        try {
+          this.loadBtn = true
+          await this.$axios.$post('/users/certificateinfo', {
+            ...this.certificate,
+          })
+          this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
+          this.$refs.form.reset()
+        } catch (error) {
+          this.$toast.error('เพิ่มข้อมูล"ไม่สำเร็จ"')
+        } finally {
+          this.loadBtn = false
+          this.getUser()
+        }
+      } else {
+        try {
+          await this.$axios.$patch('/users/update', {
+            ...this.certificate,
+          })
+          this.$toast.success('อัปเดตข้อมูล"สำเร็จ"')
+          this.$refs.form.reset()
+        } catch (error) {
+          this.$toast.error('อัปเดตข้อมูลไม่สำเร็จ"')
+        } finally {
+          this.editMode = false
+          this.loadBtn = false
+          this.getUser()
+        }
+      }
+    },
     openDel(item) {
       this.tempDataItem = item
       this.del = true
     },
-    async addcertificate() {
-      try {
-        this.loadBtn = true
-        await this.$axios.$post('/users/certificateinfo', {
-          ...this.certificate,
-        })
-        this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
-      } catch (error) {
-        this.$toast.error('เพิ่มข้อมูล"ไม่สำเร็จ"')
-      } finally {
-        this.loadBtn = false
-        this.getUser()
-        this.certificate = {
-          certificateName: '',
-          graduate: '',
-          guarantee: '',
-          file: '',
-          certificateinfoDetails: '',
-        }
-      }
-    },
+    // async addcertificate() {
+    //   try {
+    //     this.loadBtn = true
+    //     await this.$axios.$post('/users/certificateinfo', {
+    //       ...this.certificate,
+    //     })
+    //     this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
+    //   } catch (error) {
+    //     this.$toast.error('เพิ่มข้อมูล"ไม่สำเร็จ"')
+    //   } finally {
+    //     this.loadBtn = false
+    //     this.getUser()
+    //     this.certificate = {
+    //       certificateName: '',
+    //       graduate: '',
+    //       guarantee: '',
+    //       file: '',
+    //       certificateinfoDetails: '',
+    //     }
+    //   }
+    // },
     async decertificate(id) {
       try {
         await this.$axios.$delete(`/users/certificateinfo/${id}`)
