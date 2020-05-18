@@ -55,6 +55,11 @@ export default {
           title: 'ประวัติการแก้ไขผู้ใช้งาน',
           to: '/admin/historyUserEdit',
         },
+        {
+          icon: 'mdi-autorenew',
+          title: 'สำรองข้อมูล',
+          to: '/admin/blackup',
+        },
         //  {
         //         icon: 'mdi-account-multiple-plus-outline',
         //         title: 'สร้างบัญชีผู้ดูแลระบบ',

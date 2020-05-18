@@ -31,4 +31,6 @@ router.delete('/delReports/:id' , addAdmin.delReportsById)
 router.get('/history' , addAdmin.getAllLog)
 router.get('/historyUserEdit' , addAdmin.getAllLogUser)
 
+router.get('/blackup' , addAdmin.blackupData)
+
 module.exports = router

@@ -1,9 +1,11 @@
+const { exec } = require('child_process')
+const fs = require('fs')
+const path = require('path')
 const UserModel = require('../models/User')
 const AwardModel = require('../models/award')
 const ReportModel = require('../models/report')
 const adminLog = require('../models/adminLog')
 const userLog = require('../models/userLog')
-
 exports.addAdmin = async (req, res) => {
   const { id } = req.params
   try {
@@ -151,6 +153,34 @@ exports.getAllLogUser = async (req, res) => {
     const result = await userLog.find().populate({ path: 'userID', select: 'personalInfo username' })
     res.json(result)
   } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
+exports.blackupData = (req, res) => {
+  const now = new Date()
+  const dd = now.getDate()
+  const mm = Intl.DateTimeFormat('en-US',{month:'long'}).format(now)
+  const yy = now.getFullYear()
+  const fileName = `${dd}${mm}${yy}` 
+  const cmd = `"C:\\Program Files\\MongoDB\\Server\\4.2\\bin\\mongodump" --uri="mongodb://localhost:27017/rmutt" --archive=backup/${fileName}` 
+  try {
+    if(!fs.existsSync(path.resolve('backup'))) {
+      fs.mkdirSync('backup')
+    }
+    exec(cmd, (err, stdout, stderr) => {
+      if(err) {
+        console.log(err)
+        return res.status(500).send('error')
+      }
+      console.log(stdout.toString())
+      res.json({
+        status: 200,
+        message: ' backup success'
+      })
+    })
+  } catch (error) {
+    console.log(error)
     return res.status(500).send(error)
   }
 }
