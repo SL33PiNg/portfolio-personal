@@ -134,16 +134,16 @@ export default {
       }
     },
     filAwardtype1() {
-      return this.awards.filter((award) => award.awardType === 1).slice(0, 4)
+      return this.awards.filter((award) => award.awardType === 1).slice(0, 2)
     },
     filAwardtype2() {
-      return this.awards.filter((award) => award.awardType === 2).slice(0, 4)
+      return this.awards.filter((award) => award.awardType === 2).slice(0, 2)
     },
     filAwardtype3() {
-      return this.awards.filter((award) => award.awardType === 3).slice(0, 4)
+      return this.awards.filter((award) => award.awardType === 3).slice(0, 2)
     },
     filAwardtype4() {
-      return this.awards.filter((award) => award.awardType === 4).slice(0, 4)
+      return this.awards.filter((award) => award.awardType === 4).slice(0, 2)
     },
     // hiddenawards() {
     //   return this.filterString.filter((award) => award.highlights === true)
