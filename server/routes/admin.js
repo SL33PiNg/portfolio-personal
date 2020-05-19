@@ -32,5 +32,7 @@ router.get('/history' , addAdmin.getAllLog)
 router.get('/historyUserEdit' , addAdmin.getAllLogUser)
 
 router.get('/blackup' , addAdmin.blackupData)
+router.get('/backuplist', addAdmin.getBackup)
+router.get('/restore/:folder', addAdmin.getRestore)
 
 module.exports = router
