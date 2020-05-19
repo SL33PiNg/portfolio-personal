@@ -34,9 +34,12 @@
       </v-row>
       <v-row justify="end">
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }"
-            ><v-btn text to="/award" v-on="on">ดูผลงานทั้งหมด</v-btn></template
-          ><span>ดูผลงานทั้งหมด</span></v-tooltip
+          <template v-slot:activator="{ on }">
+            <router-link to="/award" v-on="on"
+              ><div class="black--text mr-5">ดูผลงานทั้งหมด</div></router-link
+            >
+          </template>
+          <span>ดูผลงานทั้งหมด</span></v-tooltip
         >
       </v-row>
     </v-container>

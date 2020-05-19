@@ -10,56 +10,64 @@
         >
       </v-row>
       <template v-if="!type">
-        <v-subheader>โครงการวิจัย </v-subheader>
+        <v-subheader class="ma-2"><h3>โครงการวิจัย</h3> </v-subheader>
         <v-row justify="center">
           <v-slide-group>
             <card1 v-for="i in filAwardtype1" :key="i.id" :award="i"></card1>
           </v-slide-group>
         </v-row>
-        <v-row>
-          <v-col offset="9" cols="auto">
-            <v-btn class="mb-2 ml-2" to="/award?type=1"
-              >ดูโครงการวิจัยเพิ่มเติม</v-btn
-            >
-          </v-col>
+
+        <v-row justify="end">
+          <router-link to="/award?type=1"
+            ><div class="black--text mb-3 mr-3">
+              ดูโครงการวิจัยเพิ่มเติม
+            </div></router-link
+          >
         </v-row>
-        <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
-        <v-subheader>บริการวิชาการ </v-subheader>
+
+        <v-subheader class="ma-2"
+          >,
+          <h3>บริการวิชาการ</h3></v-subheader
+        >
         <v-row justify="center">
           <v-slide-group>
             <card1 v-for="i in filAwardtype2" :key="i.id" :award="i"></card1>
           </v-slide-group>
         </v-row>
-        <v-row no-gutters>
-          <v-col offset="9" cols="auto">
-            <v-btn class="mb-5 ml-3" to="/award?type=2"
-              >ดูบริการวิชาการเพิ่มเติม</v-btn
-            >
-          </v-col>
+        <v-row justify="end">
+          <router-link to="/award?type=2"
+            ><div class="black--text mb-3 mr-3">
+              ดูบริการวิชาการเพิ่มเติม
+            </div>
+          </router-link>
         </v-row>
-        <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
-        <v-subheader>รางวัล</v-subheader>
+
+        <v-subheader class="ma-2"><h3>รางวัล</h3></v-subheader>
         <v-row justify="center">
           <v-slide-group>
             <card1 v-for="i in filAwardtype3" :key="i.id" :award="i"></card1>
           </v-slide-group>
         </v-row>
-        <v-row justify="center">
-          <v-col offset="9" cols="auto">
-            <v-btn class="mb-2" to="/award?type=3">ดูรางวัลเพิ่มเติม</v-btn>
-          </v-col>
+        <v-row justify="end">
+          <router-link to="/award?type=3"
+            ><div class="black--text mb-3 mr-3">
+              ดูรางวัลเพิ่มเติม
+            </div></router-link
+          >
         </v-row>
-        <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
-        <v-subheader>อื่นๆ</v-subheader>
+
+        <v-subheader class="ma-2"><h3>อื่นๆ</h3></v-subheader>
         <v-row justify="center">
           <v-slide-group>
             <card1 v-for="i in filAwardtype4" :key="i.id" :award="i"></card1>
           </v-slide-group>
         </v-row>
-        <v-row justify="center">
-          <v-col offset="9" cols="auto">
-            <v-btn class="mb-2 ml-1" to="/award?type=4">ดูอื่นๆเพิ่มเติม</v-btn>
-          </v-col>
+        <v-row justify="end">
+          <router-link to="/award?type=4"
+            ><div class="black--text mb-3 mr-3">
+              ดูอื่นๆเพิ่มเติม
+            </div></router-link
+          >
         </v-row>
       </template>
       <template v-else>
@@ -73,12 +81,14 @@
             />
           </v-col>
         </v-row>
-        <v-subheader>{{ getNameBytype }}</v-subheader>
+        <v-subheader class="ma-2"
+          ><h3>{{ getNameBytype }}</h3></v-subheader
+        >
         <v-row justify="center">
           <card1 v-for="i in filterString" :key="i.id" :award="i"></card1>
         </v-row>
         <v-row justify="end">
-          <v-btn class="mr-3" to="/award">กลับไปหน้าหลัก</v-btn>
+          <v-btn class="mr-3 primary" to="/award">กลับไปหน้าหลัก</v-btn>
         </v-row>
       </template>
     </v-container>

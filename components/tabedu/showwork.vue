@@ -4,9 +4,7 @@
       <v-card width="600" class="mt-5 text-left">
         <v-card-title
           >{{ i.company }} <v-spacer></v-spacer>
-          <v-chip :class="i.status ? 'success' : 'secondary'">{{
-            i.status ? 'กำลังทำงาน' : 'ออกจากงาน'
-          }}</v-chip></v-card-title
+          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon></v-card-title
         >
 
         <v-list-item>
@@ -28,8 +26,6 @@
             <h4>ปีที่เริ่มทำงาน-ออกจากงาน (พ.ศ.)</h4>
             {{ i.start }} - {{ i.end || 'ปัจจุบัน' }}
           </v-list-item-subtitle>
-
-          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon>
         </v-list-item>
       </v-card>
     </v-row>
@@ -64,7 +60,7 @@
 
             <v-card-subtitle
               >ปีที่ออกจากงาน (พ.ศ.) :
-              {{ detail.end || 'ปัจจุบัน' }}</v-card-subtitle
+              {{ detail.end || 'กำลังทำงาน' }}</v-card-subtitle
             >
             <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
             <v-card-subtitle

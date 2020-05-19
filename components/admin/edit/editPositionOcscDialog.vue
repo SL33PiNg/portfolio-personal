@@ -16,8 +16,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" @click.stop="isOpen = false">ยกเลิก</v-btn>
-        <v-btn color="success" @click.stop="updatePositionOcsc">บันทึก</v-btn>
+        <v-btn outlined color="" @click.stop="isOpen = false">ยกเลิก</v-btn>
+        <v-btn color="primary" @click.stop="updatePositionOcsc">บันทึก</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

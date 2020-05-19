@@ -4,9 +4,7 @@
       <v-card width="600" class="mt-5 text-left">
         <v-card-title
           >{{ i.educationVocabulary }} <v-spacer></v-spacer>
-          <v-chip :class="i.status ? 'success' : 'secondary'">{{
-            i.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา'
-          }}</v-chip></v-card-title
+          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon></v-card-title
         >
         <v-list-item>
           <v-list-item-subtitle>
@@ -23,7 +21,6 @@
             <h4>ประเทศ</h4>
             {{ i.country }}
           </v-list-item-subtitle>
-          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon>
         </v-list-item>
       </v-card>
     </v-row>
