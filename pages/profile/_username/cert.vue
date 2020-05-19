@@ -4,11 +4,7 @@
       <v-card width="600" class="mt-5 ma-1">
         <v-card-title>
           {{ i.certificateName }} <v-spacer></v-spacer>
-          <v-sheet color="secondary" width="auto" class="mt-n12">
-            <h1 class="ma-1 white--text">
-              <v-icon color="white">mdi-certificate</v-icon>
-            </h1></v-sheet
-          >
+          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon>
         </v-card-title>
 
         <v-list-item>
@@ -20,8 +16,6 @@
             <h4>ปีที่ได้รับ</h4>
             {{ i.graduate }}
           </v-list-item-subtitle>
-
-          <v-icon @click.stop="openDetail(i)">mdi-magnify</v-icon>
         </v-list-item>
       </v-card>
     </v-row>

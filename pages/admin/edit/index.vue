@@ -39,8 +39,8 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" @click="close">ยกเลิก</v-btn>
-                <v-btn color="success" @click="save">บันทึก</v-btn>
+                <v-btn color="" @click="close">ยกเลิก</v-btn>
+                <v-btn color="primary" @click="save">บันทึก</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
