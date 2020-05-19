@@ -37,8 +37,9 @@
           <template v-slot:activator="{ on }">
             <router-link to="/award" v-on="on"
               ><div class="black--text mr-5">ดูผลงานทั้งหมด</div></router-link
-            ></template
-          ><span>ดูผลงานทั้งหมด</span></v-tooltip
+            >
+          </template>
+          <span>ดูผลงานทั้งหมด</span></v-tooltip
         >
       </v-row>
     </v-container>

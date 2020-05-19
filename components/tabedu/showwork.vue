@@ -60,7 +60,7 @@
 
             <v-card-subtitle
               >ปีที่ออกจากงาน (พ.ศ.) :
-              {{ detail.end || 'ปัจจุบัน' }}</v-card-subtitle
+              {{ detail.end || 'กำลังทำงาน' }}</v-card-subtitle
             >
             <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
             <v-card-subtitle

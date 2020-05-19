@@ -46,13 +46,13 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn v-if="!isAdmin" color="success" @click="addAdmin">
+                  <v-btn v-if="!isAdmin" color="primary" @click="addAdmin">
                     เพิ่มสิทธิ์ 'ADMIN'
                   </v-btn>
                   <v-btn v-else color="error" @click="removeAdmin">
                     ลบสิทธิ์ 'ADMIN'
                   </v-btn>
-                  <v-btn color="primary" @click="add = false">
+                  <v-btn outlined color="" @click="add = false">
                     ยกเลิก
                   </v-btn>
                 </v-card-actions>
@@ -80,13 +80,13 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn v-if="!isPublic" color="success" @click="allowPublic">
+                  <v-btn v-if="!isPublic" color="primary" @click="allowPublic">
                     เผยแผร่
                   </v-btn>
                   <v-btn v-else color="error" @click="allowPublic">
                     ระงับการเผยแพร่
                   </v-btn>
-                  <v-btn color="primary" @click="shut = false">
+                  <v-btn outlined color="" @click="shut = false">
                     ยกเลิก
                   </v-btn>
                 </v-card-actions>
@@ -114,13 +114,13 @@
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn v-if="!isActive" color="success" @click="allowActive">
+                  <v-btn v-if="!isActive" color="primary" @click="allowActive">
                     เปิดการใช้งานบัญชี
                   </v-btn>
                   <v-btn v-else color="error" @click="allowActive">
                     ปิดการใช้งานบัญชี
                   </v-btn>
-                  <v-btn color="primary" @click="close = false">
+                  <v-btn outlined color="" @click="close = false">
                     ยกเลิก
                   </v-btn>
                 </v-card-actions>

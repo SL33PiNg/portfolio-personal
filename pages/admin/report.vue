@@ -53,10 +53,10 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" @click="account = false">
+                  <v-btn outlined color="" @click="account = false">
                     ยกเลิก
                   </v-btn>
-                  <v-btn color="success" @click="allowReport">
+                  <v-btn color="primary" @click="allowReport">
                     บันทึก
                   </v-btn>
                 </v-card-actions>
@@ -84,7 +84,7 @@
                 <v-btn color="error" @click="delReports(tempDataItem)">
                   ตกลง
                 </v-btn>
-                <v-btn color="primary" @click="del = false">
+                <v-btn outlined color="" @click="del = false">
                   ยกเลิก
                 </v-btn>
               </v-card-actions>

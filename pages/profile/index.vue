@@ -82,7 +82,7 @@
             >
               <v-row justify="space-around" no-gutters>
                 <v-col cols="auto" align-self="center">
-                  <v-list-item-avatar width="110" height="110" class="ma-1"
+                  <v-list-item-avatar width="110" height="110" class="ma-2"
                     ><v-img
                       :src="`${hostname}/api/avatar/${i.avatar}`"
                       aspect-ratio="1.7"
@@ -91,12 +91,12 @@
                   ></v-list-item-avatar>
                 </v-col>
                 <v-col cols="12" md="4" align-self="start">
-                  <v-list-item-title class="headline mt-2">
+                  <v-list-item-title class="headline mt-2 ml-2">
                     {{ i.personalInfo.academicRank
                     }}{{ i.personalInfo.firstnameTH }}
                     {{ i.personalInfo.lastnameTH }}</v-list-item-title
                   >
-                  <h>ชื่อเล่น :{{ i.personalInfo.nicknameTH }}</h>
+                  <h class="ml-2">ชื่อเล่น :{{ i.personalInfo.nicknameTH }}</h>
                   <h>หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}</h>
                 </v-col>
 

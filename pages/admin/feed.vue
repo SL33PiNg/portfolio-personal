@@ -27,8 +27,8 @@
         <template>
           <v-subheader>ผลงานเด่น ({{ showawards.length }} / 5)</v-subheader>
 
-          <v-slide-group multiple show-arrows>
-            <v-slide-item
+          <v-carousel height="400" light hide-delimiters align="center">
+            <v-carousel-item
               v-for="award in showawards"
               :key="award.id"
               reverse-transition="fade-transition"
@@ -37,12 +37,10 @@
               link
             >
               <card1 :award="award" @reload="getAwardhighlights"></card1>
-            </v-slide-item>
-          </v-slide-group>
+            </v-carousel-item>
+          </v-carousel>
         </template>
       </v-row>
-
-      <v-divider :inset="true" class="grey darken-2 mr-12"></v-divider>
 
       <v-row justify="center">
         <card1

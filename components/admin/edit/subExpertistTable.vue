@@ -24,7 +24,9 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="" @click.stop="openEditDialog = false">ยกเลิก</v-btn>
+            <v-btn outlined color="" @click.stop="openEditDialog = false"
+              >ยกเลิก</v-btn
+            >
             <v-btn color="primary" @click.stop="updateSubExpert">บันทึก</v-btn>
           </v-card-actions>
         </v-card>
@@ -35,7 +37,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="error" @click="deleteExpertist">ตกลง</v-btn>
-            <v-btn color="" @click.stop="openDelDialog = false">ยกเลิก</v-btn>
+            <v-btn outlined color="" @click.stop="openDelDialog = false"
+              >ยกเลิก</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-dialog>
