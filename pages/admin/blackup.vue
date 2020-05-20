@@ -116,7 +116,7 @@ export default {
         this.$axios.$get('/admin/blackup')
       } catch (error) {
       } finally {
-        console.log('GG')
+        this.getBackup()
       }
     },
     async getBackup() {
