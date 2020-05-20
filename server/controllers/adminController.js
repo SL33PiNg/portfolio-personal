@@ -6,6 +6,7 @@ const AwardModel = require('../models/award')
 const ReportModel = require('../models/report')
 const adminLog = require('../models/adminLog')
 const userLog = require('../models/userLog')
+const fse = require('fs-extra')
 exports.addAdmin = async (req, res) => {
   const { id } = req.params
   try {
@@ -162,25 +163,77 @@ exports.blackupData = (req, res) => {
   const dd = now.getDate()
   const mm = Intl.DateTimeFormat('en-US',{month:'long'}).format(now)
   const yy = now.getFullYear()
-  const fileName = `${dd}${mm}${yy}` 
-  const cmd = `"C:\\Program Files\\MongoDB\\Server\\4.2\\bin\\mongodump" --uri="mongodb://localhost:27017/rmutt" --archive=backup/${fileName}` 
+  const folderName = `${dd}${mm}${yy}`
+  const backupPath = path.resolve('backup', folderName)
+  const pendingFolderList = [
+    fse.copy(path.resolve('avatar'), path.resolve(backupPath, 'avatar')),
+    fse.copy(path.resolve('award'), path.resolve(backupPath, 'award')),
+    fse.copy(path.resolve('report'), path.resolve(backupPath, 'report'))
+  ]
+  const cmd = `"C:\\Program Files\\MongoDB\\Server\\4.2\\bin\\mongodump" --uri="mongodb://localhost:27017/rmutt" --archive=backup/${folderName}/backup` 
   try {
     if(!fs.existsSync(path.resolve('backup'))) {
       fs.mkdirSync('backup')
     }
-    exec(cmd, (err, stdout, stderr) => {
-      if(err) {
-        console.log(err)
-        return res.status(500).send('error')
-      }
-      console.log(stdout.toString())
-      res.json({
-        status: 200,
-        message: ' backup success'
+    if(!fs.existsSync(backupPath)) {
+      fs.rmdirSync(backupPath, { recursive: true })
+    }
+    fs.mkdirSync(backupPath, { recursive: true })
+      exec(cmd, (err, stdout, stderr) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('error')
+        }
+        res.json({
+          status: 200,
+          message: ' backup success'
+        })
       })
-    })
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send(error)
+      Promise.all(pendingFolderList)
+    } catch (error) {
+      console.log(error)
+      return res.status(500).send(error)
+    }
   }
-}
+
+  exports.getBackup = (req, res) => {
+    try {
+      const listDir = fs.readdirSync(path.resolve('backup'))
+      return res.json(listDir)
+    } catch (error) {
+      return res.status(500).send(error)
+    }
+  }
+
+  exports.getRestore = (req, res) => {
+    const {folder} = req.params
+    const cmd = `"C:\\Program Files\\MongoDB\\Server\\4.2\\bin\\mongorestore" mongorestore --archive=backup/${folder}/backup --drop --nsInclude="rmutt.*"`
+    const backupPath = path.resolve('backup', folder)
+    const pendingFolderList = [
+      fse.copy(path.resolve(backupPath, 'avatar'), path.resolve('avatar')),
+      fse.copy(path.resolve(backupPath, 'award'), path.resolve('award'),),
+      fse.copy(path.resolve(backupPath, 'report'), path.resolve('report'))
+    ]
+    try {
+      fs.rmdirSync(path.resolve('avatar'), { recursive:true })
+      fs.rmdirSync(path.resolve('award'), { recursive:true })
+      fs.rmdirSync(path.resolve('report'), { recursive:true })
+      fs.mkdirSync(path.resolve('avatar'))
+      fs.mkdirSync(path.resolve('award'))
+      fs.mkdirSync(path.resolve('report'))
+      Promise.all(pendingFolderList)
+      exec(cmd, (err, stdout, stderr) => {
+        if(err) {
+          console.log(err)
+          return res.status(500).send('error')
+        }
+        res.json({
+          status: 200,
+          message: 'restore success'
+        })
+      })
+    } catch (error) {
+      console.log(error)
+      return res.status(500).send(error)
+    }
+  }

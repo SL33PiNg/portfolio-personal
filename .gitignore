@@ -10,6 +10,7 @@ yarn-error.log*
 /avatar/*.*
 /pictemp/*.*
 /report/*.*
+/backup/*.*
 
 # Runtime data
 pids
