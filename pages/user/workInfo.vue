@@ -38,7 +38,7 @@
               label="กำลังทำงาน"
             ></v-checkbox> </v-col
         ></v-row>
-        <v-row>
+        <v-row class="mt-n2">
           <v-col cols="12" md="6" xs="12">
             <v-text-field
               v-model="work.department"
@@ -56,7 +56,7 @@
             />
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="mt-n2">
           <v-col cols="12" xs="12" md="9">
             <v-text-field
               v-model="work.company"
@@ -77,7 +77,7 @@
             ></v-select>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="mt-n2">
           <v-col cols="12" md="12" xs="12">
             <h4>รายละเอียด</h4>
           </v-col>
@@ -91,7 +91,7 @@
             ></froala>
           </v-col>
         </v-row>
-        <v-row justify="end" class="ma-3">
+        <v-row justify="end" class="ma-3 mt-n1">
           <v-btn
             :disabled="!valid"
             class="font-weight-light"

@@ -7,8 +7,8 @@
             ค้นหา
           </h2></v-row
         >
-        <v-row justify="center" class="ma-1">
-          <v-col cols="12" md="2" xs="12">
+        <v-row class="ma-1">
+          <v-col cols="12" md="3" xs="12">
             <v-select
               v-model="academic"
               dense
@@ -49,12 +49,12 @@
             /> </v-col
         ></v-row>
         <v-row justify="center" class="ma-1">
-          <v-col cols="6" md="5" xs="12">
+          <v-col cols="6" md="6" xs="12">
             <v-btn block class="secondary" to="/profile/advancedSearch"
               >การค้นหาขั้นสูง</v-btn
             >
           </v-col>
-          <v-col cols="6" md="5" xs="12">
+          <v-col cols="6" md="6" xs="12">
             <v-btn block class="primary" @click="search"
               >ค้นหา <v-icon>mdi-magnify</v-icon>
             </v-btn>
@@ -287,6 +287,6 @@ export default {
 }
 .vue-treeselect__control {
   height: 40px;
-  border: 1px solid #9e9e9e;
+  border: 1px solid #858585;
 }
 </style>
