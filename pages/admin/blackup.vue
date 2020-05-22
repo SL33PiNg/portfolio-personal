@@ -57,7 +57,7 @@
               <span></span>
             </v-tooltip>
 
-            <v-tooltip top>
+            <!-- <v-tooltip top>
               <template v-slot:activator="{ on }">
                 <v-chip class="error" v-on="on"
                   ><v-icon text-center>
@@ -66,7 +66,7 @@
                 >
               </template>
               <span>ลบการร้องเรียน</span>
-            </v-tooltip>
+            </v-tooltip> -->
           </template>
         </v-data-table>
       </v-card>

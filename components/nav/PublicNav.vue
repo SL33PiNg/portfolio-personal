@@ -1,7 +1,7 @@
 <template>
   <v-list>
     <v-list-item
-      v-for="(item, i) in items"
+      v-for="(item, i) in itemss"
       :key="i"
       :to="item.to"
       router
@@ -48,6 +48,21 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    itemss() {
+      if (this.$auth.hasScope('ADMIN')) {
+        return this.items
+      } else {
+        return [
+          {
+            icon: 'mdi-magnify',
+            title: 'ค้นหาโปรไฟล์',
+            to: '/profile',
+          },
+        ]
+      }
+    },
   },
 }
 </script>
