@@ -27,6 +27,7 @@ router.patch('/update', UserController.editUsercertificateInfoById)
 router.post('/award', AddAward.addAward)
 router.get('/award', AddAward.getAward)
 router.delete('/award/:id', AddAward.delAward)
+router.patch('/updateAward', AddAward.updateAward)
 
 router.get('/highlight/:id/:status', UserController.highlight)
 router.get('/backup', UserController.backup)

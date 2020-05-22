@@ -72,3 +72,13 @@ exports.getAwardByID = async (req, res) => {
     return res.status(500).json({ status: 500, message: error.message })
   }
 }
+
+exports.updateAward = async (req, res) => {
+  const { _id } = req.body
+  try {
+    const result = await AwardModel.findByIdAndUpdate( _id, req.body )
+    return res.json(result)
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: error.message })
+  }
+}

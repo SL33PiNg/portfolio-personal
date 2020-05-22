@@ -7,6 +7,16 @@
           <v-icon large color="yellow">mdi-star</v-icon>
           ผลงานที่โดดเด่น
         </h1>
+        <v-col offset="6">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <router-link to="/award" v-on="on"
+                ><div class="black--text mr-5">ดูผลงานทั้งหมด</div></router-link
+              >
+            </template>
+            <span>ดูผลงานทั้งหมด</span></v-tooltip
+          >
+        </v-col>
       </v-row>
       <v-row>
         <template>
@@ -31,16 +41,6 @@
             </v-carousel-item>
           </v-carousel>
         </template>
-      </v-row>
-      <v-row justify="end">
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
-            <router-link to="/award" v-on="on"
-              ><div class="black--text mr-5">ดูผลงานทั้งหมด</div></router-link
-            >
-          </template>
-          <span>ดูผลงานทั้งหมด</span></v-tooltip
-        >
       </v-row>
     </v-container>
   </v-card>

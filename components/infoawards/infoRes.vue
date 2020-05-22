@@ -1,11 +1,5 @@
 <template>
   <v-container>
-    <v-sheet color="primary" width="100%">
-      <h1 class="ma-2 white--text">
-        <v-icon large color="white">mdi-school-outline</v-icon>
-        รายละเอียดข้อมูลผลงาน
-      </h1></v-sheet
-    >
     <v-col offset="3" cols="6">
       <v-img
         :src="`http://localhost:3000/api/award/${award.cover}`"

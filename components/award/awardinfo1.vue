@@ -1,16 +1,14 @@
 <template>
   <v-container>
     <v-row class="ma-3">
-      <h3>
-        โครงการวิจัย
-      </h3>
+      <h3>โครงการวิจัย</h3>
     </v-row>
     <v-form ref="form" v-model="valid">
       <v-row justify="center">
         <v-col cols="12">
           <v-img
-            v-if="imageUrl"
-            :src="imageUrl"
+            v-if="award.cover"
+            :src="`http://localhost:3000/api/award/${award.cover}`"
             aspect-ratio="1.7"
             height="250"
             class="ma-2"
@@ -33,7 +31,7 @@
       <v-row>
         <v-col cols="12" md="6" xs="12">
           <v-select
-            v-model="Award.researchCategory"
+            v-model="award.researchCategory"
             :rules="[emptyRule, stringRule]"
             :items="items"
             label="ประเภทโครงการวิจัย"
@@ -41,7 +39,7 @@
         </v-col>
         <v-col cols="12" md="3" xs="12">
           <v-text-field
-            v-model="Award.eventYear"
+            v-model="award.eventYear"
             v-mask="mask"
             :rules="[numberRule]"
             label="ปีที่จัดทำโครงการ"
@@ -50,7 +48,7 @@
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="3" xs="12">
-          <v-radio-group v-model="Award.jobTitles" column>
+          <v-radio-group v-model="award.jobTitles" column>
             <v-radio
               label="หัวหน้าโครงการวิจัย"
               value="หัวหน้าโครงการวิจัย"
@@ -65,7 +63,7 @@
       <v-row>
         <v-col cols="12" md="5" xs="12">
           <v-text-field
-            v-model="Award.name"
+            v-model="award.name"
             :rules="[emptyRule, stringRule]"
             label="ชื่อโครงการวิจัยภาษาไทย"
             clearable
@@ -74,7 +72,7 @@
 
         <v-col cols="12" md="5" xs="12">
           <v-text-field
-            v-model="Award.nameEN"
+            v-model="award.nameEN"
             :rules="[emptyRule, stringRule]"
             label="ชื่อโครงการวิจัยภาษาอังกฤษ"
             clearable
@@ -82,7 +80,7 @@
         </v-col>
         <v-col cols="12" md="2" xs="12">
           <v-text-field
-            v-model="Award.fiscalYear"
+            v-model="award.fiscalYear"
             v-mask="mask"
             :rules="[numberRule]"
             label="ปีงบประมาณ"
@@ -93,7 +91,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="12" xs="12">
-          <froala v-model="Award.infoemation" :config="config"></froala>
+          <froala v-model="award.infoemation" :config="config"></froala>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3">
@@ -101,9 +99,9 @@
           :disabled="!formIsValid"
           class="mx-0 font-weight-light"
           color="primary"
-          @click="addAward"
+          @click="editmode ? updateAward() : addAward()"
         >
-          เพิ่มข้อมูล
+          {{ editmode ? 'อัปเดต' : 'เพิ่มข้อมูล' }}
         </v-btn>
       </v-row>
     </v-form>
@@ -117,6 +115,26 @@ export default {
   directives: {
     mask,
   },
+  props: {
+    editmode: Boolean,
+    award: {
+      type: Object,
+      default: () => ({
+        awardType: 1,
+        name: '',
+        nameEN: '',
+        researchCategory: 'การวิจัยทางวิทยาศาสตร์',
+        fiscalYear: '',
+        jobTitles: 'หัวหน้าโครงการวิจัย',
+        funding: null,
+        fundingSource: '',
+        eventYear: '',
+        file: '',
+        infoemation: '',
+        cover: '',
+      }),
+    },
+  },
   data: () => ({
     emptyRule: (v) => !!v || 'กรุณากรอกข้อมูล',
     stringRule: (v) => (v && v.length > 0) || 'กรุณากรอกข้อมูล',
@@ -124,20 +142,6 @@ export default {
     valid: true,
     loading: true,
     mask: '####',
-    Award: {
-      awardType: 1,
-      name: '',
-      nameEN: '',
-      researchCategory: 'การวิจัยทางวิทยาศาสตร์',
-      fiscalYear: '',
-      jobTitles: 'หัวหน้าโครงการวิจัย',
-      funding: null,
-      fundingSource: '',
-      eventYear: '',
-      file: '',
-      infoemation: '',
-      cover: '',
-    },
     content: null,
     items: ['การวิจัยทางวิทยาศาสตร์', 'การวิจัยทางสังคมศาสตร์'],
     rules: [
@@ -191,16 +195,30 @@ export default {
   }),
   computed: {
     formIsValid() {
-      return this.Award.name
+      return this.award.name
     },
   },
   methods: {
+    async updateAward() {
+      try {
+        await this.$axios.$patch('/users/updateAward', {
+          ...this.award,
+        })
+        this.$toast.success('อัปเดตข้อมูล"สำเร็จ"')
+        this.$refs.form.reset()
+      } catch (error) {
+        this.$toast.error('อัปเดตข้อมูลไม่สำเร็จ"')
+      } finally {
+        this.editMode = false
+        this.$emit('close')
+      }
+    },
     async handleChange(e) {
       if (!e) return
       const fr = new FileReader()
       fr.readAsDataURL(e)
       fr.addEventListener('load', () => {
-        this.imageUrl = fr.result
+        this.award.cover = fr.result
         this.imageFile = e
       })
       const data = new FormData()
@@ -208,16 +226,16 @@ export default {
       try {
         const result = await this.$axios.$post('/award/image', data)
         console.log(result)
-        this.Award.cover = result.file
+        this.award.cover = result.file
       } catch (error) {}
     },
     async addAward() {
       this.loading = true
       try {
         await this.$axios.$post('/users/award', {
-          ...this.Award,
+          ...this.award,
         })
-        console.log(this.Award)
+        console.log(this.award)
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')
       } catch (error) {
         this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
@@ -225,7 +243,7 @@ export default {
         this.loading = false
         this.imageUrl = ''
         this.imageFile = ''
-        this.Award = {
+        this.award = {
           awardType: 1,
           name: '',
           nameEN: '',

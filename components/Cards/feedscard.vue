@@ -51,6 +51,14 @@
 
       <v-tooltip bottom>
         <template v-if="isUser" v-slot:activator="{ on }">
+          <v-btn icon @click.stop="editItem(award)" v-on="on"
+            ><v-icon>mdi-pencil-outline</v-icon></v-btn
+          ></template
+        >
+        <span>ลบผลงาน</span></v-tooltip
+      >
+      <v-tooltip bottom>
+        <template v-if="isUser" v-slot:activator="{ on }">
           <v-btn icon @click="$emit('toggleDelete', award)" v-on="on"
             ><v-icon>mdi-delete-outline</v-icon></v-btn
           ></template
@@ -61,14 +69,46 @@
     <v-row wrap justify="center">
       <v-dialog v-model="dialog" width="70%">
         <v-card>
-          <v-row justify="end" class="mr-1">
-            <v-icon color="red" class="ma-1" @click="dialog = false">
+          <v-row justify="end" class="mr-2">
+            <v-icon color="red" class="mt-1" @click="dialog = false">
               mdi-close-box</v-icon
             >
           </v-row>
+          <v-row justify="center">
+            <v-sheet color="primary" width="90%" class="mt-n5">
+              <h1 class="ma-2 white--text">
+                <v-icon large color="white">mdi-school-outline</v-icon>
+                รายละเอียดข้อมูลผลงาน
+              </h1></v-sheet
+            >
+          </v-row>
+
           <keep-alive>
             <component :is="cardType" :award="award" />
           </keep-alive>
+        </v-card>
+      </v-dialog>
+      <v-dialog v-model="editMode" width="70%">
+        <v-card>
+          <v-row justify="end" class="mr-2">
+            <v-icon color="red" class="mt-1" @click="editMode = false">
+              mdi-close-box</v-icon
+            >
+          </v-row>
+          <v-row justify="center">
+            <v-sheet color="primary" width="90%" elevation="8" class="mt-n5">
+              <h1 class="ma-2 white--text">
+                <v-icon large color="white"> mdi-pencil-outline</v-icon>
+                แก้ไขข้อมูล
+              </h1></v-sheet
+            >
+          </v-row>
+          <component :is="awardType" :award="detail" editmode @close="close" />
+          <!-- {{ detail }}
+          <award1 v-if="detail.awardType === 1"></award1>
+          <award2 v-else-if="detail.awardType === 2"></award2>
+          <award3 v-else-if="detail.awardType === 3"></award3>
+          <award4 v-else-if="detail.awardType === 4"></award4> -->
         </v-card>
       </v-dialog>
     </v-row>
@@ -76,12 +116,20 @@
 </template>
 
 <script>
+import award1 from '@/components/award/awardinfo1'
+import award2 from '@/components/award/awardinfo2'
+import award3 from '@/components/award/awardinfo3'
+import award4 from '@/components/award/awardinfo4'
 import type1 from '~/components/infoawards/infoRes.vue'
 import type2 from '~/components/infoawards/infoSer.vue'
 import type3 from '~/components/infoawards/infoAwa.vue'
 import type4 from '~/components/infoawards/infoOther.vue'
 export default {
   components: {
+    award1,
+    award2,
+    award3,
+    award4,
     type1,
     type2,
     type3,
@@ -104,6 +152,7 @@ export default {
   },
   data() {
     return {
+      editMode: false,
       isProfile: this.$route.name === 'profile-username',
       isUser: this.$route.name === 'user-listaward',
       isAdmin: this.$route.name === 'admin-feed',
@@ -122,9 +171,20 @@ export default {
     cardType() {
       return `type${this.award.awardType}`
     },
+    awardType() {
+      return `award${this.detail.awardType}` || 'award1'
+    },
   },
 
   methods: {
+    close() {
+      this.editMode = false
+      this.$emit('reload')
+    },
+    editItem(item) {
+      this.detail = { ...item }
+      this.editMode = true
+    },
     openDetail(x) {
       this.detail = x
       this.dialog = true
