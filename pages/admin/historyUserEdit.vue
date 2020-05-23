@@ -19,8 +19,16 @@
         ></v-text-field>
       </v-card-title>
       <v-card outlined class="mx-auto ma-5">
+        <v-row justify="end" class="mr-1">
+          <v-col cols="auto">
+            <v-chip @click="action = 'all'">ทั้งหมด</v-chip>
+            <v-chip color="primary" @click="action = 'เพิ่ม'">เพิ่ม</v-chip>
+            <v-chip color="warning" @click="action = 'แก้ไข'">แก้ไข</v-chip>
+            <v-chip color="error" @click="action = 'ลบ'">ลบ</v-chip>
+          </v-col>
+        </v-row>
         <v-data-table
-          :items="logs"
+          :items="actionFillter"
           :headers="headers"
           :search="search"
           hide-default-footer
@@ -76,7 +84,7 @@ export default {
       headers: [
         {
           text: 'ชื่อ',
-          align: 'start',
+          align: 'center',
           value: 'userID.personalInfo.firstnameTH',
           sort: (a, b) => b.localeCompare(a, 'th'),
         },
@@ -84,7 +92,15 @@ export default {
         { text: 'IP', align: 'center', value: 'ip' },
         { text: 'การแก้ไข', align: 'center', value: 'type' },
       ],
+      action: 'all',
     }
+  },
+  computed: {
+    actionFillter() {
+      return this.action === 'all'
+        ? this.logs
+        : this.logs.filter((log) => log.action === this.action)
+    },
   },
   created() {
     this.getAllLogUser()
