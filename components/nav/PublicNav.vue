@@ -21,10 +21,9 @@
         v-model="date"
         width="230"
         color="primary"
-        header-color="primary"
+        no-title
         class="mt-12"
         locale="th"
-        dark
       ></v-date-picker>
     </v-row>
   </v-list>
