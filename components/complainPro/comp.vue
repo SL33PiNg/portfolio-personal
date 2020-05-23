@@ -23,29 +23,31 @@
           class="ma-2"
           outlined
         ></v-textarea>
-        <v-row justify="center">
-          <v-col cols="12">
-            <v-img
-              v-if="imageUrl"
-              :src="imageUrl"
-              aspect-ratio="1.7"
-              height="250"
-              class="ma-2"
-              contain
-            ></v-img>
-          </v-col>
-        </v-row>
-        <v-row justify="center">
-          <v-col cols="6">
-            <v-file-input
-              accept="image/png, image/jpeg, image/bmp"
-              placeholder="เลือกรูปภาพ"
-              prepend-icon="mdi-camera"
-              label="ภาพประกอบ"
-              @change="handleChange"
-            ></v-file-input>
-          </v-col>
-        </v-row>
+        <v-container>
+          <v-row justify="center">
+            <v-col cols="10">
+              <v-img
+                v-if="imageUrl"
+                :src="imageUrl"
+                aspect-ratio="1.7"
+                height="250"
+                class="ma-2"
+                contain
+              ></v-img>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="6">
+              <v-file-input
+                accept="image/png, image/jpeg, image/bmp"
+                placeholder="เลือกรูปภาพ"
+                prepend-icon="mdi-camera"
+                label="ภาพประกอบ"
+                @change="handleChange"
+              ></v-file-input>
+            </v-col>
+          </v-row>
+        </v-container>
         <v-divider></v-divider>
 
         <v-card-actions>
