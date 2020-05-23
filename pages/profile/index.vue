@@ -55,7 +55,11 @@
             >
           </v-col>
           <v-col cols="6" md="6" xs="12">
-            <v-btn block class="primary" @click="search"
+            <v-btn
+              block
+              class="primary"
+              :disabled="!inputNotemtpy"
+              @click="search"
               >ค้นหา <v-icon>mdi-magnify</v-icon>
             </v-btn>
           </v-col>
@@ -171,6 +175,9 @@ export default {
     }
   },
   computed: {
+    inputNotemtpy() {
+      return this.name || this.academic || this.expId || this.ocscId
+    },
     department() {
       return this.$store.state.select.department
     },
