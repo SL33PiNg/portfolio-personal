@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const UserModel = require('../models/User')
+const UserLogModel = require('../models/userLog')
 const AwardModel = require('../models/award')
 const sharp = require('sharp')
 
@@ -9,6 +10,7 @@ exports.addAward = async (req, res) => {
   try {
     const award = await AwardModel.create({ user_id: id, ...req.body })
     const result = await UserModel.findByIdAndUpdate(id, { $push: { awardList: award._id } }, { new: true })
+    createLog(id, award._id, 'ข้อมูลผลงาน', req.ip)
     res.json(result)
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
@@ -81,4 +83,19 @@ exports.updateAward = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ status: 500, message: error.message })
   }
+}
+
+async function createLog(userID, docID, msg, ip){
+  try {
+   await UserLogModel.create({
+     userID,
+     docID,
+     msg,
+     action:'เพิ่ม',
+     ip,
+     
+   })
+ } catch (error) {
+   
+ }
 }

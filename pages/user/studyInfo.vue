@@ -327,7 +327,7 @@ export default {
         }
       } else {
         try {
-          await this.$axios.$patch('/users/updateStudyinfo', {
+          await this.$axios.$patch('/users/studyinfo', {
             ...this.education,
           })
           this.$toast.success('อัปเดตข้อมูล"สำเร็จ"')

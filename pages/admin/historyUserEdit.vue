@@ -50,8 +50,8 @@
             </p>
           </template>
           <template v-slot:item.type="{ item }">
-            <v-chip :color="getcolor(item.userLog)">
-              {{ item.userLog }}
+            <v-chip :color="getcolor(item.action)">
+              {{ item.msg }}
             </v-chip>
           </template>
         </v-data-table>
@@ -90,12 +90,14 @@ export default {
     this.getAllLogUser()
   },
   methods: {
-    getcolor(type) {
-      return type === 'เพิ่มข้อมูลประวัติการทำงาน' ||
-        type === 'เพิ่มข้อมูลใบรับรอง' ||
-        type === 'เพิ่มข้อมูลประวัติการศึกษา'
-        ? 'primary'
-        : 'error'
+    getcolor(action) {
+      if (action === 'เพิ่ม') {
+        return 'primary'
+      } else if (action === 'แก้ไข') {
+        return 'warning'
+      } else if (action === 'ลบ') {
+        return 'error'
+      }
     },
     async getAllLogUser() {
       this.loading = true

@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const UserModel = require('../models/User')
+const UserLogModel = require('../models/userLog')
 const AwardModel = require('../models/award')
 const backupUser = require('../utils/backupUser')
 const jwt = require('jsonwebtoken')
@@ -48,6 +49,7 @@ exports.login = async (req, res) => {
 
 exports.addUserWorkdInfoById = async (req, res) => {
   const work = { ...req.body }
+
   try {
     const result = await UserModel.findByIdAndUpdate(
       req.user.id, 
@@ -59,7 +61,7 @@ exports.addUserWorkdInfoById = async (req, res) => {
         } 
       }, 
       { new: true })
-
+      createLog(req.user.id, work._id, 'ข้อมูลประวัติการทำงาน', req.ip)
     return res.json(result)
   } catch (error) {
     console.log(error)
@@ -142,7 +144,7 @@ exports.addUserEducationInfoById = async (req, res) => {
       },
       { new: true }
     )
-
+    createLog(req.user.id, education._id, 'ข้อมูลประวัติการศึกษา', req.ip)
     return res.json(result)
   } catch (error) {
     console.log(error)
@@ -193,7 +195,7 @@ exports.addUsercertificateInfoById = async (req, res) => {
         } 
       }, 
       { new: true })
-
+      createLog(req.user.id, certificate._id, 'ข้อมูลใบรับรอง', req.ip)
     return res.json(result)
   } catch (error) {
     console.log(error)
@@ -281,4 +283,19 @@ function sleep(milliseconds) {
   do {
     currentDate = Date.now();
   } while (currentDate - date < milliseconds);
+}
+
+async function createLog(userID, docID, msg, ip){
+   try {
+    await UserLogModel.create({
+      userID,
+      docID,
+      msg,
+      action:'เพิ่ม',
+      ip,
+      
+    })
+  } catch (error) {
+    
+  }
 }

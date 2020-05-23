@@ -1,5 +1,6 @@
 const UserController = require('../controllers/userController')
 const isAuth = require('../middleware/isAuth')
+const selectLog = require('../middleware/selectLogUser')
 const users = require('./users')
 const profile = require('./profile')
 const admin = require('./admin')
@@ -15,7 +16,7 @@ router.post('/logout', (req, res) => {
   return res.json({ message: 'ok' })
 })
 
-router.use('/users', isAuth, users)
+router.use('/users',[ isAuth, selectLog ], users)
 router.use('/profile', profile)
 router.use('/select', select)
 router.use('/admin', admin)

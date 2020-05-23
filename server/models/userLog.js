@@ -5,7 +5,9 @@ const userLogSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'User'
   },
-  userLog:String,
+  action:String,
+  msg:String,
+  docID:String,
   date: {
     type: Date, 
     default: Date.now

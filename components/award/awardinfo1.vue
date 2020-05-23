@@ -201,7 +201,7 @@ export default {
   methods: {
     async updateAward() {
       try {
-        await this.$axios.$patch('/users/updateAward', {
+        await this.$axios.$patch('/users/award', {
           ...this.award,
         })
         this.$toast.success('อัปเดตข้อมูล"สำเร็จ"')

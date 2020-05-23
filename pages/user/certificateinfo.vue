@@ -255,7 +255,7 @@ export default {
         }
       } else {
         try {
-          await this.$axios.$patch('/users/update', {
+          await this.$axios.$patch('/users/certificateinfo', {
             ...this.certificate,
           })
           this.$toast.success('อัปเดตข้อมูล"สำเร็จ"')
