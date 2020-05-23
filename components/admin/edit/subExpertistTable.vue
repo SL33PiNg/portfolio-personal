@@ -48,7 +48,7 @@
       <v-card tile>
         <v-row style="height: 50px;" justify="start">
           <v-col class="ml-10" cols="9">{{ item.name }} </v-col>
-          <v-col class="ml-11" cols="auto">
+          <v-col class="ml-6" cols="auto">
             <v-chip class="warning"
               ><v-icon @click.stop="openEdit(item)">mdi-pencil</v-icon></v-chip
             >
