@@ -7,11 +7,13 @@
           <v-icon large color="yellow">mdi-star</v-icon>
           ผลงานที่โดดเด่น
         </h1>
-        <v-col offset="6">
+        <v-col offset="5">
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <router-link to="/award" v-on="on"
-                ><div class="black--text mr-5">ดูผลงานทั้งหมด</div></router-link
+                ><div class="black--text mr-5 ml-11">
+                  ดูผลงานทั้งหมด
+                </div></router-link
               >
             </template>
             <span>ดูผลงานทั้งหมด</span></v-tooltip
