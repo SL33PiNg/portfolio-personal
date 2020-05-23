@@ -18,132 +18,134 @@
           hide-details
         ></v-text-field>
       </v-card-title>
-      <v-data-table
-        :items="reports"
-        :search="search"
-        :headers="headers"
-        hide-default-footer
-      >
-        <template v-slot:top>
-          <v-dialog v-model="account" max-width="500px">
-            <v-card>
-              <v-container>
-                <v-card-title>
-                  <span class="headline">สถานะการร้องเรียน</span>
-                </v-card-title>
-                <v-row justify="center">
-                  <v-radio-group v-model="tempDataItem.status">
-                    <v-radio label="ตรวจสอบแล้ว " :value="true"></v-radio>
-                    <v-radio label="ยังไม่ตรวจสอบ" :value="false"></v-radio>
-                  </v-radio-group>
-                </v-row>
-                <v-card-text>
-                  <span class="headline">รายละเอียด</span>
-                  <froalaView v-model="tempDataItem.information"></froalaView>
-                </v-card-text>
+      <v-card outlined class="mx-auto ma-5">
+        <v-data-table
+          :items="reports"
+          :search="search"
+          :headers="headers"
+          hide-default-footer
+        >
+          <template v-slot:top>
+            <v-dialog v-model="account" max-width="500px">
+              <v-card>
+                <v-container>
+                  <v-card-title>
+                    <span class="headline">สถานะการร้องเรียน</span>
+                  </v-card-title>
+                  <v-row justify="center">
+                    <v-radio-group v-model="tempDataItem.status">
+                      <v-radio label="ตรวจสอบแล้ว " :value="true"></v-radio>
+                      <v-radio label="ยังไม่ตรวจสอบ" :value="false"></v-radio>
+                    </v-radio-group>
+                  </v-row>
+                  <v-card-text>
+                    <span class="headline">รายละเอียด</span>
+                    <froalaView v-model="tempDataItem.information"></froalaView>
+                  </v-card-text>
 
+                  <v-card-text>
+                    <span class="headline">ภาพประกอบ</span>
+                    <v-img
+                      :src="`http://localhost:3000/api/report/${tempDataItem.cover}`"
+                      height="250"
+                      width="450"
+                      contain
+                    ></v-img>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn outlined color="" @click="account = false">
+                      ยกเลิก
+                    </v-btn>
+                    <v-btn color="primary" @click="allowReport">
+                      บันทึก
+                    </v-btn>
+                  </v-card-actions>
+                </v-container>
+              </v-card>
+            </v-dialog>
+
+            <v-dialog v-model="del" max-width="500px">
+              <v-card>
+                <v-card-title>
+                  <span class="headline">ลบการร้องเรียน </span>
+                </v-card-title>
                 <v-card-text>
-                  <span class="headline">ภาพประกอบ</span>
-                  <v-img
-                    :src="`http://localhost:3000/api/report/${tempDataItem.cover}`"
-                    height="250"
-                    width="450"
-                    contain
-                  ></v-img>
+                  <v-container>
+                    <v-row>
+                      <p>
+                        ต้องการลบรายการร้องเรียนของ
+                        {{ tempDataItem.reportName }} ?
+                      </p>
+                    </v-row>
+                  </v-container>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn outlined color="" @click="account = false">
+                  <v-btn color="error" @click="delReports(tempDataItem)">
+                    ตกลง
+                  </v-btn>
+                  <v-btn outlined color="" @click="del = false">
                     ยกเลิก
                   </v-btn>
-                  <v-btn color="primary" @click="allowReport">
-                    บันทึก
-                  </v-btn>
                 </v-card-actions>
-              </v-container>
-            </v-card>
-          </v-dialog>
-
-          <v-dialog v-model="del" max-width="500px">
-            <v-card>
-              <v-card-title>
-                <span class="headline">ลบการร้องเรียน </span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <p>
-                      ต้องการลบรายการร้องเรียนของ
-                      {{ tempDataItem.reportName }} ?
-                    </p>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="error" @click="delReports(tempDataItem)">
-                  ตกลง
-                </v-btn>
-                <v-btn outlined color="" @click="del = false">
-                  ยกเลิก
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </template>
-        <template v-slot:item.status="{ item }">
-          <v-chip :class="item.status ? 'success' : 'error'">{{
-            item.status ? 'ตรวจสอบแล้ว' : 'ยังไม่ตรวจสอบ'
-          }}</v-chip>
-        </template>
-        <template v-slot:item.profilefirstnameTH="{ item }">
-          <p>
-            {{ item.profilefirstnameTH }}
-            {{ item.profilelastnameTH }}
-            <v-tooltip right>
+              </v-card>
+            </v-dialog>
+          </template>
+          <template v-slot:item.status="{ item }">
+            <v-chip :class="item.status ? 'success' : 'error'">{{
+              item.status ? 'ตรวจสอบแล้ว' : 'ยังไม่ตรวจสอบ'
+            }}</v-chip>
+          </template>
+          <template v-slot:item.profilefirstnameTH="{ item }">
+            <p>
+              {{ item.profilefirstnameTH }}
+              {{ item.profilelastnameTH }}
+              <v-tooltip right>
+                <template v-slot:activator="{ on }">
+                  <v-icon
+                    color="primary"
+                    text-center
+                    v-on="on"
+                    @click="$router.push(`/profile/${item.profileName}`)"
+                  >
+                    mdi-account
+                  </v-icon>
+                </template>
+                <span>ไปยังหน้าโปรไฟล์</span>
+              </v-tooltip>
+            </p>
+          </template>
+          <template v-slot:item.date="{ item }">
+            <p>
+              {{ item.date | toDateString }}
+            </p>
+          </template>
+          <template v-slot:item.action="{ item }">
+            <v-tooltip top>
               <template v-slot:activator="{ on }">
-                <v-icon
-                  color="primary"
-                  text-center
-                  v-on="on"
-                  @click="$router.push(`/profile/${item.profileName}`)"
+                <v-chip class="warning" v-on="on">
+                  <v-icon text-center @click="Account(item)">
+                    mdi-alert-rhombus-outline
+                  </v-icon></v-chip
                 >
-                  mdi-account
-                </v-icon>
               </template>
-              <span>ไปยังหน้าโปรไฟล์</span>
+              <span>รายละเอียดการร้องเรียน </span>
             </v-tooltip>
-          </p>
-        </template>
-        <template v-slot:item.date="{ item }">
-          <p>
-            {{ item.date | toDateString }}
-          </p>
-        </template>
-        <template v-slot:item.action="{ item }">
-          <v-tooltip top>
-            <template v-slot:activator="{ on }">
-              <v-chip class="warning" v-on="on">
-                <v-icon text-center @click="Account(item)">
-                  mdi-alert-rhombus-outline
-                </v-icon></v-chip
-              >
-            </template>
-            <span>รายละเอียดการร้องเรียน </span>
-          </v-tooltip>
 
-          <v-tooltip top>
-            <template v-slot:activator="{ on }">
-              <v-chip class="error" v-on="on"
-                ><v-icon text-center @click="openDel(item)">
-                  mdi-delete
-                </v-icon></v-chip
-              >
-            </template>
-            <span>ลบการร้องเรียน</span>
-          </v-tooltip>
-        </template>
-      </v-data-table>
+            <v-tooltip top>
+              <template v-slot:activator="{ on }">
+                <v-chip class="error" v-on="on"
+                  ><v-icon text-center @click="openDel(item)">
+                    mdi-delete
+                  </v-icon></v-chip
+                >
+              </template>
+              <span>ลบการร้องเรียน</span>
+            </v-tooltip>
+          </template>
+        </v-data-table>
+      </v-card>
     </v-container>
   </v-card>
 </template>
