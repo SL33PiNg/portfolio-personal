@@ -90,25 +90,39 @@
       </v-dialog>
       <v-dialog v-model="editMode" width="70%">
         <v-card>
-          <v-row justify="end" class="mr-2">
-            <v-icon color="red" class="mt-1" @click="editMode = false">
-              mdi-close-box</v-icon
-            >
-          </v-row>
-          <v-row justify="center">
-            <v-sheet color="primary" width="90%" elevation="8" class="mt-n5">
-              <h1 class="ma-2 white--text">
-                <v-icon large color="white"> mdi-pencil-outline</v-icon>
-                แก้ไขข้อมูล
-              </h1></v-sheet
-            >
-          </v-row>
-          <component :is="awardType" :award="detail" editmode @close="close" />
-          <!-- {{ detail }}
+          <v-container>
+            <v-row align="start" no-gutters>
+              <v-col offset="1" class="mt-1" cols="10">
+                <v-sheet color="primary" elevation="8">
+                  <h1 class="white--text">
+                    <v-icon large color="white"> mdi-pencil-outline</v-icon>
+                    แก้ไขข้อมูล
+                  </h1>
+                </v-sheet>
+              </v-col>
+              <v-col cols="auto" class="ml-8">
+                <v-icon
+                  x-large
+                  class="mb-3"
+                  color="red"
+                  @click="editMode = false"
+                >
+                  mdi-close-box</v-icon
+                >
+              </v-col>
+            </v-row>
+            <component
+              :is="awardType"
+              :award="detail"
+              editmode
+              @close="close"
+            />
+            <!-- {{ detail }}
           <award1 v-if="detail.awardType === 1"></award1>
           <award2 v-else-if="detail.awardType === 2"></award2>
           <award3 v-else-if="detail.awardType === 3"></award3>
           <award4 v-else-if="detail.awardType === 4"></award4> -->
+          </v-container>
         </v-card>
       </v-dialog>
     </v-row>
