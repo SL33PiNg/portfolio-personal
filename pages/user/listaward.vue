@@ -3,10 +3,10 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-seal-variant</v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-seal-variant</v-icon>
             ผลงานทั้งหมด
-          </h1></v-sheet
+          </h2></v-sheet
         >
       </v-row>
       <v-row justify="center" class="mt-10">
@@ -16,6 +16,7 @@
             :items="items"
             placeholder="เลือกประเภทผลงาน"
             outlined
+            dense
           >
             ประเภทผลงาน
           </v-select>
@@ -27,6 +28,7 @@
             label="ชื่อผลงาน"
             outlined
             hide-details
+            dense
           ></v-text-field>
         </v-col>
       </v-row>
@@ -63,7 +65,7 @@
             <v-btn color="error" @click="delAward()">
               ตกลง
             </v-btn>
-            <v-btn color="primary" @click="delDialog = false">
+            <v-btn color="" @click="delDialog = false">
               ยกเลิก
             </v-btn>
           </v-card-actions>

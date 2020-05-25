@@ -3,10 +3,10 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-school-outline</v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-school-outline</v-icon>
             ข้อมูลประวัติการศึกษา
-          </h1></v-sheet
+          </h2></v-sheet
         >
       </v-row>
       <v-form ref="form" v-model="valid">
@@ -18,6 +18,7 @@
               :items="items"
               label="ระดับวุฒิการศึกษา"
               outlined
+              dense
             ></v-select>
           </v-col>
           <v-col cols="12" md="6" xs="12">
@@ -26,6 +27,7 @@
               :rules="[emptyRule, stringRule]"
               label="ชื่อวุฒิการศึกษา"
               outlined
+              dense
             />
           </v-col>
         </v-row>
@@ -36,6 +38,7 @@
               :rules="[emptyRule, stringRule]"
               label="สาขา"
               outlined
+              dense
             />
           </v-col>
           <v-col cols="12" md="5" xs="12">
@@ -45,6 +48,7 @@
               :disabled="education.status"
               label="ปีที่สำเร็จการศึกษา (พ.ศ.)"
               outlined
+              dense
             />
           </v-col>
           <v-col cols="12" md="2" xs="12">
@@ -52,6 +56,7 @@
               v-model="education.status"
               class="mx-2"
               label="กำลังศึกษา"
+              dense
             ></v-checkbox> </v-col
         ></v-row>
         <v-row>
@@ -61,10 +66,11 @@
               :rules="[emptyRule, stringRule]"
               label="ชื่อสถานศึกษา"
               outlined
+              dense
             />
           </v-col>
           <v-col cols="12" md="3" xs="12">
-            <v-select
+            <v-autocomplete
               v-model="education.country"
               :rules="[emptyRule, stringRule]"
               :items="countrylist"
@@ -72,7 +78,8 @@
               item-value="name"
               label="ประเทศ"
               outlined
-            ></v-select>
+              dense
+            ></v-autocomplete>
           </v-col>
         </v-row>
         <v-row>
@@ -120,7 +127,7 @@
                         >
                           ตกลง
                         </v-btn>
-                        <v-btn color="primary" @click="del = false">
+                        <v-btn color="" @click="del = false">
                           ยกเลิก
                         </v-btn>
                       </v-card-actions>

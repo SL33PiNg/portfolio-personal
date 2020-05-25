@@ -55,7 +55,7 @@
             ><v-icon>mdi-pencil-outline</v-icon></v-btn
           ></template
         >
-        <span>ลบผลงาน</span></v-tooltip
+        <span>แก้ไขผลงาน</span></v-tooltip
       >
       <v-tooltip bottom>
         <template v-if="isUser" v-slot:activator="{ on }">

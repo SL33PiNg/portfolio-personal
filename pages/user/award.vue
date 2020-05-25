@@ -3,19 +3,20 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-trophy-award</v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-trophy-award</v-icon>
             ข้อมูลผลงาน
-          </h1></v-sheet
+          </h2></v-sheet
         >
       </v-row>
-      <v-row class="mt-10">
+      <v-row class="mt-10 ma-1">
         <v-col cols="12" xs="12" md="12">
           <v-select
             v-model="select"
             :items="items"
             placeholder="เลือกประเภทผลงาน"
             outlined
+            dense
             >ประเภทผลงาน</v-select
           ></v-col
         ></v-row

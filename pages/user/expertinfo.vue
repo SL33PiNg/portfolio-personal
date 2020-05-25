@@ -3,10 +3,10 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-lightbulb-on-outline</v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-lightbulb-on-outline</v-icon>
             ข้อมูลความเชี่ยวชาญ
-          </h1>
+          </h2>
         </v-sheet>
       </v-row>
       <v-row justify="center" class="mt-10">
@@ -34,11 +34,11 @@
     <v-container class="mx-auto ma-8">
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-arm-flex-outline</v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-tools</v-icon>
 
-            ข้อมูลทักษะความสามารภ
-          </h1></v-sheet
+            ข้อมูลทักษะความสามารถ
+          </h2></v-sheet
         >
       </v-row>
       <v-row class="mt-10 ma-8">

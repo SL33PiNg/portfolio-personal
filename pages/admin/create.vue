@@ -3,12 +3,10 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white"
-              >mdi-account-multiple-plus-outline</v-icon
-            >
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-account-multiple-plus-outline</v-icon>
             สร้างบัญชีผู้ดูแลระบบ
-          </h1></v-sheet
+          </h2></v-sheet
         >
         <v-row>
           <v-col cols="12" md="6" xs="6">

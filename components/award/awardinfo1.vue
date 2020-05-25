@@ -35,6 +35,8 @@
             :rules="[emptyRule, stringRule]"
             :items="items"
             label="ประเภทโครงการวิจัย"
+            outlined
+            dense
           ></v-select>
         </v-col>
         <v-col cols="12" md="3" xs="12">
@@ -44,11 +46,12 @@
             :rules="[numberRule]"
             label="ปีที่จัดทำโครงการ"
             placeholder="พ.ศ."
-            clearable
+            outlined
+            dense
           ></v-text-field>
         </v-col>
-        <v-col cols="12" md="3" xs="12">
-          <v-radio-group v-model="award.jobTitles" column>
+        <v-col cols="12" md="3" xs="12" class="mt-n7">
+          <v-radio-group v-model="award.jobTitles" column dense>
             <v-radio
               label="หัวหน้าโครงการวิจัย"
               value="หัวหน้าโครงการวิจัย"
@@ -66,7 +69,8 @@
             v-model="award.name"
             :rules="[emptyRule, stringRule]"
             label="ชื่อโครงการวิจัยภาษาไทย"
-            clearable
+            dense
+            outlined
           />
         </v-col>
 
@@ -75,7 +79,8 @@
             v-model="award.nameEN"
             :rules="[emptyRule, stringRule]"
             label="ชื่อโครงการวิจัยภาษาอังกฤษ"
-            clearable
+            dense
+            outlined
           />
         </v-col>
         <v-col cols="12" md="2" xs="12">
@@ -84,7 +89,8 @@
             v-mask="mask"
             :rules="[numberRule]"
             label="ปีงบประมาณ"
-            clearable
+            dense
+            outlined
             placeholder="พ.ศ."
           />
         </v-col>
