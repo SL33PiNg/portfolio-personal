@@ -120,7 +120,11 @@
             </v-row>
             <v-row class="ml-8 mt-2">
               <v-icon color="warning">mdi-phone</v-icon>
-              <div class="ml-2">{{ user.personalInfo.phone }}</div>
+              <div class="ml-2">
+                {{
+                  user.personalInfo.showPhone ? user.personalInfo.phone : '-'
+                }}
+              </div>
             </v-row>
 
             <v-row class="ml-8 mt-2">
