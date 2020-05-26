@@ -3,10 +3,10 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white"> mdi-domain </v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white"> mdi-domain </v-icon>
             ข้อมูลหน่วยงานปัจจุบัน
-          </h1>
+          </h2>
         </v-sheet>
       </v-row>
 
@@ -16,23 +16,26 @@
             v-model="user.careerInfo.jobPost"
             label="ตำแหน่ง"
             outlined
+            dense
           />
         </v-col>
         <v-col cols="12" md="4" xs="12">
-          <v-select
+          <v-autocomplete
             v-model="user.careerInfo.dpmentID"
             :items="departments"
             item-text="name"
             item-value="_id"
             label="หน่วยงาน"
             outlined
-          ></v-select>
+            dense
+          ></v-autocomplete>
         </v-col>
         <v-col cols="12" md="4" xs="12">
           <v-text-field
             v-model="user.careerInfo.department"
             label="ฝ่าย"
             outlined
+            dense
         /></v-col>
       </v-row>
       <v-row>
@@ -43,6 +46,7 @@
             label="E-mail (ที่หน่วยงาน)"
             required
             outlined
+            dense
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="4" xs="12">
@@ -52,17 +56,19 @@
             label="เบอร์ที่หน่วยงาน"
             required
             outlined
+            dense
           />
         </v-col>
         <v-col cols="12" md="3" xs="12">
-          <v-select
+          <v-autocomplete
             v-model="user.careerInfo.country"
             :items="countrylist"
             item-text="name"
             item-value="name"
             label="ประเทศ"
             outlined
-          ></v-select>
+            dense
+          ></v-autocomplete>
         </v-col>
       </v-row>
       <v-row justify="end" class="ma-3">

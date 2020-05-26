@@ -9,11 +9,12 @@
       color="primary"
       class="ma-2"
     >
-      <v-list-item-action>
+      <v-list-item-icon>
         <v-icon>{{ item.icon }}</v-icon>
-      </v-list-item-action>
-      <v-list-item-content>
-        <v-list-item-title v-text="item.title" />
+      </v-list-item-icon>
+
+      <v-list-item-content class="ml-n5">
+        <v-list-item-title>{{ item.title }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
   </v-list>

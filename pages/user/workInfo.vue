@@ -3,10 +3,10 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-briefcase-outline</v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-briefcase-outline</v-icon>
             ข้อมูลประวัติการทำงาน
-          </h1></v-sheet
+          </h2></v-sheet
         >
       </v-row>
       <v-form ref="form" v-model="valid">
@@ -18,6 +18,7 @@
               :rules="[numberRule]"
               label="ปีที่เข้าทำงาน (พ.ศ.)"
               outlined
+              dense
             />
           </v-col>
 
@@ -28,6 +29,7 @@
               :disabled="work.status"
               label="ปีที่ออกจากงาน (พ.ศ.)"
               outlined
+              dense
             />
           </v-col>
 
@@ -36,6 +38,7 @@
               v-model="work.status"
               class="mx-2"
               label="กำลังทำงาน"
+              dense
             ></v-checkbox> </v-col
         ></v-row>
         <v-row class="mt-n2">
@@ -45,6 +48,7 @@
               :rules="[emptyRule, stringRule]"
               label="แผนก"
               outlined
+              dense
             />
           </v-col>
           <v-col cols="12" md="6" xs="12">
@@ -53,6 +57,7 @@
               :rules="[emptyRule, stringRule]"
               label="ตำแหน่ง"
               outlined
+              dense
             />
           </v-col>
         </v-row>
@@ -63,10 +68,11 @@
               :rules="[emptyRule, stringRule]"
               label="ชื่อหน่วยงาน"
               outlined
+              dense
             />
           </v-col>
           <v-col cols="12" xs="12" md="3">
-            <v-select
+            <v-autocomplete
               v-model="work.country"
               :rules="[emptyRule, stringRule]"
               :items="countrylist"
@@ -74,7 +80,8 @@
               item-value="name"
               label="ประเทศ"
               outlined
-            ></v-select>
+              dense
+            ></v-autocomplete>
           </v-col>
         </v-row>
         <v-row class="mt-n2">
@@ -119,7 +126,7 @@
                         <v-btn color="error" @click="delWork(tempDataItem)">
                           ตกลง
                         </v-btn>
-                        <v-btn color="primary" @click="del = false">
+                        <v-btn color="" @click="del = false">
                           ยกเลิก
                         </v-btn>
                       </v-card-actions>

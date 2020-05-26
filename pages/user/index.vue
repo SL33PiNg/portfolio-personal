@@ -3,9 +3,9 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white">mdi-account</v-icon> ข้อมูลส่วนตัว
-          </h1>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white">mdi-account</v-icon> ข้อมูลส่วนตัว
+          </h2>
         </v-sheet>
       </v-row>
       <v-row justify="center" class="mt-8">
@@ -50,10 +50,10 @@
         <v-col cols="12" sm="12" md="6">
           <v-select
             v-model="user.personalInfo.academicRank"
-            dense
             :items="academicPos"
             label="ตำแหน่งทางวิชาการ"
             outlined
+            dense
           ></v-select>
         </v-col>
         <v-col cols="12" sm="12" md="6">
@@ -76,6 +76,7 @@
             v-model="user.personalInfo.firstnameTH"
             label="ชื่อภาษาไทย"
             outlined
+            dense
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
@@ -83,6 +84,7 @@
             v-model="user.personalInfo.lastnameTH"
             label="นามสกุลภาษาไทย"
             outlined
+            dense
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
@@ -90,6 +92,7 @@
             v-model="user.personalInfo.nicknameTH"
             label="ชื่อเล่นภาษาไทย"
             outlined
+            dense
           ></v-text-field> </v-col
       ></v-row>
       <v-row>
@@ -98,6 +101,7 @@
             v-model="user.personalInfo.firstnameEN"
             label="ชื่อภาษาอังกฤษ"
             outlined
+            dense
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
@@ -105,6 +109,7 @@
             v-model="user.personalInfo.lastnameEN"
             label="นามสกุลภาษาอังกฤษ"
             outlined
+            dense
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="4">
@@ -112,6 +117,7 @@
             v-model="user.personalInfo.nicknameEN"
             label="ชื่อเล่นภาษาอังกฤษ"
             outlined
+            dense
           ></v-text-field> </v-col
       ></v-row>
       <v-row>
@@ -121,6 +127,7 @@
             v-mask="mask"
             label="เบอร์ติดต่อ"
             outlined
+            dense
           >
           </v-text-field>
         </v-col>
@@ -137,6 +144,7 @@
             label="E-mail"
             outlined
             required
+            dense
           ></v-text-field>
         </v-col>
       </v-row>
@@ -146,6 +154,7 @@
             v-model="user.personalInfo.facebook"
             label="Facebook"
             outlined
+            dense
           ></v-text-field>
         </v-col>
 
@@ -154,6 +163,7 @@
             v-model="user.personalInfo.lineID"
             label="Line ID"
             outlined
+            dense
           ></v-text-field>
         </v-col>
       </v-row>

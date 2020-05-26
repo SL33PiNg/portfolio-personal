@@ -31,15 +31,13 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="4" xs="12">
-          <v-text-field label="งานบริการวิชาการ" disabled />
-        </v-col>
-        <v-col cols="12" md="5" xs="12">
+        <v-col cols="12" md="6" xs="12">
           <v-text-field
             v-model="award.name"
             :rules="[emptyRule, stringRule]"
             label="ชื่องานบริการวิชาการ"
-            clearable
+            outlined
+            dense
           />
         </v-col>
         <v-col cols="12" md="3" xs="12">
@@ -48,7 +46,8 @@
             v-mask="mask"
             :rules="[numberRule]"
             label="ปีที่จัดงาน"
-            clearable
+            outlined
+            dense
             placeholder="พ.ศ."
           />
         </v-col>

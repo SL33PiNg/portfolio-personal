@@ -31,16 +31,13 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="3" xs="12">
-          <v-text-field label="รางวัล" disabled />
-        </v-col>
-
         <v-col cols="12" md="6" xs="12">
           <v-text-field
             v-model="award.name"
             :rules="[emptyRule, stringRule]"
             label="ชื่อรางวัล"
-            clearable
+            outlined
+            dense
           />
         </v-col>
 
@@ -50,7 +47,8 @@
             v-mask="mask"
             :rules="[numberRule]"
             label="ปีที่ได้รับรางวัล"
-            clearable
+            outlined
+            dense
             placeholder="พ.ศ."
           />
         </v-col>

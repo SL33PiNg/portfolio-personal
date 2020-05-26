@@ -3,10 +3,10 @@
     <v-container>
       <v-row justify="center">
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
-          <h1 class="ma-2 white--text">
-            <v-icon large color="white"> mdi-file-certificate-outline</v-icon>
+          <h2 class="ma-2 white--text">
+            <v-icon color="white"> mdi-file-certificate-outline</v-icon>
             ใบรับรอง
-          </h1></v-sheet
+          </h2></v-sheet
         >
       </v-row>
       <v-form ref="form" v-model="valid">
@@ -18,6 +18,7 @@
               label="ชื่อใบรับรอง"
               clearable
               outlined
+              dense
             />
           </v-col>
 
@@ -28,6 +29,7 @@
               label="หน่วยงานที่ออกใบรับรอง"
               clearable
               outlined
+              dense
             />
           </v-col>
           <v-col cols="12" xs="12" md="3">
@@ -38,6 +40,7 @@
               label="ปีที่ได้รับ (พ.ศ.)"
               clearable
               outlined
+              dense
             />
           </v-col>
         </v-row>
@@ -87,7 +90,7 @@
                         >
                           ตกลง
                         </v-btn>
-                        <v-btn color="primary" @click="del = false">
+                        <v-btn color="" @click="del = false">
                           ยกเลิก
                         </v-btn>
                       </v-card-actions>
