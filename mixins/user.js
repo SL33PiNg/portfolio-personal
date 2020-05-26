@@ -24,6 +24,7 @@ export default {
         const user = await this.$axios.$patch('/users', {
           user: { ...this.user },
           msg: value,
+          action: 'แก้ไข',
         })
         this.user = user
         this.$toast.success('เพิ่มข้อมูล"สำเร็จ"')

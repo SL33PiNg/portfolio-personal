@@ -4,6 +4,7 @@ const UserModel = require('../models/User')
 const UserLogModel = require('../models/userLog')
 const AwardModel = require('../models/award')
 const backupUser = require('../utils/backupUser')
+const userLog = require('../models/userLog')
 const jwt = require('jsonwebtoken')
 const sharp = require('sharp')
 sharp.cache(false)
@@ -29,15 +30,22 @@ exports.login = async (req, res) => {
     user = await UserModel.findOne({ username })
     if (!user) {
       user = await UserModel.create({ username })
+      await userLog.create({
+        userID: user._id,
+        msg: 'ข้อมูลส่วนตัว',
+        action: 'เพิ่ม',
+        ip: req.ip,
+      })
+      console.log(user._id)
     }
   } else {
     return res.status(401).json({ message: 'Invalid username or password' })
   }
-
+  
   if(user.isActive === false){
     return res.status(450).json({ message: 'user has been disable!! call to 085-531-0522' })
   }
-
+  
   const { id, roles } = user
   const token = jwt.sign({ id, roles, username }, process.env.TOKEN_SECRET, {
     expiresIn: '1h'
