@@ -202,6 +202,7 @@ export default {
       } catch (error) {
         this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
       } finally {
+        this.$refs.form.reset()
         this.loading = false
         this.award = {
           awardType: 3,

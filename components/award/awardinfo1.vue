@@ -102,7 +102,7 @@
       </v-row>
       <v-row justify="end" class="ma-3">
         <v-btn
-          :disabled="!formIsValid"
+          :disabled="!valid"
           class="mx-0 font-weight-light"
           color="primary"
           @click="editmode ? updateAward() : addAward()"
@@ -200,9 +200,9 @@ export default {
     imageFile: '',
   }),
   computed: {
-    formIsValid() {
-      return this.award.name
-    },
+    // formIsValid() {
+    //   return this.award.name
+    // },
   },
   methods: {
     async updateAward() {
@@ -246,6 +246,7 @@ export default {
       } catch (error) {
         this.$toast.success('เพิ่มข้อมูล"ไม่สำเร็จ"')
       } finally {
+        this.$refs.form.reset()
         this.loading = false
         this.imageUrl = ''
         this.imageFile = ''
