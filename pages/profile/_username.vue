@@ -47,7 +47,7 @@
 
                 <v-list-item class="ml-4"
                   ><h4>หน่วยงาน</h4>
-                  <div class="ml-2">{{ departmentName }}</div></v-list-item
+                  <div class="ml-2">{{ departmentname }}</div></v-list-item
                 >
                 <v-list-item class="ml-4"
                   ><h4>ฝ่าย</h4>
@@ -133,8 +133,11 @@
               <div class="ml-2">{{ user.personalInfo.lineID }}</div>
             </v-row>
             <v-divider></v-divider>
+
             <v-card-actions class="ml-5">
               <Complaint :user="user"></Complaint>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" @click="opencard">แสดงนามบัตร</v-btn>
             </v-card-actions>
           </v-card>
         </v-row>
@@ -159,25 +162,36 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row wrap justify="center">
+      <v-dialog v-model="cardProfile" width="691">
+        <CardProfile :user="user" :department="departmentname"></CardProfile>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+// import QrcodeVue from 'qrcode.vue'
 import Complaint from '~/components/complainPro/comp.vue'
+import CardProfile from '~/components/cradProfile'
 export default {
   validate({ params }) {
     return isNaN(+params.username)
   },
   components: {
+    CardProfile,
     Complaint,
+    // QrcodeVue,
   },
   data: () => ({
+    fullpath: location.href,
     maxH: window.innerHeight,
     profileDone: false,
     selectDone1: false,
     selectDone2: false,
     selectDone3: false,
     dialog: false,
+    cardProfile: false,
     tab: null,
     tab2: null,
     user: {
@@ -214,7 +228,7 @@ export default {
         this.selectDone3
       )
     },
-    departmentName() {
+    departmentname() {
       if (!this.loading) return ''
       const found = this.departments.find(
         (f) => f._id === this.user.careerInfo.dpmentID
@@ -260,6 +274,9 @@ export default {
     this.getExpertist()
   },
   methods: {
+    opencard() {
+      this.cardProfile = true
+    },
     async getProfile() {
       try {
         const result = await this.$axios.$get(
