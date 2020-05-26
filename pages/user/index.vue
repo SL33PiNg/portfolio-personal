@@ -54,7 +54,11 @@
             label="ตำแหน่งทางวิชาการ"
             outlined
             dense
-          ></v-select>
+          >
+            <template slot="item" slot-scope="{ item }">
+              <p>{{ item }}</p>
+            </template>
+          </v-select>
         </v-col>
         <v-col cols="12" sm="12" md="6">
           <!-- <label>ตำแหน่งสายงาน ก.พ.</label> -->

@@ -24,9 +24,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn outlined color="" @click.stop="openEditDialog = false"
-              >ยกเลิก</v-btn
-            >
+            <v-btn color="" @click.stop="openEditDialog = false">ยกเลิก</v-btn>
             <v-btn color="primary" @click.stop="updateSubPositionOcsc"
               >บันทึก</v-btn
             >
@@ -39,9 +37,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="error" @click="deletePositionOcsc">ตกลง</v-btn>
-            <v-btn outlined color="" @click.stop="openDelDialog = false"
-              >ยกเลิก</v-btn
-            >
+            <v-btn color="" @click.stop="openDelDialog = false">ยกเลิก</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>

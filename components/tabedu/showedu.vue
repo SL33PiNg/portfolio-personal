@@ -8,12 +8,12 @@
         >
         <v-list-item>
           <v-list-item-subtitle>
-            <h4>วุฒิการศึกษา</h4>
-            {{ i.educationName }}
+            <h4>ปีที่สำเร็จ/วุฒิการศึกษา</h4>
+            {{ i.graduate || 'กำลังศึกษา' }}/{{ i.educationName }}
           </v-list-item-subtitle>
           <v-list-item-subtitle>
-            <h4>สถานศึกษา/ปีที่สำเร็จ</h4>
-            {{ i.academyName }}/{{ i.graduate || 'กำลังศึกษา' }}
+            <h4>สถานศึกษา</h4>
+            {{ i.academyName }}
           </v-list-item-subtitle>
         </v-list-item>
         <v-list-item>

@@ -17,9 +17,12 @@
             placeholder="เลือกประเภทผลงาน"
             outlined
             dense
-            >ประเภทผลงาน</v-select
-          ></v-col
-        ></v-row
+          >
+            <template slot="item" slot-scope="{ item: { text } }">
+              <p>{{ text }}</p>
+            </template></v-select
+          >
+        </v-col></v-row
       >
 
       <award1 v-if="select === 1"></award1>

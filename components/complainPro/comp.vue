@@ -16,12 +16,14 @@
           class="ma-2"
           clearable
           outlined
+          dense
         ></v-text-field>
         <v-textarea
           v-model="information"
           label="รายละเอียด"
           class="ma-2"
           outlined
+          dense
         ></v-textarea>
         <v-container>
           <v-row justify="center">
