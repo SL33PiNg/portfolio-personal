@@ -49,7 +49,7 @@
 
                 <v-list-item class="ml-4"
                   ><h4>หน่วยงาน</h4>
-                  <div class="ml-2">{{ departmentName }}</div></v-list-item
+                  <div class="ml-2">{{ departmentname }}</div></v-list-item
                 >
                 <v-list-item class="ml-4"
                   ><h4>ฝ่าย</h4>
@@ -135,15 +135,6 @@
               <div class="ml-2">{{ user.personalInfo.lineID }}</div>
             </v-row>
             <v-divider></v-divider>
-            <v-row justify="center">
-              <div class="mt-4">
-                <qrcode-vue
-                  :value="fullpath"
-                  :size="150"
-                  level="H"
-                ></qrcode-vue>
-              </div>
-            </v-row>
 
             <v-card-actions class="ml-5">
               <Complaint :user="user"></Complaint>
@@ -175,14 +166,14 @@
     </v-row>
     <v-row wrap justify="center">
       <v-dialog v-model="cardProfile" width="691">
-        <CardProfile :user="user"></CardProfile>
+        <CardProfile :user="user" :department="departmentname"></CardProfile>
       </v-dialog>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import QrcodeVue from 'qrcode.vue'
+// import QrcodeVue from 'qrcode.vue'
 import Complaint from '~/components/complainPro/comp.vue'
 import CardProfile from '~/components/cradProfile'
 export default {
@@ -192,7 +183,7 @@ export default {
   components: {
     CardProfile,
     Complaint,
-    QrcodeVue,
+    // QrcodeVue,
   },
   data: () => ({
     fullpath: location.href,
@@ -239,7 +230,7 @@ export default {
         this.selectDone3
       )
     },
-    departmentName() {
+    departmentname() {
       if (!this.loading) return ''
       const found = this.departments.find(
         (f) => f._id === this.user.careerInfo.dpmentID

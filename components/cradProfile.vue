@@ -17,8 +17,13 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    department: {
+      type: String,
+      default: () => '',
+    },
   },
   data: () => ({
+    lengthName: Number,
     fullpath: location.href,
     dialog: false,
     hostname: location.origin,
@@ -28,6 +33,7 @@ export default {
   },
   methods: {
     draw() {
+      this.lengthName = this.user.personalInfo.firstnameTH.length
       const ctx = document.getElementById('canvas').getContext('2d')
       const img = new Image()
       img.onload = () => {
@@ -49,11 +55,28 @@ export default {
       qrcode.src = await qr.toDataURL(this.fullpath)
     },
     drawText(ctx) {
-      ctx.font = '36px TH Sarabun New'
+      ctx.font = '25px Kanit'
       ctx.fillStyle = '#ffffff'
-      ctx.fillText(this.user.personalInfo.academicRank, 30, 150)
-      ctx.fillText(this.user.personalInfo.firstnameTH, 165, 150)
-      ctx.fillText(this.user.personalInfo.lastnameTH, 300, 150)
+      ctx.fillText(this.user.personalInfo.academicRank, 30, 140)
+      ctx.fillText(this.user.personalInfo.firstnameTH, 180, 140)
+      ctx.fillText(
+        this.user.personalInfo.lastnameTH,
+        this.lengthName * 11 + 240,
+        140
+      )
+      ctx.fillText(
+        `(${this.user.personalInfo.nicknameTH})`,
+        this.lengthName * 11 + 360,
+        140
+      )
+      ctx.font = '20px Kanit'
+      ctx.fillText(`ตำแหน่ง : ${this.user.careerInfo.jobPost}`, 30, 185)
+      ctx.fillText(`หน่วยงาน : ${this.department}`, 30, 215)
+      ctx.fillText(`ฝ่าย : ${this.user.careerInfo.department}`, 30, 245)
+      ctx.fillText(`เบอร์โทรศัพท์ : ${this.user.personalInfo.phone}`, 30, 275)
+      ctx.fillText(`อีเมล : ${this.user.personalInfo.email}`, 30, 305)
+      ctx.fillText(`facebook : ${this.user.personalInfo.facebook}`, 30, 335)
+      ctx.fillText(`lineID : ${this.user.personalInfo.lineID}`, 30, 365)
     },
     download() {
       const link = document.createElement('a')
