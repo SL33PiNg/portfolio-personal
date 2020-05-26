@@ -51,7 +51,7 @@
         <v-row justify="center" class="ma-1">
           <v-col cols="6" md="6" xs="12">
             <v-btn block class="secondary" to="/profile/advancedSearch"
-              >การค้นหาขั้นสูง</v-btn
+              >ค้นหาขั้นสูง</v-btn
             >
           </v-col>
           <v-col cols="6" md="6" xs="12">
@@ -101,7 +101,11 @@
                     {{ i.personalInfo.lastnameTH }}</v-list-item-title
                   >
                   <h class="ml-2">ชื่อเล่น :{{ i.personalInfo.nicknameTH }}</h>
-                  <h>หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}</h>
+                  <v-row class="ml-2"
+                    ><h
+                      >หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}</h
+                    ></v-row
+                  >
                 </v-col>
 
                 <v-col cols="12" md="6" align-self="start" class="mt-2 mb-2">

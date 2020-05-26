@@ -18,7 +18,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn outlined @click.stop="isOpen = false">ยกเลิก</v-btn>
+        <v-btn @click.stop="isOpen = false">ยกเลิก</v-btn>
         <v-btn color="primary" @click.stop="addPositionOcsc">บันทึก</v-btn>
       </v-card-actions>
     </v-card>

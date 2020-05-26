@@ -14,7 +14,8 @@
           v-model="search"
           append-icon="mdi-magnify"
           label="ค้นหา"
-          single-line
+          outlined
+          dense
           hide-details
         ></v-text-field>
       </v-card-title>
@@ -52,7 +53,7 @@
                   <v-btn v-else color="error" @click="removeAdmin">
                     ลบสิทธิ์ 'ADMIN'
                   </v-btn>
-                  <v-btn outlined color="" @click="add = false">
+                  <v-btn color="" @click="add = false">
                     ยกเลิก
                   </v-btn>
                 </v-card-actions>
@@ -86,7 +87,7 @@
                   <v-btn v-else color="error" @click="allowPublic">
                     ระงับการเผยแพร่
                   </v-btn>
-                  <v-btn outlined color="" @click="shut = false">
+                  <v-btn color="" @click="shut = false">
                     ยกเลิก
                   </v-btn>
                 </v-card-actions>
@@ -120,7 +121,7 @@
                   <v-btn v-else color="error" @click="allowActive">
                     ปิดการใช้งานบัญชี
                   </v-btn>
-                  <v-btn outlined color="" @click="close = false">
+                  <v-btn color="" @click="close = false">
                     ยกเลิก
                   </v-btn>
                 </v-card-actions>

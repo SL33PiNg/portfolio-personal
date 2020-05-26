@@ -18,7 +18,9 @@
             outlined
             dense
           >
-            ประเภทผลงาน
+            <template slot="item" slot-scope="{ item: { text } }">
+              <p>{{ text }}</p>
+            </template>
           </v-select>
         </v-col>
         <v-col cols="12" md="5" xs="12">

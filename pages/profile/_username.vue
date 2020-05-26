@@ -34,11 +34,9 @@
               </h4>
             </v-row>
             <v-row class="ml-8 mt-2 mb-3">
-              <h4>
-                ชื่อเล่น :{{ user.personalInfo.nicknameTH }} ({{
-                  user.personalInfo.nicknameEN
-                }})
-              </h4>
+              ชื่อเล่น :{{ user.personalInfo.nicknameTH }} ({{
+                user.personalInfo.nicknameEN
+              }})
             </v-row>
             <v-divider></v-divider>
             <v-list>

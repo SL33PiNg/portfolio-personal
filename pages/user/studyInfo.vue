@@ -19,7 +19,10 @@
               label="ระดับวุฒิการศึกษา"
               outlined
               dense
-            ></v-select>
+              ><template slot="item" slot-scope="{ item }">
+                <p>{{ item }}</p>
+              </template>
+            </v-select>
           </v-col>
           <v-col cols="12" md="6" xs="12">
             <v-text-field
@@ -79,7 +82,10 @@
               label="ประเทศ"
               outlined
               dense
-            ></v-autocomplete>
+              ><template slot="item" slot-scope="{ item: { name } }">
+                <p>{{ name }}</p>
+              </template>
+            </v-autocomplete>
           </v-col>
         </v-row>
         <v-row>

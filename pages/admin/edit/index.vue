@@ -22,9 +22,7 @@
           </v-toolbar>
           <v-dialog v-model="dialog" max-width="500px">
             <v-card>
-              <v-card-title
-                ><span class="headline">edit department</span></v-card-title
-              >
+              <v-card-title>แก้ไขหน่วยงาน</v-card-title>
               <v-card-text>
                 <v-container>
                   <v-row>
@@ -39,7 +37,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn outlined color="" @click="close">ยกเลิก</v-btn>
+                <v-btn color="" @click="close">ยกเลิก</v-btn>
                 <v-btn color="primary" @click="save">บันทึก</v-btn>
               </v-card-actions>
             </v-card>

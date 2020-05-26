@@ -23,8 +23,8 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-subtitle>
-            <h4>ปีที่เริ่มทำงาน-ออกจากงาน (พ.ศ.)</h4>
-            {{ i.start }} - {{ i.end || 'ปัจจุบัน' }}
+            <h4>ปีที่ทำงาน-ออกจากงาน</h4>
+            พ.ศ.{{ i.start }} - {{ i.end || 'ปัจจุบัน' }}
           </v-list-item-subtitle>
         </v-list-item>
       </v-card>
@@ -55,7 +55,7 @@
             <v-card-subtitle>แผนก : {{ detail.department }} </v-card-subtitle>
             <v-card-subtitle>ตำแหน่ง : {{ detail.position }}</v-card-subtitle>
             <v-card-subtitle
-              >ปีที่เริ่มทำงาน (พ.ศ.) : {{ detail.start }}</v-card-subtitle
+              >ปีที่ทำงาน (พ.ศ.) : {{ detail.start }}</v-card-subtitle
             >
 
             <v-card-subtitle
