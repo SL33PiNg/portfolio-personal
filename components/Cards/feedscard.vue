@@ -69,23 +69,32 @@
     <v-row wrap justify="center">
       <v-dialog v-model="dialog" width="70%">
         <v-card>
-          <v-row justify="end" class="mr-2">
-            <v-icon color="red" class="mt-1" @click="dialog = false">
-              mdi-close-box</v-icon
-            >
-          </v-row>
-          <v-row justify="center">
-            <v-sheet color="primary" width="90%" class="mt-n5">
-              <h1 class="ma-2 white--text">
-                <v-icon large color="white">mdi-school-outline</v-icon>
-                รายละเอียดข้อมูลผลงาน
-              </h1></v-sheet
-            >
-          </v-row>
+          <v-container>
+            <v-row align="start" no-gutters>
+              <v-col offset="1" class="mt-1" cols="10">
+                <v-sheet color="primary" elevation="8">
+                  <h1 class="white--text">
+                    <v-icon large color="white">mdi-school-outline</v-icon>
+                    รายละเอียดข้อมูลผลงาน
+                  </h1></v-sheet
+                >
+              </v-col>
+              <v-col cols="auto" class="ml-8">
+                <v-icon
+                  x-large
+                  class="mb-3"
+                  color="red"
+                  @click="dialog = false"
+                >
+                  mdi-close-box</v-icon
+                >
+              </v-col>
+            </v-row>
 
-          <keep-alive>
-            <component :is="cardType" :award="award" />
-          </keep-alive>
+            <keep-alive>
+              <component :is="cardType" :award="award" />
+            </keep-alive>
+          </v-container>
         </v-card>
       </v-dialog>
       <v-dialog v-model="editMode" width="70%">
