@@ -163,7 +163,7 @@ exports.blackupData = (req, res) => {
   const dd = now.getDate()
   const mm = Intl.DateTimeFormat('en-US',{month:'long'}).format(now)
   const yy = now.getFullYear()
-  const folderName = `${dd}${mm}${yy}`
+  const folderName = `${yy}_${mm}_${dd}`
   const backupPath = path.resolve('backup', folderName)
   const pendingFolderList = [
     fse.copy(path.resolve('avatar'), path.resolve(backupPath, 'avatar')),
