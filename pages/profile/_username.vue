@@ -135,8 +135,20 @@
               <div class="ml-2">{{ user.personalInfo.lineID }}</div>
             </v-row>
             <v-divider></v-divider>
+            <v-row justify="center">
+              <div class="mt-4">
+                <qrcode-vue
+                  :value="fullpath"
+                  :size="150"
+                  level="H"
+                ></qrcode-vue>
+              </div>
+            </v-row>
+
             <v-card-actions class="ml-5">
               <Complaint :user="user"></Complaint>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" @click="opencard">แสดงนามบัตร</v-btn>
             </v-card-actions>
           </v-card>
         </v-row>
@@ -161,25 +173,36 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row wrap justify="center">
+      <v-dialog v-model="cardProfile" width="691">
+        <CardProfile :user="user"></CardProfile>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import QrcodeVue from 'qrcode.vue'
 import Complaint from '~/components/complainPro/comp.vue'
+import CardProfile from '~/components/cradProfile'
 export default {
   validate({ params }) {
     return isNaN(+params.username)
   },
   components: {
+    CardProfile,
     Complaint,
+    QrcodeVue,
   },
   data: () => ({
+    fullpath: location.href,
     maxH: window.innerHeight,
     profileDone: false,
     selectDone1: false,
     selectDone2: false,
     selectDone3: false,
     dialog: false,
+    cardProfile: false,
     tab: null,
     tab2: null,
     user: {
@@ -262,6 +285,9 @@ export default {
     this.getExpertist()
   },
   methods: {
+    opencard() {
+      this.cardProfile = true
+    },
     async getProfile() {
       try {
         const result = await this.$axios.$get(
