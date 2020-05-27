@@ -22,32 +22,25 @@
     <v-row wrap justify="center">
       <v-dialog v-model="dialog" width="70%">
         <v-card>
-          <v-container>
-            <v-row justify="end" class="ma-1">
-              <v-icon color="red" @click="dialog = false">
-                mdi-close-box</v-icon
-              ></v-row
-            >
-            <v-sheet color="primary" width="100%">
-              <h1 class="ma-2 white--text">
-                <v-icon large color="white">mdi-school-outline</v-icon>
-                รายละเอียดข้อมูลใบรับรอง
-              </h1></v-sheet
-            >
+          <v-card-title class="headline primary white--text">
+            ข้อมูลใบรับรอง
+            <v-spacer></v-spacer>
+            <v-icon large color="white" @click="dialog = false">
+              mdi-close</v-icon
+            ></v-card-title
+          >
+          <v-card-title> {{ detail.certificateName }}</v-card-title>
 
-            <v-card-subtitle
-              >ชื่อใบรับรอง : {{ detail.certificateName }}</v-card-subtitle
-            >
-            <v-card-subtitle
-              >หน่วยงานที่ออก:{{ detail.guarantee }}</v-card-subtitle
-            >
-            <v-card-subtitle>ปีที่ได้รับ:{{ detail.graduate }}</v-card-subtitle>
-            <v-card-subtitle
-              >รายละเอียด :<froalaView
-                v-model="detail.certificateinfoDetails"
-              ></froalaView
-            ></v-card-subtitle>
-          </v-container>
+          <v-card-subtitle class="mt-2"
+            >หน่วยงานที่ออก:{{ detail.guarantee }}</v-card-subtitle
+          >
+          <v-card-subtitle>ปีที่ได้รับ:{{ detail.graduate }}</v-card-subtitle>
+          <v-divider class="ma-1"></v-divider>
+          <v-card-subtitle class="mt-3"
+            >รายละเอียด :<froalaView
+              v-model="detail.certificateinfoDetails"
+            ></froalaView
+          ></v-card-subtitle>
         </v-card>
       </v-dialog>
     </v-row>

@@ -66,75 +66,45 @@
         <span>ลบผลงาน</span></v-tooltip
       >
     </v-list-item>
-    <v-row wrap justify="center">
-      <v-dialog v-model="dialog" width="70%">
-        <v-card>
-          <v-container>
-            <v-row align="start" no-gutters>
-              <v-col offset="1" class="mt-1" cols="10">
-                <v-sheet color="primary" elevation="8">
-                  <h1 class="white--text">
-                    <v-icon large color="white">mdi-school-outline</v-icon>
-                    รายละเอียดข้อมูลผลงาน
-                  </h1></v-sheet
-                >
-              </v-col>
-              <v-col cols="auto" class="ml-8">
-                <v-icon
-                  x-large
-                  class="mb-3"
-                  color="red"
-                  @click="dialog = false"
-                >
-                  mdi-close-box</v-icon
-                >
-              </v-col>
-            </v-row>
 
-            <keep-alive>
-              <component :is="cardType" :award="award" />
-            </keep-alive>
-          </v-container>
-        </v-card>
-      </v-dialog>
-      <v-dialog v-model="editMode" width="70%">
-        <v-card>
-          <v-container>
-            <v-row align="start" no-gutters>
-              <v-col offset="1" class="mt-1" cols="10">
-                <v-sheet color="primary" elevation="8">
-                  <h1 class="white--text">
-                    <v-icon large color="white"> mdi-pencil-outline</v-icon>
-                    แก้ไขข้อมูล
-                  </h1>
-                </v-sheet>
-              </v-col>
-              <v-col cols="auto" class="ml-8">
-                <v-icon
-                  x-large
-                  class="mb-3"
-                  color="red"
-                  @click="editMode = false"
-                >
-                  mdi-close-box</v-icon
-                >
-              </v-col>
-            </v-row>
-            <component
-              :is="awardType"
-              :award="detail"
-              editmode
-              @close="close"
-            />
-            <!-- {{ detail }}
+    <v-dialog v-model="dialog" width="75%">
+      <v-card>
+        <v-card-title class="headline grey lighten-2" primary-title>
+          รายละเอียดข้อมูลผลงาน
+          <v-spacer></v-spacer>
+          <v-icon large color="error" @click="dialog = false">
+            mdi-close-box</v-icon
+          ></v-card-title
+        >
+        <h1 class="white--text">
+          <v-icon large color="white">mdi-school-outline</v-icon>
+        </h1>
+
+        <v-col cols="auto" class="ml-8"> </v-col>
+
+        <keep-alive>
+          <component :is="cardType" :award="award" />
+        </keep-alive>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="editMode" width="70%">
+      <v-card>
+        <v-card-title class="headline grey lighten-2" primary-title>
+          แก้ไขข้อมูลผลงาน
+          <v-spacer></v-spacer>
+          <v-icon large color="error" @click="editMode = false">
+            mdi-close-box</v-icon
+          ></v-card-title
+        >
+
+        <component :is="awardType" :award="detail" editmode @close="close" />
+        <!-- {{ detail }}
           <award1 v-if="detail.awardType === 1"></award1>
           <award2 v-else-if="detail.awardType === 2"></award2>
           <award3 v-else-if="detail.awardType === 3"></award3>
           <award4 v-else-if="detail.awardType === 4"></award4> -->
-          </v-container>
-        </v-card>
-      </v-dialog>
-    </v-row>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
