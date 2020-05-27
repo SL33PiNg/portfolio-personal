@@ -16,14 +16,14 @@
             <h4>ตำแหน่ง</h4>
             {{ i.position }}
           </v-list-item-subtitle>
+        </v-list-item>
+        <v-list-item>
           <v-list-item-subtitle>
             <h4>ประเทศ</h4>
             {{ i.country }}
           </v-list-item-subtitle>
-        </v-list-item>
-        <v-list-item>
           <v-list-item-subtitle>
-            <h4>ปีที่ทำงาน-ออกจากงาน</h4>
+            <h4>ปีที่ทำงาน</h4>
             พ.ศ.{{ i.start }} - {{ i.end || 'ปัจจุบัน' }}
           </v-list-item-subtitle>
         </v-list-item>

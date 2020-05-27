@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" width="600">
       <template v-slot:activator="{ on }"
-        ><v-btn color="warning" v-on="on"> <h4>ร้องเรียน</h4></v-btn>
+        ><v-btn block color="warning" v-on="on"> <h4>ร้องเรียน</h4></v-btn>
       </template>
 
       <v-card>

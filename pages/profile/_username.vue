@@ -138,10 +138,17 @@
             </v-row>
             <v-divider></v-divider>
 
-            <v-card-actions class="ml-5">
-              <Complaint :user="user"></Complaint>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" @click="opencard">แสดงนามบัตร</v-btn>
+            <v-card-actions>
+              <v-row>
+                <v-col>
+                  <Complaint :user="user"></Complaint>
+                </v-col>
+                <v-col>
+                  <v-btn block color="primary" @click="opencard"
+                    >แสดงนามบัตร</v-btn
+                  >
+                </v-col>
+              </v-row>
             </v-card-actions>
           </v-card>
         </v-row>
