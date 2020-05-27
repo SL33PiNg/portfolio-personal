@@ -1,18 +1,26 @@
 <template>
   <v-container>
-    <v-col offset="3" cols="6">
-      <v-img
-        :src="`http://localhost:3000/api/award/${award.cover}`"
-        height="300"
-        width="523.31"
-        contain
-      ></v-img>
-    </v-col>
-    <v-card-subtitle>ชื่อโครงการภาษาไทย: {{ award.name }}</v-card-subtitle>
-    <v-card-subtitle>ชื่อโครงการภาษาอังกฤษ:{{ award.nameEN }} </v-card-subtitle>
-    <v-card-subtitle
-      >ประเภทโครงการวิจัย:{{ award.researchCategory }}
-    </v-card-subtitle>
+    <v-row class="mt-n8">
+      <v-col offset="3" cols="6">
+        <v-img
+          :src="`http://localhost:3000/api/award/${award.cover}`"
+          height="300"
+          width="523.31"
+          contain
+        ></v-img>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-card-title>ชื่อโครงการภาษาไทย </v-card-title>
+      <v-card-subtitle>{{ award.name }}</v-card-subtitle>
+      <v-card-subtitle
+        >ชื่อโครงการภาษาอังกฤษ:{{ award.nameEN }}
+      </v-card-subtitle>
+
+      <v-card-subtitle
+        >ประเภทโครงการวิจัย:{{ award.researchCategory }}
+      </v-card-subtitle>
+    </v-row>
 
     <v-card-subtitle
       >ตำแหน่งในโครงการวิจัย:{{ award.jobTitles }}</v-card-subtitle

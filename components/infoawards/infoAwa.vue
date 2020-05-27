@@ -8,9 +8,16 @@
         contain
       ></v-img>
     </v-col>
-    <v-card-subtitle>ชื่อรางวัล:{{ award.name }} </v-card-subtitle>
-    <v-card-subtitle>ปีที่ได้รับรางวัล:{{ award.eventYear }} </v-card-subtitle>
-    <v-divider></v-divider>
+    <v-col>
+      <v-card-subtitle>ชื่อรางวัล:{{ award.name }} </v-card-subtitle>
+    </v-col>
+    <v-col
+      ><v-card-subtitle
+        >ปีที่ได้รับรางวัล:{{ award.eventYear }}
+      </v-card-subtitle>
+      <v-divider></v-divider
+    ></v-col>
+
     <v-card-subtitle>รายละเอียด: </v-card-subtitle>
     <froalaView v-model="award.infoemation"></froalaView>
   </v-container>

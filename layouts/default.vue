@@ -1,6 +1,13 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" :clipped="true" fixed app dark>
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="true"
+      fixed
+      app
+      dark
+      width="285"
+    >
       <user-nav v-if="pathMatch === 1"></user-nav>
       <admin-nav v-if="pathMatch === 2"></admin-nav>
       <public-nav v-if="pathMatch === 3"></public-nav>
