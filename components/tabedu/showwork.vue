@@ -32,43 +32,40 @@
     <v-row wrap justify="center">
       <v-dialog v-model="dialog" width="70%">
         <v-card>
-          <v-container>
-            <v-row justify="end" class="ma-1">
-              <v-icon color="red" @click="dialog = false">
-                mdi-close-box</v-icon
-              ></v-row
-            >
-            <v-sheet color="primary" width="100%">
-              <h1 class="ma-2 white--text">
-                <v-icon large color="white">mdi-briefcase-outline</v-icon>
-                รายละเอียดข้อมูลการทำงาน
-              </h1></v-sheet
-            >
-            <v-card-title class="headline">
-              {{ detail.company }}<v-spacer></v-spacer>
-              <v-spacer></v-spacer>
-              <v-chip :class="detail.status ? 'success' : 'secondary'">{{
-                detail.status ? 'กำลังทำงาน' : 'ออกจากงาน'
-              }}</v-chip></v-card-title
-            >
+          <v-card-title class="headline primary white--text">
+            ข้อมูลประวัติการทำงาน
+            <v-spacer></v-spacer>
+            <v-icon large color="white" @click="dialog = false">
+              mdi-close</v-icon
+            ></v-card-title
+          >
+          <v-card-title>
+            {{ detail.company }}<v-spacer></v-spacer>
 
-            <v-card-subtitle>แผนก : {{ detail.department }} </v-card-subtitle>
-            <v-card-subtitle>ตำแหน่ง : {{ detail.position }}</v-card-subtitle>
-            <v-card-subtitle
-              >ปีที่ทำงาน (พ.ศ.) : {{ detail.start }}</v-card-subtitle
-            >
+            <v-chip :class="detail.status ? 'success' : 'secondary'">{{
+              detail.status ? 'กำลังทำงาน' : 'ออกจากงาน'
+            }}</v-chip></v-card-title
+          >
 
-            <v-card-subtitle
-              >ปีที่ออกจากงาน (พ.ศ.) :
-              {{ detail.end || 'กำลังทำงาน' }}</v-card-subtitle
-            >
-            <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
-            <v-card-subtitle
-              >รายละเอียด :<froalaView
-                v-model="detail.workinfoDetails"
-              ></froalaView
-            ></v-card-subtitle>
-          </v-container>
+          <v-card-subtitle class="mt-2"
+            >แผนก : {{ detail.department }}
+          </v-card-subtitle>
+          <v-card-subtitle>ตำแหน่ง : {{ detail.position }}</v-card-subtitle>
+          <v-card-subtitle
+            >ปีที่ทำงาน (พ.ศ.) : {{ detail.start }}</v-card-subtitle
+          >
+
+          <v-card-subtitle
+            >ปีที่ออกจากงาน (พ.ศ.) :
+            {{ detail.end || 'กำลังทำงาน' }}</v-card-subtitle
+          >
+          <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
+          <v-divider class="ma-1"></v-divider>
+          <v-card-subtitle class="mt-3"
+            >รายละเอียด :<froalaView
+              v-model="detail.workinfoDetails"
+            ></froalaView
+          ></v-card-subtitle>
         </v-card>
       </v-dialog>
     </v-row>

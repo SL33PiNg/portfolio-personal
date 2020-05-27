@@ -27,43 +27,38 @@
     <v-row wrap justify="center">
       <v-dialog v-model="dialog" width="70%">
         <v-card>
-          <v-container>
-            <v-row justify="end" class="ma-1">
-              <v-icon color="red" @click="dialog = false">
-                mdi-close-box</v-icon
-              ></v-row
-            >
-            <v-sheet color="primary" width="100%">
-              <h1 class="ma-2 white--text">
-                <v-icon large color="white">mdi-school-outline</v-icon>
-                รายละเอียดข้อมูลประวัติการศึกษา
-              </h1></v-sheet
-            >
-            <v-card-title class="headline">
-              {{ detail.academyName }}<v-spacer></v-spacer>
-              <v-chip :class="detail.status ? 'success' : 'secondary'">{{
-                detail.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา'
-              }}</v-chip></v-card-title
-            >
+          <v-card-title class="headline primary white--text">
+            ข้อมูลประวัติการศึกษา
+            <v-spacer></v-spacer>
+            <v-icon large color="white" @click="dialog = false">
+              mdi-close</v-icon
+            ></v-card-title
+          >
+          <v-card-title>
+            {{ detail.academyName }}<v-spacer></v-spacer>
+            <v-chip :class="detail.status ? 'success' : 'primary'">{{
+              detail.status ? 'กำลังศึกษา' : 'สำเร็จการศึกษา'
+            }}</v-chip></v-card-title
+          >
 
-            <v-card-subtitle
-              >ระดับวุฒิการศึกษา : {{ detail.educationVocabulary }}
-            </v-card-subtitle>
-            <v-card-subtitle
-              >ชื่อวุฒิการศึกษา : {{ detail.educationName }}</v-card-subtitle
-            >
-            <v-card-subtitle>สาขา : {{ detail.branch }}</v-card-subtitle>
-            <v-card-subtitle
-              >ปีที่สำเร็จการศึกษา :
-              {{ detail.graduate || 'กำลังศึกษา' }}</v-card-subtitle
-            >
-            <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
-            <v-card-subtitle
-              >รายละเอียด :<froalaView
-                v-model="detail.educationinfoDetails"
-              ></froalaView
-            ></v-card-subtitle>
-          </v-container>
+          <v-card-subtitle class="mt-2"
+            >ระดับวุฒิการศึกษา : {{ detail.educationVocabulary }}
+          </v-card-subtitle>
+          <v-card-subtitle
+            >ชื่อวุฒิการศึกษา : {{ detail.educationName }}</v-card-subtitle
+          >
+          <v-card-subtitle>สาขา : {{ detail.branch }}</v-card-subtitle>
+          <v-card-subtitle
+            >ปีที่สำเร็จการศึกษา :
+            {{ detail.graduate || 'กำลังศึกษา' }}</v-card-subtitle
+          >
+          <v-card-subtitle>ประเทศ : {{ detail.country }}</v-card-subtitle>
+          <v-divider class="ma-1"></v-divider>
+          <v-card-subtitle class="mt-3"
+            >รายละเอียด :<froalaView
+              v-model="detail.educationinfoDetails"
+            ></froalaView
+          ></v-card-subtitle>
         </v-card>
       </v-dialog>
     </v-row>
