@@ -100,11 +100,11 @@
                     }}{{ i.personalInfo.firstnameTH }}
                     {{ i.personalInfo.lastnameTH }}</v-list-item-title
                   >
-                  <h class="ml-2">ชื่อเล่น :{{ i.personalInfo.nicknameTH }}</h>
-                  <v-row class="ml-2"
-                    ><h
-                      >หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}</h
-                    ></v-row
+                  <p class="ml-2">ชื่อเล่น :{{ i.personalInfo.nicknameTH }}</p>
+                  <v-row class="ml-2 mt-n4"
+                    ><p>
+                      หน่วยงาน : {{ getDepartment(i.careerInfo.dpmentID) }}
+                    </p></v-row
                   >
                 </v-col>
 

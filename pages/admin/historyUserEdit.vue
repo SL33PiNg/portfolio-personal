@@ -31,7 +31,6 @@
           :items="actionFillter"
           :headers="headers"
           :search="search"
-          hide-default-footer
         >
           <template v-slot:item.userID.personalInfo.firstnameTH="{ item }">
             <p>

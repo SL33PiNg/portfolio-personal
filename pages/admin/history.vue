@@ -19,12 +19,7 @@
         ></v-text-field>
       </v-card-title>
       <v-card outlined class="mx-auto ma-5">
-        <v-data-table
-          :search="search"
-          :items="logs"
-          :headers="headers"
-          hide-default-footer
-        >
+        <v-data-table :search="search" :items="logs" :headers="headers">
           <template v-slot:item.userID.personalInfo.firstnameTH="{ item }">
             <p>
               {{ item.userID.personalInfo.firstnameTH }}
