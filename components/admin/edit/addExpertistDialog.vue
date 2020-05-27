@@ -2,7 +2,7 @@
   <v-dialog v-model="isOpen" width="500">
     <template v-slot:activator="{ on }">
       <v-chip color="primary"
-        ><v-icon v-on="on">mdi-folder-plus</v-icon></v-chip
+        ><v-icon small v-on="on">mdi-folder-plus</v-icon></v-chip
       >
     </template>
     <v-card>

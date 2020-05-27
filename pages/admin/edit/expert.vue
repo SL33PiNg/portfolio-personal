@@ -40,9 +40,9 @@
           ></del-expert-dialog>
         </template>
         <template v-slot:item.data-table-expand="{ expand, isExpanded }">
-          <v-btn icon @click="expand(!isExpanded)">
+          <v-btn icon small @click="expand(!isExpanded)">
             <v-chip class="primary"
-              ><v-icon>{{
+              ><v-icon small>{{
                 isExpanded ? 'mdi-folder-open' : 'mdi-folder'
               }}</v-icon></v-chip
             >

@@ -42,7 +42,7 @@
         <template v-slot:item.data-table-expand="{ expand, isExpanded }">
           <v-btn icon @click="expand(!isExpanded)">
             <v-chip color="primary"
-              ><v-icon>{{
+              ><v-icon small>{{
                 isExpanded ? 'mdi-folder-open' : 'mdi-folder'
               }}</v-icon></v-chip
             >

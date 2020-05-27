@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="isOpen" width="500">
     <template v-slot:activator="{ on }">
-      <v-chip color="primary"><v-icon v-on="on">mdi-plus</v-icon></v-chip>
+      <v-chip color="primary"><v-icon small v-on="on">mdi-plus</v-icon></v-chip>
     </template>
     <v-card>
       <v-card-title>เพิ่มรายการความเชี่ยวชาญย่อย: {{ item.name }}</v-card-title>

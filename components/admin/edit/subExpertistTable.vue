@@ -46,10 +46,14 @@
           <v-col class="ml-10" cols="9">{{ item.name }} </v-col>
           <v-col class="ml-6" cols="auto">
             <v-chip class="warning"
-              ><v-icon @click.stop="openEdit(item)">mdi-pencil</v-icon></v-chip
+              ><v-icon small @click.stop="openEdit(item)"
+                >mdi-pencil</v-icon
+              ></v-chip
             >
             <v-chip class="error"
-              ><v-icon @click.stop="openDel(item)">mdi-delete</v-icon></v-chip
+              ><v-icon small @click.stop="openDel(item)"
+                >mdi-delete</v-icon
+              ></v-chip
             >
           </v-col>
         </v-row>

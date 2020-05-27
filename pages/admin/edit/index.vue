@@ -47,7 +47,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <v-chip class="warning" v-on="on">
-                <v-icon @click="editItem(item)">
+                <v-icon small @click="editItem(item)">
                   mdi-pencil
                 </v-icon>
               </v-chip> </template

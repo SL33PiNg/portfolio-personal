@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="isOpen" width="500">
     <template v-slot:activator="{ on }">
-      <v-chip class="warning"><v-icon v-on="on">mdi-pencil</v-icon></v-chip>
+      <v-chip class="warning"
+        ><v-icon small v-on="on">mdi-pencil</v-icon></v-chip
+      >
     </template>
     <v-card>
       <v-card-title>แก้ไขความเชี่ยวชาญ</v-card-title>
