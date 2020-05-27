@@ -73,7 +73,13 @@ export default {
       ctx.fillText(`ตำแหน่ง : ${this.user.careerInfo.jobPost}`, 30, 185)
       ctx.fillText(`หน่วยงาน : ${this.department}`, 30, 215)
       ctx.fillText(`ฝ่าย : ${this.user.careerInfo.department}`, 30, 245)
-      ctx.fillText(`เบอร์โทรศัพท์ : ${this.user.personalInfo.phone}`, 30, 275)
+      this.user.personalInfo.showPhone
+        ? ctx.fillText(
+            `เบอร์โทรศัพท์ : ${this.user.personalInfo.phone}`,
+            30,
+            275
+          )
+        : ctx.fillText('เบอร์โทรศัพท์ : -', 30, 275)
       ctx.fillText(`อีเมล : ${this.user.personalInfo.email}`, 30, 305)
       ctx.fillText(`facebook : ${this.user.personalInfo.facebook}`, 30, 335)
       ctx.fillText(`lineID : ${this.user.personalInfo.lineID}`, 30, 365)
