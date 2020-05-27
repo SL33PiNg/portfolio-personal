@@ -38,7 +38,7 @@
       <v-list-item-content>
         <v-list-item-subtitle
           ><h4>ประเภทผลงาน: {{ award.awardType | idToString(items) }}</h4>
-          ปี พ.ศ.: {{ award.eventYear }}
+          ปี: พ.ศ.{{ award.eventYear }}
         </v-list-item-subtitle> </v-list-item-content
       ><v-tooltip bottom>
         <template v-slot:activator="{ on }"
