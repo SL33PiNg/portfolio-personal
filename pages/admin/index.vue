@@ -228,7 +228,7 @@ export default {
         { text: 'สถานะบัญชี', value: 'isActive' },
         {
           text: 'สิทธิ์การใช้งาน',
-          align: 'center',
+          // align: 'center',
           value: 'roles',
         },
         {

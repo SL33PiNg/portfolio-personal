@@ -1,6 +1,6 @@
 .<template>
   <v-card color="blue-grey lighten-5">
-    <canvas id="canvas" width="691" height="389"></canvas>
+    <canvas id="canvas" width="682" height="371"></canvas>
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="primary" @click="download">
@@ -37,9 +37,6 @@ export default {
       const ctx = document.getElementById('canvas').getContext('2d')
       const img = new Image()
       img.onload = () => {
-        // const ptrn = ctx.createPattern(img, 'repeat')
-        // ctx.fillStyle = ptrn
-        // ctx.fillRect(0, 0, 691, 389)
         ctx.drawImage(img, 0, 0)
         this.drawQR(ctx)
       }
@@ -49,7 +46,7 @@ export default {
       const qrcode = new Image()
       qrcode.onload = () => {
         console.log('draw')
-        ctx.drawImage(qrcode, 520, 220)
+        ctx.drawImage(qrcode, 530, 218)
         this.drawText(ctx)
       }
       qrcode.src = await qr.toDataURL(this.fullpath)
@@ -57,32 +54,21 @@ export default {
     drawText(ctx) {
       ctx.font = '25px Kanit'
       ctx.fillStyle = '#ffffff'
-      ctx.fillText(this.user.personalInfo.academicRank, 30, 140)
-      ctx.fillText(this.user.personalInfo.firstnameTH, 180, 140)
       ctx.fillText(
-        this.user.personalInfo.lastnameTH,
-        this.lengthName * 11 + 240,
-        140
+        `${this.user.personalInfo.academicRank}${this.user.personalInfo.firstnameTH}  ${this.user.personalInfo.lastnameTH}  (${this.user.personalInfo.nicknameTH})`,
+        30,
+        150
       )
-      ctx.fillText(
-        `(${this.user.personalInfo.nicknameTH})`,
-        this.lengthName * 11 + 360,
-        140
-      )
-      ctx.font = '20px Kanit'
+      ctx.font = '18px Kanit'
       ctx.fillText(`ตำแหน่ง : ${this.user.careerInfo.jobPost}`, 30, 185)
       ctx.fillText(`หน่วยงาน : ${this.department}`, 30, 215)
       ctx.fillText(`ฝ่าย : ${this.user.careerInfo.department}`, 30, 245)
       this.user.personalInfo.showPhone
-        ? ctx.fillText(
-            `เบอร์โทรศัพท์ : ${this.user.personalInfo.phone}`,
-            30,
-            275
-          )
-        : ctx.fillText('เบอร์โทรศัพท์ : -', 30, 275)
+        ? ctx.fillText(`เบอร์โทร : ${this.user.personalInfo.phone}`, 30, 275)
+        : ctx.fillText('', 30, 275)
       ctx.fillText(`อีเมล : ${this.user.personalInfo.email}`, 30, 305)
-      ctx.fillText(`facebook : ${this.user.personalInfo.facebook}`, 30, 335)
-      ctx.fillText(`lineID : ${this.user.personalInfo.lineID}`, 30, 365)
+      ctx.fillText(`FB : ${this.user.personalInfo.facebook}`, 30, 335)
+      ctx.fillText(`LINE : ${this.user.personalInfo.lineID}`, 30, 365)
     },
     download() {
       const link = document.createElement('a')
