@@ -1727,6 +1727,29 @@ archiver-utils@^2.1.0:
     normalize-path "^3.0.0"
     readable-stream "^2.0.0"
 
+archiver-zip-encryptable@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/archiver-zip-encryptable/-/archiver-zip-encryptable-1.0.6.tgz#1cb10ae1cbf39209e0886f061841c4dcb1b6b36f"
+  integrity sha512-qgdanTyLIWwYrr4tAfFvxS0wepo2ebyg2aj1fcqeOMVsfBW3Nm7vAoXyGhesYBetFc0Uwg01Kq8rjZnVtjaAFw==
+  dependencies:
+    archiver "^3.1.1"
+    crc32-stream "^3.0.1"
+    crypto-random-string "^1.0.0"
+    node-int64 "^0.4.0"
+
+archiver@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/archiver/-/archiver-3.1.1.tgz#9db7819d4daf60aec10fe86b16cb9258ced66ea0"
+  integrity sha512-5Hxxcig7gw5Jod/8Gq0OneVgLYET+oNHcxgWItq4TbhOzRLKNAFUb9edAftiMKXvXfCB0vbGrJdZDNq0dWMsxg==
+  dependencies:
+    archiver-utils "^2.1.0"
+    async "^2.6.3"
+    buffer-crc32 "^0.2.1"
+    glob "^7.1.4"
+    readable-stream "^3.4.0"
+    tar-stream "^2.1.0"
+    zip-stream "^2.1.2"
+
 archiver@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/archiver/-/archiver-4.0.1.tgz#3f722b121777e361ca9fad374ecda38e77e63c7f"
@@ -6304,6 +6327,11 @@ node-fetch@^2.6.0:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
 
+node-int64@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
+  integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
+
 node-libs-browser@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/node-libs-browser/-/node-libs-browser-2.2.1.tgz#b64f513d18338625f90346d27b0d235e631f6425"
@@ -8943,7 +8971,7 @@ tar-stream@^2.0.0:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
-tar-stream@^2.1.2:
+tar-stream@^2.1.0, tar-stream@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/tar-stream/-/tar-stream-2.1.2.tgz#6d5ef1a7e5783a95ff70b69b97455a5968dc1325"
   integrity sha512-UaF6FoJ32WqALZGOIAApXx+OdxhekNMChu6axLJR85zMMjXKWFGjbIRe+J6P4UnRGg9rAwWvbTT0oI7hD/Un7Q==
