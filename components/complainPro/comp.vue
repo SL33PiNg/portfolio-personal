@@ -6,14 +6,14 @@
       </template>
 
       <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>
+        <v-card-title class="headline warning white--text">
           คำร้องเรียน
         </v-card-title>
 
         <v-text-field
           v-model="reportName"
           label="ชื่อผู้ร้องเรียน"
-          class="ma-2"
+          class="ma-3 mt-5"
           clearable
           outlined
           dense
@@ -21,7 +21,7 @@
         <v-textarea
           v-model="information"
           label="รายละเอียด"
-          class="ma-2"
+          class="ma-3"
           outlined
           dense
         ></v-textarea>
