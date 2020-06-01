@@ -24,7 +24,8 @@
             max-width="250"
             class="primary display-1"
             @click="backup"
-            >สำรองข้อมูล<v-icon dark>mdi-upload</v-icon>
+            >สำรองข้อมูล
+            <v-icon class="display-1" dark> mdi-upload</v-icon>
             <template v-slot:loader>
               <v-progress-circular
                 :rotate="90"
@@ -46,11 +47,12 @@
             max-width="250"
             class="warning display-1"
             >กู้คืนข้อมูล
+            <v-icon class="display-1" dark> mdi-backup-restore</v-icon>
           </v-btn>
         </v-col>
       </v-row>
 
-      <v-card outlined class="mx-auto ma-5">
+      <!-- <v-card outlined class="mx-auto ma-5">
         <v-data-table :items="backupList" :headers="headers">
           <template v-slot:top>
             <v-dialog v-model="restore" max-width="500px">
@@ -97,7 +99,7 @@
             >
               download
             </v-btn>
-            <!-- <v-tooltip top>
+            <v-tooltip top>
               <template v-slot:activator="{ on }">
                 <v-chip class="error" v-on="on"
                   ><v-icon text-center>
@@ -106,10 +108,10 @@
                 >
               </template>
               <span>ลบการร้องเรียน</span>
-            </v-tooltip> -->
+            </v-tooltip>
           </template>
         </v-data-table>
-      </v-card>
+      </v-card> -->
     </v-container>
   </v-card>
 </template>
@@ -187,6 +189,7 @@ export default {
       } catch (error) {
       } finally {
         this.backupLoading = false
+        this.progress = 0
         this.getBackup()
       }
     },

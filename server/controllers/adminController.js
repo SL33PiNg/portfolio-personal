@@ -190,11 +190,11 @@ exports.blackupData = async (req, res) => {
     }
   
     fs.mkdirSync(backupPath, { recursive: true })
-    res.write('copy file')
+    // res.write('copy file')
     console.log('copy file')
     await Promise.all(pendingFolderList)
     
-    res.write('zip file')
+    // res.write('zip file')
     console.log('zip file')
     await zipDir(backupPath, path.resolve(backupZip,'backup.zip') , res)
       
