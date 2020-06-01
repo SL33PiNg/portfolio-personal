@@ -9,6 +9,7 @@ const ReportModel = require('../models/report')
 const adminLog = require('../models/adminLog')
 const userLog = require('../models/userLog')
 const archiver = require('archiver')
+const getSize = require('get-folder-size')
 archiver.registerFormat('zip-encryptable', require('archiver-zip-encryptable'))
 const fse = require('fs-extra')
 exports.addAdmin = async (req, res) => {
@@ -163,14 +164,14 @@ exports.getAllLogUser = async (req, res) => {
 }
 
 exports.blackupData = async (req, res) => {
-  const now = new Date()
-  const dd = now.getDate()
-  const mm = Intl.DateTimeFormat('en-US',{month:'long'}).format(now)
-  const yy = now.getFullYear()
-  const folderName = `${yy}_${mm}_${dd}`
-  const backupPath = path.resolve('backup', folderName)
+  // const now = new Date()
+  // const dd = now.getDate()
+  // const mm = Intl.DateTimeFormat('en-US',{month:'long'}).format(now)
+  // const yy = now.getFullYear()
+  // const folderName = `${yy}_${mm}_${dd}`
+  const backupPath = path.resolve('backup', 'temp')
   const backupZip = path.resolve('backup', 'zip')
-  const cmd = `"${process.env.MONGODUMP}" --uri="mongodb://localhost:27017/rmutt" --archive=backup/${folderName}/backup` 
+  const cmd = `"${process.env.MONGODUMP}" --uri="mongodb://localhost:27017/rmutt" --archive=backup/temp/backup` 
   const pendingFolderList = [
     fse.copy(path.resolve('avatar'), path.resolve(backupPath, 'avatar')),
     fse.copy(path.resolve('award'), path.resolve(backupPath, 'award')),
@@ -189,14 +190,13 @@ exports.blackupData = async (req, res) => {
     }
   
     fs.mkdirSync(backupPath, { recursive: true })
-    
+    res.write('copy file')
+    console.log('copy file')
     await Promise.all(pendingFolderList)
-    await zipDir(backupPath, path.resolve(backupZip, folderName+'.zip'))
-    res.json({
-      status: 200,
-      message: ' backup success'
-    })
-      
+    
+    res.write('zip file')
+    console.log('zip file')
+    await zipDir(backupPath, path.resolve(backupZip,'backup.zip') , res)
       
     } catch (error) {
       console.log(error)
@@ -205,8 +205,8 @@ exports.blackupData = async (req, res) => {
   }
 
 exports.downloadBackup = (req, res) => {
-  const { name } = req.params
-  const ff = path.resolve('backup', 'zip', name)
+  
+  const ff = path.resolve('backup', 'zip', 'backup.zip')
   res.download(ff, 'backup.zip')
 }
 
@@ -221,7 +221,7 @@ exports.downloadBackup = (req, res) => {
 
   exports.getRestore = (req, res) => {
     const {folder} = req.params
-    const cmd = `"${process.env.MONGORESTORE}" mongorestore --archive=backup/${folder}/backup --drop --nsInclude="rmutt.*"`
+    const cmd = `"${process.env.MONGORESTORE}" mongorestore --archive=backup/temp/backup --drop --nsInclude="rmutt.*"`
     const backupPath = path.resolve('backup', folder)
     const pendingFolderList = [
       fse.copy(path.resolve(backupPath, 'avatar'), path.resolve('avatar')),
@@ -252,7 +252,7 @@ exports.downloadBackup = (req, res) => {
     }
   }
 
-  function zipDir(source, output) {
+  function zipDir(source, output, res) {
     const archive = archiver('zip-encryptable', {
       zlib: { level: 9 },
       forceLocalTime: true,
@@ -260,17 +260,20 @@ exports.downloadBackup = (req, res) => {
     })
     const outStream = fs.createWriteStream(output)
     
-
-    archive
+    getSize(source, (err, totalSize) => {
+      err && res.status(500).send(err)
+      
+      archive
       .directory(source, false)
-      .on('error', err => { throw err })
+      .on('error', (err) =>  res.status(500).send(err))
+      .on('progress', (progress) => {
+        const percent = progress.fs.processedBytes*100/totalSize
+        res.write(Number.parseFloat(percent).toFixed(2)+'\n')
+      })
+      .on('end', () =>  res.end() )
       .pipe(outStream)
-
-    
-    outStream.on('close', () => true)
-    
-
-    return archive.finalize()
+      // outStream.on('end', () => {res.end()})
+      return archive.finalize()
+    })
   
-    
   }

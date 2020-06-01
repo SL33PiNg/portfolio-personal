@@ -9,13 +9,44 @@
           </h2></v-sheet
         >
       </v-row>
-
-      <v-row justify="center" class="ma-2">
-        <v-col cols="5" md="5" xs="1" sm="5 ">
-          <v-btn block class="primary" @click="backup">สำรองข้อมูล </v-btn>
+      <v-row justify="center" class="mt-8">
+        <v-col cols="11">
+          <v-file-input label="อัปโหลดไฟล์" outlined dense></v-file-input>
         </v-col>
-        <v-col cols="5" md="5" xs="1" sm="5">
-          <v-btn block class="warning">กู้คืนข้อมูล </v-btn>
+      </v-row>
+      <v-row justify="center">
+        <v-col cols="auto">
+          <v-btn
+            :loading="backupLoading"
+            height="250"
+            width="250"
+            max-height="250"
+            max-width="250"
+            class="primary display-1"
+            @click="backup"
+            >สำรองข้อมูล<v-icon dark>mdi-upload</v-icon>
+            <template v-slot:loader>
+              <v-progress-circular
+                :rotate="90"
+                :size="170"
+                :width="15"
+                :value="progress"
+              >
+                <p class="display-1">{{ progress }}%</p>
+              </v-progress-circular>
+            </template>
+          </v-btn>
+        </v-col>
+
+        <v-col cols="auto" offset="1">
+          <v-btn
+            height="250"
+            width="250"
+            max-height="250"
+            max-width="250"
+            class="warning display-1"
+            >กู้คืนข้อมูล
+          </v-btn>
         </v-col>
       </v-row>
 
@@ -86,6 +117,8 @@
 export default {
   data() {
     return {
+      backupLoading: false,
+      progress: 0,
       folderName: '',
       restore: false,
       backupList: [],
@@ -120,11 +153,40 @@ export default {
       this.folderName = item
       this.restore = true
     },
-    backup() {
+    async backup() {
       try {
-        this.$axios.$get('/admin/blackup')
+        this.backupLoading = true
+        // const { data } = this.$axios.get('/admin/blackup', {
+        //   responseType: 'stream',
+        // })
+
+        // data.on('data', (chunk) => console.log(chunk))
+        // // data.on('data', (chunk) => {
+        // //   const { progress, totalSize } = JSON.parse(chunk)
+        // //   this.progress = (progress * 100) / totalSize
+        // //   console.log(progress, totalSize)
+        // // })
+        // data.on('end', () => {
+        //   this.backupLoading = false
+        // })
+        // data.on('error', (err) => {
+        //   console.log(err)
+        // })
+        const { body } = await fetch('http://localhost:3000/api/admin/blackup')
+        const reader = body.getReader()
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) {
+            break
+          }
+          const decode = new TextDecoder('utf-8')
+          this.progress = decode.decode(value)
+          console.log(this.progress)
+        }
+        this.downloadF()
       } catch (error) {
       } finally {
+        this.backupLoading = false
         this.getBackup()
       }
     },
@@ -136,8 +198,8 @@ export default {
         console.log(error)
       }
     },
-    downloadF(item) {
-      window.open(item)
+    downloadF() {
+      window.open('http://localhost:3000/api/admin/backupDownload')
     },
   },
 }
