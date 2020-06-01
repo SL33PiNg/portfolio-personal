@@ -11,8 +11,11 @@
       </v-row>
 
       <v-row justify="center" class="ma-2">
-        <v-col cols="11" md="11" xs="1" sm="6">
+        <v-col cols="5" md="5" xs="1" sm="5 ">
           <v-btn block class="primary" @click="backup">สำรองข้อมูล </v-btn>
+        </v-col>
+        <v-col cols="5" md="5" xs="1" sm="5">
+          <v-btn block class="warning">กู้คืนข้อมูล </v-btn>
         </v-col>
       </v-row>
 
@@ -56,7 +59,13 @@
               </template>
               <span></span>
             </v-tooltip>
-
+            <v-btn
+              @click="
+                downloadF(`http://localhost:3000/api/admin/backup/${item.name}`)
+              "
+            >
+              download
+            </v-btn>
             <!-- <v-tooltip top>
               <template v-slot:activator="{ on }">
                 <v-chip class="error" v-on="on"
@@ -126,6 +135,9 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    downloadF(item) {
+      window.open(item)
     },
   },
 }

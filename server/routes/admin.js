@@ -35,4 +35,5 @@ router.get('/blackup' , addAdmin.blackupData)
 router.get('/backuplist', addAdmin.getBackup)
 router.get('/restore/:folder', addAdmin.getRestore)
 
+router.get('/backup/:name', addAdmin.downloadBackup)
 module.exports = router

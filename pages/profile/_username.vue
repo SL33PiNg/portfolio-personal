@@ -174,7 +174,7 @@
       </v-col>
     </v-row>
     <v-row wrap justify="center">
-      <v-dialog v-model="cardProfile" width="691">
+      <v-dialog v-model="cardProfile" width="682">
         <CardProfile :user="user" :department="departmentname"></CardProfile>
       </v-dialog>
     </v-row>

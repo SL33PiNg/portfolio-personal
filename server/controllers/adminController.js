@@ -1,4 +1,6 @@
 const { exec } = require('child_process')
+const util = require('util');
+const Aexec = util.promisify(require('child_process').exec);
 const fs = require('fs')
 const path = require('path')
 const UserModel = require('../models/User')
@@ -6,6 +8,8 @@ const AwardModel = require('../models/award')
 const ReportModel = require('../models/report')
 const adminLog = require('../models/adminLog')
 const userLog = require('../models/userLog')
+const archiver = require('archiver')
+archiver.registerFormat('zip-encryptable', require('archiver-zip-encryptable'))
 const fse = require('fs-extra')
 exports.addAdmin = async (req, res) => {
   const { id } = req.params
@@ -158,19 +162,21 @@ exports.getAllLogUser = async (req, res) => {
   }
 }
 
-exports.blackupData = (req, res) => {
+exports.blackupData = async (req, res) => {
   const now = new Date()
   const dd = now.getDate()
   const mm = Intl.DateTimeFormat('en-US',{month:'long'}).format(now)
   const yy = now.getFullYear()
   const folderName = `${yy}_${mm}_${dd}`
   const backupPath = path.resolve('backup', folderName)
+  const backupZip = path.resolve('backup', 'zip')
+  const cmd = `"${process.env.MONGODUMP}" --uri="mongodb://localhost:27017/rmutt" --archive=backup/${folderName}/backup` 
   const pendingFolderList = [
     fse.copy(path.resolve('avatar'), path.resolve(backupPath, 'avatar')),
     fse.copy(path.resolve('award'), path.resolve(backupPath, 'award')),
-    fse.copy(path.resolve('report'), path.resolve(backupPath, 'report'))
+    fse.copy(path.resolve('report'), path.resolve(backupPath, 'report')),
+    Aexec(cmd)
   ]
-  const cmd = `"C:\\Program Files\\MongoDB\\Server\\4.2\\bin\\mongodump" --uri="mongodb://localhost:27017/rmutt" --archive=backup/${folderName}/backup` 
   try {
     if(!fs.existsSync(path.resolve('backup'))) {
       fs.mkdirSync('backup')
@@ -178,27 +184,35 @@ exports.blackupData = (req, res) => {
     if(!fs.existsSync(backupPath)) {
       fs.rmdirSync(backupPath, { recursive: true })
     }
+    if(!fs.existsSync(backupZip)) {
+      fs.mkdirSync(backupZip, { recursive: true })
+    }
+  
     fs.mkdirSync(backupPath, { recursive: true })
-      exec(cmd, (err, stdout, stderr) => {
-        if(err) {
-          console.log(err)
-          return res.status(500).send('error')
-        }
-        res.json({
-          status: 200,
-          message: ' backup success'
-        })
-      })
-      Promise.all(pendingFolderList)
+    
+    await Promise.all(pendingFolderList)
+    await zipDir(backupPath, path.resolve(backupZip, folderName+'.zip'))
+    res.json({
+      status: 200,
+      message: ' backup success'
+    })
+      
+      
     } catch (error) {
       console.log(error)
       return res.status(500).send(error)
     }
   }
 
+exports.downloadBackup = (req, res) => {
+  const { name } = req.params
+  const ff = path.resolve('backup', 'zip', name)
+  res.download(ff, 'backup.zip')
+}
+
   exports.getBackup = (req, res) => {
     try {
-      const listDir = fs.readdirSync(path.resolve('backup'))
+      const listDir = fs.readdirSync(path.resolve('backup', 'zip'))
       return res.json(listDir)
     } catch (error) {
       return res.status(500).send(error)
@@ -207,7 +221,7 @@ exports.blackupData = (req, res) => {
 
   exports.getRestore = (req, res) => {
     const {folder} = req.params
-    const cmd = `"C:\\Program Files\\MongoDB\\Server\\4.2\\bin\\mongorestore" mongorestore --archive=backup/${folder}/backup --drop --nsInclude="rmutt.*"`
+    const cmd = `"${process.env.MONGORESTORE}" mongorestore --archive=backup/${folder}/backup --drop --nsInclude="rmutt.*"`
     const backupPath = path.resolve('backup', folder)
     const pendingFolderList = [
       fse.copy(path.resolve(backupPath, 'avatar'), path.resolve('avatar')),
@@ -236,4 +250,27 @@ exports.blackupData = (req, res) => {
       console.log(error)
       return res.status(500).send(error)
     }
+  }
+
+  function zipDir(source, output) {
+    const archive = archiver('zip-encryptable', {
+      zlib: { level: 9 },
+      forceLocalTime: true,
+      password: process.env.ZIP_PASSWORD
+    })
+    const outStream = fs.createWriteStream(output)
+    
+
+    archive
+      .directory(source, false)
+      .on('error', err => { throw err })
+      .pipe(outStream)
+
+    
+    outStream.on('close', () => true)
+    
+
+    return archive.finalize()
+  
+    
   }
