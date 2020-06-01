@@ -69,11 +69,11 @@
 
     <v-dialog v-model="dialog" width="75%">
       <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>
+        <v-card-title class="headline primary white--text">
           รายละเอียดข้อมูลผลงาน
           <v-spacer></v-spacer>
-          <v-icon large color="error" @click="dialog = false">
-            mdi-close-box</v-icon
+          <v-icon large color="white" @click="dialog = false">
+            mdi-close</v-icon
           ></v-card-title
         >
         <h1 class="white--text">
@@ -89,11 +89,11 @@
     </v-dialog>
     <v-dialog v-model="editMode" width="70%">
       <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>
+        <v-card-title class="headline primary white--text">
           แก้ไขข้อมูลผลงาน
           <v-spacer></v-spacer>
-          <v-icon large color="error" @click="editMode = false">
-            mdi-close-box</v-icon
+          <v-icon large color="white" @click="editMode = false">
+            mdi-close</v-icon
           ></v-card-title
         >
 

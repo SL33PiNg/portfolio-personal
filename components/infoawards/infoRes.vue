@@ -10,27 +10,82 @@
         ></v-img>
       </v-col>
     </v-row>
-    <v-row justify="center">
-      <v-card-title>ชื่อโครงการภาษาไทย </v-card-title>
-      <v-card-subtitle>{{ award.name }}</v-card-subtitle>
-      <v-card-subtitle
-        >ชื่อโครงการภาษาอังกฤษ:{{ award.nameEN }}
-      </v-card-subtitle>
-
-      <v-card-subtitle
-        >ประเภทโครงการวิจัย:{{ award.researchCategory }}
-      </v-card-subtitle>
-    </v-row>
-
-    <v-card-subtitle
-      >ตำแหน่งในโครงการวิจัย:{{ award.jobTitles }}</v-card-subtitle
-    >
-
-    <v-card-subtitle>ปีที่จัดทำโครงการ: {{ award.eventYear }}</v-card-subtitle>
-    <v-card-subtitle>ปีงบประมาณ:{{ award.fiscalYear }} </v-card-subtitle>
-    <v-divider></v-divider>
-    <v-card-subtitle>รายละเอียด: </v-card-subtitle
-    ><froalaView v-model="award.infoemation"></froalaView>
+    <v-card outlined class="ma-12">
+      <v-card-title class="blue-grey lighten-5 blue-grey--text">
+        ข้อมูลโครงการงานวิจัย</v-card-title
+      ><v-simple-table>
+        <template v-slot:default>
+          <thead>
+            <tr></tr>
+          </thead>
+          <tbody>
+            <td class="text-left">
+              ชื่อโครงการ
+            </td>
+            <td class="text-left">
+              <v-span class="ml-n12">{{ award.name }}</v-span>
+            </td>
+          </tbody>
+          <tbody>
+            <td class="text-left blue-grey lighten-5">
+              ชื่อโครงการภาษาอังกฤษ
+            </td>
+            <td class="text-left blue-grey lighten-5">
+              <v-span class="ml-n12">{{ award.nameEN }}</v-span>
+            </td>
+          </tbody>
+          <tbody>
+            <td class="text-left">
+              ประเภทโครงการวิจัย
+            </td>
+            <td class="text-left">
+              <v-span class="ml-n12">{{ award.researchCategory }}</v-span>
+            </td>
+          </tbody>
+          <tbody>
+            <td class="text-left blue-grey lighten-5">
+              ตำแหน่งในโครงการวิจัย
+            </td>
+            <td class="text-left blue-grey lighten-5">
+              <v-span class="ml-n12">{{ award.jobTitles }}</v-span>
+            </td>
+          </tbody>
+          <tbody>
+            <td class="text-left">
+              ปีที่จัดทำโครงการ
+            </td>
+            <td class="text-left">
+              <v-span class="ml-n12">{{ award.eventYear }}</v-span>
+            </td>
+          </tbody>
+          <tbody>
+            <td class="text-left blue-grey lighten-5">
+              ปีงบประมาณ
+            </td>
+            <td class="text-left blue-grey lighten-5">
+              <v-span class="ml-n12">{{ award.fiscalYear }}</v-span>
+            </td>
+          </tbody>
+        </template>
+      </v-simple-table>
+      <v-simple-table>
+        <template>
+          <thead>
+            <tr>
+              <td class="text-left">
+                รายละเอียด
+              </td>
+            </tr>
+            <tr>
+              <froalaView
+                v-model="award.infoemation"
+                class="ml-4 ma-1"
+              ></froalaView>
+            </tr>
+          </thead>
+        </template>
+      </v-simple-table>
+    </v-card>
   </v-container>
 </template>
 
@@ -45,3 +100,17 @@ export default {
   },
 }
 </script>
+<style>
+.v-card__title {
+  -webkit-box-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 18px;
+
+  letter-spacing: 0.0125em;
+  line-height: 1.5rem;
+  word-break: break-all;
+}
+</style>
