@@ -16,7 +16,7 @@
         <v-list-item-title v-text="item.title" />
       </v-list-item-content>
     </v-list-item>
-    <v-row justify="center" class="mt-12">
+    <!-- <v-row justify="center" class="mt-12">
       <v-date-picker
         v-model="date"
         width="230"
@@ -25,7 +25,7 @@
         class="mt-12"
         locale="th"
       ></v-date-picker>
-    </v-row>
+    </v-row> -->
   </v-list>
 </template>
 
