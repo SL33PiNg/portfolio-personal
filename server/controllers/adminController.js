@@ -219,10 +219,10 @@ exports.downloadBackup = (req, res) => {
     }
   }
 
-  exports.getRestore = (req, res) => {
-    const {folder} = req.params
-    const cmd = `"${process.env.MONGORESTORE}" mongorestore --archive=backup/temp/backup --drop --nsInclude="rmutt.*"`
-    const backupPath = path.resolve('backup', folder)
+  exports.restore = (req, res) => {
+    
+    const cmd = `"${process.env.MONGORESTORE}" mongorestore --archive=zipTemp/backup --drop --nsInclude="rmutt.*"`
+    const backupPath = path.resolve('zipTemp')
     const pendingFolderList = [
       fse.copy(path.resolve(backupPath, 'avatar'), path.resolve('avatar')),
       fse.copy(path.resolve(backupPath, 'award'), path.resolve('award'),),

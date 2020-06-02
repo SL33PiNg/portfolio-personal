@@ -3,6 +3,8 @@ const isAuth = require('../middleware/isAuth')
 const logAdmin = require('../middleware/logEditAdmin')
 const logAllow = require('../middleware/allowPublicLog')
 const logActive = require('../middleware/allowActiveLog')
+const saveZip = require('../middleware/saveZip')
+const extractZip = require('../middleware/extractZip')
 const express = require('express')
 const router = express.Router()
 
@@ -33,7 +35,7 @@ router.get('/historyUserEdit' , addAdmin.getAllLogUser)
 
 router.get('/blackup' , addAdmin.blackupData)
 router.get('/backuplist', addAdmin.getBackup)
-router.get('/restore/:folder', addAdmin.getRestore)
+router.post('/restore', [saveZip.single('restore'), extractZip], addAdmin.restore)
 
 router.get('/backupDownload', addAdmin.downloadBackup)
 module.exports = router

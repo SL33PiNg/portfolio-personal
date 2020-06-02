@@ -9,12 +9,18 @@
           </h2></v-sheet
         >
       </v-row>
-      <v-row justify="center" class="mt-8">
+      <v-row v-show="false" justify="center" class="mt-8">
         <v-col cols="11">
-          <v-file-input label="อัปโหลดไฟล์" outlined dense></v-file-input>
+          <v-file-input
+            id="backupInput"
+            label="อัปโหลดไฟล์"
+            outlined
+            dense
+            @change="upload"
+          ></v-file-input>
         </v-col>
       </v-row>
-      <v-row justify="center">
+      <v-row justify="center" class="mt-4">
         <v-col cols="auto">
           <v-btn
             :loading="backupLoading"
@@ -46,6 +52,7 @@
             max-height="250"
             max-width="250"
             class="warning display-1"
+            @click="openFileDialog"
             >กู้คืนข้อมูล
             <v-icon class="display-1" dark> mdi-backup-restore</v-icon>
           </v-btn>
@@ -138,7 +145,20 @@ export default {
   created() {
     this.getBackup()
   },
+
   methods: {
+    async upload(file) {
+      if (!file) return
+      const data = new FormData()
+      data.append('restore', file)
+      try {
+        const result = await this.$axios.$post(`/admin/restore`, data)
+        console.log(result)
+      } catch (error) {}
+    },
+    openFileDialog() {
+      document.getElementById('backupInput').click()
+    },
     async Restore() {
       try {
         const result = await this.$axios.$get(
