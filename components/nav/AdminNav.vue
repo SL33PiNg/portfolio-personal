@@ -67,7 +67,7 @@ export default {
         {
           icon: 'mdi-autorenew',
           title: 'สำรองข้อมูล',
-          to: '/admin/blackup',
+          to: '/admin/backup',
         },
         //  {
         //         icon: 'mdi-account-multiple-plus-outline',
