@@ -48,10 +48,10 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn v-if="!isAdmin" color="primary" @click="addAdmin">
-                    เพิ่มสิทธิ์ 'ADMIN'
+                    เพิ่มสิทธิ์ 'ผู้ดูแลระบบ'
                   </v-btn>
                   <v-btn v-else color="error" @click="removeAdmin">
-                    ลบสิทธิ์ 'ADMIN'
+                    ลบสิทธิ์ 'ผู้ดูแลระบบ'
                   </v-btn>
                   <v-btn color="" @click="add = false">
                     ยกเลิก

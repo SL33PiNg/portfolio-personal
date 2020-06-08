@@ -27,7 +27,7 @@
         >
       </template>
       <v-list-item class="ml-7">
-        <v-btn text to="/admin/history">ประวัติการแก้ไขแอดมิน </v-btn>
+        <v-btn text to="/admin/history">ประวัติการแก้ไขผู้ดูแล </v-btn>
       </v-list-item>
       <v-list-item class="ml-7">
         <v-btn text to="/admin/historyUserEdit"
@@ -87,7 +87,7 @@ export default {
           active: false,
           items: [
             {
-              title: 'ประวัติการแก้ไขแอดมิน',
+              title: 'ประวัติการแก้ไขผู้ดูแล',
               to: '/admin/history',
             },
             {

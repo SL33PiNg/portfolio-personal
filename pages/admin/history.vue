@@ -5,7 +5,7 @@
         <v-sheet color="primary" width="90%" elevation="8" class="mt-n8">
           <h2 class="ma-2 white--text">
             <v-icon color="white">mdi-history</v-icon>
-            ประวัติการแก้ไขแอดมิน
+            ประวัติการแก้ไขผู้ดูแล
           </h2></v-sheet
         >
       </v-row>
