@@ -243,7 +243,11 @@ exports.deletecertificateInfoByIndex = async (req, res) => {
 function rmuttLogin (username, password) {
   if (username === 'tao' && password === '123') return true
   else if (username === 'art' && password === '123') return true
-  else if (username === 'nook' && password === '123') return true
+  else if (username === 'test1' && password === '123') return true
+  else if (username === 'test2' && password === '123') return true
+  else if (username === 'test3' && password === '123') return true
+  else if (username === 'test4' && password === '123') return true
+  else if (username === 'test5' && password === '123') return true
   else return false
 }
 
