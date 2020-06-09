@@ -78,7 +78,7 @@ export default {
       return this.awards.filter((f) => f.awardType === val)
     },
     onResize() {
-      this.maxH = window.innerHeight
+      this.maxH = window.innerHeight + 22
     },
   },
 }
