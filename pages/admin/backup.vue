@@ -16,7 +16,7 @@
             label="อัปโหลดไฟล์"
             outlined
             dense
-            @change="upload"
+            @change="Restore"
           ></v-file-input>
         </v-col>
       </v-row>
@@ -47,6 +47,7 @@
 
         <v-col cols="auto" offset="1">
           <v-btn
+            :loading="restoreLoading"
             height="250"
             width="250"
             max-height="250"
@@ -55,6 +56,16 @@
             @click="openFileDialog"
             >กู้คืนข้อมูล
             <v-icon class="display-1" dark> mdi-backup-restore</v-icon>
+            <template v-slot:loader>
+              <v-progress-circular
+                :rotate="90"
+                :size="170"
+                :width="15"
+                :value="restoreProgress"
+              >
+                <p class="display-1">{{ restoreProgress }}%</p>
+              </v-progress-circular>
+            </template>
           </v-btn>
         </v-col>
       </v-row>
@@ -140,6 +151,8 @@ export default {
         },
         { text: 'การจัดการ', align: 'center', value: 'action', width: '15%' },
       ],
+      restoreLoading: false,
+      restoreProgress: 0,
     }
   },
   created() {
@@ -159,16 +172,34 @@ export default {
     openFileDialog() {
       document.getElementById('backupInput').click()
     },
-    async Restore() {
+    async Restore(file) {
+      if (!file) return
+      const data = new FormData()
+      data.append('restore', file)
+      this.restoreLoading = true
       try {
-        const result = await this.$axios.$get(
-          `/admin/restore/${this.folderName}`
+        const { body } = await fetch(
+          'http://localhost:3000/api/admin/restore',
+          {
+            method: 'post',
+            body: data,
+          }
         )
-        console.log(result)
+        const reader = body.getReader()
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) {
+            break
+          }
+          const decode = new TextDecoder('utf-8')
+          this.restoreProgress = decode.decode(value)
+          console.log(this.restoreProgress)
+        }
       } catch (error) {
         console.log(error)
       } finally {
-        this.restore = false
+        this.restoreProgress = 0
+        this.restoreLoading = false
       }
     },
     openRestore(item) {
@@ -178,22 +209,6 @@ export default {
     async backup() {
       try {
         this.backupLoading = true
-        // const { data } = this.$axios.get('/admin/blackup', {
-        //   responseType: 'stream',
-        // })
-
-        // data.on('data', (chunk) => console.log(chunk))
-        // // data.on('data', (chunk) => {
-        // //   const { progress, totalSize } = JSON.parse(chunk)
-        // //   this.progress = (progress * 100) / totalSize
-        // //   console.log(progress, totalSize)
-        // // })
-        // data.on('end', () => {
-        //   this.backupLoading = false
-        // })
-        // data.on('error', (err) => {
-        //   console.log(err)
-        // })
         const { body } = await fetch('http://localhost:3000/api/admin/blackup')
         const reader = body.getReader()
         while (true) {
