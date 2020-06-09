@@ -229,6 +229,7 @@ exports.downloadBackup = (req, res) => {
       fse.copy(path.resolve(backupPath, 'report'), path.resolve('report'))
     ]
     try {
+      fs.unlinkSync(path.resolve(req.file.path))
       fs.rmdirSync(path.resolve('avatar'), { recursive:true })
       fs.rmdirSync(path.resolve('award'), { recursive:true })
       fs.rmdirSync(path.resolve('report'), { recursive:true })
@@ -241,10 +242,8 @@ exports.downloadBackup = (req, res) => {
           console.log(err)
           return res.status(500).send('error')
         }
-        res.json({
-          status: 200,
-          message: 'restore success'
-        })
+        res.write('success')
+        res.end()
       })
     } catch (error) {
       console.log(error)
