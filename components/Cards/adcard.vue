@@ -1,7 +1,18 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col lg="5" offset-lg="2" md="6" sm="6" xs="12">
+      <v-col offset-lg="2" lg="3" md="5" sm="4">
+        <v-select
+          v-model="start.fieldname"
+          dense
+          :items="items"
+          item-text="name"
+          item-value="fieldname"
+          label=""
+          outlined
+        ></v-select>
+      </v-col>
+      <v-col lg="5" md="6" sm="6" xs="12">
         <v-text-field
           v-if="
             start.fieldname === 'firstname' ||
@@ -35,17 +46,6 @@
           outlined
         />
       </v-col>
-      <v-col lg="3" md="5" sm="4">
-        <v-select
-          v-model="start.fieldname"
-          dense
-          :items="items"
-          item-text="name"
-          item-value="fieldname"
-          label=""
-          outlined
-        ></v-select>
-      </v-col>
 
       <v-col cols="auto" class="text-start">
         <v-btn large color="primary" icon @click="add">
@@ -65,6 +65,18 @@
           outlined
         >
         </v-select>
+      </v-col>
+      <v-col lg="3" md="4" sm="4">
+        <v-select
+          v-model="i.fieldname"
+          dense
+          :items="items"
+          item-text="name"
+          item-value="fieldname"
+          label=""
+          outlined
+          @change="change(index)"
+        ></v-select>
       </v-col>
       <v-col lg="3" md="5" sm="4">
         <v-text-field
@@ -100,18 +112,7 @@
           outlined
         />
       </v-col>
-      <v-col lg="3" md="4" sm="4">
-        <v-select
-          v-model="i.fieldname"
-          dense
-          :items="items"
-          item-text="name"
-          item-value="fieldname"
-          label=""
-          outlined
-          @change="change(index)"
-        ></v-select>
-      </v-col>
+
       <v-col cols="auto" class="text-start">
         <v-btn color="error" large icon @click="del(index)">
           <v-icon size="50"> mdi-close-circle-outline</v-icon>
