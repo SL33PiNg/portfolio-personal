@@ -279,6 +279,10 @@ export default {
         }
       } catch (error) {
       } finally {
+        this.name = null
+        this.academic = null
+        this.expId = undefined
+        this.ocscId = undefined
         this.loading = false
       }
     },

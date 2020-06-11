@@ -51,6 +51,7 @@ exports.search = async (req, res) => {
     if(name){
       result = await UserModel.find({ 
         username: { $ne: 'admin' },
+        isPublic: true,
         $or: [
           {"personalInfo.academicRank": academic},
           { "personalInfo.firstnameTH": {$regex: name} },
@@ -63,6 +64,7 @@ exports.search = async (req, res) => {
     } else {
         result = await UserModel.find({ 
           username: { $ne: 'admin' },
+          isPublic: true,
           $or: [
             {"personalInfo.academicRank": academic},
             { expId },

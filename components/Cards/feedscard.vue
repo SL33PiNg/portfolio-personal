@@ -39,16 +39,16 @@
         <v-list-item-subtitle
           ><h4>ประเภทผลงาน: {{ award.awardType | idToString(items) }}</h4>
           ปี: พ.ศ.{{ award.eventYear }}
-        </v-list-item-subtitle> </v-list-item-content
-      ><v-tooltip bottom>
-        <template v-slot:activator="{ on }"
-          ><v-btn icon @click.stop="openDetail(award)" v-on="on"
-            ><v-icon>mdi-magnify</v-icon></v-btn
+        </v-list-item-subtitle>
+      </v-list-item-content>
+      <v-tooltip bottom>
+        <template v-if="isUser" v-slot:activator="{ on }">
+          <v-btn icon @click="$emit('toggleDelete', award)" v-on="on"
+            ><v-icon>mdi-delete-outline</v-icon></v-btn
           ></template
         >
-        <span>ดูรายละเอียด</span></v-tooltip
+        <span>ลบผลงาน</span></v-tooltip
       >
-
       <v-tooltip bottom>
         <template v-if="isUser" v-slot:activator="{ on }">
           <v-btn icon @click.stop="editItem(award)" v-on="on"
@@ -58,12 +58,12 @@
         <span>แก้ไขผลงาน</span></v-tooltip
       >
       <v-tooltip bottom>
-        <template v-if="isUser" v-slot:activator="{ on }">
-          <v-btn icon @click="$emit('toggleDelete', award)" v-on="on"
-            ><v-icon>mdi-delete-outline</v-icon></v-btn
+        <template v-slot:activator="{ on }"
+          ><v-btn icon @click.stop="openDetail(award)" v-on="on"
+            ><v-icon>mdi-magnify</v-icon></v-btn
           ></template
         >
-        <span>ลบผลงาน</span></v-tooltip
+        <span>ดูรายละเอียด</span></v-tooltip
       >
     </v-list-item>
 
@@ -98,11 +98,6 @@
         >
 
         <component :is="awardType" :award="detail" editmode @close="close" />
-        <!-- {{ detail }}
-          <award1 v-if="detail.awardType === 1"></award1>
-          <award2 v-else-if="detail.awardType === 2"></award2>
-          <award3 v-else-if="detail.awardType === 3"></award3>
-          <award4 v-else-if="detail.awardType === 4"></award4> -->
       </v-card>
     </v-dialog>
   </v-card>
