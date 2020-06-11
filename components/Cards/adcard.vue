@@ -220,6 +220,7 @@ export default {
       }
       const result = {
         username: { $ne: 'admin' },
+        isPublic: true,
         $or: [],
       }
       const or = []
