@@ -14,8 +14,9 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="error" @click.stop="delPositionOcsc">ตกลง</v-btn>
-        <v-btn color="" @click.stop="isOpen = false">ยกเลิก</v-btn>
+
+        <v-btn color="" @click.stop="isOpen = false">ยกเลิก</v-btn
+        ><v-btn color="error" @click.stop="delPositionOcsc">ตกลง</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -26,6 +26,17 @@
           dense
         ></v-textarea>
         <v-container>
+          <v-row justify="start" class="mt-n10">
+            <v-col cols="6">
+              <v-file-input
+                accept="image/png, image/jpeg, image/bmp"
+                placeholder="เลือกรูปภาพ"
+                prepend-icon="mdi-camera"
+                label="ภาพประกอบ"
+                @change="handleChange"
+              ></v-file-input>
+            </v-col>
+          </v-row>
           <v-row justify="center">
             <v-col cols="10">
               <v-img
@@ -36,17 +47,6 @@
                 class="ma-2"
                 contain
               ></v-img>
-            </v-col>
-          </v-row>
-          <v-row justify="center">
-            <v-col cols="6">
-              <v-file-input
-                accept="image/png, image/jpeg, image/bmp"
-                placeholder="เลือกรูปภาพ"
-                prepend-icon="mdi-camera"
-                label="ภาพประกอบ"
-                @change="handleChange"
-              ></v-file-input>
             </v-col>
           </v-row>
         </v-container>

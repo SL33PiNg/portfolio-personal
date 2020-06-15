@@ -82,11 +82,10 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="error" @click="delReports(tempDataItem)">
+
+                  <v-btn color="" @click="del = false"> ยกเลิก </v-btn
+                  ><v-btn color="error" @click="delReports(tempDataItem)">
                     ตกลง
-                  </v-btn>
-                  <v-btn color="" @click="del = false">
-                    ยกเลิก
                   </v-btn>
                 </v-card-actions>
               </v-card>

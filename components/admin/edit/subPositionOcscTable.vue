@@ -36,8 +36,9 @@
           <v-card-title>ต้องการลบ {{ editData.name }} ?</v-card-title>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="error" @click="deletePositionOcsc">ตกลง</v-btn>
-            <v-btn color="" @click.stop="openDelDialog = false">ยกเลิก</v-btn>
+
+            <v-btn color="" @click.stop="openDelDialog = false">ยกเลิก</v-btn
+            ><v-btn color="error" @click="deletePositionOcsc">ตกลง</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>

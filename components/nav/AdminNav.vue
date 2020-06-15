@@ -27,7 +27,7 @@
         >
       </template>
       <v-list-item class="ml-7">
-        <v-btn text to="/admin/history">ประวัติการแก้ไขผู้ดูแล </v-btn>
+        <v-btn text to="/admin/history">ประวัติการแก้ไขผู้ดูแลระบบ </v-btn>
       </v-list-item>
       <v-list-item class="ml-7">
         <v-btn text to="/admin/historyUserEdit"
@@ -55,7 +55,7 @@ export default {
         },
         {
           icon: 'mdi-newspaper-variant-outline',
-          title: 'จัดการหน้าฟีดข่าว',
+          title: 'การแสดงผลงาน',
           to: '/admin/feed',
         },
         {
