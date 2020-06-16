@@ -9,18 +9,26 @@
           </h2></v-sheet
         >
       </v-row>
-      <v-row>
+      <v-row class="ma-2">
         <v-col cols="12" md="6">
           <v-select
             v-model="catagorySelect"
             :items="items"
             placeholder="เลือกประเภทผลงาน"
+            outlined
+            dense
           >
             ประเภทผลงาน
           </v-select>
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="search" label="ชื่อผลงาน" clearable />
+          <v-text-field
+            v-model="search"
+            label="ชื่อผลงาน"
+            clearable
+            outlined
+            dense
+          />
         </v-col>
       </v-row>
       <v-row>
